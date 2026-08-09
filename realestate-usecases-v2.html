@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>Real Estate Use Cases — Engati</title>
+  <meta name="description" content="Explore six interactive Real Estate journeys for property discovery, qualified lead capture, site visits, buyer support and service requests.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #ae1536;
+      --red-h: #8f0f2a;
+      --red-soft: #c43352;
+      --red-light: #D98B7E;
+      --red-pale: #FDF2F2;
+      --red-faint: #FEF8F8;
+      --charcoal: #3F3F3F;
+      --white: #FFFFFF;
+      --cream: #FDFAF9;
+      --warm-bg: #FBF5F5;
+      --body-head: #100D0D;
+      --body-text: #4A3F3F;
+      --body-muted: #9A8A8A;
+      --taupe: #4A3F3F;
+      --border: #EDE4E4;
+      --border-sm: #F4ECEC;
+      --wa-bg: #e5ddd5;
+      --wa-bot: #fff;
+      --wa-user: #dcf8c6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 12px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(253,250,249,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border)
+    }
+    .nav-logo-img { height: 36px; width: auto; display: block; border-radius: 6px }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 8px 18px; border-radius: 8px;
+      font-weight: 700; font-size: .82rem;
+      text-decoration: none; transition: all .2s
+    }
+    .nav-cta:hover { background: var(--red-h); transform: translateY(-1px) }
+
+    /* ── HERO HEADER ── */
+    .hero-header {
+      background: var(--cream);
+      padding: 120px 5% 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+    .hero-header::before {
+      content: ''; position: absolute;
+      width: 520px; height: 520px; border-radius: 50%;
+      border: 90px solid var(--red-faint);
+      top: -180px; right: -140px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-header::after {
+      content: ''; position: absolute;
+      width: 280px; height: 280px; border-radius: 50%;
+      border: 50px solid var(--border-sm);
+      bottom: -100px; left: -60px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 16px;
+      animation: fadeUp .6s ease both; opacity: 0
+    }
+    .hero-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06;
+      color: var(--body-head);
+      letter-spacing: -.04em;
+      margin-bottom: 16px;
+      animation: fadeUp .6s .05s ease both; opacity: 0
+    }
+    .hero-header h1 em { font-style: normal; color: var(--red) }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--body-text);
+      max-width: 560px; margin: 0 auto 24px;
+      animation: fadeUp .6s .10s ease both; opacity: 0
+    }
+    .hero-badges {
+      display: flex; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      animation: fadeUp .6s .15s ease both; opacity: 0
+    }
+    .hero-badge {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      padding: 5px 14px; border-radius: 100px
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center;
+      gap: 40px; padding: 26px 5%; flex-wrap: wrap
+    }
+    .stat { text-align: center }
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem; font-weight: 900;
+      color: var(--red); letter-spacing: -.03em
+    }
+    .stat .label {
+      font-size: .7rem; font-weight: 600;
+      color: var(--body-muted);
+      margin-top: 2px; letter-spacing: .03em
+    }
+
+    /* ── MAIN ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 56px 5% }
+    .sec-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 8px; text-align: center
+    }
+    .sec-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 900; color: var(--body-head);
+      line-height: 1.15; letter-spacing: -.03em;
+      margin-bottom: 40px; text-align: center
+    }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner {
+      background: var(--red);
+      border-radius: 20px; padding: 32px 36px;
+      margin-bottom: 36px;
+      display: flex; align-items: center; gap: 24px;
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden
+    }
+    .featured-banner::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 80px solid rgba(255,255,255,.05);
+      top: -200px; right: -160px; pointer-events: none
+    }
+    .featured-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(174,21,54,.35)
+    }
+    .fb-icon { font-size: 2.8rem; flex-shrink: 0 }
+    .fb-content { flex: 1; position: relative; z-index: 2 }
+    .fb-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      color: #fff; font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 10px
+    }
+    .fb-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      color: #fff; margin-bottom: 6px; letter-spacing: -.02em
+    }
+    .fb-content p {
+      font-size: .85rem; color: rgba(255,255,255,.8);
+      line-height: 1.65; max-width: 500px
+    }
+    .fb-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px;
+      background: #fff; color: var(--red);
+      font-size: .78rem; font-weight: 800;
+      padding: 9px 20px; border-radius: 10px;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .fb-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12) }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+      cursor: pointer
+    }
+    .card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--red); opacity: 0;
+      transition: opacity .25s
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(174,21,54,.08);
+      border-color: rgba(174,21,54,.2)
+    }
+    .card:hover::before { opacity: 1 }
+
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0
+    }
+    .card-meta { flex: 1 }
+    .card-tag {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 3px
+    }
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: .95rem; font-weight: 800;
+      color: var(--body-head); line-height: 1.3
+    }
+    .card ul { list-style: none; padding: 0; margin-bottom: 14px }
+    .card ul li {
+      font-size: .82rem; color: var(--body-text);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border-sm);
+      display: flex; align-items: flex-start;
+      gap: 8px; line-height: 1.55
+    }
+    .card ul li:last-child { border-bottom: none }
+    .card ul li::before {
+      content: '→'; color: var(--red);
+      font-size: .7rem; margin-top: 3px; flex-shrink: 0
+    }
+    .flow-steps {
+      display: flex; gap: 4px;
+      margin-bottom: 14px; flex-wrap: wrap
+    }
+    .step-chip {
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      font-size: .6rem; font-weight: 600;
+      padding: 3px 9px; border-radius: 100px; white-space: nowrap
+    }
+    .view-flow-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .76rem; font-weight: 700;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 100px; padding: 6px 16px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .view-flow-btn:hover {
+      background: var(--red); color: #fff;
+      transform: translateY(-1px)
+    }
+
+    .card.fc { background: var(--red); border-color: var(--red) }
+    .card.fc::before { opacity: 0 !important }
+    .card.fc:hover {
+      box-shadow: 0 14px 40px rgba(174,21,54,.3);
+      border-color: var(--red-h)
+    }
+    .card.fc .card-icon {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .card-tag { color: rgba(255,255,255,.65) }
+    .card.fc h3 { color: #fff }
+    .card.fc ul li {
+      color: rgba(255,255,255,.82);
+      border-bottom-color: rgba(255,255,255,.1)
+    }
+    .card.fc ul li::before { color: rgba(255,255,255,.45) }
+    .card.fc .step-chip {
+      background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .view-flow-btn {
+      background: rgba(255,255,255,.15); color: #fff;
+      border-color: rgba(255,255,255,.2)
+    }
+    .card.fc .view-flow-btn:hover {
+      background: #fff; color: var(--red)
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(16,13,13,.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 16px
+    }
+    .modal-overlay.open { display: flex }
+    .modal {
+      background: var(--white);
+      border-radius: 20px; width: 100%;
+      max-width: 430px; max-height: 92vh;
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(16,13,13,.28)
+    }
+
+    .mh {
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0; background: var(--red);
+    }
+    .mh-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0
+    }
+    .mh-info .nm {
+      font-family: 'Outfit', sans-serif;
+      font-size: .88rem; font-weight: 700; color: #fff
+    }
+    .mh-info .st { font-size: .68rem; color: rgba(255,255,255,.7) }
+    .mc {
+      margin-left: auto; background: none; border: none;
+      color: rgba(255,255,255,.8); font-size: 1.15rem;
+      cursor: pointer; line-height: 1; padding: 4px;
+      transition: color .2s
+    }
+    .mc:hover { color: #fff }
+
+    .steps-bar {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex; gap: 5px;
+      overflow-x: auto; flex-shrink: 0
+    }
+    .steps-bar::-webkit-scrollbar { height: 3px }
+    .steps-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px }
+    .sb-step {
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap;
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      transition: all .2s
+    }
+    .sb-step.active {
+      background: var(--red); color: #fff;
+      border-color: var(--red)
+    }
+    .sb-step.done {
+      background: var(--red-pale); color: var(--red);
+      border-color: rgba(174,21,54,.15)
+    }
+
+    .chat-area {
+      flex: 1; overflow-y: auto;
+      padding: 10px 9px;
+      background: var(--wa-bg);
+      display: flex; flex-direction: column;
+      gap: 5px; min-height: 300px
+    }
+    .date-chip { text-align: center; margin: 4px 0 }
+    .date-chip span {
+      background: rgba(225,245,254,.88);
+      font-size: .64rem; color: #555;
+      padding: 2px 10px; border-radius: 7px
+    }
+
+    .msg {
+      max-width: 84%; padding: 7px 9px 3px;
+      border-radius: 8px; font-size: .82rem;
+      line-height: 1.55;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+      word-wrap: break-word
+    }
+    .msg.visible { opacity: 1; transform: translateY(0) }
+    .msg.bot {
+      background: var(--wa-bot); color: var(--body-head);
+      border-top-left-radius: 0; align-self: flex-start;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg.user {
+      background: var(--wa-user); color: var(--body-head);
+      border-top-right-radius: 0; align-self: flex-end;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg .tr {
+      display: flex; justify-content: flex-end;
+      align-items: center; gap: 3px; margin-top: 2px
+    }
+    .msg .tm { font-size: .6rem; color: #999 }
+    .msg.user .tk { font-size: .6rem; color: #53bdeb }
+
+    .typing {
+      display: none; align-self: flex-start;
+      background: var(--wa-bot); border-radius: 8px;
+      border-top-left-radius: 0; padding: 9px 13px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .typing.show { display: flex; gap: 4px; align-items: center }
+    .typing span {
+      width: 6px; height: 6px;
+      background: #bbb; border-radius: 50%;
+      animation: bounce 1.2s infinite
+    }
+    .typing span:nth-child(2) { animation-delay: .2s }
+    .typing span:nth-child(3) { animation-delay: .4s }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0) }
+      30% { transform: translateY(-5px) }
+    }
+
+    .carousel-wrap {
+      align-self: flex-start; max-width: 94%; width: 94%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s
+    }
+    .carousel-wrap.visible { opacity: 1; transform: translateY(0) }
+    .carousel-track {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding: 2px 2px 6px; scroll-snap-type: x mandatory
+    }
+    .carousel-track::-webkit-scrollbar { height: 4px }
+    .carousel-track::-webkit-scrollbar-thumb { background: #c8c0bb; border-radius: 3px }
+    .cc-card {
+      flex: 0 0 152px; background: #fff;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; scroll-snap-align: start;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06)
+    }
+    .cc-img {
+      height: 78px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      background: var(--red); color: #fff
+    }
+    .cc-body { padding: 8px 9px 9px }
+    .cc-tag {
+      display: inline-block;
+      font-size: .52rem; font-weight: 700;
+      background: var(--red-pale); color: var(--red);
+      padding: 2px 6px; border-radius: 100px;
+      margin-bottom: 4px; letter-spacing: .04em;
+      text-transform: uppercase
+    }
+    .cc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: .74rem; font-weight: 700;
+      color: var(--body-head); line-height: 1.3; margin-bottom: 2px
+    }
+    .cc-sub { font-size: .6rem; color: var(--body-muted); margin-bottom: 6px }
+    .cc-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem; font-weight: 800; color: var(--red)
+    }
+    .cc-hint {
+      font-size: .6rem; color: var(--body-muted);
+      padding: 0 2px 2px; display: flex; align-items: center; gap: 4px
+    }
+
+    .qr {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 8px 10px; background: var(--wa-bg);
+      opacity: 0; transition: opacity .3s;
+      pointer-events: none; flex-shrink: 0
+    }
+    .qr.visible { opacity: 1; pointer-events: all }
+    .qr-btn {
+      background: #fff; border: 1.5px solid var(--red);
+      color: var(--red); border-radius: 100px;
+      padding: 5px 13px; font-size: .7rem; font-weight: 700;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .15s
+    }
+    .qr-btn:hover { background: var(--red); color: #fff }
+
+    .mfooter {
+      padding: 8px 12px; background: var(--cream);
+      display: flex; gap: 7px; align-items: center;
+      border-top: 1px solid var(--border); flex-shrink: 0
+    }
+    .mfooter input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 8px 14px;
+      font-size: .82rem; outline: none;
+      font-family: 'DM Sans', sans-serif; background: var(--white);
+      color: var(--body-head); transition: border-color .2s
+    }
+    .rst-btn {
+      background: var(--red); color: #fff;
+      border: none; border-radius: 50%;
+      width: 34px; height: 34px; font-size: .88rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .2s
+    }
+
+    footer { background: var(--white); border-top: 1px solid var(--border) }
+    .foot-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 32px 5%; display: flex; flex-direction: column;
+      gap: 20px; align-items: center; text-align: center
+    }
+    .foot-copy { color: var(--body-muted); font-size: .74rem }
+    /* ── Real Estate V2 interaction layer ── */
+    .realestate-v2-page .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch }
+    .realestate-v2-page button.featured-banner,
+    .realestate-v2-page button.card {
+      width: 100%; text-align: left; font-family: inherit; color: inherit; border-width: 1px
+    }
+    .realestate-v2-page button.featured-banner { border: 0 }
+    .realestate-v2-page .card { min-height: 354px; display: flex; flex-direction: column }
+    .realestate-v2-page .card h3 { min-height: 2.6em }
+    .realestate-v2-page .card ul { margin-bottom: 16px }
+    .realestate-v2-page .card-bottom { margin-top: auto }
+    .realestate-v2-page .modal { height: min(720px,92vh); max-height: 92vh }
+    .realestate-v2-page .mh-info { min-width: 0 }
+    .realestate-v2-page .demo-toolbar {
+      min-height: 54px; display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; padding: 8px 12px; background: #fff; border-bottom: 1px solid var(--border);
+      flex: 0 0 54px; white-space: nowrap
+    }
+    .realestate-v2-page .mode-switch {
+      height: 38px; display: inline-flex; align-items: center; gap: 3px; padding: 3px;
+      border: 1px solid var(--border); border-radius: 999px; background: var(--cream)
+    }
+    .realestate-v2-page .mode-btn {
+      min-width: 90px; height: 30px; border: 0; border-radius: 999px; padding: 0 11px;
+      background: transparent; color: var(--body-muted); font: 800 .68rem 'DM Sans',sans-serif;
+      cursor: pointer; transition: all .18s
+    }
+    .realestate-v2-page .mode-btn:hover { color: var(--red) }
+    .realestate-v2-page .mode-btn.active {
+      background: var(--red); color: #fff; box-shadow: 0 3px 10px rgba(174,21,54,.18)
+    }
+    .realestate-v2-page .lang-select-wrap {
+      width: 122px; height: 38px; display: inline-flex; align-items: center; gap: 4px;
+      border: 1px solid var(--border); border-radius: 999px; background: var(--cream);
+      padding: 0 8px 0 10px; flex-shrink: 0
+    }
+    .realestate-v2-page .lang-select {
+      min-width: 0; width: 88px; border: 0; outline: 0; background: transparent;
+      color: var(--body-head); font: 800 .68rem 'DM Sans',sans-serif; cursor: pointer
+    }
+    .realestate-v2-page .steps-bar { min-height: 40px; align-items: center }
+    .realestate-v2-page .chat-area { padding: 12px 10px; min-height: 0 }
+    .realestate-v2-page .msg { max-width: 88%; padding: 8px 10px 4px }
+    .realestate-v2-page .msg-content strong { font-weight: 800 }
+    .realestate-v2-page .interactive-block {
+      width: 96%; align-self: flex-start; opacity: 0; transform: translateY(6px);
+      transition: opacity .22s, transform .22s
+    }
+    .realestate-v2-page .interactive-block.visible { opacity: 1; transform: translateY(0) }
+    .realestate-v2-page .choice-grid {
+      display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin: 5px 0
+    }
+    .realestate-v2-page .choice-btn,
+    .realestate-v2-page .date-btn,
+    .realestate-v2-page .slot-btn,
+    .realestate-v2-page .card-action,
+    .realestate-v2-page .upload-btn {
+      border: 1.5px solid rgba(174,21,54,.28); background: #fff; color: var(--red);
+      border-radius: 11px; padding: 9px 10px; font: 800 .7rem/1.25 'DM Sans',sans-serif;
+      cursor: pointer; transition: all .15s
+    }
+    .realestate-v2-page .choice-btn:hover,
+    .realestate-v2-page .date-btn:hover,
+    .realestate-v2-page .slot-btn:hover,
+    .realestate-v2-page .card-action:hover,
+    .realestate-v2-page .upload-btn:hover {
+      transform: translateY(-1px); background: var(--red); color: #fff;
+      box-shadow: 0 5px 14px rgba(174,21,54,.16)
+    }
+    .realestate-v2-page .modal[data-mode="text"] .interactive-block [data-action] { pointer-events: none }
+    .realestate-v2-page .demo-pick {
+      background: var(--red) !important; color: #fff !important; border-color: var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(174,21,54,.12) !important
+    }
+    .realestate-v2-page .cc-card.demo-selected {
+      border-color: rgba(174,21,54,.5);
+      box-shadow: 0 0 0 3px rgba(174,21,54,.1),0 10px 24px rgba(16,13,13,.12)
+    }
+    .realestate-v2-page [data-action]:disabled {
+      cursor: default; opacity: .55; transform: none !important; box-shadow: none !important
+    }
+    .realestate-v2-page .summary-card,
+    .realestate-v2-page .status-card,
+    .realestate-v2-page .details-form {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 12px;
+      box-shadow: 0 3px 12px rgba(16,13,13,.06)
+    }
+    .realestate-v2-page .summary-head {
+      display: flex; align-items: center; gap: 8px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-sm); margin-bottom: 8px
+    }
+    .realestate-v2-page .summary-icon {
+      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+      background: var(--red-pale); color: var(--red); font-size: 1rem
+    }
+    .realestate-v2-page .summary-title { color: var(--body-head); font: 800 .78rem/1.2 'Outfit',sans-serif }
+    .realestate-v2-page .summary-sub { color: var(--body-muted); font-size: .59rem; margin-top: 2px }
+    .realestate-v2-page .summary-row {
+      display: grid; grid-template-columns: 96px 1fr; gap: 8px; padding: 4px 0;
+      font-size: .66rem; line-height: 1.4
+    }
+    .realestate-v2-page .summary-row span:first-child { color: var(--body-muted) }
+    .realestate-v2-page .summary-row strong { color: var(--body-head) }
+    .realestate-v2-page .summary-note {
+      margin-top: 8px; padding: 7px 8px; border-radius: 8px;
+      background: var(--red-faint); font-size: .61rem; line-height: 1.45
+    }
+    .realestate-v2-page .card-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px }
+    .realestate-v2-page .card-action { flex: 1 1 105px; padding: 7px 8px; border-radius: 8px; font-size: .61rem }
+    .realestate-v2-page .card-action.secondary { color: var(--body-text); border-color: var(--border); background: var(--cream) }
+    .realestate-v2-page .carousel-wrap { max-width: 100%; width: 100% }
+    .realestate-v2-page .carousel-track {
+      display: flex; gap: 9px; overflow-x: auto; padding: 3px 2px 8px;
+      scroll-snap-type: x mandatory; scrollbar-width: thin; overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch
+    }
+    .realestate-v2-page .carousel-track::-webkit-scrollbar { height: 4px }
+    .realestate-v2-page .carousel-track::-webkit-scrollbar-thumb { background: #c8c0bb; border-radius: 3px }
+    .realestate-v2-page .cc-card {
+      flex: 0 0 184px; background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: transform .18s,box-shadow .18s
+    }
+    .realestate-v2-page .cc-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16,13,13,.12) }
+    .realestate-v2-page .cc-img {
+      height: 86px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg,var(--red),#d65b75); color: #fff; font-size: 2rem
+    }
+    .realestate-v2-page .cc-body { padding: 9px 10px 10px }
+    .realestate-v2-page .cc-tag {
+      display: inline-block; margin-bottom: 4px; padding: 2px 6px; border-radius: 100px;
+      background: var(--red-pale); color: var(--red); font-size: .52rem; font-weight: 700;
+      letter-spacing: .04em; text-transform: uppercase
+    }
+    .realestate-v2-page .cc-title { color: var(--body-head); font: 700 .74rem/1.3 'Outfit',sans-serif; margin-bottom: 3px }
+    .realestate-v2-page .cc-sub { min-height: 32px; color: var(--body-muted); font-size: .59rem; line-height: 1.45 }
+    .realestate-v2-page .cc-meta { color: var(--body-text); font-size: .58rem; line-height: 1.45; margin: 4px 0 }
+    .realestate-v2-page .cc-price { color: var(--red); font: 800 .68rem 'Outfit',sans-serif }
+    .realestate-v2-page .cc-hint { display: flex; justify-content: flex-end; color: var(--body-muted); font-size: .6rem }
+    .realestate-v2-page .dates-row,
+    .realestate-v2-page .slots-row { display: flex; gap: 7px; overflow-x: auto; padding: 3px 2px 7px }
+    .realestate-v2-page .date-btn { flex: 0 0 82px; display: grid; gap: 2px; place-items: center }
+    .realestate-v2-page .date-btn small { color: var(--body-muted); font-size: .55rem }
+    .realestate-v2-page .slots-row { flex-wrap: wrap; overflow: visible }
+    .realestate-v2-page .slot-btn { border-radius: 999px; padding: 7px 11px }
+    .realestate-v2-page .details-form { display: grid; gap: 10px }
+    .realestate-v2-page .details-form-title { color: var(--body-head); font: 800 .78rem/1.3 'Outfit',sans-serif }
+    .realestate-v2-page .details-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px }
+    .realestate-v2-page .details-field { display: grid; gap: 4px; color: var(--body-muted); font-size: .6rem; font-weight: 800 }
+    .realestate-v2-page .details-field.wide { grid-column: 1 / -1 }
+    .realestate-v2-page .details-field input {
+      min-width: 0; width: 100%; border: 1.5px solid var(--border); border-radius: 9px;
+      padding: 8px 9px; color: var(--body-head); background: var(--cream); font: 600 .68rem 'DM Sans',sans-serif
+    }
+    .realestate-v2-page .details-field input:focus {
+      outline: 2px solid rgba(174,21,54,.16); border-color: var(--red); background: #fff
+    }
+    .realestate-v2-page .details-submit,
+    .realestate-v2-page .upload-btn { width: 100% }
+    .realestate-v2-page .upload-btn { border-style: dashed; background: var(--red-faint) }
+    .realestate-v2-page .status-line {
+      display: flex; gap: 9px; align-items: flex-start; padding: 6px 0;
+      font-size: .66rem; color: var(--body-head)
+    }
+    .realestate-v2-page .status-dot {
+      width: 18px; height: 18px; flex: 0 0 18px; border-radius: 50%; display: grid;
+      place-items: center; background: #e6f7ed; color: #17834c; font-size: .58rem; font-weight: 900
+    }
+    .realestate-v2-page .status-line.current .status-dot {
+      background: var(--red); color: #fff; box-shadow: 0 0 0 3px var(--red-pale)
+    }
+    .realestate-v2-page .mfooter { min-height: 51px }
+    .realestate-v2-page .mfooter input { cursor: default }
+
+    @media (max-width: 900px) {
+      .realestate-v2-page .grid { grid-template-columns: repeat(2,minmax(0,1fr)) }
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { gap: 20px; padding: 20px 5% }
+      .hero-header { padding: 100px 5% 48px }
+      .featured-banner { flex-direction: column; text-align: center }
+      .modal { max-height: 95vh }
+      .realestate-v2-page .grid { grid-template-columns: 1fr }
+      .realestate-v2-page .card { min-height: 0 }
+      .realestate-v2-page .card h3 { min-height: 0 }
+      .realestate-v2-page .modal { max-width: none; width: 100%; height: min(760px,96vh); max-height: 96vh }
+      .realestate-v2-page .demo-toolbar { padding-inline: 8px }
+      .realestate-v2-page .mode-btn { min-width: 80px; padding-inline: 8px; font-size: .62rem }
+      .realestate-v2-page .lang-select-wrap { width: 112px }
+      .realestate-v2-page .lang-select { width: 78px; font-size: .62rem }
+      .realestate-v2-page .cc-card { flex-basis: 82% }
+      .realestate-v2-page .details-fields { grid-template-columns: 1fr }
+      .realestate-v2-page .details-field.wide { grid-column: auto }
+    }
+  </style>
+</head>
+<body class="realestate-v2-page">
+
+<nav>
+  <a href="usecases-portal.html"><img style="height:36px;width:auto;border-radius:6px;" src="Logo's/engati-logo.svg" alt="Engati Logo"></a>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <a href="usecases-portal.html" style="font-size:.84rem;font-weight:600;color:var(--body-text);text-decoration:none;">← Use Case Hub</a>
+    <a class="nav-cta" href="index.html#partner-form">Become a Partner →</a>
+  </div>
+</nav>
+
+<div class="hero-header">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Engati · Real Estate Intelligence Suite</span>
+    <h1>Real Estate <em>Use Cases</em></h1>
+    <p class="hero-sub">Turn property enquiries into qualified opportunities — from discovery and project exploration to site visits, sales handoff and buyer support.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">6 Buyer Journeys</span>
+      <span class="hero-badge">Lead Qualification</span>
+      <span class="hero-badge">CRM Ready</span>
+      <span class="hero-badge">Multilingual</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">6</div><div class="label">Buyer Journeys</div></div>
+  <div class="stat"><div class="num">24/7</div><div class="label">Property Discovery</div></div>
+  <div class="stat"><div class="num">Lead</div><div class="label">Qualification</div></div>
+  <div class="stat"><div class="num">CRM</div><div class="label">Ready</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">Languages</div></div>
+</div>
+
+<main>
+  <div class="sec-label">Interactive Journeys</div>
+  <div class="sec-title">Click any card to explore the live conversation flow</div>
+
+  <!-- FEATURED BANNER -->
+  <button class="featured-banner" type="button" data-open-flow="0">
+    <div class="fb-icon">🏡</div>
+    <div class="fb-content">
+      <div class="fb-badge">⭐ Featured Property Journey</div>
+      <h2>Property Discovery &amp; Lead Qualification</h2>
+      <p>Understand a buyer’s location, configuration, budget, purpose and timeline—then recommend relevant fictional projects and create a qualified Sales handoff.</p>
+      <span class="fb-cta">▶ Watch the Full Journey</span>
+    </div>
+  </button>
+
+  <div class="grid" aria-label="Six interactive Real Estate journeys">
+
+    <button class="card fc" type="button" data-open-flow="0">
+      <div class="card-top"><div class="card-icon">🏡</div><div class="card-meta"><div class="card-tag">Acquisition</div><h3>Property Discovery &amp; Lead Qualification</h3></div></div>
+      <ul>
+        <li>Understand location, configuration &amp; budget</li>
+        <li>Capture buyer purpose and purchase timeline</li>
+        <li>Recommend relevant projects conversationally</li>
+        <li>Explore pricing, amenities &amp; availability</li>
+        <li>Capture qualified lead for Sales follow-up</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Need</span><span class="step-chip">Qualify</span><span class="step-chip">Match</span><span class="step-chip">Explore</span><span class="step-chip">Lead</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+    <button class="card" type="button" data-open-flow="1">
+      <div class="card-top"><div class="card-icon">📍</div><div class="card-meta"><div class="card-tag">Conversion</div><h3>Project Exploration &amp; Site Visit</h3></div></div>
+      <ul>
+        <li>Explore project details &amp; configurations</li>
+        <li>Pricing, amenities, floor plans &amp; brochures</li>
+        <li>Location &amp; connectivity information</li>
+        <li>Site visit date &amp; slot booking</li>
+        <li>Sales advisor handoff</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Project</span><span class="step-chip">Details</span><span class="step-chip">Visit</span><span class="step-chip">Slot</span><span class="step-chip">Sales</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+    <button class="card" type="button" data-open-flow="2">
+      <div class="card-top"><div class="card-icon">🏗️</div><div class="card-meta"><div class="card-tag">Campaign</div><h3>New Launch &amp; Interest Registration</h3></div></div>
+      <ul>
+        <li>Discover upcoming projects</li>
+        <li>View launch highlights &amp; configurations</li>
+        <li>Register interest for project updates</li>
+        <li>Capture preferred unit &amp; budget</li>
+        <li>Route leads to the correct Sales team</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Discover</span><span class="step-chip">Launch</span><span class="step-chip">Interest</span><span class="step-chip">Lead</span><span class="step-chip">Update</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+    <button class="card" type="button" data-open-flow="3">
+      <div class="card-top"><div class="card-icon">🤝</div><div class="card-meta"><div class="card-tag">Sales</div><h3>Sales &amp; Channel Partner Assistance</h3></div></div>
+      <ul>
+        <li>Request Sales callback</li>
+        <li>Connect high-intent prospects to advisor</li>
+        <li>Capture project-specific enquiry context</li>
+        <li>Channel partner enquiry &amp; lead registration</li>
+        <li>CRM-ready handoff summary</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Intent</span><span class="step-chip">Details</span><span class="step-chip">Route</span><span class="step-chip">Handoff</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+    <button class="card" type="button" data-open-flow="4">
+      <div class="card-top"><div class="card-icon">🔑</div><div class="card-meta"><div class="card-tag">Customer</div><h3>Buyer Support &amp; Payments</h3></div></div>
+      <ul>
+        <li>Booking &amp; property information</li>
+        <li>Payment schedule and receipt access</li>
+        <li>Construction / project progress updates</li>
+        <li>Documents &amp; possession information</li>
+        <li>Relationship Manager escalation</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Identify</span><span class="step-chip">Property</span><span class="step-chip">Support</span><span class="step-chip">Status</span><span class="step-chip">RM</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+    <button class="card" type="button" data-open-flow="5">
+      <div class="card-top"><div class="card-icon">🔧</div><div class="card-meta"><div class="card-tag">Service</div><h3>Maintenance &amp; Service Requests</h3></div></div>
+      <ul>
+        <li>Raise property service request</li>
+        <li>Categorise issue conversationally</li>
+        <li>Create &amp; track support ticket</li>
+        <li>Route complaints to appropriate team</li>
+        <li>Human escalation for unresolved queries</li>
+      </ul>
+      <div class="card-bottom">
+        <div class="flow-steps"><span class="step-chip">Issue</span><span class="step-chip">Category</span><span class="step-chip">Ticket</span><span class="step-chip">Track</span><span class="step-chip">Resolve</span></div>
+        <span class="view-flow-btn">▶ View Journey</span>
+      </div>
+    </button>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner" style="display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center;padding:32px 5%;">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
+      <img src="Logo's/engati-logo.svg" style="height:32px;width:auto;border-radius:6px;" alt="Engati Logo">
+      <div class="foot-copy">© 2026 Engati. All rights reserved.</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border-sm);width:100%;">
+      <span style="font-size:.7rem;font-weight:700;color:var(--body-muted);text-transform:uppercase;letter-spacing:.08em;">Official Partners &amp; Certifications:</span>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/META.png" style="height:20px;" alt="Meta"> Meta Partner</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/Soc2.png" style="height:20px;" alt="SOC2"> SOC2 Type II</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/GDPR.png" style="height:20px;" alt="GDPR"> GDPR</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/ISO.png" style="height:20px;" alt="ISO"> ISO 27001</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div class="modal" id="modalRoot" data-mode="text" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="mh" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Real Estate Assistant</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" id="closeModalBtn" type="button" aria-label="Close demo">✕</button>
+    </div>
+    <div class="demo-toolbar">
+      <div class="mode-switch" role="tablist" aria-label="Demo mode">
+        <button class="mode-btn active" id="textModeBtn" type="button" role="tab" aria-selected="true" data-mode="text">Text Agent</button>
+        <button class="mode-btn" id="structuredModeBtn" type="button" role="tab" aria-selected="false" data-mode="structured">Structured</button>
+      </div>
+      <label class="lang-select-wrap" aria-label="Conversation language"><span aria-hidden="true">🌐</span>
+        <select class="lang-select" id="langSelect">
+          <option value="en">English</option><option value="hi">हिन्दी</option><option value="ml">മലയാളം</option>
+          <option value="te">తెలుగు</option><option value="mr">मराठी</option><option value="kn">ಕನ್ನಡ</option>
+        </select>
+      </label>
+    </div>
+    <div class="steps-bar" id="stepsBar"></div>
+    <div class="chat-area" id="chatArea" aria-live="polite"></div>
+    <div class="mfooter">
+      <input id="chatInput" type="text" placeholder="Text Agent demo is running…" aria-label="Chat input is not required for this demo" readonly />
+      <button class="rst-btn" id="restartBtn" type="button" title="Restart" aria-label="Restart journey">↺</button>
+    </div>
+  </div>
+</div>
+
+<script src="realestate-v2-demo.js"></script>
+</body>
+</html>

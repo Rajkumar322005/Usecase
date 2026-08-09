@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>BFSI &amp; Banking Use Cases — Engati 2026</title>
+  <meta name="description" content="Explore 10 interactive conversational AI use cases for Banking, Financial Services & Insurance (BFSI) — from loan eligibility to KYC collection and claims, powered by Engati on WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #ae1536;
+      --red-h: #8f0f2a;
+      --red-soft: #c43352;
+      --red-light: #D98B7E;
+      --red-pale: #FDF2F2;
+      --red-faint: #FEF8F8;
+      --charcoal: #3F3F3F;
+      --white: #FFFFFF;
+      --cream: #FDFAF9;
+      --warm-bg: #FBF5F5;
+      --body-head: #100D0D;
+      --body-text: #4A3F3F;
+      --body-muted: #9A8A8A;
+      --taupe: #4A3F3F;
+      --border: #EDE4E4;
+      --border-sm: #F4ECEC;
+      --wa-bg: #e5ddd5;
+      --wa-bot: #fff;
+      --wa-user: #dcf8c6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 12px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(253,250,249,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border)
+    }
+    .nav-logo-img { height: 36px; width: auto; display: block; border-radius: 6px }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 8px 18px; border-radius: 8px;
+      font-weight: 700; font-size: .82rem;
+      text-decoration: none; transition: all .2s
+    }
+    .nav-cta:hover { background: var(--red-h); transform: translateY(-1px) }
+
+    .hero-header {
+      background: var(--cream);
+      padding: 120px 5% 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+    .hero-header::before {
+      content: ''; position: absolute;
+      width: 520px; height: 520px; border-radius: 50%;
+      border: 90px solid var(--red-faint);
+      top: -180px; right: -140px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-header::after {
+      content: ''; position: absolute;
+      width: 280px; height: 280px; border-radius: 50%;
+      border: 50px solid var(--border-sm);
+      bottom: -100px; left: -60px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 16px;
+      animation: fadeUp .6s ease both; opacity: 0
+    }
+    .hero-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06;
+      color: var(--body-head);
+      letter-spacing: -.04em;
+      margin-bottom: 16px;
+      animation: fadeUp .6s .05s ease both; opacity: 0
+    }
+    .hero-header h1 em { font-style: normal; color: var(--red) }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--body-text);
+      max-width: 560px; margin: 0 auto 24px;
+      animation: fadeUp .6s .10s ease both; opacity: 0
+    }
+    .hero-badges {
+      display: flex; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      animation: fadeUp .6s .15s ease both; opacity: 0
+    }
+    .hero-badge {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      padding: 5px 14px; border-radius: 100px
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center;
+      gap: 40px; padding: 26px 5%; flex-wrap: wrap
+    }
+    .stat { text-align: center }
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem; font-weight: 900;
+      color: var(--red); letter-spacing: -.03em
+    }
+    .stat .label {
+      font-size: .7rem; font-weight: 600;
+      color: var(--body-muted);
+      margin-top: 2px; letter-spacing: .03em
+    }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 56px 5% }
+    .sec-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 8px; text-align: center
+    }
+    .sec-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 900; color: var(--body-head);
+      line-height: 1.15; letter-spacing: -.03em;
+      margin-bottom: 40px; text-align: center
+    }
+
+    .featured-banner {
+      background: var(--red);
+      border-radius: 20px; padding: 32px 36px;
+      margin-bottom: 36px;
+      display: flex; align-items: center; gap: 24px;
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden
+    }
+    .featured-banner::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 80px solid rgba(255,255,255,.05);
+      top: -200px; right: -160px; pointer-events: none
+    }
+    .featured-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(174,21,54,.35)
+    }
+    .fb-icon { font-size: 2.8rem; flex-shrink: 0 }
+    .fb-content { flex: 1; position: relative; z-index: 2 }
+    .fb-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      color: #fff; font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 10px
+    }
+    .fb-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      color: #fff; margin-bottom: 6px; letter-spacing: -.02em
+    }
+    .fb-content p {
+      font-size: .85rem; color: rgba(255,255,255,.8);
+      line-height: 1.65; max-width: 500px
+    }
+    .fb-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px;
+      background: #fff; color: var(--red);
+      font-size: .78rem; font-weight: 800;
+      padding: 9px 20px; border-radius: 10px;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .fb-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12) }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+      cursor: pointer
+    }
+    .card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--red); opacity: 0;
+      transition: opacity .25s
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(174,21,54,.08);
+      border-color: rgba(174,21,54,.2)
+    }
+    .card:hover::before { opacity: 1 }
+
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0
+    }
+    .card-meta { flex: 1 }
+    .card-tag {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 3px
+    }
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: .95rem; font-weight: 800;
+      color: var(--body-head); line-height: 1.3
+    }
+    .card ul { list-style: none; padding: 0; margin-bottom: 14px }
+    .card ul li {
+      font-size: .82rem; color: var(--body-text);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border-sm);
+      display: flex; align-items: flex-start;
+      gap: 8px; line-height: 1.55
+    }
+    .card ul li:last-child { border-bottom: none }
+    .card ul li::before {
+      content: '→'; color: var(--red);
+      font-size: .7rem; margin-top: 3px; flex-shrink: 0
+    }
+    .flow-steps {
+      display: flex; gap: 4px;
+      margin-bottom: 14px; flex-wrap: wrap
+    }
+    .step-chip {
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      font-size: .6rem; font-weight: 600;
+      padding: 3px 9px; border-radius: 100px; white-space: nowrap
+    }
+    .view-flow-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .76rem; font-weight: 700;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 100px; padding: 6px 16px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .view-flow-btn:hover {
+      background: var(--red); color: #fff;
+      transform: translateY(-1px)
+    }
+
+    .card.fc { background: var(--red); border-color: var(--red) }
+    .card.fc::before { opacity: 0 !important }
+    .card.fc:hover {
+      box-shadow: 0 14px 40px rgba(174,21,54,.3);
+      border-color: var(--red-h)
+    }
+    .card.fc .card-icon {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .card-tag { color: rgba(255,255,255,.65) }
+    .card.fc h3 { color: #fff }
+    .card.fc ul li {
+      color: rgba(255,255,255,.82);
+      border-bottom-color: rgba(255,255,255,.1)
+    }
+    .card.fc ul li::before { color: rgba(255,255,255,.45) }
+    .card.fc .step-chip {
+      background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .view-flow-btn {
+      background: rgba(255,255,255,.15); color: #fff;
+      border-color: rgba(255,255,255,.2)
+    }
+    .card.fc .view-flow-btn:hover {
+      background: #fff; color: var(--red)
+    }
+
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(16,13,13,.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 16px
+    }
+    .modal-overlay.open { display: flex }
+    .modal {
+      background: var(--white);
+      border-radius: 20px; width: 100%;
+      max-width: 430px; max-height: 92vh;
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(16,13,13,.28)
+    }
+
+    .mh {
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0; background: var(--red);
+    }
+    .mh-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0
+    }
+    .mh-info .nm {
+      font-family: 'Outfit', sans-serif;
+      font-size: .88rem; font-weight: 700; color: #fff
+    }
+    .mh-info .st { font-size: .68rem; color: rgba(255,255,255,.7) }
+    .mc {
+      margin-left: auto; background: none; border: none;
+      color: rgba(255,255,255,.8); font-size: 1.15rem;
+      cursor: pointer; line-height: 1; padding: 4px;
+      transition: color .2s
+    }
+    .mc:hover { color: #fff }
+
+    .steps-bar {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex; gap: 5px;
+      overflow-x: auto; flex-shrink: 0
+    }
+    .steps-bar::-webkit-scrollbar { height: 3px }
+    .steps-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px }
+    .sb-step {
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap;
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      transition: all .2s
+    }
+    .sb-step.active {
+      background: var(--red); color: #fff;
+      border-color: var(--red)
+    }
+    .sb-step.done {
+      background: var(--red-pale); color: var(--red);
+      border-color: rgba(174,21,54,.15)
+    }
+
+    .chat-area {
+      flex: 1; overflow-y: auto;
+      padding: 10px 9px;
+      background: var(--wa-bg);
+      display: flex; flex-direction: column;
+      gap: 5px; min-height: 300px
+    }
+    .date-chip { text-align: center; margin: 4px 0 }
+    .date-chip span {
+      background: rgba(225,245,254,.88);
+      font-size: .64rem; color: #555;
+      padding: 2px 10px; border-radius: 7px
+    }
+
+    .msg {
+      max-width: 84%; padding: 7px 9px 3px;
+      border-radius: 8px; font-size: .82rem;
+      line-height: 1.55;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+      word-wrap: break-word
+    }
+    .msg.visible { opacity: 1; transform: translateY(0) }
+    .msg.bot {
+      background: var(--wa-bot); color: var(--body-head);
+      border-top-left-radius: 0; align-self: flex-start;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg.user {
+      background: var(--wa-user); color: var(--body-head);
+      border-top-right-radius: 0; align-self: flex-end;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg .tr {
+      display: flex; justify-content: flex-end;
+      align-items: center; gap: 3px; margin-top: 2px
+    }
+    .msg .tm { font-size: .6rem; color: #999 }
+    .msg.user .tk { font-size: .6rem; color: #53bdeb }
+
+    .typing {
+      display: none; align-self: flex-start;
+      background: var(--wa-bot); border-radius: 8px;
+      border-top-left-radius: 0; padding: 9px 13px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .typing.show { display: flex; gap: 4px; align-items: center }
+    .typing span {
+      width: 6px; height: 6px;
+      background: #bbb; border-radius: 50%;
+      animation: bounce 1.2s infinite
+    }
+    .typing span:nth-child(2) { animation-delay: .2s }
+    .typing span:nth-child(3) { animation-delay: .4s }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0) }
+      30% { transform: translateY(-5px) }
+    }
+
+    .carousel-wrap {
+      align-self: flex-start; max-width: 94%; width: 94%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s
+    }
+    .carousel-wrap.visible { opacity: 1; transform: translateY(0) }
+    .carousel-track {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding: 2px 2px 6px; scroll-snap-type: x mandatory
+    }
+    .carousel-track::-webkit-scrollbar { height: 4px }
+    .carousel-track::-webkit-scrollbar-thumb { background: #c8c0bb; border-radius: 3px }
+    .cc-card {
+      flex: 0 0 152px; background: #fff;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; scroll-snap-align: start;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06)
+    }
+    .cc-img {
+      height: 78px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      background: var(--red); color: #fff
+    }
+    .cc-body { padding: 8px 9px 9px }
+    .cc-tag {
+      display: inline-block;
+      font-size: .52rem; font-weight: 700;
+      background: var(--red-pale); color: var(--red);
+      padding: 2px 6px; border-radius: 100px;
+      margin-bottom: 4px; letter-spacing: .04em;
+      text-transform: uppercase
+    }
+    .cc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: .74rem; font-weight: 700;
+      color: var(--body-head); line-height: 1.3; margin-bottom: 2px
+    }
+    .cc-sub { font-size: .6rem; color: var(--body-muted); margin-bottom: 6px }
+    .cc-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem; font-weight: 800; color: var(--red)
+    }
+    .cc-hint {
+      font-size: .6rem; color: var(--body-muted);
+      padding: 0 2px 2px; display: flex; align-items: center; gap: 4px
+    }
+
+    .qr {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 8px 10px; background: var(--wa-bg);
+      opacity: 0; transition: opacity .3s;
+      pointer-events: none; flex-shrink: 0
+    }
+    .qr.visible { opacity: 1; pointer-events: all }
+    .qr-btn {
+      background: #fff; border: 1.5px solid var(--red);
+      color: var(--red); border-radius: 100px;
+      padding: 5px 13px; font-size: .7rem; font-weight: 700;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .15s
+    }
+    .qr-btn:hover { background: var(--red); color: #fff }
+
+    .mfooter {
+      padding: 8px 12px; background: var(--cream);
+      display: flex; gap: 7px; align-items: center;
+      border-top: 1px solid var(--border); flex-shrink: 0
+    }
+    .mfooter input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 8px 14px;
+      font-size: .82rem; outline: none;
+      font-family: 'DM Sans', sans-serif; background: var(--white);
+      color: var(--body-head); transition: border-color .2s
+    }
+    .rst-btn {
+      background: var(--red); color: #fff;
+      border: none; border-radius: 50%;
+      width: 34px; height: 34px; font-size: .88rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .2s
+    }
+
+    footer { background: var(--white); border-top: 1px solid var(--border) }
+    .foot-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 32px 5%; display: flex; flex-direction: column;
+      gap: 20px; align-items: center; text-align: center
+    }
+    .foot-copy { color: var(--body-muted); font-size: .74rem }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="usecases-portal.html"><img style="height:36px;width:auto;border-radius:6px;" src="Logo's/engati-logo.svg" alt="Engati Logo"></a>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <a href="usecases-portal.html" style="font-size:.84rem;font-weight:600;color:var(--body-text);text-decoration:none;">← Use Case Hub</a>
+    <a class="nav-cta" href="index.html#partner-form">Become a Partner →</a>
+  </div>
+</nav>
+
+<div class="hero-header">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Engati · BFSI Intelligence Suite</span>
+    <h1>BFSI &amp; Banking <em>Use Cases</em></h1>
+    <p class="hero-sub">Secure conversational banking &amp; insurance journeys — loan pre-approval, KYC document collection, policy explanation, and instant AI claims.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">10 Use Cases</span>
+      <span class="hero-badge">WhatsApp-Native</span>
+      <span class="hero-badge">Gen AI Powered</span>
+      <span class="hero-badge">Meta Business Partner</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">10+</div><div class="label">Use Cases</div></div>
+  <div class="stat"><div class="num">24/7</div><div class="label">Virtual Financial Advisor</div></div>
+  <div class="stat"><div class="num">4.5x</div><div class="label">Loan Lead Pre-Approval</div></div>
+  <div class="stat"><div class="num">70%</div><div class="label">KYC Collection Acceleration</div></div>
+  <div class="stat"><div class="num">3.2x</div><div class="label">Policy Renewal Conversion</div></div>
+</div>
+
+<main>
+  <div class="sec-label">Interactive Journeys</div>
+  <div class="sec-title">Click any card to explore the live conversation flow</div>
+
+  <!-- FEATURED BANNER -->
+  <div class="featured-banner" onclick="openFlow(0)">
+    <div class="fb-icon">🏦</div>
+    <div class="fb-content">
+      <div class="fb-badge">⭐ Featured — Virtual Financial Advisor</div>
+      <h2>Personal Loan Eligibility &amp; Instant Pre-Approval</h2>
+      <p>AI-powered WhatsApp banking assistant evaluates credit eligibility, calculates loan EMIs, captures KYC documents, and issues instant in-principle sanction letters.</p>
+      <button class="fb-cta">▶ Watch the Full Journey</button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card fc" onclick="openFlow(0)">
+      <div class="card-top">
+        <div class="card-icon">💳</div>
+        <div class="card-meta"><div class="card-tag">Acquisition</div><h3>Personal Loan Eligibility &amp; Pre-Approval</h3></div>
+      </div>
+      <ul>
+        <li>Salary &amp; employment criteria check</li>
+        <li>Interactive EMI calculator in-chat</li>
+        <li>Instant CIBIL score pre-screen</li>
+        <li>In-principle sanction letter dispatch</li>
+        <li>Advisor takeover for high-value loans</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Criteria</span><span class="step-chip">EMI Calc</span><span class="step-chip">CIBIL</span><span class="step-chip">Sanction</span><span class="step-chip">Advisor</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(1)">
+      <div class="card-top">
+        <div class="card-icon">📄</div>
+        <div class="card-meta"><div class="card-tag">Conversion</div><h3>Digital KYC &amp; Document Upload Desk</h3></div>
+      </div>
+      <ul>
+        <li>Secure Aadhar &amp; PAN card photo upload</li>
+        <li>Bank statement PDF analysis via WhatsApp</li>
+        <li>Real-time OCR verification &amp; mask check</li>
+        <li>Video KYC slot scheduling</li>
+        <li>Instant verification status alert</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Upload ID</span><span class="step-chip">Statements</span><span class="step-chip">OCR</span><span class="step-chip">Video KYC</span><span class="step-chip">Approved</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(2)">
+      <div class="card-top">
+        <div class="card-icon">🛡️</div>
+        <div class="card-meta"><div class="card-tag">Insurance</div><h3>Health &amp; Term Insurance Advisor</h3></div>
+      </div>
+      <ul>
+        <li>Age, family coverage &amp; medical history quiz</li>
+        <li>Swipeable premium comparison carousel</li>
+        <li>Rider add-on selector (Critical Illness, Accidental)</li>
+        <li>Instant policy quote PDF generation</li>
+        <li>1-tap payment &amp; policy document issue</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Quiz</span><span class="step-chip">Compare</span><span class="step-chip">Riders</span><span class="step-chip">Quote</span><span class="step-chip">Issue Policy</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(3)">
+      <div class="card-top">
+        <div class="card-icon">🚗</div>
+        <div class="card-meta"><div class="card-tag">Claims</div><h3>Motor &amp; Health Insurance Claim Filing</h3></div>
+      </div>
+      <ul>
+        <li>Instant claim initiation on WhatsApp</li>
+        <li>Damage photo &amp; hospital bill upload</li>
+        <li>Cashless hospital / garage locator</li>
+        <li>Claim registration number &amp; tracker</li>
+        <li>AI claims status update notification</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Initiate</span><span class="step-chip">Photo Upload</span><span class="step-chip">Cashless Hub</span><span class="step-chip">Claim No</span><span class="step-chip">Status</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(4)">
+      <div class="card-top">
+        <div class="card-icon">🔁</div>
+        <div class="card-meta"><div class="card-tag">Retention</div><h3>Policy Renewal &amp; EMI Due Reminders</h3></div>
+      </div>
+      <ul>
+        <li>Upcoming EMI &amp; premium renewal alert (10 days prior)</li>
+        <li>1-click renewal payment link via WhatsApp</li>
+        <li>No-Claim Bonus (NCB) discount calculation</li>
+        <li>Lapsed policy revival option with auto-inspect</li>
+        <li>Instant digital tax certificate (Sec 80D / 24B)</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Alert</span><span class="step-chip">1-Click Pay</span><span class="step-chip">NCB Savings</span><span class="step-chip">Revival</span><span class="step-chip">Tax Cert</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(5)">
+      <div class="card-top">
+        <div class="card-icon">💳</div>
+        <div class="card-meta"><div class="card-tag">Banking</div><h3>Credit Card Selection &amp; Instant Application</h3></div>
+      </div>
+      <ul>
+        <li>Lifestyle spending habit quiz (Travel, Dining, Cashback)</li>
+        <li>Best-fit card recommendation carousel</li>
+        <li>Annual fee waiver criteria check</li>
+        <li>Instant pre-approved limit check</li>
+        <li>Doorstep physical card delivery tracking</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Spend Quiz</span><span class="step-chip">Recommend</span><span class="step-chip">Fee Waiver</span><span class="step-chip">Limit Check</span><span class="step-chip">Dispatch</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(6)">
+      <div class="card-top">
+        <div class="card-icon">📈</div>
+        <div class="card-meta"><div class="card-tag">Wealth</div><h3>Mutual Fund &amp; SIP Wealth Advisory</h3></div>
+      </div>
+      <ul>
+        <li>Risk profiling quiz (Conservative, Moderate, Aggressive)</li>
+        <li>Goal-based SIP calculator (Child Education, Retirement)</li>
+        <li>Top-performing funds comparison</li>
+        <li>Instant E-KYC &amp; Folio creation</li>
+        <li>Monthly SIP auto-debit confirmation</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Risk Profile</span><span class="step-chip">SIP Calc</span><span class="step-chip">Fund List</span><span class="step-chip">Folio</span><span class="step-chip">Auto-Debit</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(7)">
+      <div class="card-top">
+        <div class="card-icon">🔒</div>
+        <div class="card-meta"><div class="card-tag">Service</div><h3>Account Servicing &amp; Balance Assistant</h3></div>
+      </div>
+      <ul>
+        <li>2FA OTP authenticated balance lookup</li>
+        <li>Mini statement &amp; last 5 transactions</li>
+        <li>Instant Debit/Credit card block on fraud alert</li>
+        <li>Cheque book &amp; bank statement PDF request</li>
+        <li>Branch &amp; ATM locator near user</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">2FA Auth</span><span class="step-chip">Balance</span><span class="step-chip">Mini Statement</span><span class="step-chip">Card Block</span><span class="step-chip">Locate</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(8)">
+      <div class="card-top">
+        <div class="card-icon">🎁</div>
+        <div class="card-meta"><div class="card-tag">Expansion</div><h3>Cross-sell &amp; Pre-Approved Top-Up Loans</h3></div>
+      </div>
+      <ul>
+        <li>Existing customer credit score review</li>
+        <li>Pre-approved Personal Loan top-up alert</li>
+        <li>Zero documentation 1-click disbursement</li>
+        <li>Credit Card limit enhancement offer</li>
+        <li>Instant credit to bank account</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Review</span><span class="step-chip">Top-Up Alert</span><span class="step-chip">Zero Docs</span><span class="step-chip">Limit Increase</span><span class="step-chip">Disburse</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(9)">
+      <div class="card-top">
+        <div class="card-icon">🚨</div>
+        <div class="card-meta"><div class="card-tag">Recovery</div><h3>Application Drop-off &amp; KYC Recovery</h3></div>
+      </div>
+      <ul>
+        <li>Detect abandoned loan or card application</li>
+        <li>Personalised WhatsApp re-engagement prompt</li>
+        <li>Address hesitation (interest rate, documents)</li>
+        <li>Offer zero-processing fee waiver incentive</li>
+        <li>Route warm applicant to Relationship Manager</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Re-engage</span><span class="step-chip">Objection</span><span class="step-chip">Fee Waiver</span><span class="step-chip">Convert</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner" style="display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center;padding:32px 5%;">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
+      <img src="Logo's/engati-logo.svg" style="height:32px;width:auto;border-radius:6px;" alt="Engati Logo">
+      <div class="foot-copy">© 2026 Engati. All rights reserved.</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border-sm);width:100%;">
+      <span style="font-size:.7rem;font-weight:700;color:var(--body-muted);text-transform:uppercase;letter-spacing:.08em;">Official Partners &amp; Certifications:</span>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/META.png" style="height:20px;" alt="Meta"> Meta Partner</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/Soc2.png" style="height:20px;" alt="SOC2"> SOC2 Type II</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/GDPR.png" style="height:20px;" alt="GDPR"> GDPR</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/ISO.png" style="height:20px;" alt="ISO"> ISO 27001</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="mh" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Financial Advisor</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" onclick="closeModal()">✕</button>
+    </div>
+    <div class="steps-bar" id="stepsBar"></div>
+    <div class="chat-area" id="chatArea">
+      <div class="date-chip"><span>Today</span></div>
+      <div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>
+    </div>
+    <div class="qr" id="quickReplies"></div>
+    <div class="mfooter">
+      <input type="text" placeholder="Type a message..." readonly />
+      <button class="rst-btn" onclick="restartFlow()" title="Restart">↺</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const flows = [
+
+  // ── 0: PERSONAL LOAN ELIGIBILITY ────────────────────────────
+  {
+    title:"Personal Loan Assistant", icon:"💳", hd:"#ae1536",
+    steps:["Criteria","EMI Calc","CIBIL","Sanction","Advisor"],
+    messages:[
+      {from:"bot", step:0, text:"🏦 Welcome to *Your Bank Financial Desk*! I'm your AI Loan Advisor.\n\nAre you looking for a Personal Loan, Home Loan, or Business Loan today?"},
+      {from:"user", step:0, text:"Looking for a Personal Loan of ₹10 Lakhs for 3 years."},
+      {from:"bot", step:1, text:"Got it! 💰 Let's calculate your estimated monthly EMI:\n\n• Loan Amount: ₹10,00,000\n• Tenure: 3 Years (36 months)\n• Interest Rate: ~10.75% p.a.\n──────────────────\n💳 *Monthly EMI: ₹32,620/month*\n\nMay I check your instant pre-approval eligibility?"},
+      {from:"user", step:1, text:"Yes, please check my eligibility."},
+      {from:"bot", step:2, text:"📋 Please share your Net Monthly Salary and employer name for instant eligibility verification."},
+      {from:"user", step:2, text:"Monthly salary ₹1.1 Lakhs at TCS, no existing EMI."},
+      {from:"bot", step:3, text:"🎉 *In-Principle Sanction Approved!*\n\n✅ Maximum Eligible Amount: *₹18,50,000*\n✅ Requested Amount: ₹10,00,000 (Fully Approved!)\n📄 Digital Sanction Letter generated & emailed.\n\nWould you like to complete digital KYC to disburse funds?"},
+      {from:"user", step:4, text:"Yes, connect me with a loan officer to disburse."},
+      {from:"bot", step:4, text:"👤 *Relationship Manager Assigned*\nSenior Officer: Mr. Sameer Verma\n📱 Connecting call in *5 minutes* for 1-click disbursement to your account. All set! 🚀"},
+    ]
+  },
+
+  // ── 1: DIGITAL KYC & DOCS ──────────────────────────────────
+  {
+    title:"KYC Desk", icon:"📄", hd:"#075e54",
+    steps:["Upload ID","Statements","OCR","Video KYC","Approved"],
+    messages:[
+      {from:"bot", step:0, text:"📄 Hi *Nikhil*! Let's complete your Digital KYC for Loan Account #L-88201.\n\nPlease upload a photo of your *PAN Card* and *Aadhar Card*."},
+      {from:"user", step:0, text:"[PAN and Aadhar photos uploaded]"},
+      {from:"bot", step:1, text:"✅ *PAN & Aadhar OCR Verified!*\n\n• PAN Name: Nikhil Sharma (Match 100% ✅)\n• DOB: 14-Aug-1992 ✅\n\nNow, please upload your last 3 months Bank Statement (PDF)."},
+      {from:"user", step:1, text:"[Bank Statement PDF uploaded]"},
+      {from:"bot", step:2, text:"🔍 *Bank Statement Analyzed*\n\n✅ Salary credits verified\n✅ Zero bounce history\n\nFinal step: 2-minute Video KYC call. Ready for Video Call with Bank Officer?"},
+      {from:"user", step:3, text:"Yes, ready now."},
+      {from:"bot", step:4, text:"🎉 *Video KYC Completed & Approved!*\n\nYour account is 100% verified. Loan disbursement initiated!"},
+    ]
+  },
+
+  // ── 2: HEALTH & TERM INSURANCE ──────────────────────────────
+  {
+    title:"Insurance Advisor", icon:"🛡️", hd:"#1a73e8",
+    steps:["Quiz","Compare","Riders","Quote","Issue Policy"],
+    messages:[
+      {from:"bot", step:0, text:"🛡️ Welcome to *Your Insurance Desk*! Let's find the best Health Insurance plan for your family.\n\nHow many family members do you want to cover?"},
+      {from:"user", step:0, text:"Self (32 yrs), Wife (30 yrs) and 1 Child."},
+      {from:"bot", step:1, text:"Here are our top rated Health Plans — swipe to compare:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🏥", tag:"Popular", title:"Health Shield Gold", sub:"₹10 Lakh Cover · Cashless in 8,000+ hospitals", price:"₹1,120/month"},
+        {icon:"🌟", tag:"Comprehensive", title:"Health Super Premier", sub:"₹25 Lakh Cover · Zero Copay", price:"₹1,650/month"},
+        {icon:"👑", tag:"Global", title:"Global Care Executive", sub:"₹1 Crore Cover · Worldwide treatment", price:"₹2,800/month"}
+      ]},
+      {from:"user", step:1, text:"Health Shield Gold looks great. What riders can I add?"},
+      {from:"bot", step:2, text:"🛡️ *Recommended Add-on Riders:*\n\n➕ Critical Illness Cover (₹5L) — ₹180/mo\n➕ Personal Accident Cover — ₹90/mo\n➕ Hospital Daily Cash Allowance — ₹120/mo\n\nWant to include Critical Illness Cover?"},
+      {from:"user", step:2, text:"Add Critical Illness Cover only."},
+      {from:"bot", step:3, text:"📋 *Policy Quote Summary*\n\n🛡️ Health Shield Gold (₹10L Cover) — ₹1,120/mo\n➕ Critical Illness Rider — ₹180/mo\n──────────────────\n💰 *Total Premium: ₹1,300/month*\n\n🔗 Tap to pay & issue policy instantly:\npay.insurance.com/policy-issue-1300"},
+      {from:"user", step:4, text:"Paid via Net Banking!"},
+      {from:"bot", step:4, text:"🎉 *POLICY ISSUED #POL-2026-88120!*\n\n📄 Digital Policy Bond PDF sent to your email & WhatsApp.\n🏥 Cashless Health Card active immediately. Congratulations!"},
+    ]
+  },
+
+  // ── 3: MOTOR & HEALTH CLAIMS ────────────────────────────────
+  {
+    title:"Claims Assistant", icon:"🚗", hd:"#0d7377",
+    steps:["Initiate","Photo Upload","Cashless Hub","Claim No","Status"],
+    messages:[
+      {from:"bot", step:0, text:"🚗 Hi *Rajesh*! I'm your emergency Claims Assistant. Is this for a Car Insurance claim or Health Insurance claim?"},
+      {from:"user", step:0, text:"Car Insurance claim — my bumper got damaged in a parking lot."},
+      {from:"bot", step:1, text:"Sorry to hear that, Rajesh! Let's get your cashless claim registered right away.\n\nPlease upload a photo of the damaged car bumper & your vehicle registration number."},
+      {from:"user", step:1, text:"[Damage photo uploaded] Reg: KA-01-MJ-4412."},
+      {from:"bot", step:2, text:"✅ *Damage Photo Analyzed*\n\n📍 Nearest Cashless Network Garages near you:\n1️⃣ Express Auto Works — 1.5 km away\n2️⃣ Prime Hyundai Service — 3.2 km away\n\nShall I register Cashless Claim with Express Auto Works?"},
+      {from:"user", step:2, text:"Yes, register with Express Auto Works."},
+      {from:"bot", step:3, text:"🎉 *CASHLESS CLAIM REGISTERED!*\n\n🔖 Claim Ref: *CLM-2026-7712*\n🚗 Garage notified for cashless repair inspection\n📍 Location pin sent to your WhatsApp\n\nJust drop your car — no out-of-pocket repair costs needed! 🛠️"},
+    ]
+  },
+
+  // ── 4: POLICY RENEWAL & REMINDERS ──────────────────────────
+  {
+    title:"Renewal Desk", icon:"🔁", hd:"#5b21b6",
+    steps:["Alert","1-Click Pay","NCB Savings","Revival","Tax Cert"],
+    messages:[
+      {from:"bot", step:0, text:"⚠️ Hi *Deepak*! Your Car Insurance Policy #POL-7712 expires in *7 days* (4th August 2026).\n\nRenew now to retain your *50% No-Claim Bonus (NCB)* savings!"},
+      {from:"user", step:0, text:"Thanks for the reminder! How much is the renewal premium with 50% NCB?"},
+      {from:"bot", step:1, text:"📄 *Policy Renewal Quote — Honda City*\n\n• Base Premium: ₹14,200\n🎁 50% NCB Discount: -₹7,100 (Saved!)\n──────────────────\n💰 *Net Renewal Premium: ₹7,100*\n\n🔗 1-Click Renewal Link: pay.insurance.com/renew-7100\n\nNo inspection required if renewed before expiry date!"},
+      {from:"user", step:1, text:"Renewing now via UPI."},
+      {from:"bot", step:2, text:"🎉 *POLICY RENEWED FOR 2026–27!*\n\n📄 Renewed Policy Document sent to WhatsApp.\n🧾 Tax Certificate (Sec 80D/24B) attached.\n\nThank you for staying protected with us! 🛡️"},
+    ]
+  },
+
+  // ── 5: CREDIT CARD APPLICATION ──────────────────────────────
+  {
+    title:"Credit Card Assistant", icon:"💳", hd:"#1a1a2e",
+    steps:["Spend Quiz","Recommend","Fee Waiver","Limit Check","Dispatch"],
+    messages:[
+      {from:"bot", step:0, text:"💳 Hi *Aman*! Looking for a new Credit Card?\n\nWhat is your top spending category — Travel, Shopping, Dining, or Fuel?"},
+      {from:"user", step:0, text:"Travel & Dining mostly."},
+      {from:"bot", step:1, text:"🌟 *Best Match Card for Travel & Dining:*\n\n💳 *Sapphire Travel Executive Card*\n• 5x reward points on flights & dining\n• 4 complimentary airport lounge visits/quarter\n• Free airport lounge access worldwide\n\nAnnual Fee: ₹2,500 (Waived on ₹2 Lakh annual spend)"},
+      {from:"user", step:1, text:"Check my pre-approved credit limit for this card."},
+      {from:"bot", step:2, text:"🔍 Checking pre-approved limit for your profile...\n\n🎉 *Pre-Approved Credit Limit: ₹3,50,00,000 (₹3.5 Lakhs)!*\n\nWould you like to complete 1-minute application?"},
+      {from:"user", step:3, text:"Yes, apply now!"},
+      {from:"bot", step:4, text:"🎉 *CREDIT CARD APPROVED!*\n\n💳 Sapphire Travel Executive Card\n💵 Limit: ₹3,50,000\n🚚 Physical card dispatched via BlueDart Express (Est 3 days).\n\nVirtual card active immediately on bank app! 📲"},
+    ]
+  },
+
+  // ── 6: MUTUAL FUNDS & SIP ──────────────────────────────────
+  {
+    title:"SIP Advisory Desk", icon:"📈", hd:"#075e54",
+    steps:["Risk Profile","SIP Calc","Fund List","Folio","Auto-Debit"],
+    messages:[
+      {from:"bot", step:0, text:"📈 Hi *Gaurav*! Ready to grow your wealth with Monthly Systematic Investment Plans (SIP)?\n\nWhat is your monthly investment target & goal?"},
+      {from:"user", step:0, text:"₹10,000 per month for wealth creation over 10 years."},
+      {from:"bot", step:1, text:"🧮 *SIP Wealth Forecast (10 Years)*\n\n💰 Monthly SIP: ₹10,000\n⏱️ Duration: 10 Years (₹12 Lakhs invested)\n📈 Expected Return (~14% p.a. Equity Funds):\n──────────────────\n🏆 *Projected Corpus: ₹26.2 Lakhs!* (Gain of ₹14.2L)\n\nWant to see our top-rated Fund Basket?"},
+      {from:"user", step:1, text:"Yes, show me the top funds."},
+      {from:"bot", step:2, text:"📊 *Top-Rated 5-Star Equity Funds*\n\n1️⃣ Bluechip Large Cap Fund (14.8% 5-yr return)\n2️⃣ Flexi Cap Growth Fund (16.2% 5-yr return)\n3️⃣ Small Cap Alpha Fund (18.5% 5-yr return)\n\nRecommended split: 50% Large Cap + 50% Flexi Cap.\n\nSet up monthly auto-debit for 5th of every month?"},
+      {from:"user", step:2, text:"Yes, set up auto-debit."},
+      {from:"bot", step:3, text:"🎉 *SIP FOLIO CREATED & AUTO-DEBIT ACTIVE!*\n\n🔖 Folio #MF-2026-9912\n💳 ₹10,000 auto-debit on 5th of every month\n\nHappy investing, Gaurav! 🚀"},
+    ]
+  },
+
+  // ── 7: ACCOUNT SERVICING & BALANCE ──────────────────────────
+  {
+    title:"Account Assistant", icon:"🔒", hd:"#1a73e8",
+    steps:["2FA Auth","Balance","Mini Statement","Card Block","Locate"],
+    messages:[
+      {from:"bot", step:0, text:"🔒 Hi *Meera*! Welcome to *Your Bank WhatsApp Services*.\n\nFor security, please enter the 4-digit OTP sent to your registered mobile number."},
+      {from:"user", step:0, text:"OTP: 4419"},
+      {from:"bot", step:1, text:"✅ *Authenticated Successfully!*\n\n🏦 *Account Balance — Savings A/c XX4091*\n💰 Available Balance: *₹1,84,350.20*\n\nWhat else can I help with?\n1️⃣ View Mini Statement\n2️⃣ Request Cheque Book\n3️⃣ Emergency Card Block\n4️⃣ Nearest ATM"},
+      {from:"user", step:1, text:"1 — View Mini Statement please."},
+      {from:"bot", step:2, text:"📄 *Mini Statement (Last 3 Transactions)*\n\n• 26 Jul: ₹2,500 (Debit - UPI / Swiggy)\n• 25 Jul: ₹75,000 (Credit - Salary)\n• 22 Jul: ₹1,200 (Debit - ATM Cash)\n\nPDF e-statement for July sent to your email. 📧"},
+    ]
+  },
+
+  // ── 8: CROSS-SELL & TOP-UP LOAN ─────────────────────────────
+  {
+    title:"Pre-Approved Desk", icon:"🎁", hd:"#5b21b6",
+    steps:["Review","Top-Up Alert","Zero Docs","Limit Increase","Disburse"],
+    messages:[
+      {from:"bot", step:0, text:"🎁 Special Alert for *Existing Customer Sanjay*!\n\nBased on your excellent repayment track record on Personal Loan #PL-4401, you have a *Pre-Approved Loan Top-Up of ₹5,00,00,000 (₹5 Lakhs)* waiting!"},
+      {from:"user", step:0, text:"Oh interesting! What is the interest rate and documentation needed?"},
+      {from:"bot", step:1, text:"⚡ *Zero Documentation Required!*\n\n• Top-Up Amount: ₹5,00,000\n• Interest Rate: Special 10.25% p.a.\n• Tenure: Flexible 12 to 48 months\n• Processing Fee: ZERO\n\nMoney can be credited to your savings account in *60 seconds*. Disburse now?"},
+      {from:"user", step:1, text:"Yes, disburse ₹5 Lakhs for 36 months."},
+      {from:"bot", step:2, text:"🎉 *₹5,00,000 CREDITED TO YOUR ACCOUNT!*\n\n🏦 Credited to Savings A/c XX4091\n🧾 Transaction Ref #TXN-2026-99011\n\nThank you for being a preferred bank customer, Sanjay! 💸"},
+    ]
+  },
+
+  // ── 9: APPLICATION DROP-OFF RECOVERY ────────────────────────
+  {
+    title:"Application Recovery", icon:"🚨", hd:"#ae1536",
+    steps:["Detect","Re-engage","Objection","Fee Waiver","Convert"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hi *Alok*! We noticed you started your *Home Loan Application* on Friday but didn't submit your documents.\n\nYou're just 1 step away from your loan sanction! Can I help clarify anything?"},
+      {from:"user", step:0, text:"Hi, yes — I was unsure about the processing fee charges."},
+      {from:"bot", step:1, text:"I completely understand, Alok! Processing fees can add up.\n\nHere's an exclusive *Processing Fee Waiver Coupon* for you:\n🏷️ *ZERO-FEE-2026* (Saves ₹10,000!)\n\n💰 Processing Fee: ₹10,000 → *₹0 (FREE)*"},
+      {from:"user", step:2, text:"That's great! How do I complete my application?"},
+      {from:"bot", step:3, text:"🔗 Tap here to resume your saved application with zero processing fee:\napply.bank.com/resume-alok-882\n\n👤 Relationship Manager Mr. Tarun is on standby to assist if needed. Complete now?"},
+      {from:"user", step:3, text:"Completed and submitted!"},
+      {from:"bot", step:3, text:"🎉 *APPLICATION SUBMITTED SUCCESSFULLY!*\n\nSanction letter will be issued in 24 hours. Welcome aboard, Alok! 🏡"},
+    ]
+  }
+
+];
+
+let currentFlow = 0;
+let messageIndex = 0;
+
+function paintHeader() {
+  const flow = flows[currentFlow];
+  const hdr = document.getElementById('modalHeader');
+  const av = document.getElementById('modalAvatar');
+  hdr.style.background = flow.hd || '#ae1536';
+  av.textContent = flow.icon;
+}
+
+function openFlow(index) {
+  currentFlow = index;
+  messageIndex = 0;
+  const flow = flows[index];
+
+  document.getElementById('modalTitle').textContent = flow.title;
+  paintHeader();
+
+  const sb = document.getElementById('stepsBar');
+  sb.innerHTML = flow.steps.map((s,i) => `<span class="sb-step" id="sbstep${i}">${s}</span>`).join('');
+
+  const ca = document.getElementById('chatArea');
+  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
+
+  document.getElementById('quickReplies').innerHTML = '';
+  document.getElementById('quickReplies').classList.remove('visible');
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  updateStep(0);
+  setTimeout(() => playNext(), 600);
+}
+
+function updateStep(s) {
+  const flow = flows[currentFlow];
+  flow.steps.forEach((_,i) => {
+    const el = document.getElementById('sbstep'+i);
+    if(!el) return;
+    el.className = 'sb-step' + (i < s ? ' done' : i === s ? ' active' : '');
+  });
+}
+
+function playNext() {
+  const flow = flows[currentFlow];
+  if (messageIndex >= flow.messages.length) {
+    showQR();
+    return;
+  }
+
+  const msg = flow.messages[messageIndex];
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  updateStep(msg.step || 0);
+
+  const msgText = msg.text || '';
+
+  if (msg.from === 'bot') {
+    ty.classList.add('show');
+    ca.scrollTop = ca.scrollHeight;
+    const delay = Math.min(700 + msgText.length * 8, 2000);
+    setTimeout(() => {
+      ty.classList.remove('show');
+      if (msg.type === 'carousel') addCarousel(msg.items);
+      else addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 800);
+    }, delay);
+  } else {
+    setTimeout(() => {
+      addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 500);
+    }, 300);
+  }
+}
+
+function addMsg(from, text) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const now = new Date();
+  const tm = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+  const div = document.createElement('div');
+  div.className = `msg ${from}`;
+
+  let html = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  const tick = from === 'user' ? '<span class="tk">✓✓</span>' : '';
+  div.innerHTML = html + `<div class="tr"><span class="tm">${tm}</span>${tick}</div>`;
+
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function addCarousel(items) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'carousel-wrap';
+
+  const track = document.createElement('div');
+  track.className = 'carousel-track';
+  track.innerHTML = items.map(it => `
+    <div class="cc-card">
+      <div class="cc-img">${it.icon}</div>
+      <div class="cc-body">
+        <div class="cc-tag">${it.tag}</div>
+        <div class="cc-title">${it.title}</div>
+        <div class="cc-sub">${it.sub}</div>
+        <div class="cc-price">${it.price}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const hint = document.createElement('div');
+  hint.className = 'cc-hint';
+  hint.textContent = '← swipe to explore →';
+
+  wrap.appendChild(track);
+  wrap.appendChild(hint);
+  ca.insertBefore(wrap, ty);
+  setTimeout(() => wrap.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function showQR() {
+  const qr = document.getElementById('quickReplies');
+  qr.innerHTML = `<button class="qr-btn" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" onclick="closeModal()">✕ Close</button>`;
+  qr.classList.add('visible');
+}
+
+function restartFlow() { openFlow(currentFlow); }
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

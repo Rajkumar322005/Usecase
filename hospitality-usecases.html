@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>Hospitality Use Cases — Engati 2026</title>
+  <meta name="description" content="Explore 11 interactive conversational AI use cases for hospitality — from guest booking to loyalty programs, powered by Engati on WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #ae1536;
+      --red-h: #8f0f2a;
+      --red-soft: #c43352;
+      --red-light: #D98B7E;
+      --red-pale: #FDF2F2;
+      --red-faint: #FEF8F8;
+      --charcoal: #3F3F3F;
+      --white: #FFFFFF;
+      --cream: #FDFAF9;
+      --warm-bg: #FBF5F5;
+      --body-head: #100D0D;
+      --body-text: #4A3F3F;
+      --body-muted: #9A8A8A;
+      --taupe: #4A3F3F;
+      --border: #EDE4E4;
+      --border-sm: #F4ECEC;
+      --wa-bg: #e5ddd5;
+      --wa-bot: #fff;
+      --wa-user: #dcf8c6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 14px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(253,250,249,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border)
+    }
+    .logo-word {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800; font-style: italic;
+      font-size: 1.35rem; color: var(--body-head);
+      letter-spacing: -.02em; text-decoration: none
+    }
+    .logo-word span { color: var(--red) }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 8px 18px; border-radius: 8px;
+      font-weight: 700; font-size: .82rem;
+      text-decoration: none; transition: all .2s
+    }
+    .nav-cta:hover { background: var(--red-h); transform: translateY(-1px) }
+
+    /* ── HERO HEADER ── */
+    .hero-header {
+      background: var(--cream);
+      padding: 120px 5% 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+    .hero-header::before {
+      content: ''; position: absolute;
+      width: 520px; height: 520px; border-radius: 50%;
+      border: 90px solid var(--red-faint);
+      top: -180px; right: -140px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-header::after {
+      content: ''; position: absolute;
+      width: 280px; height: 280px; border-radius: 50%;
+      border: 50px solid var(--border-sm);
+      bottom: -100px; left: -60px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 16px;
+      animation: fadeUp .6s ease both; opacity: 0
+    }
+    .hero-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06;
+      color: var(--body-head);
+      letter-spacing: -.04em;
+      margin-bottom: 16px;
+      animation: fadeUp .6s .05s ease both; opacity: 0
+    }
+    .hero-header h1 em { font-style: normal; color: var(--red) }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--body-text);
+      max-width: 560px; margin: 0 auto 24px;
+      animation: fadeUp .6s .1s ease both; opacity: 0
+    }
+    .hero-badges {
+      display: flex; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      animation: fadeUp .6s .15s ease both; opacity: 0
+    }
+    .hero-badge {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      padding: 5px 14px; border-radius: 100px
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center;
+      gap: 40px; padding: 26px 5%; flex-wrap: wrap
+    }
+    .stat { text-align: center }
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem; font-weight: 900;
+      color: var(--red); letter-spacing: -.03em
+    }
+    .stat .label {
+      font-size: .7rem; font-weight: 600;
+      color: var(--body-muted);
+      margin-top: 2px; letter-spacing: .03em
+    }
+
+    /* ── MAIN ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 56px 5% }
+    .journey-rail {
+      display: flex; justify-content: center;
+      gap: 6px; margin-bottom: 32px; flex-wrap: wrap
+    }
+    .rail-chip {
+      font-size: .66rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px;
+      background: var(--red-pale); color: var(--red);
+      border: 1px solid rgba(174,21,54,.1)
+    }
+    .sec-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 8px; text-align: center
+    }
+    .sec-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 900; color: var(--body-head);
+      line-height: 1.15; letter-spacing: -.03em;
+      margin-bottom: 40px; text-align: center
+    }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner {
+      background: var(--red);
+      border-radius: 20px; padding: 32px 36px;
+      margin-bottom: 36px;
+      display: flex; align-items: center; gap: 24px;
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden
+    }
+    .featured-banner::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 80px solid rgba(255,255,255,.05);
+      top: -200px; right: -160px; pointer-events: none
+    }
+    .featured-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(174,21,54,.35)
+    }
+    .fb-icon { font-size: 2.8rem; flex-shrink: 0 }
+    .fb-content { flex: 1; position: relative; z-index: 2 }
+    .fb-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      color: #fff; font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 10px
+    }
+    .fb-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      color: #fff; margin-bottom: 6px; letter-spacing: -.02em
+    }
+    .fb-content p {
+      font-size: .85rem; color: rgba(255,255,255,.8);
+      line-height: 1.65; max-width: 500px
+    }
+    .fb-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px;
+      background: #fff; color: var(--red);
+      font-size: .78rem; font-weight: 800;
+      padding: 9px 20px; border-radius: 10px;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .fb-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12) }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+      cursor: pointer
+    }
+    .card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--red); opacity: 0;
+      transition: opacity .25s
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(174,21,54,.08);
+      border-color: rgba(174,21,54,.2)
+    }
+    .card:hover::before { opacity: 1 }
+
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0
+    }
+    .card-meta { flex: 1 }
+    .card-tag {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 3px
+    }
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: .95rem; font-weight: 800;
+      color: var(--body-head); line-height: 1.3
+    }
+    .chan-row { display: flex; gap: 5px; margin-bottom: 10px }
+    .chan {
+      font-size: .58rem; font-weight: 700;
+      letter-spacing: .05em; padding: 2px 8px;
+      border-radius: 100px;
+      background: rgba(37,211,102,.08); color: #1f7a4d;
+      border: 1px solid rgba(37,211,102,.15)
+    }
+    .card ul { list-style: none; padding: 0; margin-bottom: 14px }
+    .card ul li {
+      font-size: .82rem; color: var(--body-text);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border-sm);
+      display: flex; align-items: flex-start;
+      gap: 8px; line-height: 1.55
+    }
+    .card ul li:last-child { border-bottom: none }
+    .card ul li::before {
+      content: '→'; color: var(--red);
+      font-size: .7rem; margin-top: 3px; flex-shrink: 0
+    }
+    .flow-steps {
+      display: flex; gap: 4px;
+      margin-bottom: 14px; flex-wrap: wrap
+    }
+    .step-chip {
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      font-size: .6rem; font-weight: 600;
+      padding: 3px 9px; border-radius: 100px; white-space: nowrap
+    }
+    .view-flow-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .76rem; font-weight: 700;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 100px; padding: 6px 16px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .view-flow-btn:hover {
+      background: var(--red); color: #fff;
+      transform: translateY(-1px)
+    }
+
+    /* featured card variant */
+    .card.fc { background: var(--red); border-color: var(--red) }
+    .card.fc::before { opacity: 0 !important }
+    .card.fc:hover {
+      box-shadow: 0 14px 40px rgba(174,21,54,.3);
+      border-color: var(--red-h)
+    }
+    .card.fc .card-icon {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .card-tag { color: rgba(255,255,255,.65) }
+    .card.fc h3 { color: #fff }
+    .card.fc .chan {
+      background: rgba(255,255,255,.12); color: #fff;
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc ul li {
+      color: rgba(255,255,255,.82);
+      border-bottom-color: rgba(255,255,255,.1)
+    }
+    .card.fc ul li::before { color: rgba(255,255,255,.45) }
+    .card.fc .step-chip {
+      background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .view-flow-btn {
+      background: rgba(255,255,255,.15); color: #fff;
+      border-color: rgba(255,255,255,.2)
+    }
+    .card.fc .view-flow-btn:hover {
+      background: #fff; color: var(--red)
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(16,13,13,.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 16px
+    }
+    .modal-overlay.open { display: flex }
+    .modal {
+      background: var(--white);
+      border-radius: 20px; width: 100%;
+      max-width: 430px; max-height: 92vh;
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(16,13,13,.28),
+                  0 0 0 1px rgba(174,21,54,.08)
+    }
+
+    /* WA header */
+    .mh {
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0
+    }
+    .mh-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0
+    }
+    .mh-info .nm {
+      font-family: 'Outfit', sans-serif;
+      font-size: .88rem; font-weight: 700; color: #fff
+    }
+    .mh-info .st { font-size: .68rem; color: rgba(255,255,255,.7) }
+    .mc {
+      margin-left: auto; background: none; border: none;
+      color: rgba(255,255,255,.8); font-size: 1.15rem;
+      cursor: pointer; line-height: 1; padding: 4px;
+      transition: color .2s
+    }
+    .mc:hover { color: #fff }
+
+    /* steps bar */
+    .steps-bar {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex; gap: 5px;
+      overflow-x: auto; flex-shrink: 0
+    }
+    .steps-bar::-webkit-scrollbar { height: 3px }
+    .steps-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px }
+    .sb-step {
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap;
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      transition: all .2s
+    }
+    .sb-step.active {
+      background: var(--red); color: #fff;
+      border-color: var(--red);
+      box-shadow: 0 2px 8px rgba(174,21,54,.2)
+    }
+    .sb-step.done {
+      background: var(--red-pale); color: var(--red);
+      border-color: rgba(174,21,54,.15)
+    }
+
+    /* chat area */
+    .chat-area {
+      flex: 1; overflow-y: auto;
+      padding: 10px 9px;
+      background: var(--wa-bg);
+      display: flex; flex-direction: column;
+      gap: 5px; min-height: 300px
+    }
+    .date-chip { text-align: center; margin: 4px 0 }
+    .date-chip span {
+      background: rgba(225,245,254,.88);
+      font-size: .64rem; color: #555;
+      padding: 2px 10px; border-radius: 7px
+    }
+
+    /* messages */
+    .msg {
+      max-width: 84%; padding: 7px 9px 3px;
+      border-radius: 8px; font-size: .82rem;
+      line-height: 1.55;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+      word-wrap: break-word
+    }
+    .msg.visible { opacity: 1; transform: translateY(0) }
+    .msg.bot {
+      background: var(--wa-bot); color: var(--body-head);
+      border-top-left-radius: 0; align-self: flex-start;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg.user {
+      background: var(--wa-user); color: var(--body-head);
+      border-top-right-radius: 0; align-self: flex-end;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg .tr {
+      display: flex; justify-content: flex-end;
+      align-items: center; gap: 3px; margin-top: 2px
+    }
+    .msg .tm { font-size: .6rem; color: #999 }
+    .msg.user .tk { font-size: .6rem; color: #53bdeb }
+
+    /* option buttons inside chat */
+    .opt-row {
+      align-self: flex-start; display: flex;
+      flex-wrap: wrap; gap: 6px; max-width: 90%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s
+    }
+    .opt-row.visible { opacity: 1; transform: translateY(0) }
+    .opt-btn {
+      background: #fff; border: 1.5px solid var(--red);
+      color: var(--red); border-radius: 100px;
+      padding: 5px 12px; font-size: .72rem; font-weight: 600;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .15s
+    }
+    .opt-btn:hover { background: var(--red); color: #fff }
+
+    /* typing */
+    .typing {
+      display: none; align-self: flex-start;
+      background: var(--wa-bot); border-radius: 8px;
+      border-top-left-radius: 0; padding: 9px 13px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .typing.show { display: flex; gap: 4px; align-items: center }
+    .typing span {
+      width: 6px; height: 6px;
+      background: #bbb; border-radius: 50%;
+      animation: bounce 1.2s infinite
+    }
+    .typing span:nth-child(2) { animation-delay: .2s }
+    .typing span:nth-child(3) { animation-delay: .4s }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0) }
+      30% { transform: translateY(-5px) }
+    }
+
+    /* carousel */
+    .carousel-wrap {
+      align-self: flex-start; max-width: 94%; width: 94%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s
+    }
+    .carousel-wrap.visible { opacity: 1; transform: translateY(0) }
+    .carousel-track {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding: 2px 2px 6px; scroll-snap-type: x mandatory
+    }
+    .carousel-track::-webkit-scrollbar { height: 4px }
+    .carousel-track::-webkit-scrollbar-thumb { background: #c8c0bb; border-radius: 3px }
+    .cc-card {
+      flex: 0 0 152px; background: #fff;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; scroll-snap-align: start;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06)
+    }
+    .cc-img {
+      height: 78px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      background: var(--red); color: #fff
+    }
+    .cc-body { padding: 8px 9px 9px }
+    .cc-tag {
+      display: inline-block;
+      font-size: .52rem; font-weight: 700;
+      background: var(--red-pale); color: var(--red);
+      padding: 2px 6px; border-radius: 100px;
+      margin-bottom: 4px; letter-spacing: .04em;
+      text-transform: uppercase
+    }
+    .cc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: .74rem; font-weight: 700;
+      color: var(--body-head); line-height: 1.3; margin-bottom: 2px
+    }
+    .cc-sub { font-size: .6rem; color: var(--body-muted); margin-bottom: 6px }
+    .cc-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem; font-weight: 800; color: var(--red)
+    }
+    .cc-hint {
+      font-size: .6rem; color: var(--body-muted);
+      padding: 0 2px 2px;
+      display: flex; align-items: center; gap: 4px
+    }
+
+    /* quick replies */
+    .qr {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 8px 10px; background: var(--wa-bg);
+      opacity: 0; transition: opacity .3s;
+      pointer-events: none; flex-shrink: 0
+    }
+    .qr.visible { opacity: 1; pointer-events: all }
+    .qr-btn {
+      background: #fff; border: 1.5px solid var(--red);
+      color: var(--red); border-radius: 100px;
+      padding: 5px 13px; font-size: .7rem; font-weight: 700;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .15s
+    }
+    .qr-btn:hover { background: var(--red); color: #fff }
+
+    /* enrol CTA */
+    .enrol-cta {
+      background: #fff; border-radius: 10px;
+      padding: 10px 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      align-self: flex-start; max-width: 84%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+      border-left: 3px solid var(--red)
+    }
+    .enrol-cta.visible { opacity: 1; transform: translateY(0) }
+    .enrol-cta .cl {
+      font-size: .6rem; color: var(--red);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 3px
+    }
+    .enrol-cta .ct {
+      font-size: .8rem; color: var(--body-head);
+      line-height: 1.4; margin-bottom: 7px
+    }
+    .enrol-cta .cb {
+      display: block; text-align: center;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 7px 14px; font-size: .74rem; font-weight: 700;
+      cursor: pointer; width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s
+    }
+    .enrol-cta .cb:hover { background: var(--red-h) }
+
+    /* modal footer */
+    .mfooter {
+      padding: 8px 12px;
+      background: var(--cream);
+      display: flex; gap: 7px; align-items: center;
+      border-top: 1px solid var(--border); flex-shrink: 0
+    }
+    .mfooter input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 8px 14px;
+      font-size: .82rem; outline: none;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-head);
+      transition: border-color .2s
+    }
+    .mfooter input:focus { border-color: var(--red-soft) }
+    .rst-btn {
+      background: var(--red); color: #fff;
+      border: none; border-radius: 50%;
+      width: 34px; height: 34px; font-size: .88rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .2s
+    }
+    .rst-btn:hover { background: var(--red-h); transform: scale(1.05) }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 0
+    }
+    .foot-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 22px 5%;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 12px
+    }
+    .foot-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800; font-style: italic;
+      font-size: 1.1rem; color: var(--body-head)
+    }
+    .foot-logo span { color: var(--red) }
+    .foot-copy { color: var(--body-muted); font-size: .72rem }
+    .foot-badges {
+      display: flex; gap: 10px; flex-wrap: wrap
+    }
+    .foot-badge {
+      font-size: .66rem; font-weight: 600;
+      color: var(--body-muted);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 4px 12px; border-radius: 100px
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { gap: 20px; padding: 20px 5% }
+      .hero-header { padding: 100px 5% 48px }
+      .featured-banner { flex-direction: column; text-align: center }
+      .modal { max-height: 95vh }
+      .grid { grid-template-columns: 1fr }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="usecases-portal.html"><img style="height:36px;width:auto;border-radius:6px;" src="Logo's/engati-logo.svg" alt="Engati Logo"></a>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <a href="usecases-portal.html" style="font-size:.84rem;font-weight:600;color:var(--body-text);text-decoration:none;">← Use Case Hub</a>
+    <a class="nav-cta" href="index.html#partner-form">Become a Partner →</a>
+  </div>
+</nav>
+
+<div class="hero-header">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Engati · Hospitality Intelligence Suite</span>
+    <h1>Hospitality <em>Use Cases</em></h1>
+    <p class="hero-sub">End-to-end conversational AI journeys across every guest touchpoint — from first search to loyalty renewal — live on WhatsApp.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">11 Use Cases</span>
+      <span class="hero-badge">WhatsApp-Native</span>
+      <span class="hero-badge">Gen AI Powered</span>
+      <span class="hero-badge">Meta Business Partner</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">11+</div><div class="label">Use Cases</div></div>
+  <div class="stat"><div class="num">24/7</div><div class="label">Guest Support</div></div>
+  <div class="stat"><div class="num">2.4x</div><div class="label">Direct Bookings</div></div>
+  <div class="stat"><div class="num">55%</div><div class="label">Front-desk Load Cut</div></div>
+  <div class="stat"><div class="num">38%</div><div class="label">Booking Recovery</div></div>
+</div>
+
+<main>
+  <div class="journey-rail">
+    <span class="rail-chip">Pre-Arrival</span>
+    <span class="rail-chip">Arrival</span>
+    <span class="rail-chip">In-Stay</span>
+    <span class="rail-chip">Departure</span>
+    <span class="rail-chip">Post-Stay</span>
+    <span class="rail-chip">Back-of-House</span>
+  </div>
+  <div class="sec-label">Interactive Journeys</div>
+  <div class="sec-title">Click any card to explore the live conversation flow</div>
+
+  <!-- FEATURED -->
+  <div class="featured-banner" onclick="openFlow(8)">
+    <div class="fb-icon">🏨</div>
+    <div class="fb-content">
+      <div class="fb-badge">⭐ Featured — Gen AI Concierge Demo</div>
+      <h2>Room Search, Compare &amp; Book — End to End</h2>
+      <p>AI-powered WhatsApp concierge helps guests swipe through properties, compare rate plans, check offers, and complete booking — all in one seamless conversation.</p>
+      <button class="fb-cta">▶ Watch the Full Journey</button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card fc" onclick="openFlow(0)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🛎️</div>
+        <div class="card-meta"><div class="card-tag">Pre-Arrival · Acquisition</div><h3>Reservations &amp; Direct Booking</h3></div>
+      </div>
+      <ul>
+        <li>Room search by dates, occupancy &amp; view</li>
+        <li>Swipeable room carousel with live rates</li>
+        <li>Add-on upsell — breakfast, airport pickup</li>
+        <li>Secure payment link &amp; instant confirmation</li>
+        <li>Booking reference sent as e-voucher</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Search</span><span class="step-chip">Compare</span><span class="step-chip">Upsell</span><span class="step-chip">Pay</span><span class="step-chip">Confirm</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(1)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🧳</div>
+        <div class="card-meta"><div class="card-tag">Pre-Arrival · Onboarding</div><h3>Digital Check-in &amp; Arrival Prep</h3></div>
+      </div>
+      <ul>
+        <li>ID &amp; passport upload before arrival</li>
+        <li>Room preference &amp; special occasion notes</li>
+        <li>Early check-in / late checkout upsell</li>
+        <li>Estimated arrival time capture</li>
+        <li>Digital room key issued on approach</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Welcome</span><span class="step-chip">ID</span><span class="step-chip">Preferences</span><span class="step-chip">Upsell</span><span class="step-chip">Key</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(2)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🛏️</div>
+        <div class="card-meta"><div class="card-tag">In-Stay</div><h3>Concierge &amp; In-Room Requests</h3></div>
+      </div>
+      <ul>
+        <li>Room service ordering with live menu</li>
+        <li>Housekeeping &amp; amenity requests</li>
+        <li>Wake-up call &amp; spa slot booking</li>
+        <li>Instant issue escalation to duty manager</li>
+        <li>Request status tracking in-chat</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Request</span><span class="step-chip">Menu</span><span class="step-chip">Confirm</span><span class="step-chip">Track</span><span class="step-chip">Escalate</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(3)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">💎</div>
+        <div class="card-meta"><div class="card-tag">In-Stay · Engagement</div><h3>Guest Loyalty &amp; Personalization</h3></div>
+      </div>
+      <ul>
+        <li>Loyalty tier &amp; points balance lookup</li>
+        <li>Personalised offers based on stay history</li>
+        <li>Birthday &amp; anniversary perks</li>
+        <li>Tier upgrade progress tracking</li>
+        <li>Redeem points for upgrades &amp; dining</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Balance</span><span class="step-chip">Offer</span><span class="step-chip">Redeem</span><span class="step-chip">Upgrade</span><span class="step-chip">Confirm</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(4)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🧾</div>
+        <div class="card-meta"><div class="card-tag">Departure · Finance</div><h3>Billing, Folio &amp; Checkout</h3></div>
+      </div>
+      <ul>
+        <li>Live folio &amp; itemised charge preview</li>
+        <li>Split bill between room &amp; incidentals</li>
+        <li>Express checkout without front-desk queue</li>
+        <li>Digital invoice &amp; GST receipt</li>
+        <li>Dispute or charge query handling</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Folio</span><span class="step-chip">Split</span><span class="step-chip">Pay</span><span class="step-chip">Checkout</span><span class="step-chip">Invoice</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(5)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🔁</div>
+        <div class="card-meta"><div class="card-tag">Post-Stay · Retention</div><h3>Feedback &amp; Win-back</h3></div>
+      </div>
+      <ul>
+        <li>Post-stay review &amp; NPS capture</li>
+        <li>Service recovery for low ratings</li>
+        <li>Lapsed-guest re-engagement outreach</li>
+        <li>Anniversary-of-stay return offers</li>
+        <li>Referral &amp; friends-and-family codes</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Feedback</span><span class="step-chip">Recover</span><span class="step-chip">Re-engage</span><span class="step-chip">Offer</span><span class="step-chip">Refer</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(6)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">💒</div>
+        <div class="card-meta"><div class="card-tag">Events</div><h3>Weddings, MICE &amp; Banquets</h3></div>
+      </div>
+      <ul>
+        <li>Venue &amp; date availability check</li>
+        <li>Swipeable package comparison carousel</li>
+        <li>Guest headcount &amp; room block quoting</li>
+        <li>Site visit scheduling</li>
+        <li>Advance booking &amp; contract dispatch</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Enquiry</span><span class="step-chip">Package</span><span class="step-chip">Quote</span><span class="step-chip">Site Visit</span><span class="step-chip">Book</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(7)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🧹</div>
+        <div class="card-meta"><div class="card-tag">Back-of-House · Operations</div><h3>Staff &amp; Housekeeping Coordination</h3></div>
+      </div>
+      <ul>
+        <li>Daily arrivals / departures briefing</li>
+        <li>Room-ready &amp; turnover task assignment</li>
+        <li>Maintenance issue routing &amp; SLA tracking</li>
+        <li>Shift handover notes</li>
+        <li>Staff leave &amp; roster requests</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Briefing</span><span class="step-chip">Assign</span><span class="step-chip">Maintenance</span><span class="step-chip">Handover</span><span class="step-chip">Roster</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(9)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🗺️</div>
+        <div class="card-meta"><div class="card-tag">In-Stay · Discovery</div><h3>Local Discovery &amp; Activities</h3></div>
+      </div>
+      <ul>
+        <li>Curated things-to-do carousel near the property</li>
+        <li>Restaurant &amp; table reservations</li>
+        <li>Excursion &amp; activity booking</li>
+        <li>Cab &amp; airport transfer arrangement</li>
+        <li>Weather-aware itinerary suggestions</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Explore</span><span class="step-chip">Recommend</span><span class="step-chip">Reserve</span><span class="step-chip">Transfer</span><span class="step-chip">Confirm</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(10)">
+      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="card-top">
+        <div class="card-icon">🚨</div>
+        <div class="card-meta"><div class="card-tag">Recovery</div><h3>Abandoned Booking Recovery</h3></div>
+      </div>
+      <ul>
+        <li>Detect dropped bookings mid-checkout</li>
+        <li>Personalised re-engagement message</li>
+        <li>Address objections — price, dates, room type</li>
+        <li>Limited-time incentive to complete booking</li>
+        <li>One-tap resume of saved booking</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Re-engage</span><span class="step-chip">Objection</span><span class="step-chip">Incentive</span><span class="step-chip">Convert</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner" style="display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center;padding:32px 5%;">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
+      <img src="Logo's/engati-logo.svg" style="height:32px;width:auto;border-radius:6px;" alt="Engati Logo">
+      <div class="foot-copy">© 2026 Engati. All rights reserved.</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border-sm);width:100%;">
+      <span style="font-size:.7rem;font-weight:700;color:var(--body-muted);text-transform:uppercase;letter-spacing:.08em;">Official Partners &amp; Certifications:</span>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/META.png" style="height:20px;" alt="Meta"> Meta Partner</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/Soc2.png" style="height:20px;" alt="SOC2"> SOC2 Type II</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/GDPR.png" style="height:20px;" alt="GDPR"> GDPR</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/ISO.png" style="height:20px;" alt="ISO"> ISO 27001</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal" id="modalRoot">
+    <div class="mh" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Hotel Concierge</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" onclick="closeModal()">✕</button>
+    </div>
+    <div class="steps-bar" id="stepsBar"></div>
+    <div class="chat-area" id="chatArea">
+      <div class="date-chip"><span>Today</span></div>
+      <div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>
+    </div>
+    <div class="qr" id="quickReplies"></div>
+    <div class="mfooter">
+      <input type="text" placeholder="Type a message..." readonly />
+      <button class="rst-btn" onclick="restartFlow()" title="Restart">↺</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const flows = [
+
+  // ── 0: RESERVATIONS & DIRECT BOOKING ────────────────────────
+  {
+    title:"Reservations Desk", icon:"🛎️", hd:"#ae1536",
+    steps:["Search","Compare","Upsell","Payment","Confirmation"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Welcome to *Your Hotel Brand*! I can help you find and book the perfect stay.\n\nWhich property and dates are you looking at?"},
+      {from:"user", step:0, text:"Beach Resort, 14–17 Aug, 2 adults."},
+      {from:"bot", step:0, text:"🏖️ *Beach Resort*\n📅 14–17 Aug 2026 (3 nights) · 2 Adults\n\nChecking live availability... ✅ Rooms available!\n\nWhat kind of view do you prefer — Garden, Pool, or Sea-facing?"},
+      {from:"user", step:1, text:"Sea-facing please."},
+      {from:"bot", step:1, text:"🌊 Here are our sea-view rooms — swipe to compare:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🌿", tag:"Room Only", title:"Garden View Deluxe", sub:"32 sqm · King bed", price:"₹10,200/night"},
+        {icon:"🌊", tag:"Room Only", title:"Sea View Deluxe", sub:"34 sqm · Balcony", price:"₹14,500/night"},
+        {icon:"🛋️", tag:"Breakfast incl.", title:"Sea View Suite", sub:"48 sqm · Private deck", price:"₹21,000/night"}
+      ]},
+      {from:"user", step:1, text:"The Sea View Suite on the right looks great."},
+      {from:"bot", step:2, text:"Great pick! 🌟 Guests booking this room often add:\n\n➕ Airport pickup — ₹1,800\n➕ Candlelight dinner on the beach — ₹4,500\n➕ Couple's spa session (60 min) — ₹5,200\n\nWould you like to add any of these?"},
+      {from:"user", step:2, text:"Add the airport pickup only."},
+      {from:"bot", step:3, text:"📋 *Booking Summary*\n\n🏨 Sea View Suite × 3 nights — ₹63,000\n🍳 Breakfast included\n🚗 Airport pickup — ₹1,800\n──────────────────\n💰 *Total: ₹64,800* (taxes included)\n\n🔗 Secure payment link sent\n\nShall I hold this room while you pay?"},
+      {from:"user", step:3, text:"Yes, paying now."},
+      {from:"bot", step:3, text:"⏳ Room held for *10 minutes*. Awaiting payment confirmation..."},
+      {from:"user", step:4, text:"Done, payment complete!"},
+      {from:"bot", step:4, text:"🎉 *Booking Confirmed!*\n\n🔖 Confirmation: *HTL-GOA-88213*\n🏨 Beach Resort\n📅 14–17 Aug 2026 · Sea View Suite\n🚗 Airport pickup arranged\n📧 E-voucher sent to your email\n\nWe can't wait to host you! Reply anytime before your stay if you need anything. 🌴"},
+    ]
+  },
+
+  // ── 1: DIGITAL CHECK-IN & ARRIVAL PREP ──────────────────────
+  {
+    title:"Arrival Desk", icon:"🧳", hd:"#075e54",
+    steps:["Welcome","ID Upload","Preferences","Upsell","Digital Key"],
+    messages:[
+      {from:"bot", step:0, text:"🌴 Hi *Meera*! Your stay at *Beach Resort* is coming up on *14th August*.\n\nLet's get you checked in digitally so you can skip the front-desk queue. Ready?"},
+      {from:"user", step:0, text:"Yes, let's do it!"},
+      {from:"bot", step:1, text:"📎 Please upload a photo of your *Passport / Aadhar / Driving Licence* for all guests staying in the room.\n\nThis is required as per local guest registration rules and is fully encrypted."},
+      {from:"user", step:1, text:"[ID photo uploaded]"},
+      {from:"bot", step:1, text:"✅ ID received and verified!\n\nOne more for your companion, or just yourself?"},
+      {from:"user", step:1, text:"Just myself and my husband — his ID is also uploaded."},
+      {from:"bot", step:2, text:"Perfect, both verified ✅\n\nA couple of quick preferences to make your stay smoother:\n\n🛏️ Bed type: King or Twin?\n🎉 Any special occasion? (Anniversary, Birthday, etc.)"},
+      {from:"user", step:2, text:"King bed, and it's our anniversary!"},
+      {from:"bot", step:2, text:"💐 Congratulations! We've noted a *King bed* and flagged this as an *Anniversary Stay* — our team will add a little surprise for you both. 🥂"},
+      {from:"user", step:3, text:"That's sweet, thank you!"},
+      {from:"bot", step:3, text:"🕐 You're arriving around 2 PM — standard check-in is 3 PM.\n\nWould you like *Early Check-in (guaranteed by 11 AM)* for ₹2,000, so your room is ready the moment you land?"},
+      {from:"user", step:3, text:"Yes, worth it after the flight."},
+      {from:"bot", step:4, text:"✅ *Early Check-in Confirmed* — Room guaranteed by 11 AM\n\n🔑 *Your Digital Room Key* will activate automatically once you're within 500m of the resort — no front-desk stop needed.\n\n📍 Resort location shared\n\nSafe travels, Meera — see you on the 14th! 🌊"},
+    ]
+  },
+
+  // ── 2: CONCIERGE & IN-ROOM REQUESTS ─────────────────────────
+  {
+    title:"In-Room Concierge", icon:"🛏️", hd:"#1a73e8",
+    steps:["Request","Menu","Confirmation","Tracking","Escalation"],
+    messages:[
+      {from:"bot", step:0, text:"🛎️ Hi *Room 412*! I'm your in-stay concierge, available 24/7. What can I help with — room service, housekeeping, spa, or something else?"},
+      {from:"user", step:0, text:"Can I see the room service menu?"},
+      {from:"bot", step:1, text:"🍽️ *Room Service — Available Now*\n\n🥗 Caesar Salad — ₹650\n🍕 Margherita Pizza — ₹800\n🍛 Goan Fish Curry & Rice — ₹950\n🍰 Chocolate Lava Cake — ₹450\n🍹 Mocktail of the day — ₹400\n\nWhat would you like to order?"},
+      {from:"user", step:1, text:"1 Fish Curry, 1 Lava Cake and a mocktail please."},
+      {from:"bot", step:2, text:"📋 *Order Summary — Room 412*\n\n🍛 Goan Fish Curry & Rice — ₹950\n🍰 Chocolate Lava Cake — ₹450\n🍹 Mocktail — ₹400\n──────────────────\n💰 Total: ₹1,800 (added to room folio)\n⏱️ Est. delivery: *35 minutes*\n\nConfirm this order?"},
+      {from:"user", step:2, text:"Yes, confirm please."},
+      {from:"bot", step:3, text:"✅ *Order placed!* Kitchen has been notified.\n\n📍 Status: Preparing → will update you at each step\n\nAnything else — housekeeping or a wake-up call?"},
+      {from:"user", step:3, text:"Yes, extra towels please, and a wake-up call at 7 AM tomorrow."},
+      {from:"bot", step:3, text:"✅ *Housekeeping notified* — extra towels on the way (~10 min)\n✅ *Wake-up call set* — 7:00 AM tomorrow\n\nI'll keep you posted on your food order too. 😊"},
+      {from:"user", step:4, text:"The AC in the room isn't cooling properly."},
+      {from:"bot", step:4, text:"⚠️ Sorry about that, Room 412! I've escalated this to our *Duty Manager* right away.\n\n🔧 Maintenance team ETA: *15 minutes*\n👤 Duty Manager will also check in with you personally.\n\nWe'll make this right — thank you for letting us know immediately. 🙏"},
+    ]
+  },
+
+  // ── 3: LOYALTY & PERSONALIZATION ────────────────────────────
+  {
+    title:"Rewards Program", icon:"💎", hd:"#5b21b6",
+    steps:["Balance","Offer","Redeem","Upgrade","Confirmation"],
+    messages:[
+      {from:"bot", step:0, text:"💎 Hi *Arjun*! Welcome back to *Your Rewards Program*.\n\nHere's your loyalty snapshot 👇"},
+      {from:"user", step:0, text:"Hi! How many points do I have?"},
+      {from:"bot", step:1, text:"⭐ *Your Rewards Status*\n\n🏅 Tier: *Gold Member*\n✨ Points balance: *18,450 pts*\n📈 4,550 pts to reach *Platinum*\n🗓️ Member since: March 2023\n\nYou also have a personalised offer waiting!"},
+      {from:"user", step:1, text:"Ooh, what's the offer?"},
+      {from:"bot", step:1, text:"🎁 *Just for you, Arjun:*\n\nBased on your last 3 stays at our Goa & Udaipur properties, we're offering:\n\n✨ *Complimentary room upgrade* on your next booking\n✨ *20% off spa treatments* — valid till 30 Sept\n\nWant to redeem the upgrade on an upcoming stay?"},
+      {from:"user", step:2, text:"Yes, I have a booking for Udaipur next month."},
+      {from:"bot", step:2, text:"🔍 Found it — *Palace Resort*, 5–8 Sept, Deluxe Lake View room.\n\nRedeeming your Gold perk would upgrade this to a *Premium Lake-Facing Suite* at no extra cost. Confirm?"},
+      {from:"user", step:2, text:"Yes please, confirm!"},
+      {from:"bot", step:3, text:"🎉 *Upgrade Confirmed!*\n\n🏨 Palace Resort\n📅 5–8 Sept 2026\n🛏️ Premium Lake-Facing Suite (upgraded from Deluxe Lake View)\n💎 200 bonus points credited for redemption\n\nYour points balance is now *18,650 pts*."},
+      {from:"user", step:4, text:"Amazing, thank you!"},
+      {from:"bot", step:4, text:"Our pleasure, Arjun! 🙏 A little more about your journey to *Platinum*:\n\n📈 4,350 pts away — roughly *2 more stays*\n🏆 Platinum unlocks: airport lounge access, guaranteed late checkout, and a dedicated concierge line\n\nSee you in Udaipur! 🌇"},
+    ]
+  },
+
+  // ── 4: BILLING, FOLIO & CHECKOUT ────────────────────────────
+  {
+    title:"Express Checkout", icon:"🧾", hd:"#1a1a2e",
+    steps:["Folio","Split Bill","Payment","Checkout","Invoice"],
+    messages:[
+      {from:"bot", step:0, text:"🧾 Good morning, *Room 208*! Your checkout is scheduled for today at 11 AM.\n\nWould you like to review your folio and check out via chat — no front-desk queue?"},
+      {from:"user", step:0, text:"Yes please, show me the bill."},
+      {from:"bot", step:1, text:"📄 *Folio Summary — Room 208 (3 nights)*\n\n🏨 Room charges: ₹43,500\n🍽️ Room service (2 orders): ₹3,200\n🧖 Spa session: ₹5,200\n🚗 Airport pickup: ₹1,800\n🍹 Minibar: ₹950\n──────────────────\n💰 *Total: ₹54,650* (incl. taxes)\n\nWould you like to split this or pay in full?"},
+      {from:"user", step:1, text:"Can we split — room on my card, rest on my partner's?"},
+      {from:"bot", step:1, text:"Sure! Here's the split:\n\n💳 *Card 1 (yours):* Room charges — ₹43,500\n💳 *Card 2 (partner):* Room service + Spa + Pickup + Minibar — ₹11,150\n\nShall I send both payment links?"},
+      {from:"user", step:2, text:"Yes, send both."},
+      {from:"bot", step:2, text:"🔗 *Payment Links Sent*\n\nBoth links have been sent to the respective numbers.\n\nWaiting for both payments to confirm checkout..."},
+      {from:"user", step:2, text:"Both done!"},
+      {from:"bot", step:3, text:"✅ *Both payments received — thank you!*\n\n🚪 *Checkout Complete*\n🕚 Checked out at 10:42 AM\n🧳 Bell desk notified for luggage assistance if needed\n\nYour room key will deactivate at 11 AM automatically."},
+      {from:"user", step:4, text:"Can I get the GST invoice for my company?"},
+      {from:"bot", step:4, text:"📧 *Invoice Sent!*\n\n🧾 GST Invoice #HTL-INV-24471\n🏢 Billed to: as per your company details on file\n📎 PDF sent to your registered email\n\nThank you for staying with us, and safe travels! We hope to welcome you back soon. 🌴"},
+    ]
+  },
+
+  // ── 5: FEEDBACK & WIN-BACK ──────────────────────────────────
+  {
+    title:"Guest Relations", icon:"🔁", hd:"#0d7377",
+    steps:["Feedback","Recovery","Re-engagement","Offer","Referral"],
+    messages:[
+      {from:"bot", step:0, text:"🙏 Hi *Kavya*! Thank you for staying with us at *Palace Resort*.\n\nWe'd love your feedback — how was your stay overall? (1–5 ⭐)"},
+      {from:"user", step:0, text:"3 stars. It was okay but the room wasn't very clean on arrival."},
+      {from:"bot", step:1, text:"We're really sorry to hear that, Kavya — that's not the standard we hold ourselves to. 🙏\n\nCould you tell me a bit more so we can make this right and address it with our housekeeping team?"},
+      {from:"user", step:1, text:"There was dust on the furniture and the bathroom wasn't fully stocked."},
+      {from:"bot", step:1, text:"Thank you for the detail — this has been logged and escalated to our *Housekeeping Head* and *GM* for review. 📋\n\nAs an apology, we'd like to offer you *2,500 Reward points* and a *15% discount* on your next stay at any property. Would that help?"},
+      {from:"user", step:1, text:"That's kind, thank you — I appreciate it."},
+      {from:"bot", step:2, text:"✅ *2,500 points* credited to your account\n✅ *15% off* code: WELCOME-BACK-KAVYA (valid 6 months)\n\nWe genuinely hope to host you again and show you the experience we aim for. 💙"},
+      {from:"user", step:3, text:"[62 days later]"},
+      {from:"bot", step:3, text:"👋 Hi Kavya! It's been a couple of months since we last had you as a guest.\n\nOur property has since completed a full room refresh — new furnishings, upgraded amenities, and a new executive housekeeping team. We'd love another chance to host you. 🏨"},
+      {from:"user", step:4, text:"Okay, I might consider it — any offer?"},
+      {from:"bot", step:4, text:"🎁 *Welcome Back Offer*\n\n✨ Your saved 15% discount code is still valid\n✨ Complimentary room upgrade on arrival\n✨ Personal check-in with our GM to ensure everything's perfect\n\nShall I check availability for your preferred dates?"},
+      {from:"user", step:4, text:"Yes, and I'll tell my sister too, she loved your Goa property."},
+      {from:"bot", step:4, text:"That means a lot, thank you Kavya! 🙏\n\n🎉 Here's a *Referral Code* for your sister — she gets 10% off her first booking, and you'll earn 1,000 bonus points once she completes her stay.\n\nCode: KAVYA-REFER\n\nLooking forward to hosting you both again! 🌇"},
+    ]
+  },
+
+  // ── 6: WEDDINGS, MICE & BANQUETS ────────────────────────────
+  {
+    title:"Events & Celebrations", icon:"💒", hd:"#8a1029",
+    steps:["Enquiry","Packages","Quote","Site Visit","Booking"],
+    messages:[
+      {from:"bot", step:0, text:"💐 Hi *Neha*! Thank you for your interest in hosting an event at *Palace Resort*.\n\nAre you planning a wedding, corporate offsite, or a private celebration?"},
+      {from:"user", step:0, text:"A wedding — around 150 guests, sometime in December."},
+      {from:"bot", step:1, text:"🎉 Wonderful! December is one of our most popular wedding months at the Palace lawns.\n\nHere are our wedding packages — swipe to compare:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🌿", tag:"150 guests", title:"Heritage Lawn", sub:"Venue + basic decor + catering", price:"From ₹8.5L"},
+        {icon:"🏛️", tag:"150 guests", title:"Palace Grand", sub:"Lawn + banquet hall, premium decor + bar", price:"From ₹18.6L"},
+        {icon:"👑", tag:"150 guests", title:"Royal Experience", sub:"Full property buyout, curated decor", price:"From ₹35L"}
+      ]},
+      {from:"user", step:1, text:"Palace Grand sounds right. What's included exactly?"},
+      {from:"bot", step:2, text:"📋 *Palace Grand — Indicative Quote (150 guests)*\n\n🏛️ Venue hire (lawn + banquet hall): ₹4,50,000\n🍽️ Catering (multi-cuisine, veg + non-veg): ₹2,25,000\n🎊 Decor (premium): ₹1,80,000\n🥂 Bar package: ₹1,10,000\n🛏️ Guest room block (30 rooms, 2 nights): ₹9,00,000\n──────────────────\n💰 *Estimated Total: ₹18,65,000*\n\nWould you like to visit the property before finalising?"},
+      {from:"user", step:3, text:"Yes, can we schedule a site visit?"},
+      {from:"bot", step:3, text:"📅 *Available Site Visit Slots*\n\n• Sat 25 Jul — 11:00 AM (with our Wedding Curator)\n• Sun 26 Jul — 4:00 PM\n• Wed 29 Jul — 10:00 AM\n\nOur curator will also walk you through decor mock-ups and menu tasting options."},
+      {from:"user", step:3, text:"Saturday 11 AM works."},
+      {from:"bot", step:3, text:"✅ *Site Visit Confirmed*\n\n📅 Sat 25 Jul, 11:00 AM\n👤 Wedding Curator: Ms. Ritika Shah\n📍 Palace Resort, Lakefront Wing\n📧 Calendar invite sent\n\nSee you soon, Neha!"},
+      {from:"user", step:4, text:"After the visit — how do we lock the date?"},
+      {from:"bot", step:4, text:"📝 *To Lock Your December Date:*\n\n1️⃣ 20% advance on the estimated total (₹3,73,000)\n2️⃣ Signed event agreement (sent after site visit)\n3️⃣ Final guest count & menu confirmed 45 days prior\n\n🔗 Advance payment link will be shared post site visit.\n\nWe'd be honoured to host your wedding, Neha! 🤍"},
+    ]
+  },
+
+  // ── 7: STAFF & HOUSEKEEPING COORDINATION ────────────────────
+  {
+    title:"Ops Desk — Housekeeping", icon:"🧹", hd:"#1a73e8",
+    steps:["Briefing","Assignment","Maintenance","Handover","Roster"],
+    messages:[
+      {from:"bot", step:0, text:"📢 Good morning, *Sunita*!\n\nHere's your *Daily Ops Briefing — 24th July* 👇"},
+      {from:"user", step:0, text:"Good morning! What's on today?"},
+      {from:"bot", step:1, text:"📋 *Today's Snapshot*\n\n🛬 Arrivals: 14 rooms\n🛫 Departures: 11 rooms\n🧹 Rooms needing turnover: 11\n🌟 VIP arrival: Room 412 (Anniversary flag — extra amenities needed)\n\nAssigning your team now."},
+      {from:"user", step:1, text:"Who's covering the turnover rooms?"},
+      {from:"bot", step:1, text:"👥 *Turnover Assignment*\n\n• Rooms 101–105 → Team A (Ramesh, Geeta)\n• Rooms 201–205 → Team B (Suresh, Anjali)\n• Room 412 (VIP/Anniversary) → You, Sunita — priority setup\n\nAll turnovers to be completed by *1:00 PM* for 3 PM check-ins."},
+      {from:"user", step:2, text:"Noted. Also, Room 305 reported AC not cooling."},
+      {from:"bot", step:2, text:"🔧 *Maintenance Ticket Raised*\n\n🔖 Ref: MNT-2026-1187\n📍 Room 305 — AC not cooling\n⚙️ Assigned to: Vikas (Maintenance)\n⏱️ SLA: 30 minutes\n\nI'll notify you once it's marked resolved."},
+      {from:"user", step:3, text:"Thanks. I'm heading off shift at 2 PM, need to hand over."},
+      {from:"bot", step:3, text:"📝 *Shift Handover — Sunita → Priya (2 PM shift)*\n\nPlease confirm handover notes:\n\n✅ Room 412 VIP setup — completed\n⬜ Room 305 maintenance — pending (ETA 30 min)\n⬜ 3 rooms turnover — in progress\n\nShall I send this to Priya now?"},
+      {from:"user", step:3, text:"Yes, send it."},
+      {from:"bot", step:4, text:"✅ *Handover sent to Priya* — she's been notified and has acknowledged.\n\n📅 Also — your leave request for *2–4 Aug* is pending approval from the Housekeeping Head. You'll be notified by end of day.\n\nHave a good rest, Sunita! 👋"},
+    ]
+  },
+
+  // ── 8: FEATURED — GEN AI CONCIERGE FULL JOURNEY ─────────────
+  {
+    title:"AI Concierge", icon:"🏨", hd:"#ae1536", isFeatured:true,
+    steps:["Search","Compare","Offer","Add-ons","Payment","Confirmed"],
+    messages:[
+      {from:"user", step:0, text:"Hi, looking for a beach resort for early September, 2 people"},
+      {from:"bot", step:1, text:"Hi! Happy to help you find the perfect beach stay 🌊 Here are your best matches for early September — swipe through:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🏖️", tag:"Beach", title:"Beach Resort", sub:"Sea View Suites", price:"from ₹19,800/night"},
+        {icon:"🏝️", tag:"Villa", title:"Coastal Retreat", sub:"Pool Villas", price:"from ₹24,500/night"},
+        {icon:"🏛️", tag:"Heritage", title:"Bay Heritage", sub:"Heritage sea-facing", price:"from ₹15,200/night"}
+      ]},
+      {from:"user", step:2, text:"Tell me more about the Beach Resort options"},
+      {from:"bot", step:2, text:"Here's what's available at *Beach Resort*, 5–8 Sept (3 nights):\n\n🔹 *Garden View Deluxe* — ₹12,500/night\n🔹 *Sea View Deluxe* — ₹14,500/night\n🔹 *Sea View Suite* — ₹19,800/night (breakfast incl.)\n\nAll rates inclusive of taxes. Which would you like to explore?"},
+      {from:"user", step:2, text:"Sea View Suite looks good, any current offers?"},
+      {from:"bot", step:3, text:"Yes! You're in luck 🎉\n\n🏷️ *Live Offers on Sea View Suite:*\n• Early Bird — 12% off if booked 14+ days ahead ✅ (you qualify!)\n• Stay 3 Pay 2 — applicable on 3-night stays ✅\n• Free airport transfer on suite bookings\n\nWith these applied, your effective rate drops to *₹14,650/night*.\n\nPowered by *eSenseGPT*"},
+      {from:"user", step:4, text:"That's great, what else can I add?"},
+      {from:"bot", step:4, text:"Popular add-ons for this room:\n\n➕ Candlelight beach dinner — ₹4,500\n➕ Couple's spa (60 min) — ₹5,200\n➕ Sunset cruise for two — ₹3,800\n\nWould you like to include any of these in your booking?"},
+      {from:"user", step:4, text:"Add the candlelight dinner"},
+      {from:"bot", step:5, text:"📋 *Booking Summary*\n\n🏨 Sea View Suite × 3 nights (Stay 3 Pay 2 + Early Bird) — ₹29,300\n🍽️ Candlelight beach dinner — ₹4,500\n🚗 Free airport transfer\n──────────────────\n💰 *Total: ₹33,800* (taxes included)\n\n🔗 Secure payment link sent\n\nShall I proceed to payment?"},
+      {from:"user", step:5, text:"Yes, go ahead"},
+      {from:"bot", step:5, text:"🎉 *Booking Confirmed!*\n\n🔖 Confirmation: *HTL-GOA-91048*\n🏨 Beach Resort — Sea View Suite\n📅 5–8 Sept 2026\n🍽️ Candlelight dinner arranged for Day 2\n📧 E-voucher sent to your email\n\n*Welcome! 🌴*\nYour beach escape is all set."},
+    ],
+    enrolCta:true
+  },
+
+  // ── 9: LOCAL DISCOVERY & ACTIVITIES ─────────────────────────
+  {
+    title:"Local Discovery Guide", icon:"🗺️", hd:"#0d7377",
+    steps:["Explore","Recommend","Reserve","Transfer","Confirmation"],
+    messages:[
+      {from:"bot", step:0, text:"🗺️ Hi *Rohan*! I'm your local discovery guide for your stay at *Palace Resort*.\n\nLooking for things to do, places to eat, or need a cab arranged?"},
+      {from:"user", step:0, text:"What's worth seeing nearby? We have a free evening today."},
+      {from:"bot", step:1, text:"🌇 Here's what's happening nearby this evening — swipe through:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🏰", tag:"Walk", title:"City Palace Sunset Walk", sub:"15 min away", price:"Free"},
+        {icon:"⛵", tag:"Activity", title:"Lake Boat Ride", sub:"Sunset slots available", price:"₹1,400/person"},
+        {icon:"🎭", tag:"Culture", title:"Folk Dance Show", sub:"7 PM · Heritage Haveli", price:"₹350/person"}
+      ]},
+      {from:"user", step:2, text:"The boat ride and dinner at the lakeside restaurant sound perfect."},
+      {from:"bot", step:2, text:"⛵ *Lake Sunset Boat Ride*\n📅 Today, 6:15 PM slot\n👥 2 guests\n💰 ₹1,400 per person\n\n🍽️ *Lakeside Restaurant*\n📅 Today, 8:00 PM\n👥 Table for 2, lakeside seating\n\nShall I confirm both?"},
+      {from:"user", step:2, text:"Yes, please confirm."},
+      {from:"bot", step:3, text:"✅ *Boat ride booked* — 6:15 PM, jetty pickup from hotel lobby at 5:45 PM\n✅ *Table reserved* — 8:00 PM, lakeside seating\n\nWould you like a cab arranged between the two, and back to the hotel?"},
+      {from:"user", step:3, text:"Yes, that'd be great."},
+      {from:"bot", step:3, text:"🚗 *Transfers Arranged*\n\n5:45 PM — Hotel → Jetty\n7:30 PM — Jetty → Restaurant\n9:30 PM — Restaurant → Hotel\n\nAll transfers on the resort's private cab, no separate payment needed — added to your folio."},
+      {from:"user", step:4, text:"Perfect, thank you!"},
+      {from:"bot", step:4, text:"🌟 *Your Evening Itinerary*\n\n5:45 PM — Depart for jetty\n6:15 PM — Sunset boat ride\n7:30 PM — Transfer to restaurant\n8:00 PM — Dinner reservation\n9:30 PM — Return to hotel\n\n☀️ Clear skies expected this evening — perfect for the sunset! Enjoy, Rohan. 🌇"},
+    ]
+  },
+
+  // ── 10: ABANDONED BOOKING RECOVERY ──────────────────────────
+  {
+    title:"Reservations Follow-up", icon:"🚨", hd:"#ae1536",
+    steps:["Detect","Re-engage","Objection","Incentive","Convert"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hi *Sanjana*! We noticed you were checking out *Coastal Retreat* for 10–12 Aug but didn't complete your booking.\n\nYour selected *Pool Villa* is still available — can I help with anything?"},
+      {from:"user", step:0, text:"Hi, yes — I got a bit hesitant about the price."},
+      {from:"bot", step:1, text:"Totally understandable, Sanjana! 😊 Let me see what I can do.\n\nMay I ask — was it the room rate, the add-ons, or something else that gave you pause?\n\n1️⃣ 💰 Room rate\n2️⃣ 📅 Flexible dates needed\n3️⃣ 🏊 Unsure about the villa vs regular room\n4️⃣ 📋 Just comparing options"},
+      {from:"user", step:2, text:"Mainly the rate — ₹24,500/night felt steep for 2 nights."},
+      {from:"bot", step:2, text:"I hear you! Here's something that might help — you saved this for a *2-night stay*, but our *Stay 3 Pay 2* offer would actually bring your effective rate down significantly if you extend by one night.\n\n💡 *2 nights (as saved):* ₹49,000\n💡 *3 nights with Stay 3 Pay 2:* ₹49,000 for 3 nights — same price, one extra night free!\n\nWant me to update your dates to 10–13 Aug?"},
+      {from:"user", step:2, text:"Oh that's actually a great deal, yes!"},
+      {from:"bot", step:3, text:"🎉 Updated! Here's your revised booking:\n\n🏨 Coastal Retreat — Pool Villa\n📅 10–13 Aug 2026 (3 nights)\n💰 ₹49,000 total (was ₹49,000 for 2 nights — now 3!)\n🎁 Complimentary breakfast for both included\n\nThis offer is held for the next *2 hours*. Shall I send the payment link?"},
+      {from:"user", step:4, text:"Yes, send it — let's complete this."},
+      {from:"bot", step:4, text:"🔗 *Payment Link Sent*\n\nYour saved details have carried over — just tap and pay, no need to re-enter anything. 💳"},
+      {from:"user", step:4, text:"Done!"},
+      {from:"bot", step:4, text:"🎉 *Booking Confirmed, Sanjana!*\n\n🔖 Confirmation: *HTL-ALB-77302*\n🏨 Pool Villa · 10–13 Aug 2026\n🍳 Breakfast included\n📧 E-voucher sent to your email\n\nSo glad we could make this work for you — see you at the coast! 🌊"},
+    ]
+  }
+
+];
+
+let currentFlow = 0;
+let messageIndex = 0;
+
+function paintHeader() {
+  const flow = flows[currentFlow];
+  const hdr = document.getElementById('modalHeader');
+  const av = document.getElementById('modalAvatar');
+  hdr.style.background = flow.hd;
+  av.textContent = flow.icon;
+}
+
+function openFlow(index) {
+  currentFlow = index;
+  messageIndex = 0;
+  const flow = flows[index];
+
+  document.getElementById('modalTitle').textContent = flow.title;
+  paintHeader();
+
+  // Steps bar
+  const sb = document.getElementById('stepsBar');
+  sb.innerHTML = flow.steps.map((s,i) => `<span class="sb-step" id="sbstep${i}">${s}</span>`).join('');
+
+  // Chat reset
+  const ca = document.getElementById('chatArea');
+  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
+
+  const qr = document.getElementById('quickReplies');
+  qr.className = 'qr';
+  qr.innerHTML = '';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  updateStep(0);
+  setTimeout(() => playNext(), 600);
+}
+
+function updateStep(s) {
+  const flow = flows[currentFlow];
+  flow.steps.forEach((_,i) => {
+    const el = document.getElementById('sbstep'+i);
+    if(!el) return;
+    el.className = 'sb-step' + (i < s ? ' done' : i === s ? ' active' : '');
+  });
+}
+
+function playNext() {
+  const flow = flows[currentFlow];
+  if (messageIndex >= flow.messages.length) {
+    if (flow.enrolCta) showEnrolCta();
+    else showQR();
+    return;
+  }
+
+  const msg = flow.messages[messageIndex];
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  updateStep(msg.step || 0);
+
+  if (msg.from === 'bot') {
+    ty.classList.add('show');
+    ca.scrollTop = ca.scrollHeight;
+    const textLen = msg.type === 'carousel' ? 120 : (msg.text || '').length;
+    const delay = Math.min(700 + textLen * 8, 2000);
+    setTimeout(() => {
+      ty.classList.remove('show');
+      if (msg.type === 'carousel') addCarousel(msg.items);
+      else addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 800);
+    }, delay);
+  } else {
+    setTimeout(() => {
+      addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 500);
+    }, 300);
+  }
+}
+
+function addMsg(from, text) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const now = new Date();
+  const tm = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+  const div = document.createElement('div');
+  div.className = `msg ${from}`;
+
+  let html = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  const tick = from === 'user' ? '<span class="tk">✓✓</span>' : '';
+  div.innerHTML = html + `<div class="tr"><span class="tm">${tm}</span>${tick}</div>`;
+
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function addCarousel(items) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'carousel-wrap';
+
+  const track = document.createElement('div');
+  track.className = 'carousel-track';
+  track.innerHTML = items.map(it => `
+    <div class="cc-card">
+      <div class="cc-img">${it.icon}</div>
+      <div class="cc-body">
+        <div class="cc-tag">${it.tag}</div>
+        <div class="cc-title">${it.title}</div>
+        <div class="cc-sub">${it.sub}</div>
+        <div class="cc-price">${it.price}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const hint = document.createElement('div');
+  hint.className = 'cc-hint';
+  hint.textContent = '← swipe to explore →';
+
+  wrap.appendChild(track);
+  wrap.appendChild(hint);
+  ca.insertBefore(wrap, ty);
+  setTimeout(() => wrap.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function showEnrolCta() {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const div = document.createElement('div');
+  div.className = 'enrol-cta';
+  div.innerHTML = `<div class="cl">Your Hotel Brand</div><div class="ct">Ready to plan your next stay with us?</div><button class="cb" onclick="window.open('https://example.com','_blank')">Explore Properties →</button>`;
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 50);
+  ca.scrollTop = ca.scrollHeight;
+  showQR();
+}
+
+function showQR() {
+  const qr = document.getElementById('quickReplies');
+  qr.innerHTML = `<button class="qr-btn" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" onclick="closeModal()">✕ Close</button>`;
+  qr.classList.add('visible');
+}
+
+function restartFlow() { openFlow(currentFlow); }
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

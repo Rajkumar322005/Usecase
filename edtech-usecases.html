@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EdTech Use Cases — Engati 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --red:#ae1536;--red2:#8a1029;--red-light:#f7e8ec;
+      --white:#fff;--off:#fafafa;--gray:#666;--lg:#eee;
+      --wa-bg:#e5ddd5;--wa-bot:#fff;--wa-user:#dcf8c6;
+    }
+    body{font-family:'Inter',sans-serif;background:var(--white);color:#1a1a1a}
+
+    /* ── HEADER ── */
+    header{background:var(--red);padding:64px 40px 52px;text-align:center;position:relative;overflow:hidden}
+    header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3C/g%3E%3C/svg%3E")}
+    header .eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:14px}
+    header h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,66px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:14px}
+    header p{font-size:15px;color:rgba(255,255,255,.8);max-width:540px;margin:0 auto;line-height:1.65}
+    .hbadges{display:flex;justify-content:center;gap:20px;margin-top:28px;flex-wrap:wrap}
+    .hbadge{background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 14px;border-radius:20px}
+
+    /* ── STATS ── */
+    .stats-bar{background:#fff;border-bottom:1px solid var(--lg);display:flex;justify-content:center;gap:48px;padding:26px 40px;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat .num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--red)}
+    .stat .label{font-size:11px;color:var(--gray);margin-top:2px;letter-spacing:.5px}
+
+    /* ── MAIN ── */
+    main{max-width:1120px;margin:0 auto;padding:56px 24px}
+    .sec-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+    .sec-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#1a1a1a;margin-bottom:36px}
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner{background:linear-gradient(130deg,#ae1536 0%,#7a0e25 100%);border-radius:16px;padding:32px 36px;margin-bottom:36px;display:flex;align-items:center;gap:24px;cursor:pointer;transition:box-shadow .2s;position:relative;overflow:hidden}
+    .featured-banner:hover{box-shadow:0 12px 40px rgba(174,21,54,.35)}
+    .featured-banner::after{content:'';position:absolute;right:-50px;top:-50px;width:200px;height:200px;background:rgba(255,255,255,.05);border-radius:50%}
+    .fb-icon{font-size:46px;flex-shrink:0}
+    .fb-content{flex:1}
+    .fb-badge{display:inline-block;background:rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+    .fb-content h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:6px}
+    .fb-content p{font-size:13.5px;color:rgba(255,255,255,.8);line-height:1.5;max-width:500px}
+    .fb-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:#fff;color:var(--red);font-size:12px;font-weight:700;padding:8px 18px;border-radius:24px;border:none;cursor:pointer;transition:transform .15s}
+    .fb-cta:hover{transform:scale(1.04)}
+
+    /* ── GRID ── */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+
+    /* ── CARD ── */
+    .card{background:#fff;border:1px solid var(--lg);border-radius:14px;padding:26px;transition:box-shadow .2s,border-color .2s;position:relative;overflow:hidden;cursor:pointer}
+    .card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red);opacity:0;transition:opacity .2s}
+    .card:hover{box-shadow:0 8px 32px rgba(174,21,54,.1);border-color:#ae153640}
+    .card:hover::before{opacity:1}
+    .card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+    .card-icon{width:42px;height:42px;background:var(--red-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .card-meta{flex:1}
+    .card-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:3px}
+    .card h3{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1a1a;line-height:1.3}
+    .card ul{list-style:none;padding:0;margin-bottom:14px}
+    .card ul li{font-size:13px;color:var(--gray);padding:5px 0;border-bottom:1px solid #f2f2f2;display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+    .card ul li:last-child{border-bottom:none}
+    .card ul li::before{content:'→';color:var(--red);font-size:11px;margin-top:2px;flex-shrink:0}
+    .flow-steps{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+    .step-chip{background:#f5f5f5;color:#555;font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;white-space:nowrap}
+    .view-flow-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--red);background:var(--red-light);border:none;border-radius:20px;padding:6px 14px;cursor:pointer;transition:background .2s}
+    .view-flow-btn:hover{background:#f0ccd4}
+
+    /* featured card variant */
+    .card.fc{background:var(--red);border-color:var(--red)}
+    .card.fc::before{opacity:0!important}
+    .card.fc:hover{box-shadow:0 8px 32px rgba(174,21,54,.3)}
+    .card.fc .card-icon{background:rgba(255,255,255,.15)}
+    .card.fc .card-tag{color:rgba(255,255,255,.7)}
+    .card.fc h3{color:#fff}
+    .card.fc ul li{color:rgba(255,255,255,.82);border-bottom-color:rgba(255,255,255,.12)}
+    .card.fc ul li::before{color:rgba(255,255,255,.5)}
+    .card.fc .step-chip{background:rgba(255,255,255,.15);color:rgba(255,255,255,.85)}
+    .card.fc .view-flow-btn{background:rgba(255,255,255,.2);color:#fff}
+    .card.fc .view-flow-btn:hover{background:rgba(255,255,255,.3)}
+
+    /* ── MODAL ── */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:16px}
+    .modal-overlay.open{display:flex}
+    .modal{background:#fff;border-radius:16px;width:100%;max-width:430px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+
+    /* WA header */
+    .mh{padding:11px 14px;display:flex;align-items:center;gap:10px}
+    .mh.red-hd{background:var(--red)}
+    .mh.green-hd{background:#075e54}
+    .mh.blue-hd{background:#1a73e8}
+    .mh.purple-hd{background:#5b21b6}
+    .mh.teal-hd{background:#0d7377}
+    .mh.dark-hd{background:#1a1a2e}
+    .mh-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+    .mh-info .nm{font-size:14px;font-weight:600;color:#fff}
+    .mh-info .st{font-size:11px;color:rgba(255,255,255,.7)}
+    .mc{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.8);font-size:19px;cursor:pointer;line-height:1;padding:4px}
+    .mc:hover{color:#fff}
+
+    /* steps bar */
+    .steps-bar{background:#f8f8f8;border-bottom:1px solid #eee;padding:8px 12px;display:flex;gap:6px;overflow-x:auto;flex-shrink:0}
+    .steps-bar::-webkit-scrollbar{height:3px}
+    .steps-bar::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+    .sb-step{font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;white-space:nowrap;background:#eee;color:#999;transition:background .2s,color .2s}
+    .sb-step.active{background:var(--red);color:#fff}
+    .sb-step.done{background:var(--red-light);color:var(--red)}
+
+    /* chat */
+    .chat-area{flex:1;overflow-y:auto;padding:10px 9px;background:var(--wa-bg);display:flex;flex-direction:column;gap:5px;min-height:300px}
+    .date-chip{text-align:center;margin:4px 0}
+    .date-chip span{background:rgba(225,245,254,.88);font-size:10.5px;color:#555;padding:2px 10px;border-radius:7px}
+
+    /* messages */
+    .msg{max-width:84%;padding:7px 9px 3px;border-radius:8px;font-size:13px;line-height:1.5;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;word-wrap:break-word}
+    .msg.visible{opacity:1;transform:translateY(0)}
+    .msg.bot{background:var(--wa-bot);color:#1a1a1a;border-top-left-radius:0;align-self:flex-start;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+    .msg.user{background:var(--wa-user);color:#1a1a1a;border-top-right-radius:0;align-self:flex-end;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+    .msg .tr{display:flex;justify-content:flex-end;align-items:center;gap:3px;margin-top:2px}
+    .msg .tm{font-size:10px;color:#999}
+    .msg.user .tk{font-size:10px;color:#53bdeb}
+
+    /* list bubble */
+    .msg .blist{margin-top:5px;padding-left:0;list-style:none}
+    .msg .blist li{padding:2px 0;font-size:12.5px;display:flex;gap:6px}
+    .msg .blist li::before{content:'•';color:var(--red);flex-shrink:0}
+
+    /* option buttons inside chat */
+    .opt-row{align-self:flex-start;display:flex;flex-wrap:wrap;gap:6px;max-width:90%;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+    .opt-row.visible{opacity:1;transform:translateY(0)}
+    .opt-btn{background:#fff;border:1.5px solid var(--red);color:var(--red);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s}
+    .opt-btn:hover{background:var(--red);color:#fff}
+
+    /* typing */
+    .typing{display:none;align-self:flex-start;background:var(--wa-bot);border-radius:8px;border-top-left-radius:0;padding:9px 13px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+    .typing.show{display:flex;gap:4px;align-items:center}
+    .typing span{width:6px;height:6px;background:#bbb;border-radius:50%;animation:bounce 1.2s infinite}
+    .typing span:nth-child(2){animation-delay:.2s}
+    .typing span:nth-child(3){animation-delay:.4s}
+    @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+    /* quick replies */
+    .qr{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;background:var(--wa-bg);opacity:0;transition:opacity .3s;pointer-events:none}
+    .qr.visible{opacity:1;pointer-events:all}
+    .qr-btn{background:#fff;border:1.5px solid var(--red);color:var(--red);border-radius:20px;padding:5px 13px;font-size:11.5px;font-weight:600;cursor:pointer;transition:background .15s}
+    .qr-btn:hover{background:var(--red);color:#fff}
+
+    /* enrol CTA */
+    .enrol-cta{background:#fff;border-radius:8px;padding:10px 12px;box-shadow:0 1px 1px rgba(0,0,0,.1);align-self:flex-start;max-width:84%;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;border-left:3px solid var(--red)}
+    .enrol-cta.visible{opacity:1;transform:translateY(0)}
+    .enrol-cta .cl{font-size:10px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .enrol-cta .ct{font-size:13px;color:#1a1a1a;line-height:1.4;margin-bottom:7px}
+    .enrol-cta .cb{display:block;text-align:center;background:var(--red);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;width:100%}
+    .enrol-cta .cb:hover{background:var(--red2)}
+
+    /* modal footer */
+    .mfooter{padding:8px 10px;background:#f0f0f0;display:flex;gap:7px;align-items:center;border-top:1px solid #ddd}
+    .mfooter input{flex:1;border:none;border-radius:20px;padding:8px 13px;font-size:13px;outline:none;font-family:inherit;background:#fff}
+    .rst-btn{background:var(--red);color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .rst-btn:hover{background:var(--red2)}
+
+    /* footer */
+    footer{background:var(--red);text-align:center;padding:30px 24px;color:rgba(255,255,255,.75);font-size:13px}
+    footer strong{color:#fff}
+
+    @media(max-width:600px){
+      .stats-bar{gap:24px}
+      header{padding:40px 20px}
+      .featured-banner{flex-direction:column;text-align:center}
+      .modal{max-height:95vh}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Engati · EdTech Intelligence Suite</div>
+  <h1>EdTech Use Cases 2026</h1>
+  <p>End-to-end conversational AI journeys across every student, parent, faculty, and prospect touchpoint — from first inquiry to alumni network.</p>
+  <div class="hbadges">
+    <span class="hbadge">11 Use Cases</span>
+    <span class="hbadge">WhatsApp-Native</span>
+    <span class="hbadge">Gen AI Powered</span>
+    <span class="hbadge">Meta Business Partner</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">11+</div><div class="label">Use Cases</div></div>
+  <div class="stat"><div class="num">24/7</div><div class="label">AI Support</div></div>
+  <div class="stat"><div class="num">3x</div><div class="label">Lead Conversion</div></div>
+  <div class="stat"><div class="num">60%</div><div class="label">Admin Time Saved</div></div>
+  <div class="stat"><div class="num">40%</div><div class="label">Drop-off Recovered</div></div>
+</div>
+
+<main>
+  <div class="sec-label">Interactive Journeys</div>
+  <div class="sec-title">Click any card to explore the live conversation flow</div>
+
+  <!-- FEATURED -->
+  <div class="featured-banner" onclick="openFlow(8)">
+    <div class="fb-icon">🔍</div>
+    <div class="fb-content">
+      <div class="fb-badge">⭐ Featured — upGrad Gen AI Demo</div>
+      <h2>Course Exploration & Discovery</h2>
+      <p>AI-powered WhatsApp bot helps prospects explore MBA courses, check eligibility, compare fees, ask about scholarships, and enrol — all in one seamless conversation.</p>
+      <button class="fb-cta">▶ Watch the Full Journey</button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card fc" onclick="openFlow(0)">
+      <div class="card-top">
+        <div class="card-icon">🎯</div>
+        <div class="card-meta"><div class="card-tag">Acquisition</div><h3>Lead Generation & Admissions</h3></div>
+      </div>
+      <ul>
+        <li>WhatsApp & web chatbot lead capture</li>
+        <li>OTP verification for quality filtering</li>
+        <li>Eligibility check before admissions handoff</li>
+        <li>Automated counsellor assignment</li>
+        <li>Application status tracking</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Inquiry</span><span class="step-chip">Qualify</span><span class="step-chip">OTP</span><span class="step-chip">Eligibility</span><span class="step-chip">Handoff</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(1)">
+      <div class="card-top">
+        <div class="card-icon">🎓</div>
+        <div class="card-meta"><div class="card-tag">Onboarding</div><h3>Student Onboarding</h3></div>
+      </div>
+      <ul>
+        <li>Welcome message & orientation guide</li>
+        <li>Document collection & verification</li>
+        <li>Specialisation selection flow</li>
+        <li>Fee payment & receipt confirmation</li>
+        <li>ID card & portal activation</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Welcome</span><span class="step-chip">Docs</span><span class="step-chip">Specialisation</span><span class="step-chip">Fee</span><span class="step-chip">Activate</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(2)">
+      <div class="card-top">
+        <div class="card-icon">📚</div>
+        <div class="card-meta"><div class="card-tag">Learning</div><h3>Academic Support</h3></div>
+      </div>
+      <ul>
+        <li>AI doubt resolution — 24/7 instant answers</li>
+        <li>Assignment deadlines & submission alerts</li>
+        <li>Exam schedule & hall ticket access</li>
+        <li>Study material & video tutorial sharing</li>
+        <li>Personalised learning recommendations</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Doubt</span><span class="step-chip">Explain</span><span class="step-chip">Resource</span><span class="step-chip">Exam Alert</span><span class="step-chip">Recommend</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(3)">
+      <div class="card-top">
+        <div class="card-icon">👨‍👩‍👧</div>
+        <div class="card-meta"><div class="card-tag">Engagement</div><h3>Parent Engagement</h3></div>
+      </div>
+      <ul>
+        <li>Weekly performance & attendance reports</li>
+        <li>Real-time absence & low-score alerts</li>
+        <li>Parent-teacher meeting scheduling</li>
+        <li>Fee due reminders to parents</li>
+        <li>Grievance submission & tracking</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Report</span><span class="step-chip">Alert</span><span class="step-chip">Schedule</span><span class="step-chip">Fee</span><span class="step-chip">Grievance</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(4)">
+      <div class="card-top">
+        <div class="card-icon">💳</div>
+        <div class="card-meta"><div class="card-tag">Finance</div><h3>Fee & Payment Management</h3></div>
+      </div>
+      <ul>
+        <li>Automated fee reminders with payment link</li>
+        <li>Installment plan setup & tracking</li>
+        <li>Real-time payment confirmation & receipt</li>
+        <li>Scholarship deduction updates</li>
+        <li>Late fee waiver request handling</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Reminder</span><span class="step-chip">Installment</span><span class="step-chip">Pay</span><span class="step-chip">Receipt</span><span class="step-chip">Waiver</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(5)">
+      <div class="card-top">
+        <div class="card-icon">🔄</div>
+        <div class="card-meta"><div class="card-tag">Retention</div><h3>Re-engagement & Retention</h3></div>
+      </div>
+      <ul>
+        <li>Inactivity detection & outreach</li>
+        <li>Missed class catch-up resource sharing</li>
+        <li>Course upgrade & upsell campaigns</li>
+        <li>Post-course feedback & NPS collection</li>
+        <li>Alumni engagement & referral programs</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Outreach</span><span class="step-chip">Resources</span><span class="step-chip">Upsell</span><span class="step-chip">Alumni</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(6)">
+      <div class="card-top">
+        <div class="card-icon">📅</div>
+        <div class="card-meta"><div class="card-tag">Events</div><h3>Events & Webinars</h3></div>
+      </div>
+      <ul>
+        <li>Webinar registration & confirmation</li>
+        <li>Pre-event reminders (24hr & 1hr)</li>
+        <li>Live Q&A & poll participation</li>
+        <li>Post-event recording & certificate sharing</li>
+        <li>Feedback survey & lucky draw</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Register</span><span class="step-chip">Remind</span><span class="step-chip">Live Q&A</span><span class="step-chip">Certificate</span><span class="step-chip">Feedback</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(7)">
+      <div class="card-top">
+        <div class="card-icon">🏢</div>
+        <div class="card-meta"><div class="card-tag">Operations</div><h3>HR & Staff Communication</h3></div>
+      </div>
+      <ul>
+        <li>Daily faculty updates & announcements</li>
+        <li>Leave application & approval workflow</li>
+        <li>Substitute faculty coordination</li>
+        <li>New hire onboarding & training</li>
+        <li>Payslip & reimbursement notifications</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Announce</span><span class="step-chip">Leave</span><span class="step-chip">Substitute</span><span class="step-chip">Onboard</span><span class="step-chip">Payslip</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(9)">
+      <div class="card-top">
+        <div class="card-icon">👩‍🏫</div>
+        <div class="card-meta"><div class="card-tag">Discovery</div><h3>Professor & Counselor Discovery</h3></div>
+      </div>
+      <ul>
+        <li>Find faculty by subject, expertise or rating</li>
+        <li>View professor profiles & past courses</li>
+        <li>Book 1-on-1 counselling sessions</li>
+        <li>Get mentor recommendations by career goal</li>
+        <li>Counsellor availability & slot booking</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Search</span><span class="step-chip">Profile</span><span class="step-chip">Match</span><span class="step-chip">Book</span><span class="step-chip">Confirm</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(10)">
+      <div class="card-top">
+        <div class="card-icon">🚨</div>
+        <div class="card-meta"><div class="card-tag">Recovery</div><h3>Drop-off Recovery Engine</h3></div>
+      </div>
+      <ul>
+        <li>Detect form abandonment & partial signups</li>
+        <li>Trigger personalised re-engagement messages</li>
+        <li>Address objections (fees, time, eligibility)</li>
+        <li>Offer limited-time incentives & scholarships</li>
+        <li>Route warm leads to counsellors instantly</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Re-engage</span><span class="step-chip">Objection</span><span class="step-chip">Incentive</span><span class="step-chip">Convert</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <strong>Engati EdTech Use Cases 2026</strong> &nbsp;·&nbsp; Conversational AI &nbsp;·&nbsp; WhatsApp Business Partner &nbsp;·&nbsp; Meta Business Partner
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="mh green-hd" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Engati Bot</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" onclick="closeModal()">✕</button>
+    </div>
+    <div class="steps-bar" id="stepsBar"></div>
+    <div class="chat-area" id="chatArea">
+      <div class="date-chip"><span>Today</span></div>
+      <div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>
+    </div>
+    <div class="qr" id="quickReplies"></div>
+    <div class="mfooter">
+      <input type="text" placeholder="Type a message..." readonly />
+      <button class="rst-btn" onclick="restartFlow()" title="Restart">↺</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const flows = [
+
+  // ── 0: LEAD GENERATION ──────────────────────────────────────
+  {
+    title:"Admissions Bot", icon:"🎯", hd:"red-hd",
+    steps:["Inquiry","Greet","Qualify","OTP","Eligibility","Counsellor Assign"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hello! Welcome to *Prestige Institute of Management*.\n\nI'm your AI Admissions Assistant. How can I help you today?"},
+      {from:"user", step:0, text:"Hi! I want to know about MBA admissions."},
+      {from:"bot", step:1, text:"Great choice! 🎓 We're accepting applications for *MBA Batch 2026–28*.\n\nMay I know your name and which city you're from?"},
+      {from:"user", step:1, text:"I'm Rahul Sharma from Bengaluru."},
+      {from:"bot", step:2, text:"Nice to meet you, Rahul! 😊\n\nTo check your eligibility, please share:\n• Your graduation degree\n• Percentage / CGPA\n• Work experience (if any)"},
+      {from:"user", step:2, text:"B.Com with 72%, 2 years work experience."},
+      {from:"bot", step:2, text:"✅ Excellent! You meet the eligibility criteria.\n\n📋 *Eligibility Summary*\n• Graduation: ✅ B.Com\n• Marks: ✅ 72% (Min. 50%)\n• Experience: ✅ 2 yrs (Bonus points!)\n\nShall I verify your contact for the next step?"},
+      {from:"user", step:3, text:"Yes, please proceed."},
+      {from:"bot", step:3, text:"🔐 Please share your mobile number for OTP verification."},
+      {from:"user", step:3, text:"+91 98765 43210"},
+      {from:"bot", step:3, text:"OTP sent to *+91 98765 43210* 📲\n\nPlease enter the 4-digit OTP."},
+      {from:"user", step:3, text:"5823"},
+      {from:"bot", step:4, text:"✅ *OTP Verified!*\n\n📊 Based on your profile, here are the best-fit programs:\n\n🔹 *MBA – Marketing* (2 yrs)\n🔹 *MBA – Finance* (2 yrs)\n🔹 *Executive MBA* (15 months)\n\nWhich program interests you most?"},
+      {from:"user", step:4, text:"MBA Finance sounds great."},
+      {from:"bot", step:5, text:"Perfect! 🎯\n\n📞 *Counsellor Assigned*\n👤 Ms. Priya Menon\n📱 +91 80123 45678\n⏰ She will call you within *2 hours*\n\n📧 Confirmation sent to rahul@email.com\n\nAnything else I can help with, Rahul?"},
+    ]
+  },
+
+  // ── 1: STUDENT ONBOARDING ───────────────────────────────────
+  {
+    title:"Onboarding Assistant", icon:"🎓", hd:"green-hd",
+    steps:["Welcome","Docs","Specialisation","Fee Payment","Portal Setup","Orientation"],
+    messages:[
+      {from:"bot", step:0, text:"🎉 *Welcome to Prestige Institute, Ananya!*\n\nCongratulations on your admission to *MBA Batch 2026–28*. I'm your onboarding guide — let's get you fully set up! 🚀"},
+      {from:"user", step:0, text:"Thank you! Excited to start. What's first?"},
+      {from:"bot", step:1, text:"Here's your *Onboarding Checklist* 📋\n\n✅ Step 1 — Submit Documents\n⬜ Step 2 — Choose Specialisation\n⬜ Step 3 — Pay Admission Fee\n⬜ Step 4 — Activate Portal\n⬜ Step 5 — Attend Orientation\n\n*Let's start with documents.* Have these ready:\n• 10th & 12th Marksheets\n• Graduation Certificate\n• Aadhar & PAN Card\n• Passport Photo"},
+      {from:"user", step:1, text:"Yes, I have everything scanned."},
+      {from:"bot", step:1, text:"✅ *Documents received and sent for verification!*\n\nExpected verification time: *24–48 hours*\n\nWhile we wait — let's pick your specialisation 👇"},
+      {from:"user", step:2, text:"How do I choose?"},
+      {from:"bot", step:2, text:"Here are our *MBA Specialisations*:\n\n1️⃣ Marketing & Brand Management\n2️⃣ Finance & Investment Banking\n3️⃣ HR & Organisational Behaviour\n4️⃣ Operations & Supply Chain\n5️⃣ Business Analytics & AI\n\nBased on your B.Com background and work experience, I'd recommend *Finance* or *Analytics*. Which appeals to you?"},
+      {from:"user", step:2, text:"Business Analytics & AI — that's the future!"},
+      {from:"bot", step:3, text:"🔥 Great choice! *Business Analytics & AI* it is.\n\n💳 *Admission Fee Due*\n• Amount: ₹85,000\n• Due Date: 30th June 2026\n• Pay: pay.prestige.edu/ananya2026\n\nAccepted: UPI · Net Banking · Card\n\nShall I set a reminder 3 days before the due date?"},
+      {from:"user", step:3, text:"Yes please, and I've paid!"},
+      {from:"bot", step:3, text:"🎉 *Payment Confirmed — ₹85,000!*\n\n📧 Receipt sent to ananya@email.com\n\n*Now let's activate your portal* 👇"},
+      {from:"user", step:4, text:"How do I log in?"},
+      {from:"bot", step:4, text:"🖥️ *Your Portal Access*\n\n🔗 portal.prestige.edu\n👤 Username: ananya.2026\n🔑 Temp Password: Prestige@2026\n\n⚠️ Please change your password on first login.\n\nYou'll find: timetable, assignments, faculty profiles, library & more!"},
+      {from:"user", step:5, text:"Done! When is orientation?"},
+      {from:"bot", step:5, text:"🏫 *Orientation Day*\n📅 July 10, 2026\n⏰ 9:00 AM – 4:00 PM\n📍 Main Auditorium, Block A\n\nWhat to bring:\n• College ID (will be issued)\n• Laptop\n• Stationery\n\nSee you there, Ananya! 🎊 We're thrilled to have you on board."},
+    ]
+  },
+
+  // ── 2: ACADEMIC SUPPORT ─────────────────────────────────────
+  {
+    title:"Academic Assistant", icon:"📚", hd:"blue-hd",
+    steps:["Doubt Query","Explanation","Resources","Assignment","Exam Schedule","Recommendation"],
+    messages:[
+      {from:"bot", step:0, text:"📚 Hi Arjun! I'm your 24/7 Academic Assistant.\n\nAsk me anything — doubts, assignments, exams, study materials. How can I help you today?"},
+      {from:"user", step:0, text:"I'm really confused about Net Present Value in Financial Management."},
+      {from:"bot", step:1, text:"Great topic! Let me break it down for you 🧠\n\n*Net Present Value (NPV)*\n\nNPV tells you whether an investment is worth making by calculating the present value of future cash flows minus the initial investment.\n\n📐 *Formula:*\nNPV = Σ [Cash Flow / (1+r)^n] − Initial Investment\n\nWhere:\n• r = discount rate\n• n = time period"},
+      {from:"bot", step:1, text:"📊 *Quick Example:*\n\nInvest ₹1,00,000 today\nYear 1 return: ₹50,000\nYear 2 return: ₹70,000\nDiscount rate: 10%\n\nNPV = 50000/1.1 + 70000/1.21 − 100000\nNPV = 45,455 + 57,851 − 100,000\n✅ *NPV = ₹3,306 (Positive — invest!)*\n\nIf NPV > 0 → accept the project\nIf NPV < 0 → reject it"},
+      {from:"user", step:2, text:"That's clear! Can I get a practice problem?"},
+      {from:"bot", step:2, text:"Sure! Here are your resources 📖\n\n🎥 Video: *NPV & IRR Explained* (15 mins)\nlearn.prestige.edu/npv-tutorial\n\n📄 Practice Sheet: 10 solved problems\nlearn.prestige.edu/npv-practice\n\n📌 Quick Quiz: Test your understanding\nlearn.prestige.edu/npv-quiz\n\nWant me to walk you through a practice problem live?"},
+      {from:"user", step:3, text:"Yes! Also, when is my FM assignment due?"},
+      {from:"bot", step:3, text:"⏰ *Upcoming Deadlines — Arjun*\n\n📝 Financial Management Assignment 3\n→ Topic: Capital Budgeting (NPV & Payback)\n→ Due: *18th June 2026, 11:59 PM*\n→ Submit: portal.prestige.edu/assignments\n\n📝 Business Statistics Case Study\n→ Due: *22nd June 2026*\n\nShall I set reminders for both?"},
+      {from:"user", step:3, text:"Yes please!"},
+      {from:"bot", step:4, text:"✅ Reminders set!\n\n📅 *Your Upcoming Exams*\n\n• Financial Management → 25 Jun, 10 AM, Hall B\n• Business Stats → 27 Jun, 2 PM, Hall A\n• Marketing Strategy → 30 Jun, 10 AM, Hall C\n\n🎫 Hall tickets available on portal from 20th June."},
+      {from:"user", step:5, text:"Can you suggest what to study for FM exam?"},
+      {from:"bot", step:5, text:"📌 *FM Exam Preparation — High Weightage Topics*\n\n1️⃣ NPV & IRR (20%)\n2️⃣ Capital Structure — Modigliani-Miller (18%)\n3️⃣ Working Capital Management (15%)\n4️⃣ Dividend Policies (12%)\n5️⃣ Risk & Return — CAPM (12%)\n\n📚 Recommended: Chapters 5–9 from Prasanna Chandra\n\nYou've got this, Arjun! 💪 Best of luck!"},
+    ]
+  },
+
+  // ── 3: PARENT ENGAGEMENT ─────────────────────────────────────
+  {
+    title:"Parent Connect", icon:"👨‍👩‍👧", hd:"teal-hd",
+    steps:["Weekly Report","Attendance Alert","Performance","Meeting","Fee Reminder","Grievance"],
+    messages:[
+      {from:"bot", step:0, text:"🙏 Namaste, *Mr. & Mrs. Sharma*!\n\nThis is the *Prestige Institute Parent Connect* service.\n\nHere is *Rohan's Weekly Update* for the week ending 14th June 2026 📊"},
+      {from:"user", step:0, text:"Hello! Yes please, how is he doing?"},
+      {from:"bot", step:1, text:"📊 *Rohan's Performance Summary — Week 24*\n\n✅ Attendance: *82%* (Min. required: 75%)\n📝 Assignments submitted: *4 of 5*\n🏆 Mid-term test: *71/100*\n⭐ Faculty feedback: *Good participation*\n\n⚠️ *Alert:* Attendance dropped by 6% this week.\nRohan missed 3 sessions (details below)."},
+      {from:"user", step:1, text:"Which classes did he miss?"},
+      {from:"bot", step:2, text:"📋 *Missed Sessions — This Week*\n\n• Mon 10 Jun — Business Law (2 hrs)\n• Wed 12 Jun — Operations Mgmt (2 hrs)\n• Thu 13 Jun — Marketing Lab (1 hr)\n\nTotal missed: *5 hours*\n\nHis attendance is still above the minimum, but if it drops below 75% he may be barred from exams.\n\nWould you like to speak with his faculty advisor?"},
+      {from:"user", step:3, text:"Yes, please schedule a meeting."},
+      {from:"bot", step:3, text:"📅 *Available Slots — Prof. Meera Nair (Faculty Advisor)*\n\n• Tue 18 Jun — 11:00 AM\n• Wed 19 Jun — 3:30 PM\n• Fri 21 Jun — 10:00 AM\n\nWhich slot works best for you?"},
+      {from:"user", step:3, text:"Wednesday 3:30 PM please."},
+      {from:"bot", step:3, text:"✅ *Meeting Confirmed!*\n\n📅 Wed 19 June, 3:30 PM\n👩‍🏫 Prof. Meera Nair\n📍 Faculty Block, Room 204\n📧 Calendar invite sent to your email\n\nAnything else, Mr. Sharma?"},
+      {from:"user", step:4, text:"Is there any fee payment pending?"},
+      {from:"bot", step:4, text:"💳 *Fee Status — Rohan Sharma*\n\nSemester 3 Fee: ₹80,000\n✅ Paid: ₹80,000\n📅 Next due: Semester 4 — *₹80,000 by 1st Aug 2026*\n\nI'll send you a reminder on 25th July. 😊\n\nIs there anything else you'd like to raise?"},
+      {from:"user", step:5, text:"Yes, I want to raise a concern about the hostel."},
+      {from:"bot", step:5, text:"📝 *Grievance Submitted*\n\n🔖 Ticket #GRV-2026-0892\n📋 Category: Hostel Facilities\n📌 Status: Under Review\n⏰ Expected resolution: 3 working days\n\nOur hostel warden will contact you by *20th June*. Thank you for bringing this to our attention, Mr. Sharma. 🙏"},
+    ]
+  },
+
+  // ── 4: FEE MANAGEMENT ────────────────────────────────────────
+  {
+    title:"Finance Desk", icon:"💳", hd:"dark-hd",
+    steps:["Fee Reminder","Installment","Payment","Receipt","Scholarship","Waiver Request"],
+    messages:[
+      {from:"bot", step:0, text:"💳 Hi *Sneha*! This is a reminder from the *Prestige Institute Finance Desk*.\n\n⚠️ Your *Semester 3 Fee* is due in *5 days*."},
+      {from:"user", step:0, text:"Thanks! How much is due and what are my options?"},
+      {from:"bot", step:1, text:"📄 *Fee Breakdown — Semester 3*\n\n• Tuition Fee: ₹72,000\n• Library & Lab: ₹3,000\n• Exam Fee: ₹3,500\n• Sports & Activity: ₹1,500\n──────────────────\n• *Total Due: ₹80,000*\n• Due Date: *30th June 2026*\n\nPay in full or choose an installment plan:"},
+      {from:"bot", step:1, text:"📅 *Installment Plans Available*\n\n🔹 *Plan A — 2 installments:*\n• ₹40,000 by 30th Jun\n• ₹40,000 by 31st Jul\n\n🔹 *Plan B — 3 installments:*\n• ₹27,000 by 30th Jun\n• ₹27,000 by 31st Jul\n• ₹26,000 by 31st Aug\n\nWhich would you prefer?"},
+      {from:"user", step:2, text:"Plan A works. Making payment now."},
+      {from:"bot", step:2, text:"💳 *Payment Link — Installment 1*\n\n💰 Amount: ₹40,000\n🔗 pay.prestige.edu/sneha-s3-i1\n\nAccepted: UPI · Net Banking · Debit/Credit Card\n\nOnce paid, your receipt will be sent instantly here. ✅"},
+      {from:"user", step:2, text:"Done! Just completed the payment."},
+      {from:"bot", step:3, text:"🎉 *Payment Confirmed!*\n\n✅ ₹40,000 received on 25th Jun 2026\n🧾 Receipt #INV-2026-3421\n📧 Sent to sneha@email.com\n\n📅 Next installment: ₹40,000 due *31st July 2026*\nI'll remind you 5 days before. 😊"},
+      {from:"user", step:4, text:"Am I eligible for any scholarship?"},
+      {from:"bot", step:4, text:"🏆 *Scholarship Status — Sneha*\n\nBased on your academic record:\n\n✅ *Merit Scholarship — 10% waiver*\nCriteria: GPA above 8.0 (Your GPA: 8.4 ✅)\nAmount saved: *₹8,000 per semester*\n\n✅ *Women in Business Grant*\nAmount: *₹5,000 one-time*\nStatus: Applied — Approval pending\n\nShall I apply the merit scholarship to Semester 4?"},
+      {from:"user", step:5, text:"Yes please! Also can the late fee be waived?"},
+      {from:"bot", step:5, text:"📋 *Late Fee Waiver Request*\n\nYour request has been submitted:\n🔖 Ref: WVR-2026-0341\n\nReason options:\n1️⃣ Medical emergency\n2️⃣ Technical payment issue\n3️⃣ Financial hardship\n\nPlease confirm the reason and upload supporting document if applicable. Response within *48 hours*. 🙏"},
+    ]
+  },
+
+  // ── 5: RE-ENGAGEMENT ────────────────────────────────────────
+  {
+    title:"Student Success Bot", icon:"🔄", hd:"green-hd",
+    steps:["Detect Inactivity","Outreach","Resources","Objection Handle","Upsell","Alumni"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hi *Karan*! We noticed you haven't logged into the learning portal in *18 days*.\n\nWe miss you! Is everything okay? 😊\n\nYour batch is progressing and we'd love to have you back on track."},
+      {from:"user", step:0, text:"Hey, I've been really swamped with work honestly."},
+      {from:"bot", step:1, text:"Totally understand, Karan — balancing work and studies is tough! 🙏\n\nHere's what you've missed (don't worry, it's all recorded):\n\n📹 *Missed Sessions (5)*\n• Digital Marketing — Lessons 7 & 8\n• Business Analytics — Lessons 5 & 6\n• Leadership — Lesson 4\n\n📝 1 assignment due *22nd June*\n📊 1 quiz pending *25th June*\n\nWant me to share the catch-up materials?"},
+      {from:"user", step:2, text:"Yes that would really help."},
+      {from:"bot", step:2, text:"📚 *Catch-up Resources — Karan*\n\n🎥 Digital Marketing L7: learn.prestige.edu/dm7\n🎥 Digital Marketing L8: learn.prestige.edu/dm8\n🎥 Analytics L5: learn.prestige.edu/ba5\n🎥 Analytics L6: learn.prestige.edu/ba6\n🎥 Leadership L4: learn.prestige.edu/lead4\n\n⏱️ Total watch time: ~3.5 hours\n\nAll available 24/7 on your mobile. 📱\n\nIs the workload making it hard to continue?"},
+      {from:"user", step:3, text:"Honestly yes, I'm thinking of dropping out."},
+      {from:"bot", step:3, text:"Karan, I hear you — please don't make that decision just yet 🙏\n\nHere's what we can do:\n\n✅ *Flexible study schedule* — switch to weekend batches\n✅ *EMI on pending fees* — no financial pressure\n✅ *Dedicated mentor* — 30 min weekly check-in\n✅ *Deferral option* — pause for 1 semester, resume later\n\nWould you like to speak to a student counsellor today?"},
+      {from:"user", step:4, text:"Actually the weekend batch idea is good. And what courses can I add?"},
+      {from:"bot", step:4, text:"🌟 Weekend batch access activated for you!\n\nBased on your MBA specialisation, you might love:\n\n🚀 *Advanced Digital Marketing Certification* — ₹12,000\n📊 *Power BI & Data Storytelling* — ₹8,000\n💼 *Leadership Masterclass with IIM Alumni* — ₹10,000\n\nAll are industry-recognised and can be done at your own pace. Interested in any?"},
+      {from:"user", step:5, text:"Power BI sounds great. Also any alumni network?"},
+      {from:"bot", step:5, text:"📊 *Power BI Course enrolled!*\nStarts: 1st July 2026 | Self-paced\n\n🤝 *Prestige Alumni Network*\n👥 12,000+ alumni across 40+ countries\n\n🌐 Connect with:\n• Batch alumni on LinkedIn\n• Domain-specific WhatsApp groups\n• Annual Alumni Meet — Dec 2026\n\nJoin here: alumni.prestige.edu/karan2026\n\nWelcome back, Karan! 🎉 We're rooting for you."},
+    ]
+  },
+
+  // ── 6: EVENTS & WEBINARS ────────────────────────────────────
+  {
+    title:"Events & Webinars", icon:"📅", hd:"purple-hd",
+    steps:["Discover","Register","Pre-event Reminder","Live Q&A","Post-event","Certificate"],
+    messages:[
+      {from:"bot", step:0, text:"🎤 Hi *Divya*! You're invited to an exciting event:\n\n📌 *\"AI in Finance: The Future of Wealth Management\"*\n🎙️ Speaker: *Mr. Vikram Bhat*, Head of AI — Goldman Sachs India\n📅 Date: 22nd June 2026\n⏰ Time: 6:00 PM – 7:30 PM\n💻 Mode: Live Webinar\n🎁 FREE for enrolled students\n\nInterested in registering?"},
+      {from:"user", step:1, text:"Absolutely! Please register me."},
+      {from:"bot", step:1, text:"✅ *Registered Successfully, Divya!*\n\n📧 Confirmation sent to divya@email.com\n🔗 Join Link: webinar.prestige.edu/ai-finance-jun22\n📎 Add to Calendar: cal.prestige.edu/aifinance\n\nYou'll receive:\n• 📲 Reminder 24 hrs before\n• 📲 Reminder 1 hr before\n• 📄 Speaker slides after the session"},
+      {from:"user", step:2, text:"Can I pre-submit a question for the speaker?"},
+      {from:"bot", step:2, text:"🙋 *Pre-submit Your Question*\n\nGreat initiative! Your question will be prioritised during the live Q&A.\n\nPlease type your question below and I'll submit it to the event team:"},
+      {from:"user", step:2, text:"How can MBA Finance students prepare for AI-driven roles in investment banking?"},
+      {from:"bot", step:2, text:"✅ *Question submitted!*\n\n🔖 Your question is queued for the live Q&A session.\n\n⏰ *Reminder:* Webinar starts in *45 minutes!*\n\nJoin here: webinar.prestige.edu/ai-finance-jun22\n\n💡 Tip: Join 5 minutes early to test your audio/video."},
+      {from:"user", step:4, text:"The webinar was great! How do I get the recording?"},
+      {from:"bot", step:4, text:"🎉 Glad you enjoyed it, Divya!\n\n📹 *Recording & Resources*\n\n🎥 Full Recording: learn.prestige.edu/ai-finance-rec\n📄 Slides: learn.prestige.edu/ai-finance-slides\n📝 Key Takeaways Summary: learn.prestige.edu/ai-finance-notes\n\nAll available for the next *30 days*.\n\nWould you like to fill in a quick feedback form?"},
+      {from:"user", step:5, text:"Yes! And can I get a certificate?"},
+      {from:"bot", step:5, text:"📋 *Quick Feedback (3 questions)*\n\n1️⃣ Overall rating: ⭐⭐⭐⭐⭐ (1–5)\n2️⃣ Most valuable takeaway?\n3️⃣ Topics for future webinars?\n\nFeedback form: webinar.prestige.edu/ai-finance-fb\n\n📜 *Participation Certificate*\n✅ Auto-generated & emailed within 2 hours\n🔗 Digital badge for LinkedIn also included\n\nThank you, Divya! See you at the next one 🚀"},
+    ]
+  },
+
+  // ── 7: HR & STAFF ───────────────────────────────────────────
+  {
+    title:"HR Connect — Faculty", icon:"🏢", hd:"dark-hd",
+    steps:["Daily Update","Leave Apply","Approval","Substitute","New Hire","Payslip"],
+    messages:[
+      {from:"bot", step:0, text:"📢 Good Morning, *Prof. Rao*!\n\nHere's your *Daily HR Update — 16th June 2026* 👇"},
+      {from:"user", step:0, text:"Good morning! What's happening today?"},
+      {from:"bot", step:1, text:"📋 *Today's Updates*\n\n1️⃣ *Faculty Meeting* — 3:00 PM, Boardroom A\n   Agenda: New curriculum for Semester 4\n2️⃣ *New Student Intake* — 45 students joining your FM batch\n3️⃣ *Policy Update* — Revised attendance policy live on portal\n4️⃣ *Exam schedule* — Released for June end-term\n\n📄 May payslip: ₹1,24,500 — *Credited ✅*"},
+      {from:"user", step:1, text:"I need to apply for leave from 20–24 June."},
+      {from:"bot", step:2, text:"📝 *Leave Application*\n\n📅 From: 20th June 2026\n📅 To: 24th June 2026\n📆 Duration: *5 days (Casual Leave)*\n\nRemaining CL balance: *8 days*\n\nPlease select reason:\n1️⃣ Personal\n2️⃣ Medical\n3️⃣ Family function\n4️⃣ Conference/Training"},
+      {from:"user", step:2, text:"3 — Family function (son's graduation ceremony)"},
+      {from:"bot", step:2, text:"✅ *Leave Request Submitted!*\n\n🔖 Ref: LV-2026-0451\n📅 20–24 June 2026 (5 days)\n📝 Reason: Family Function\n\n*Pending approval from:*\n👤 Dr. Suresh Menon (HOD)\n\nYou'll be notified within *4 hours*. Do you need help arranging a substitute?"},
+      {from:"user", step:3, text:"Yes please — I have 3 Financial Management classes."},
+      {from:"bot", step:3, text:"📚 *Classes needing coverage:*\n\n• 20 Jun — FM Batch A (10 AM, 2 hrs)\n• 22 Jun — FM Batch B (12 PM, 2 hrs)\n• 24 Jun — FM Batch A (10 AM, 2 hrs)\n\n*Available Substitute Faculty:*\n✅ *Prof. Anita Sinha* — FM specialist, available all 3 days\n✅ *Prof. Ravi Kumar* — Available 20 & 22 Jun only\n\nShall I assign Prof. Anita Sinha for all 3?"},
+      {from:"user", step:4, text:"Yes, perfect. Also a new faculty joined our dept?"},
+      {from:"bot", step:4, text:"👋 Yes! *Dr. Kavitha Pillai* joined the Finance dept on 14th June.\n\n👤 *Onboarding Status:*\n✅ Email ID created\n✅ Portal access granted\n✅ Faculty profile published\n⬜ ID card — in progress (ready by 18 Jun)\n⬜ Payroll setup — HR processing\n\nWould you like to send her a welcome message?"},
+      {from:"user", step:5, text:"Sure! Also can I get my May payslip link?"},
+      {from:"bot", step:5, text:"💰 *May 2026 Payslip — Prof. Rao*\n\n💵 Gross: ₹1,38,000\n➖ Deductions (PF + TDS): ₹13,500\n✅ *Net Pay: ₹1,24,500* — Credited 1st June\n\n📄 Download: hr.prestige.edu/payslip/may2026/rao\n\nFor reimbursements or tax documents, reply 'REIMBURSEMENT' or 'FORM16' anytime. 😊"},
+    ]
+  },
+
+  // ── 8: COURSE EXPLORATION (upGrad) ──────────────────────────
+  {
+    title:"upGrad Institute", icon:"🎓", hd:"red-hd", isUpgrad:true,
+    steps:["Course Search","Program List","Eligibility","Duration & Fee","Scholarship","Enrol"],
+    messages:[
+      {from:"user", step:0, text:"Hi I am looking for a MBA course"},
+      {from:"bot", step:1, text:"Glad to know you are interested in exploring MBA courses! Here are some top options you can consider:\n\n• *Master of Business Administration* | Edgewood College\n• *MBA (Global) E-Learning* | Deakin University\n• *MBA* | Golden Gate University\n• *MBA* | Liverpool Business School\n• *Advanced General Management Program* | IMT Ghaziabad\n• *Dual Degree MBA & DBA* | Edgewood College\n• *MBA — Digital Business* | Manipal GlobalNXT\n\nPowered by *eSenseGPT*"},
+      {from:"user", step:2, text:"What's the eligibility for golden gate program"},
+      {from:"bot", step:2, text:"Here are the eligibility criteria for the *MBA at Golden Gate University*:\n\n■ Three or Four year bachelor's degree with *52% or above* marks\n• Institution must be recognized in the awarding country\n• For On-Campus Transfer: Specific criteria may vary by intake\n• GMAT/GRE: Not mandatory for online track\n• English proficiency: IELTS 6.0+ or equivalent\n\nPowered by *eSenseGPT*"},
+      {from:"user", step:3, text:"And what's the duration ?"},
+      {from:"bot", step:3, text:"Here are the programme details for the *MBA at Golden Gate University*:\n\n📅 *Course Duration:* 15 Months\n📚 *Mode:* Online (E-Learning)\n🗓️ *Next Intake:* August 2026\n🏫 *Campus Visit:* Optional (2 immersion weeks)\n\nPowered by *eSenseGPT*"},
+      {from:"user", step:4, text:"Also do you offer scholarship ?"},
+      {from:"bot", step:4, text:"Yes! Scholarships are offered to motivated students seeking industry-relevant knowledge and transferable skills.\n\n🏆 *Available Scholarships:*\n• Early Bird Discount — 15% off (apply by July 15)\n• Merit Scholarship — for CGPA 7.5+\n• Women in Leadership Grant — ₹50,000\n• Alumni Referral Discount — 10% off\n\nThe MBA program fee is approximately *USD 9,000 after scholarship*.\n\nPowered by *eSenseGPT*"},
+      {from:"user", step:4, text:"What's the fees ?"},
+      {from:"bot", step:5, text:"Program fee for the selected program:\n\n💰 *SGD 12,600* (Post Scholarship)\n💳 EMI available: SGD 1,050/month × 12\n📅 Semester-wise payment also accepted\n\nWould you like to enrol for the program ?"},
+      {from:"user", step:5, text:"Yes"},
+      {from:"bot", step:5, text:"🎉 *Great choice!* Redirecting you to the upGrad enrolment portal...\n\n🔗 upgrad.com/mba-golden-gate\n\n📞 Our admissions team will contact you within *24 hours* to guide your next steps.\n\n*Welcome to upGrad! 🚀*\nYour learning journey starts here."},
+    ],
+    enrolCta:true
+  },
+
+  // ── 9: PROFESSOR & COUNSELOR DISCOVERY ──────────────────────
+  {
+    title:"Faculty Discovery Bot", icon:"👩‍🏫", hd:"purple-hd",
+    steps:["Search Intent","Browse Faculty","View Profile","Match by Goal","Book Session","Confirm"],
+    messages:[
+      {from:"bot", step:0, text:"👩‍🏫 Hi *Nisha*! I'm your *Faculty & Counsellor Discovery* assistant.\n\nI can help you:\n🔍 Find professors by subject or expertise\n📅 Book 1-on-1 counselling sessions\n🎯 Get mentor recommendations by career goal\n\nWhat are you looking for today?"},
+      {from:"user", step:0, text:"I want to find a good professor for Digital Marketing and book a session."},
+      {from:"bot", step:1, text:"📋 *Top-Rated Digital Marketing Faculty*\n\n⭐ *Prof. Aditi Rao* — 4.9/5 (312 reviews)\n🎓 Ex-Google, 12 yrs experience\n📚 Specialises: SEO, Performance Marketing, Brand Strategy\n\n⭐ *Prof. Sunil Mehta* — 4.7/5 (208 reviews)\n🎓 Ex-HUL, 8 yrs experience\n📚 Specialises: Social Media, Content, D2C Marketing\n\n⭐ *Dr. Priya Kapoor* — 4.8/5 (180 reviews)\n🎓 PhD Marketing, IIM Ahmedabad\n📚 Specialises: Consumer Behaviour, Analytics\n\nWould you like to view a full profile?"},
+      {from:"user", step:2, text:"Tell me more about Prof. Aditi Rao."},
+      {from:"bot", step:2, text:"👩‍💼 *Prof. Aditi Rao — Full Profile*\n\n🎓 MBA — IIM Bangalore\n💼 Ex: Google India (Sr. Marketing Manager, 6 yrs), Ogilvy\n📖 Teaches: Digital Marketing Strategy, SEO & SEM, Marketing Analytics\n⭐ Student Rating: 4.9/5\n💬 *Student review:* \"Best professor — explains real industry scenarios\"\n\n📅 *Availability (this week):*\n• Tue 17 Jun — 4:00 PM\n• Thu 19 Jun — 11:00 AM\n• Sat 21 Jun — 10:00 AM\n\nWant to book a session?"},
+      {from:"user", step:3, text:"Yes but first — I'm confused about my career path in marketing."},
+      {from:"bot", step:3, text:"🎯 *Career Goal Matcher*\n\nWhat's your target role after MBA?\n\n1️⃣ Brand Manager (FMCG/Retail)\n2️⃣ Digital Marketing Manager (Tech/Startup)\n3️⃣ Product Marketing Manager\n4️⃣ Marketing Analytics / Growth Hacker\n5️⃣ Not sure — help me decide!"},
+      {from:"user", step:3, text:"Digital Marketing Manager at a tech startup — that's my goal."},
+      {from:"bot", step:3, text:"🚀 *Perfect match for your goal:*\n\n✅ *Prof. Aditi Rao* — Industry: Google, Startup ecosystems\n✅ *Mr. Rahul Desai (Counsellor)* — Placed 40+ students in tech-startup marketing roles\n\n📌 I recommend booking:\n1. Academic session with *Prof. Aditi Rao* (Digital Mktg deep dive)\n2. Career counselling with *Mr. Rahul Desai* (placement strategy)\n\nShall I book both?"},
+      {from:"user", step:4, text:"Yes please! Book both for this week."},
+      {from:"bot", step:4, text:"📅 *Sessions Booked!*\n\n*Session 1 — Academic*\n👩‍🏫 Prof. Aditi Rao\n📅 Tue 17 Jun, 4:00 PM\n📍 Faculty Block, Room 301 / Zoom\n\n*Session 2 — Career Counselling*\n👤 Mr. Rahul Desai\n📅 Thu 19 Jun, 3:00 PM\n📍 Counselling Centre, Room 102\n\n📧 Calendar invites sent to nisha@email.com\n\nAny questions to prepare in advance?"},
+      {from:"user", step:5, text:"Yes — what should I prepare for Prof. Aditi's session?"},
+      {from:"bot", step:5, text:"📝 *Prep Guide — Prof. Aditi Rao Session*\n\nTo make the most of your 1-on-1:\n\n✅ Come with *1 real brand* you admire — analyse their digital presence\n✅ Prepare *3 questions* about the startup marketing landscape\n✅ Review your *Semester 2 Digital Marketing project*\n✅ Bring your *updated resume* for Prof. Aditi to review\n\n💡 Pro tip: Ask her about the transition from corporate to startup marketing — her answer will surprise you!\n\nAll the best, Nisha! 🌟"},
+    ]
+  },
+
+  // ── 10: DROP-OFF RECOVERY ───────────────────────────────────
+  {
+    title:"Re-Conversion Engine", icon:"🚨", hd:"red-hd",
+    steps:["Detect Drop-off","Re-engage","Objection — Fees","Objection — Time","Incentive Offer","Convert"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hi *Vikram*! This is the *Prestige Institute Admissions Team*.\n\nWe noticed you started your MBA application on *10th June* but didn't complete it.\n\nYou were just *2 steps away* from submission! 🎯\n\nIs there anything we can help clarify?"},
+      {from:"user", step:0, text:"Hi, yes I was interested but had some second thoughts."},
+      {from:"bot", step:1, text:"Totally understandable, Vikram — this is a big decision! 😊\n\nMay I ask what's holding you back? I'd love to help address any concerns.\n\n1️⃣ 💰 Fee / financial concerns\n2️⃣ ⏰ Time commitment with work\n3️⃣ 🎓 Unsure about career benefit\n4️⃣ 📋 Need more program information\n5️⃣ 🏫 Exploring other colleges"},
+      {from:"user", step:2, text:"Mainly the fees — it's a bit steep for me right now."},
+      {from:"bot", step:2, text:"I completely understand, Vikram — and you're not alone in feeling this way.\n\nHere's what most students don't know until they ask:\n\n💡 *Fee Flexibility Options Available:*\n\n✅ *0% EMI* — ₹7,500/month for 24 months\n✅ *Early Admission Scholarship* — 15% off (expires in 3 days!)\n✅ *Corporate Sponsorship* — We help you draft a letter to your employer\n✅ *Education Loan* — Tie-ups with HDFC Credila, Avanse at 8.5%\n\nWith the scholarship, your *net fee drops by ₹1.2 lakhs*. Would you like a personalised fee breakdown?"},
+      {from:"user", step:3, text:"That helps! But I'm also worried about time — I work full time."},
+      {from:"bot", step:3, text:"Great news — our MBA is *designed for working professionals*! 🎯\n\n⏱️ *Time Commitment Reality:*\n• Weekend classes: *Sat–Sun, 9 AM – 1 PM only*\n• Weekday: *Zero mandatory attendance*\n• All lectures: *Recorded & accessible 24/7*\n• Average weekly study time: *8–10 hours*\n\n👥 *70% of our current batch works full-time*\n\nMany juggle demanding roles at TCS, Infosys, startups and still score above 80%.\n\nWould you like to speak with a current working-student alumnus?"},
+      {from:"user", step:4, text:"Yes that would reassure me. Is there any offer for me?"},
+      {from:"bot", step:4, text:"🎁 *Special Re-Engagement Offer — For Vikram Only*\n\n⏳ Valid for the next *48 hours*:\n\n✅ *15% Early Bird Scholarship* — ₹1,20,000 off\n✅ *Free Laptop Bag* on enrolment\n✅ *3 months LinkedIn Premium* (₹6,000 value)\n✅ *1-on-1 Career Mapping Session* with Industry Mentor\n✅ *0% EMI* — 24 months, no cost\n\n🔥 *Net fee after scholarship: ₹6,80,000*\n\nThis offer expires: *18th June 2026, 11:59 PM*\n\nReady to complete your application?"},
+      {from:"user", step:5, text:"Okay, I'm convinced. Let me complete it now."},
+      {from:"bot", step:5, text:"🎉 *Fantastic, Vikram! Welcome to the Prestige family!*\n\n🔗 *Complete Your Application:*\napply.prestige.edu/vikram2026\n\n📞 *Your Dedicated Counsellor:*\n👤 Ms. Priya Menon\n📱 +91 80123 45678\n(She'll call you in the next *30 minutes*)\n\n⚡ *Fast-track your application:*\nYour partial data has been saved — you only need to complete *Step 3 & 4*!\n\nCongratulations on taking the step, Vikram. Your MBA journey starts NOW! 🚀"},
+    ]
+  }
+
+];
+
+let currentFlow = 0;
+let messageIndex = 0;
+
+function openFlow(index) {
+  currentFlow = index;
+  messageIndex = 0;
+  const flow = flows[index];
+
+  document.getElementById('modalTitle').textContent = flow.title;
+  document.getElementById('modalAvatar').textContent = flow.icon;
+  document.getElementById('modalSub').textContent = '● Online';
+
+  // Header color
+  const hdr = document.getElementById('modalHeader');
+  hdr.className = 'mh ' + (flow.hd || 'green-hd');
+
+  // Steps bar
+  const sb = document.getElementById('stepsBar');
+  sb.innerHTML = flow.steps.map((s,i) => `<span class="sb-step" id="sbstep${i}">${s}</span>`).join('');
+
+  // Chat reset
+  const ca = document.getElementById('chatArea');
+  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
+
+  document.getElementById('quickReplies').innerHTML = '';
+  document.getElementById('quickReplies').classList.remove('visible');
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  updateStep(0);
+  setTimeout(() => playNext(), 600);
+}
+
+function updateStep(s) {
+  const flow = flows[currentFlow];
+  flow.steps.forEach((_,i) => {
+    const el = document.getElementById('sbstep'+i);
+    if(!el) return;
+    el.className = 'sb-step' + (i < s ? ' done' : i === s ? ' active' : '');
+  });
+}
+
+function playNext() {
+  const flow = flows[currentFlow];
+  if (messageIndex >= flow.messages.length) {
+    if (flow.enrolCta) showEnrolCta();
+    else showQR();
+    return;
+  }
+
+  const msg = flow.messages[messageIndex];
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  updateStep(msg.step || 0);
+
+  if (msg.from === 'bot') {
+    ty.classList.add('show');
+    ca.scrollTop = ca.scrollHeight;
+    const delay = Math.min(700 + msg.text.length * 8, 2000);
+    setTimeout(() => {
+      ty.classList.remove('show');
+      addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 800);
+    }, delay);
+  } else {
+    setTimeout(() => {
+      addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 500);
+    }, 300);
+  }
+}
+
+function addMsg(from, text) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const now = new Date();
+  const tm = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+  const div = document.createElement('div');
+  div.className = `msg ${from}`;
+
+  // Convert *bold* to <strong>
+  let html = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  const tick = from === 'user' ? '<span class="tk">✓✓</span>' : '';
+  div.innerHTML = html + `<div class="tr"><span class="tm">${tm}</span>${tick}</div>`;
+
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function showEnrolCta() {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const div = document.createElement('div');
+  div.className = 'enrol-cta';
+  div.innerHTML = `<div class="cl">upGrad Institute</div><div class="ct">Would you like to enrol for the program?</div><button class="cb" onclick="window.open('https://upgrad.com','_blank')">Enrol Now on upGrad →</button>`;
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 50);
+  ca.scrollTop = ca.scrollHeight;
+  showQR();
+}
+
+function showQR() {
+  const qr = document.getElementById('quickReplies');
+  qr.innerHTML = `<button class="qr-btn" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" onclick="closeModal()">✕ Close</button>`;
+  qr.classList.add('visible');
+}
+
+function restartFlow() { openFlow(currentFlow); }
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

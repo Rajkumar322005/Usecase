@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>E-Commerce &amp; D2C Use Cases — Engati 2026</title>
+  <meta name="description" content="Explore 10 interactive conversational AI use cases for E-Commerce & D2C — from WhatsApp catalog checkout to cart recovery and order tracking, powered by Engati.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #ae1536;
+      --red-h: #8f0f2a;
+      --red-soft: #c43352;
+      --red-light: #D98B7E;
+      --red-pale: #FDF2F2;
+      --red-faint: #FEF8F8;
+      --charcoal: #3F3F3F;
+      --white: #FFFFFF;
+      --cream: #FDFAF9;
+      --warm-bg: #FBF5F5;
+      --body-head: #100D0D;
+      --body-text: #4A3F3F;
+      --body-muted: #9A8A8A;
+      --taupe: #4A3F3F;
+      --border: #EDE4E4;
+      --border-sm: #F4ECEC;
+      --wa-bg: #e5ddd5;
+      --wa-bot: #fff;
+      --wa-user: #dcf8c6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 12px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(253,250,249,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border)
+    }
+    .nav-logo-img { height: 36px; width: auto; display: block; border-radius: 6px }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 8px 18px; border-radius: 8px;
+      font-weight: 700; font-size: .82rem;
+      text-decoration: none; transition: all .2s
+    }
+    .nav-cta:hover { background: var(--red-h); transform: translateY(-1px) }
+
+    .hero-header {
+      background: var(--cream);
+      padding: 120px 5% 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+    .hero-header::before {
+      content: ''; position: absolute;
+      width: 520px; height: 520px; border-radius: 50%;
+      border: 90px solid var(--red-faint);
+      top: -180px; right: -140px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-header::after {
+      content: ''; position: absolute;
+      width: 280px; height: 280px; border-radius: 50%;
+      border: 50px solid var(--border-sm);
+      bottom: -100px; left: -60px;
+      pointer-events: none; z-index: 0
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 16px;
+      animation: fadeUp .6s ease both; opacity: 0
+    }
+    .hero-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 900; line-height: 1.06;
+      color: var(--body-head);
+      letter-spacing: -.04em;
+      margin-bottom: 16px;
+      animation: fadeUp .6s .05s ease both; opacity: 0
+    }
+    .hero-header h1 em { font-style: normal; color: var(--red) }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--body-text);
+      max-width: 560px; margin: 0 auto 24px;
+      animation: fadeUp .6s .10s ease both; opacity: 0
+    }
+    .hero-badges {
+      display: flex; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      animation: fadeUp .6s .15s ease both; opacity: 0
+    }
+    .hero-badge {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      padding: 5px 14px; border-radius: 100px
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center;
+      gap: 40px; padding: 26px 5%; flex-wrap: wrap
+    }
+    .stat { text-align: center }
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem; font-weight: 900;
+      color: var(--red); letter-spacing: -.03em
+    }
+    .stat .label {
+      font-size: .7rem; font-weight: 600;
+      color: var(--body-muted);
+      margin-top: 2px; letter-spacing: .03em
+    }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 56px 5% }
+    .sec-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 8px; text-align: center
+    }
+    .sec-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 900; color: var(--body-head);
+      line-height: 1.15; letter-spacing: -.03em;
+      margin-bottom: 40px; text-align: center
+    }
+
+    .featured-banner {
+      background: var(--red);
+      border-radius: 20px; padding: 32px 36px;
+      margin-bottom: 36px;
+      display: flex; align-items: center; gap: 24px;
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden
+    }
+    .featured-banner::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 80px solid rgba(255,255,255,.05);
+      top: -200px; right: -160px; pointer-events: none
+    }
+    .featured-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(174,21,54,.35)
+    }
+    .fb-icon { font-size: 2.8rem; flex-shrink: 0 }
+    .fb-content { flex: 1; position: relative; z-index: 2 }
+    .fb-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      color: #fff; font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 10px
+    }
+    .fb-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      color: #fff; margin-bottom: 6px; letter-spacing: -.02em
+    }
+    .fb-content p {
+      font-size: .85rem; color: rgba(255,255,255,.8);
+      line-height: 1.65; max-width: 500px
+    }
+    .fb-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px;
+      background: #fff; color: var(--red);
+      font-size: .78rem; font-weight: 800;
+      padding: 9px 20px; border-radius: 10px;
+      border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .fb-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12) }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+      cursor: pointer
+    }
+    .card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--red); opacity: 0;
+      transition: opacity .25s
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(174,21,54,.08);
+      border-color: rgba(174,21,54,.2)
+    }
+    .card:hover::before { opacity: 1 }
+
+    .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0
+    }
+    .card-meta { flex: 1 }
+    .card-tag {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 3px
+    }
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: .95rem; font-weight: 800;
+      color: var(--body-head); line-height: 1.3
+    }
+    .card ul { list-style: none; padding: 0; margin-bottom: 14px }
+    .card ul li {
+      font-size: .82rem; color: var(--body-text);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border-sm);
+      display: flex; align-items: flex-start;
+      gap: 8px; line-height: 1.55
+    }
+    .card ul li:last-child { border-bottom: none }
+    .card ul li::before {
+      content: '→'; color: var(--red);
+      font-size: .7rem; margin-top: 3px; flex-shrink: 0
+    }
+    .flow-steps {
+      display: flex; gap: 4px;
+      margin-bottom: 14px; flex-wrap: wrap
+    }
+    .step-chip {
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      font-size: .6rem; font-weight: 600;
+      padding: 3px 9px; border-radius: 100px; white-space: nowrap
+    }
+    .view-flow-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .76rem; font-weight: 700;
+      color: var(--red); background: var(--red-pale);
+      border: 1px solid rgba(174,21,54,.12);
+      border-radius: 100px; padding: 6px 16px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+    .view-flow-btn:hover {
+      background: var(--red); color: #fff;
+      transform: translateY(-1px)
+    }
+
+    .card.fc { background: var(--red); border-color: var(--red) }
+    .card.fc::before { opacity: 0 !important }
+    .card.fc:hover {
+      box-shadow: 0 14px 40px rgba(174,21,54,.3);
+      border-color: var(--red-h)
+    }
+    .card.fc .card-icon {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .card-tag { color: rgba(255,255,255,.65) }
+    .card.fc h3 { color: #fff }
+    .card.fc ul li {
+      color: rgba(255,255,255,.82);
+      border-bottom-color: rgba(255,255,255,.1)
+    }
+    .card.fc ul li::before { color: rgba(255,255,255,.45) }
+    .card.fc .step-chip {
+      background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.15)
+    }
+    .card.fc .view-flow-btn {
+      background: rgba(255,255,255,.15); color: #fff;
+      border-color: rgba(255,255,255,.2)
+    }
+    .card.fc .view-flow-btn:hover {
+      background: #fff; color: var(--red)
+    }
+
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(16,13,13,.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 16px
+    }
+    .modal-overlay.open { display: flex }
+    .modal {
+      background: var(--white);
+      border-radius: 20px; width: 100%;
+      max-width: 430px; max-height: 92vh;
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(16,13,13,.28)
+    }
+
+    .mh {
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0; background: var(--red);
+    }
+    .mh-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0
+    }
+    .mh-info .nm {
+      font-family: 'Outfit', sans-serif;
+      font-size: .88rem; font-weight: 700; color: #fff
+    }
+    .mh-info .st { font-size: .68rem; color: rgba(255,255,255,.7) }
+    .mc {
+      margin-left: auto; background: none; border: none;
+      color: rgba(255,255,255,.8); font-size: 1.15rem;
+      cursor: pointer; line-height: 1; padding: 4px;
+      transition: color .2s
+    }
+    .mc:hover { color: #fff }
+
+    .steps-bar {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex; gap: 5px;
+      overflow-x: auto; flex-shrink: 0
+    }
+    .steps-bar::-webkit-scrollbar { height: 3px }
+    .steps-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px }
+    .sb-step {
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap;
+      background: var(--cream); color: var(--body-muted);
+      border: 1px solid var(--border);
+      transition: all .2s
+    }
+    .sb-step.active {
+      background: var(--red); color: #fff;
+      border-color: var(--red)
+    }
+    .sb-step.done {
+      background: var(--red-pale); color: var(--red);
+      border-color: rgba(174,21,54,.15)
+    }
+
+    .chat-area {
+      flex: 1; overflow-y: auto;
+      padding: 10px 9px;
+      background: var(--wa-bg);
+      display: flex; flex-direction: column;
+      gap: 5px; min-height: 300px
+    }
+    .date-chip { text-align: center; margin: 4px 0 }
+    .date-chip span {
+      background: rgba(225,245,254,.88);
+      font-size: .64rem; color: #555;
+      padding: 2px 10px; border-radius: 7px
+    }
+
+    .msg {
+      max-width: 84%; padding: 7px 9px 3px;
+      border-radius: 8px; font-size: .82rem;
+      line-height: 1.55;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+      word-wrap: break-word
+    }
+    .msg.visible { opacity: 1; transform: translateY(0) }
+    .msg.bot {
+      background: var(--wa-bot); color: var(--body-head);
+      border-top-left-radius: 0; align-self: flex-start;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg.user {
+      background: var(--wa-user); color: var(--body-head);
+      border-top-right-radius: 0; align-self: flex-end;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .msg .tr {
+      display: flex; justify-content: flex-end;
+      align-items: center; gap: 3px; margin-top: 2px
+    }
+    .msg .tm { font-size: .6rem; color: #999 }
+    .msg.user .tk { font-size: .6rem; color: #53bdeb }
+
+    .typing {
+      display: none; align-self: flex-start;
+      background: var(--wa-bot); border-radius: 8px;
+      border-top-left-radius: 0; padding: 9px 13px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.08)
+    }
+    .typing.show { display: flex; gap: 4px; align-items: center }
+    .typing span {
+      width: 6px; height: 6px;
+      background: #bbb; border-radius: 50%;
+      animation: bounce 1.2s infinite
+    }
+    .typing span:nth-child(2) { animation-delay: .2s }
+    .typing span:nth-child(3) { animation-delay: .4s }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0) }
+      30% { transform: translateY(-5px) }
+    }
+
+    .carousel-wrap {
+      align-self: flex-start; max-width: 94%; width: 94%;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .25s, transform .25s
+    }
+    .carousel-wrap.visible { opacity: 1; transform: translateY(0) }
+    .carousel-track {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding: 2px 2px 6px; scroll-snap-type: x mandatory
+    }
+    .carousel-track::-webkit-scrollbar { height: 4px }
+    .carousel-track::-webkit-scrollbar-thumb { background: #c8c0bb; border-radius: 3px }
+    .cc-card {
+      flex: 0 0 152px; background: #fff;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; scroll-snap-align: start;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06)
+    }
+    .cc-img {
+      height: 78px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      background: var(--red); color: #fff
+    }
+    .cc-body { padding: 8px 9px 9px }
+    .cc-tag {
+      display: inline-block;
+      font-size: .52rem; font-weight: 700;
+      background: var(--red-pale); color: var(--red);
+      padding: 2px 6px; border-radius: 100px;
+      margin-bottom: 4px; letter-spacing: .04em;
+      text-transform: uppercase
+    }
+    .cc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: .74rem; font-weight: 700;
+      color: var(--body-head); line-height: 1.3; margin-bottom: 2px
+    }
+    .cc-sub { font-size: .6rem; color: var(--body-muted); margin-bottom: 6px }
+    .cc-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem; font-weight: 800; color: var(--red)
+    }
+    .cc-hint {
+      font-size: .6rem; color: var(--body-muted);
+      padding: 0 2px 2px; display: flex; align-items: center; gap: 4px
+    }
+
+    .qr {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 8px 10px; background: var(--wa-bg);
+      opacity: 0; transition: opacity .3s;
+      pointer-events: none; flex-shrink: 0
+    }
+    .qr.visible { opacity: 1; pointer-events: all }
+    .qr-btn {
+      background: #fff; border: 1.5px solid var(--red);
+      color: var(--red); border-radius: 100px;
+      padding: 5px 13px; font-size: .7rem; font-weight: 700;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .15s
+    }
+    .qr-btn:hover { background: var(--red); color: #fff }
+
+    .mfooter {
+      padding: 8px 12px; background: var(--cream);
+      display: flex; gap: 7px; align-items: center;
+      border-top: 1px solid var(--border); flex-shrink: 0
+    }
+    .mfooter input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 8px 14px;
+      font-size: .82rem; outline: none;
+      font-family: 'DM Sans', sans-serif; background: var(--white);
+      color: var(--body-head); transition: border-color .2s
+    }
+    .rst-btn {
+      background: var(--red); color: #fff;
+      border: none; border-radius: 50%;
+      width: 34px; height: 34px; font-size: .88rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .2s
+    }
+
+    footer { background: var(--white); border-top: 1px solid var(--border) }
+    .foot-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 32px 5%; display: flex; flex-direction: column;
+      gap: 20px; align-items: center; text-align: center
+    }
+    .foot-copy { color: var(--body-muted); font-size: .74rem }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="usecases-portal.html"><img style="height:36px;width:auto;border-radius:6px;" src="Logo's/engati-logo.svg" alt="Engati Logo"></a>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <a href="usecases-portal.html" style="font-size:.84rem;font-weight:600;color:var(--body-text);text-decoration:none;">← Use Case Hub</a>
+    <a class="nav-cta" href="index.html#partner-form">Become a Partner →</a>
+  </div>
+</nav>
+
+<div class="hero-header">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Engati · E-Commerce Intelligence Suite</span>
+    <h1>E-Commerce &amp; D2C <em>Use Cases</em></h1>
+    <p class="hero-sub">Conversational commerce on WhatsApp — catalog discovery, cart recovery, instant order tracking, COD confirmation &amp; AI support.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">10 Use Cases</span>
+      <span class="hero-badge">WhatsApp-Native</span>
+      <span class="hero-badge">Gen AI Powered</span>
+      <span class="hero-badge">Meta Business Partner</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">10+</div><div class="label">Use Cases</div></div>
+  <div class="stat"><div class="num">24/7</div><div class="label">Shopping Agent</div></div>
+  <div class="stat"><div class="num">38%</div><div class="label">Cart Recovery Rate</div></div>
+  <div class="stat"><div class="num">50%</div><div class="label">COD Return Reduction</div></div>
+  <div class="stat"><div class="num">4.2x</div><div class="label">Repeat Purchase ROAS</div></div>
+</div>
+
+<main>
+  <div class="sec-label">Interactive Journeys</div>
+  <div class="sec-title">Click any card to explore the live conversation flow</div>
+
+  <!-- FEATURED BANNER -->
+  <div class="featured-banner" onclick="openFlow(0)">
+    <div class="fb-icon">🛍️</div>
+    <div class="fb-content">
+      <div class="fb-badge">⭐ Featured — WhatsApp Shopping Agent</div>
+      <h2>Catalog Browsing, Cart &amp; One-Tap Checkout</h2>
+      <p>AI-powered WhatsApp shopping assistant lets customers search products, view swipeable product carousels, apply discount coupons, and complete checkout directly in chat.</p>
+      <button class="fb-cta">▶ Watch the Full Journey</button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card fc" onclick="openFlow(0)">
+      <div class="card-top">
+        <div class="card-icon">🛒</div>
+        <div class="card-meta"><div class="card-tag">Acquisition</div><h3>WhatsApp Catalog &amp; Direct Checkout</h3></div>
+      </div>
+      <ul>
+        <li>Browse trending categories &amp; bestseller items</li>
+        <li>Swipeable product carousel with live stock</li>
+        <li>Size &amp; shade selector in-chat</li>
+        <li>Coupon code auto-application</li>
+        <li>WhatsApp Pay &amp; UPI checkout link</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Browse</span><span class="step-chip">Carousel</span><span class="step-chip">Options</span><span class="step-chip">Coupon</span><span class="step-chip">Pay</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(1)">
+      <div class="card-top">
+        <div class="card-icon">🚨</div>
+        <div class="card-meta"><div class="card-tag">Recovery</div><h3>Abandoned Cart Recovery Engine</h3></div>
+      </div>
+      <ul>
+        <li>Detect abandoned checkout (30 min trigger)</li>
+        <li>Personalised cart item preview on WhatsApp</li>
+        <li>Exclusive 10% discount nudge for instant checkout</li>
+        <li>Address pre-filled from previous sessions</li>
+        <li>1-tap order completion</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Nudge</span><span class="step-chip">Discount</span><span class="step-chip">Fast Checkout</span><span class="step-chip">Convert</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(2)">
+      <div class="card-top">
+        <div class="card-icon">📦</div>
+        <div class="card-meta"><div class="card-tag">Post-Purchase</div><h3>Order Tracking &amp; Delivery Alerts</h3></div>
+      </div>
+      <ul>
+        <li>Instant order confirmation &amp; invoice PDF</li>
+        <li>Live courier tracking link (Delhivery, BlueDart)</li>
+        <li>Out-for-delivery morning WhatsApp notification</li>
+        <li>Delivery address change or delay request</li>
+        <li>Delivered alert &amp; unboxing photo prompt</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Confirm</span><span class="step-chip">Track</span><span class="step-chip">Out for Delivery</span><span class="step-chip">Address Edit</span><span class="step-chip">Delivered</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(3)">
+      <div class="card-top">
+        <div class="card-icon">💵</div>
+        <div class="card-meta"><div class="card-tag">Fulfillment</div><h3>COD Verification &amp; Prepaid Upgrade</h3></div>
+      </div>
+      <ul>
+        <li>Automated Cash on Delivery order verification</li>
+        <li>Address &amp; phone number validation</li>
+        <li>Prepaid upgrade incentive (Extra ₹100 off if pay now)</li>
+        <li>Cancel fake/mistaken COD orders early</li>
+        <li>RTO (Return to Origin) reduction by 40%</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">COD Check</span><span class="step-chip">Verify</span><span class="step-chip">Prepaid Offer</span><span class="step-chip">Confirm</span><span class="step-chip">Dispatch</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(4)">
+      <div class="card-top">
+        <div class="card-icon">🔄</div>
+        <div class="card-meta"><div class="card-tag">Support</div><h3>Returns, Exchange &amp; Refund Assistant</h3></div>
+      </div>
+      <ul>
+        <li>Self-service return or exchange request</li>
+        <li>Reason selection &amp; defect image upload</li>
+        <li>Reverse doorstep pickup scheduling</li>
+        <li>Exchange size/colour selector</li>
+        <li>Instant refund to original source / store credit</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Request</span><span class="step-chip">Upload Photo</span><span class="step-chip">Pickup</span><span class="step-chip">Exchange</span><span class="step-chip">Refund</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(5)">
+      <div class="card-top">
+        <div class="card-icon">🌟</div>
+        <div class="card-meta"><div class="card-tag">Engagement</div><h3>Product Quiz &amp; Recommendation Engine</h3></div>
+      </div>
+      <ul>
+        <li>Interactive 3-question skin/fit finder quiz</li>
+        <li>Personalised product recommendation match</li>
+        <li>Routine or bundle suggestions (Routine Builder)</li>
+        <li>Customer reviews &amp; before/after proof</li>
+        <li>1-tap bundle add to cart</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Quiz</span><span class="step-chip">Analyze</span><span class="step-chip">Recommend</span><span class="step-chip">Reviews</span><span class="step-chip">Add Bundle</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(6)">
+      <div class="card-top">
+        <div class="card-icon">🔁</div>
+        <div class="card-meta"><div class="card-tag">Retention</div><h3>Replenishment &amp; Re-Order Reminders</h3></div>
+      </div>
+      <ul>
+        <li>Predict product exhaustion cycle (30/60 days)</li>
+        <li>Timely WhatsApp refill reminder</li>
+        <li>1-click reorder with saved preferences</li>
+        <li>Subscription plan opt-in (Save 15% monthly)</li>
+        <li>Automated recurring delivery schedule</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Predict</span><span class="step-chip">Refill Alert</span><span class="step-chip">1-Click Buy</span><span class="step-chip">Subscribe</span><span class="step-chip">Schedule</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(7)">
+      <div class="card-top">
+        <div class="card-icon">⚡</div>
+        <div class="card-meta"><div class="card-tag">Marketing</div><h3>Flash Sale &amp; VIP Drop Alerts</h3></div>
+      </div>
+      <ul>
+        <li>Broadcast opt-in for VIP members</li>
+        <li>Countdown timer &amp; limited stock alerts</li>
+        <li>Early access link 1 hour before general public</li>
+        <li>Instant promo code redemption</li>
+        <li>Live stock counter update in-chat</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Alert</span><span class="step-chip">Countdown</span><span class="step-chip">VIP Access</span><span class="step-chip">Redeem</span><span class="step-chip">Sold Out</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(8)">
+      <div class="card-top">
+        <div class="card-icon">⭐</div>
+        <div class="card-meta"><div class="card-tag">Advocacy</div><h3>Review Capture &amp; User Generated Content</h3></div>
+      </div>
+      <ul>
+        <li>Post-delivery feedback prompt (Day 5)</li>
+        <li>Star rating &amp; photo/video review upload</li>
+        <li>Auto-post to website review widget</li>
+        <li>Loyalty points / ₹200 wallet reward for review</li>
+        <li>Social media referral link generation</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Prompt</span><span class="step-chip">Rate</span><span class="step-chip">Photo Review</span><span class="step-chip">Reward</span><span class="step-chip">Refer</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+    <div class="card" onclick="openFlow(9)">
+      <div class="card-top">
+        <div class="card-icon">🎧</div>
+        <div class="card-meta"><div class="card-tag">Customer Support</div><h3>24/7 AI Customer Care &amp; Agent Handoff</h3></div>
+      </div>
+      <ul>
+        <li>Instant answers to shipping, refund &amp; product FAQs</li>
+        <li>Multilingual support (English, Hindi, regional)</li>
+        <li>Order status lookup without agent intervention</li>
+        <li>Seamless human agent handover for complex issues</li>
+        <li>Ticket resolution CSAT survey</li>
+      </ul>
+      <div class="flow-steps"><span class="step-chip">Inquiry</span><span class="step-chip">AI Resolve</span><span class="step-chip">Status</span><span class="step-chip">Handoff</span><span class="step-chip">CSAT</span></div>
+      <button class="view-flow-btn">▶ View Journey</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner" style="display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center;padding:32px 5%;">
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
+      <img src="Logo's/engati-logo.svg" style="height:32px;width:auto;border-radius:6px;" alt="Engati Logo">
+      <div class="foot-copy">© 2026 Engati. All rights reserved.</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border-sm);width:100%;">
+      <span style="font-size:.7rem;font-weight:700;color:var(--body-muted);text-transform:uppercase;letter-spacing:.08em;">Official Partners &amp; Certifications:</span>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/META.png" style="height:20px;" alt="Meta"> Meta Partner</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/Soc2.png" style="height:20px;" alt="SOC2"> SOC2 Type II</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/GDPR.png" style="height:20px;" alt="GDPR"> GDPR</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--warm-bg);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:700;color:var(--body-head);font-family:'Outfit',sans-serif;"><img src="Logo's/ISO.png" style="height:20px;" alt="ISO"> ISO 27001</div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="mh" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Shopping Agent</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" onclick="closeModal()">✕</button>
+    </div>
+    <div class="steps-bar" id="stepsBar"></div>
+    <div class="chat-area" id="chatArea">
+      <div class="date-chip"><span>Today</span></div>
+      <div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>
+    </div>
+    <div class="qr" id="quickReplies"></div>
+    <div class="mfooter">
+      <input type="text" placeholder="Type a message..." readonly />
+      <button class="rst-btn" onclick="restartFlow()" title="Restart">↺</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const flows = [
+
+  // ── 0: CATALOG BROWSING ─────────────────────────────────────
+  {
+    title:"Shopping Assistant", icon:"🛒", hd:"#ae1536",
+    steps:["Browse","Carousel","Options","Coupon","Checkout"],
+    messages:[
+      {from:"bot", step:0, text:"🛍️ Welcome to *Your D2C Store*! I'm your AI Shopping Assistant.\n\nLooking for skincare, apparel, or electronics today?"},
+      {from:"user", step:0, text:"Looking for premium Vitamin C serum for glowing skin."},
+      {from:"bot", step:1, text:"✨ Here are our bestselling serums — swipe to explore:"},
+      {from:"bot", step:1, type:"carousel", items:[
+        {icon:"🧴", tag:"Bestseller", title:"Glow Booster 20% Vitamin C", sub:"30ml · Brightening & Anti-aging", price:"₹899"},
+        {icon:"✨", tag:"Trending", title:"Advanced Niacinamide + C", sub:"30ml · Dark spot correction", price:"₹949"},
+        {icon:"🌿", tag:"Organic", title:"Botanical Vitamin C Oil", sub:"50ml · 100% Organic Cold-Pressed", price:"₹1,199"}
+      ]},
+      {from:"user", step:1, text:"Glow Booster 20% Vitamin C looks great! Is there any discount code?"},
+      {from:"bot", step:2, text:"🎁 You're in luck!\n\n🏷️ Code *GLOW15* auto-applied (15% OFF)\n💰 Original Price: ₹899 → *Discounted Price: ₹764*\n🚚 Free Shipping included!\n\nSelect your quantity & checkout mode:"},
+      {from:"user", step:3, text:"1 bottle please, pay via UPI."},
+      {from:"bot", step:4, text:"📋 *Order Summary*\n\n🛍️ Glow Booster 20% Vitamin C (30ml) × 1 — ₹764\n🏷️ Coupon applied: GLOW15 (-₹135)\n🚚 Express Shipping: FREE\n──────────────────\n💰 *Total: ₹764*\n\n🔗 Tap to pay via GPay / PhonePe / Paytm:\ncheckout.d2cstore.com/pay-upi-764\n\nShall I hold your item?"},
+      {from:"user", step:4, text:"Paid via GPay!"},
+      {from:"bot", step:4, text:"🎉 *Order Confirmed #D2C-99812!*\n\n📦 Items: Glow Booster Vitamin C (30ml)\n🚚 Delivery Est: 2–3 business days\n📄 Tax Invoice sent to your email\n\nThank you for shopping with us! 💖"},
+    ]
+  },
+
+  // ── 1: CART RECOVERY ────────────────────────────────────────
+  {
+    title:"Cart Recovery Desk", icon:"🚨", hd:"#075e54",
+    steps:["Detect","Nudge","Discount","Fast Checkout","Convert"],
+    messages:[
+      {from:"bot", step:0, text:"👋 Hi *Rohan*! You left your favorite items behind in your cart 30 minutes ago:\n\n👟 *UltraBoost Running Shoes (Size 9)*\n💰 Total: ₹4,499\n\nThey're selling out fast in your size!"},
+      {from:"user", step:0, text:"Hi, yes I was thinking about it."},
+      {from:"bot", step:1, text:"We'd love for you to have them! 👟\n\nHere's an exclusive *10% Extra Discount* code just for you:\n🏷️ *CART10* (Valid for 2 hours)\n\n💰 New price: ₹4,499 → *₹4,049*"},
+      {from:"user", step:2, text:"Oh nice! Can I pay via Cash on Delivery?"},
+      {from:"bot", step:3, text:"Yes! Both COD and Prepaid are available.\n\n💡 *Pro tip:* Pay online now to get an extra ₹100 cashback, or select COD below!"},
+      {from:"user", step:4, text:"I'll pay prepaid with UPI."},
+      {from:"bot", step:4, text:"🎉 *Order Completed!*\n\n🔖 Order #D2C-CART-4402\n👟 UltraBoost Shoes (Size 9) — ₹3,949 (with ₹100 UPI cashback!)\n🚚 Expected Delivery: Thursday\n\nGreat choice, Rohan! 🚀"},
+    ]
+  },
+
+  // ── 2: ORDER TRACKING ───────────────────────────────────────
+  {
+    title:"Order Tracker", icon:"📦", hd:"#1a73e8",
+    steps:["Confirm","Track","Out for Delivery","Address Edit","Delivered"],
+    messages:[
+      {from:"bot", step:0, text:"📦 Hi *Kavya*! Need an update on your recent order?"},
+      {from:"user", step:0, text:"Yes, track my order #D2C-88120."},
+      {from:"bot", step:1, text:"🔍 *Live Order Status — Order #D2C-88120*\n\n📦 Item: Organic Face Wash (Pack of 2)\n🚚 Courier: BlueDart Express\n🔖 AWB: 7782109432\n📍 Current Location: Regional Sorting Hub\n⏱️ Est. Delivery: *Today by 4:00 PM*\n\n🔗 Live Map Tracking: track.d2cstore.com/7782109432"},
+      {from:"user", step:2, text:"Can I change the delivery address to my office instead?"},
+      {from:"bot", step:3, text:"✏️ *Update Delivery Address*\n\nSince your package is out for delivery today, we've sent an urgent instruction to your delivery agent.\n\nPlease type your updated office address below:"},
+      {from:"user", step:3, text:"4th Floor, Tech Park, Outer Ring Road, Bengaluru."},
+      {from:"bot", step:4, text:"✅ *Address Updated & Sent to Delivery Executive!*\n\n📱 Delivery Agent: Ramesh Kumar (+91 98765 12345)\n\nPackage will be delivered to your office by 4:00 PM. 🚚"},
+    ]
+  },
+
+  // ── 3: COD VERIFICATION ─────────────────────────────────────
+  {
+    title:"Fulfillment Desk", icon:"💵", hd:"#0d7377",
+    steps:["COD Check","Verify","Prepaid Offer","Confirm","Dispatch"],
+    messages:[
+      {from:"bot", step:0, text:"📋 Hi *Ankit*! Thank you for placing COD Order #D2C-9901 for *Wireless Earbuds (₹2,299)*.\n\nPlease confirm your order so we can dispatch it right away!"},
+      {from:"user", step:0, text:"Yes, I confirm the order."},
+      {from:"bot", step:1, text:"✅ Order verified!\n\n💡 *Quick question before we ship:*\nWould you like to convert this COD order to *Prepaid*?\n\n✨ *Prepaid Upgrade Perks:*\n• Flat ₹150 OFF (Pay only ₹2,149!)\n• Priority 24-hr Dispatch\n• Contactless delivery"},
+      {from:"user", step:2, text:"Yes! Saving ₹150 sounds great. Send payment link."},
+      {from:"bot", step:3, text:"💳 *Prepaid Upgrade Payment Link*\n\n💰 Amount: ₹2,149 (Saved ₹150!)\n🔗 pay.d2cstore.com/upgrade-9901\n\nOrder will be dispatched within *2 hours* of payment. 🚀"},
+    ]
+  },
+
+  // ── 4: RETURNS & EXCHANGES ──────────────────────────────────
+  {
+    title:"Returns Assistant", icon:"🔄", hd:"#5b21b6",
+    steps:["Request","Upload Photo","Pickup","Exchange","Refund"],
+    messages:[
+      {from:"bot", step:0, text:"🔄 Hi *Pooja*! Need help with a return or exchange for your recent order?"},
+      {from:"user", step:0, text:"Yes, the Denim Jacket (Size M) I received is too small."},
+      {from:"bot", step:1, text:"Sorry to hear that, Pooja! We can easily exchange it for a *Size L* or initiate a refund.\n\nWhich option do you prefer?\n1️⃣ Exchange for Size L (Free pickup & replacement)\n2️⃣ Refund to Original Payment Mode / Store Wallet"},
+      {from:"user", step:1, text:"Exchange for Size L please."},
+      {from:"bot", step:2, text:"Got it! 🧥 *Exchange Setup — Size L*\n\n🚚 *Doorstep Reverse Pickup Scheduled*\n📅 Pickup Date: Tomorrow, 10 AM – 2 PM\n📦 Replacement Size L will be handed over during pickup (Instant Swap!)\n\nPlease keep the original item packed with tags intact."},
+      {from:"user", step:3, text:"That's so convenient! Thank you."},
+      {from:"bot", step:4, text:"Our pleasure! 🎉 Your Size L jacket is ready for tomorrow's swap. See you tomorrow, Pooja!"},
+    ]
+  },
+
+  // ── 5: PRODUCT QUIZ & RECOMMENDATION ────────────────────────
+  {
+    title:"Routine Builder", icon:"🌟", hd:"#1a1a2e",
+    steps:["Quiz","Analyze","Recommend","Reviews","Add Bundle"],
+    messages:[
+      {from:"bot", step:0, text:"✨ Hi *Sneha*! Take our 30-second Skin Quiz to discover your custom skincare routine 💆‍♀️\n\nQuestion 1: What is your primary skin concern?\n\n1️⃣ Acne & Blemishes\n2️⃣ Dullness & Pigmentation\n3️⃣ Dryness & Dehydration\n4️⃣ Fine lines & Aging"},
+      {from:"user", step:0, text:"2 — Dullness & Pigmentation"},
+      {from:"bot", step:1, text:"Question 2: What is your skin type?\n\n1️⃣ Oily / Combination\n2️⃣ Normal\n3️⃣ Dry / Sensitive"},
+      {from:"user", step:1, text:"Oily / Combination"},
+      {from:"bot", step:2, text:"🧬 *Analyzing your profile...*\n\n🌟 *Your Custom Glow Routine Kit:*\n\n1️⃣ Gentle Foaming Cleanser (100ml)\n2️⃣ 10% Niacinamide + C Serum (30ml)\n3️⃣ Ultra-Light Gel Moisturiser (50g)\n\n💰 Bundle Price: ₹1,599 (Save 25% vs buying individual!)\n⭐ Rating: 4.9/5 (1,200+ verified reviews)"},
+      {from:"user", step:3, text:"Add the entire bundle to my cart!"},
+      {from:"bot", step:4, text:"🎉 *Glow Routine Kit Added to Cart!*\n\n🛒 Total: ₹1,599 (Saved ₹500!)\n🎁 Free Jade Roller included as a gift!\n\nReady to checkout?"},
+    ]
+  },
+
+  // ── 6: REPLENISHMENT & RE-ORDER ─────────────────────────────
+  {
+    title:"Refill Assistant", icon:"🔁", hd:"#075e54",
+    steps:["Predict","Refill Alert","1-Click Buy","Subscribe","Schedule"],
+    messages:[
+      {from:"bot", step:0, text:"🌿 Hi *Rahul*! Based on your last purchase 45 days ago, your *Plant Protein Powder (1kg)* is likely running low.\n\nWould you like to refill now with 1-click reorder?"},
+      {from:"user", step:0, text:"Yes! Thanks for reminding me."},
+      {from:"bot", step:1, text:"📦 *1-Click Refill Summary*\n\n🍫 Plant Protein Powder (Chocolate 1kg) × 1\n💰 Price: ₹1,899\n🏠 Ship to: Home Address (pre-filled)\n\nOr subscribe monthly & *Save 15% on every refill (₹1,614/mo)*!"},
+      {from:"user", step:2, text:"Subscribe monthly option sounds great!"},
+      {from:"bot", step:3, text:"🎉 *Monthly Subscription Activated!*\n\n💰 Price: ₹1,614/month (Saved ₹285!)\n🗓️ Refill date: 1st of every month\n❌ Cancel or pause anytime in 1 tap on WhatsApp.\n\nYour first subscription box ships tomorrow! 📦"},
+    ]
+  },
+
+  // ── 7: FLASH SALE & VIP DROPS ───────────────────────────────
+  {
+    title:"VIP Drops", icon:"⚡", hd:"#ae1536",
+    steps:["Alert","Countdown","VIP Access","Redeem","Sold Out"],
+    messages:[
+      {from:"bot", step:0, text:"🔥 *VIP EARLY ACCESS ALERT!*\n\nHi *Divya*! Our Annual Midnight Flash Sale starts in 1 hour for the public.\n\nAs a VIP Member, your early access starts NOW! ⚡"},
+      {from:"user", step:0, text:"Ooh what are the top deals?"},
+      {from:"bot", step:1, text:"🏷️ *Top Early Access Deals (Max 2 per order):*\n\n• Premium Leather Handbag — ₹1,999 (was ₹4,999)\n• Smart Fitness Watch — ₹1,499 (was ₹3,999)\n• Velvet Matte Lipstick Set — ₹799 (was ₹1,799)\n\nStock is strictly limited (less than 100 units each)!"},
+      {from:"user", step:1, text:"Grab the Smart Fitness Watch and Leather Handbag for me!"},
+      {from:"bot", step:2, text:"🛒 *VIP Cart Reserved (Held for 10 minutes)*\n\n• Leather Handbag — ₹1,999\n• Smart Fitness Watch — ₹1,499\n──────────────────\n💰 Total: ₹3,498 (Saved ₹5,500!)\n\n🔗 Pay now to lock early access: pay.d2cstore.com/vip-3498"},
+    ]
+  },
+
+  // ── 8: REVIEW CAPTURE & UGC ─────────────────────────────────
+  {
+    title:"Review Rewards", icon:"⭐", hd:"#5b21b6",
+    steps:["Prompt","Rate","Photo Review","Reward","Refer"],
+    messages:[
+      {from:"bot", step:0, text:"⭐ Hi *Ananya*! How are you enjoying your new *Glow Serum* delivered 5 days ago?"},
+      {from:"user", step:0, text:"I love it! My skin feels super soft and radiant."},
+      {from:"bot", step:1, text:"That makes us so happy! 💖\n\nCould you share a quick 1-sentence review and a photo of your product?\n\n🎁 *As a thank you, we'll add ₹200 to your D2C Wallet instantly!*"},
+      {from:"user", step:1, text:"[Photo uploaded] Review: Amazing serum, visible glow in just 4 days!"},
+      {from:"bot", step:2, text:"🎉 *Review Published & ₹200 Credited!*\n\n💰 Wallet Balance: ₹200 (Valid for your next order!)\n\nWant to share your personal referral link with friends? They get ₹150 off, and you get ₹200 when they buy! 🎁"},
+    ]
+  },
+
+  // ── 9: 24/7 AI CUSTOMER CARE ────────────────────────────────
+  {
+    title:"Customer Care Bot", icon:"🎧", hd:"#1a1a2e",
+    steps:["Inquiry","AI Resolve","Status","Handoff","CSAT"],
+    messages:[
+      {from:"bot", step:0, text:"🎧 Hi *Vikram*! I'm your 24/7 Support AI Assistant.\n\nHow can I help you today — order status, cancellation, warranty, or product queries?"},
+      {from:"user", step:0, text:"What is your warranty policy on bluetooth speakers?"},
+      {from:"bot", step:1, text:"🔊 *Warranty Policy — Bluetooth Speakers*\n\n• All speakers come with a *1-Year Brand Warranty*\n• Covers manufacturing defects, battery issues & audio distortion\n• Free doorstep pickup & replacement within 7 days\n\nNeed to claim warranty on a purchased speaker?"},
+      {from:"user", step:1, text:"Yes, my speaker charging port feels loose."},
+      {from:"bot", step:2, text:"🔧 *Warranty Claim Initiated*\n\n🔖 Claim Ref: WAR-2026-0812\n👤 Support Agent: Mr. Rajesh from Technical Care\n\nI've connected him to this chat — he will assist you in *60 seconds*. ⏱️"},
+    ]
+  }
+
+];
+
+let currentFlow = 0;
+let messageIndex = 0;
+
+function paintHeader() {
+  const flow = flows[currentFlow];
+  const hdr = document.getElementById('modalHeader');
+  const av = document.getElementById('modalAvatar');
+  hdr.style.background = flow.hd || '#ae1536';
+  av.textContent = flow.icon;
+}
+
+function openFlow(index) {
+  currentFlow = index;
+  messageIndex = 0;
+  const flow = flows[index];
+
+  document.getElementById('modalTitle').textContent = flow.title;
+  paintHeader();
+
+  const sb = document.getElementById('stepsBar');
+  sb.innerHTML = flow.steps.map((s,i) => `<span class="sb-step" id="sbstep${i}">${s}</span>`).join('');
+
+  const ca = document.getElementById('chatArea');
+  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
+
+  document.getElementById('quickReplies').innerHTML = '';
+  document.getElementById('quickReplies').classList.remove('visible');
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  updateStep(0);
+  setTimeout(() => playNext(), 600);
+}
+
+function updateStep(s) {
+  const flow = flows[currentFlow];
+  flow.steps.forEach((_,i) => {
+    const el = document.getElementById('sbstep'+i);
+    if(!el) return;
+    el.className = 'sb-step' + (i < s ? ' done' : i === s ? ' active' : '');
+  });
+}
+
+function playNext() {
+  const flow = flows[currentFlow];
+  if (messageIndex >= flow.messages.length) {
+    showQR();
+    return;
+  }
+
+  const msg = flow.messages[messageIndex];
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  updateStep(msg.step || 0);
+
+  const msgText = msg.text || '';
+
+  if (msg.from === 'bot') {
+    ty.classList.add('show');
+    ca.scrollTop = ca.scrollHeight;
+    const delay = Math.min(700 + msgText.length * 8, 2000);
+    setTimeout(() => {
+      ty.classList.remove('show');
+      if (msg.type === 'carousel') addCarousel(msg.items);
+      else addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 800);
+    }, delay);
+  } else {
+    setTimeout(() => {
+      addMsg(msg.from, msg.text);
+      messageIndex++;
+      setTimeout(() => playNext(), 500);
+    }, 300);
+  }
+}
+
+function addMsg(from, text) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+  const now = new Date();
+  const tm = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+  const div = document.createElement('div');
+  div.className = `msg ${from}`;
+
+  let html = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  const tick = from === 'user' ? '<span class="tk">✓✓</span>' : '';
+  div.innerHTML = html + `<div class="tr"><span class="tm">${tm}</span>${tick}</div>`;
+
+  ca.insertBefore(div, ty);
+  setTimeout(() => div.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function addCarousel(items) {
+  const ca = document.getElementById('chatArea');
+  const ty = document.getElementById('typingIndicator');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'carousel-wrap';
+
+  const track = document.createElement('div');
+  track.className = 'carousel-track';
+  track.innerHTML = items.map(it => `
+    <div class="cc-card">
+      <div class="cc-img">${it.icon}</div>
+      <div class="cc-body">
+        <div class="cc-tag">${it.tag}</div>
+        <div class="cc-title">${it.title}</div>
+        <div class="cc-sub">${it.sub}</div>
+        <div class="cc-price">${it.price}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const hint = document.createElement('div');
+  hint.className = 'cc-hint';
+  hint.textContent = '← swipe to explore →';
+
+  wrap.appendChild(track);
+  wrap.appendChild(hint);
+  ca.insertBefore(wrap, ty);
+  setTimeout(() => wrap.classList.add('visible'), 30);
+  ca.scrollTop = ca.scrollHeight;
+}
+
+function showQR() {
+  const qr = document.getElementById('quickReplies');
+  qr.innerHTML = `<button class="qr-btn" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" onclick="closeModal()">✕ Close</button>`;
+  qr.classList.add('visible');
+}
+
+function restartFlow() { openFlow(currentFlow); }
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

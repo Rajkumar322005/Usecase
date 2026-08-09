@@ -691,7 +691,7 @@
   function locationCards(action, locations) {
     renderCarousel((locations || LOCATIONS).map(function (item) {
       return {
-        id:item.id, image:'assets/healthcare/careplus-locations.jpg', sprite:item.sprite, alt:item.name + ' exterior',
+        id:item.id, image:'../../assets/healthcare/careplus-locations.jpg', sprite:item.sprite, alt:item.name + ' exterior',
         tag:item.distance || '', title:item.name, subtitle:item.address, primaryAction:action,
         primaryLabel: typeLabel(action), secondary:[
           { label:tx('directions'), action:'directions' },
@@ -709,7 +709,7 @@
   function doctorCards(action, list, specialtyKey) {
     renderCarousel(list.map(function (doctor) {
       return {
-        id:doctor.id, image:'assets/healthcare/careplus-doctors.jpg', sprite:doctor.sprite, alt:doctor.name + ' profile',
+        id:doctor.id, image:'../../assets/healthcare/careplus-doctors.jpg', sprite:doctor.sprite, alt:doctor.name + ' profile',
         tag:tx(specialtyKey), title:doctor.name, subtitle:interpolate('yearsExperience', { n:parseInt(doctor.experience, 10) }),
         meta:doctor.languages + ' · ' + localizedNext(doctor.next), price:doctor.fee,
         primaryAction:action, primaryLabel:tx('selectDoctor'), secondary:[]

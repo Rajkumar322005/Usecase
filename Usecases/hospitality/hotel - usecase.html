@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hospitality Use Cases — Engati 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -243,20 +243,110 @@
       .mode-btn{padding:6px 9px}
       .language-select{max-width:104px}
     }
+
+    /* Shared active-industry visual system */
+    :root{--red:#ae1536;--red2:#8f0f2a;--red-light:#fdf2f2;--off:#fdfaf9;--gray:#4a3f3f;--lg:#ede4e4;--warm-bg:#fbf5f5;--body-muted:#9a8a8a;--border-sm:#f4ecec}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:#fff;color:#100d0d}
+    .site-nav{height:74px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#fdfaf9;border-bottom:1px solid var(--border-sm);position:relative;z-index:10}
+    .brand-logo{display:flex;align-items:center;text-decoration:none}
+    .brand-logo img{display:block;width:122px;height:auto}
+    .nav-actions{display:flex;align-items:center;gap:26px}
+    .nav-back{font-size:14px;font-weight:600;color:#4a3f3f;text-decoration:none}
+    .nav-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;text-decoration:none;border-radius:9px;padding:12px 24px;font-size:14px;font-weight:700;transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--red2);transform:translateY(-1px)}
+    header.hero-header{background:#fdfaf9;padding:78px 5% 66px;text-align:center;position:relative;overflow:hidden}
+    header.hero-header::before{content:'';position:absolute;width:280px;height:280px;border:64px solid rgba(174,21,54,.055);border-radius:50%;left:-105px;bottom:-155px;background:none}
+    header.hero-header::after{content:'';position:absolute;width:430px;height:430px;border-radius:50%;right:-180px;top:-210px;background:radial-gradient(circle,rgba(174,21,54,.045),transparent 68%)}
+    .hero-inner{max-width:840px;margin:0 auto;position:relative;z-index:1}
+    header.hero-header .eyebrow,.sec-label{font:700 12px 'DM Sans',sans-serif;letter-spacing:2.2px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+    header.hero-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2.55rem,5vw,4rem);font-weight:800;letter-spacing:-2.4px;color:#100d0d;line-height:1.04;margin-bottom:22px}
+    header.hero-header p{font-size:17px;color:#5c5050;max-width:720px;margin:0 auto;line-height:1.65}
+    .hbadges{gap:10px;margin-top:30px}
+    .hbadge{background:#fdf2f2;color:var(--red);border:1px solid #f2d6dc;font-size:11px;letter-spacing:1px;padding:7px 16px;border-radius:22px}
+    .stats-bar{border-top:1px solid var(--border-sm);border-bottom:1px solid var(--border-sm);gap:54px;padding:27px 5%;background:#fff}
+    .stat{min-width:110px}
+    .stat .num{font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;color:var(--red);line-height:1}
+    .stat .label{font-size:11px;font-weight:600;color:var(--body-muted);margin-top:7px;letter-spacing:.35px}
+    main{max-width:1200px;padding:58px 5% 72px}
+    .journey-rail{gap:8px;margin-bottom:38px}
+    .rail-chip{font-size:10px;letter-spacing:1.25px;padding:7px 14px;background:#fdf2f2;border:1px solid #f2d6dc}
+    .sec-label{margin-bottom:11px}
+    .sec-title{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.45rem);font-weight:800;letter-spacing:-1px;color:#100d0d;margin-bottom:42px}
+    .featured-banner{background:var(--red);border-radius:20px;padding:34px 38px;margin-bottom:28px;gap:28px;box-shadow:none}
+    .featured-banner:hover{box-shadow:0 14px 38px rgba(174,21,54,.22)}
+    .featured-banner::after{right:-75px;top:-120px;width:340px;height:340px;border:56px solid rgba(255,255,255,.06);background:transparent}
+    .fb-content h2{font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.4px}
+    .fb-content p{font-size:14px;line-height:1.55;max-width:650px}
+    .fb-badge{font-size:9px;letter-spacing:1.5px;padding:5px 12px}
+    .fb-cta{font-family:'DM Sans',sans-serif;padding:9px 18px}
+    .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{border:1px solid var(--lg);border-radius:16px;padding:24px;display:flex;flex-direction:column;min-height:100%;transition:transform .2s,box-shadow .2s,border-color .2s}
+    .card::before{display:none}
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(70,35,42,.09);border-color:#dec9ce}
+    .card-top{gap:14px;margin-bottom:17px}
+    .card-icon{width:46px;height:46px;background:#fdf2f2;border:1px solid #f2d6dc;border-radius:12px;font-size:21px}
+    .card-tag{font-size:10px;letter-spacing:1.6px;margin-bottom:5px}
+    .card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;letter-spacing:-.25px;color:#100d0d}
+    .card ul{margin-bottom:16px}
+    .card ul li{font-size:12.5px;color:#5c5050;padding:7px 0;border-color:var(--border-sm)}
+    .flow-steps{margin-bottom:17px;gap:5px}
+    .step-chip{background:#fdfafa;color:#8a797d;border:1px solid #eee3e5;padding:4px 8px}
+    .view-flow-btn{font-family:'DM Sans',sans-serif;margin-top:auto;align-self:flex-start;background:#fdf2f2;border:1px solid #f2d6dc;padding:7px 14px}
+    .card.fc{background:var(--red);border-color:var(--red)}
+    .card.fc:hover{border-color:var(--red);box-shadow:0 12px 30px rgba(174,21,54,.22)}
+    .chan-row{margin-bottom:14px}
+    .chan{font-size:9px;padding:3px 8px}
+    footer{background:#fdfaf9;border-top:1px solid var(--border-sm);padding:30px 5%;color:#786a6d;font-size:12px}
+    footer strong{color:#3f3537}
+    .modal-overlay{background:rgba(30,18,21,.62);backdrop-filter:blur(5px)}
+    .modal{max-width:460px;border-radius:20px;box-shadow:0 28px 90px rgba(39,17,23,.28)}
+    .mh{background:var(--red);padding:15px 18px}
+    .mh-av{width:40px;height:40px}
+    .mh-info .nm{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700}
+    .mode-bar{padding:12px 14px;border-color:var(--border-sm)}
+    .mode-switch{padding:4px;background:#fbf5f5;border:1px solid #f0e3e5}
+    .mode-btn{font-family:'DM Sans',sans-serif;padding:7px 13px}
+    .language-select{font-family:'DM Sans',sans-serif;padding:7px 10px;border-color:#eadde0}
+    .chan-toggle{padding:5px 10px;background:#fdfafa;border-bottom:1px solid var(--border-sm)}
+    .steps-bar{background:#fff;padding:9px 12px;border-color:var(--border-sm)}
+    .sb-step{background:#f7f2f3}
+    .chat-area{min-height:320px}
+    .msg,.opt-btn,.qr-btn,.mfooter input{font-family:'DM Sans',sans-serif}
+    .mfooter{padding:10px 12px;background:#faf7f7;border-color:var(--border-sm)}
+    .mfooter input{border:1px solid #eadfe1;padding:9px 14px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-nav{padding:0 4%}.nav-actions{gap:15px}}
+    @media(max-width:600px){
+      .site-nav{height:66px;padding:0 18px}.brand-logo img{width:104px}.nav-back{font-size:12px}.nav-cta{padding:10px 13px;font-size:12px}.nav-actions{gap:10px}
+      header.hero-header{padding:58px 20px 52px}header.hero-header h1{letter-spacing:-1.5px}header.hero-header p{font-size:15px}
+      .stats-bar{gap:24px;padding:24px 18px}.stat{min-width:92px}.grid{grid-template-columns:1fr}main{padding:46px 18px 58px}
+      .featured-banner{padding:28px 24px}.fb-icon{font-size:40px}.modal{max-height:95vh}.mode-btn{padding:6px 9px}.language-select{max-width:104px}
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <a href="../../usecases-portal.html" style="position:absolute;top:18px;left:24px;z-index:1;color:#fff;text-decoration:none;font-size:13px;font-weight:700;">← Use Case Hub</a>
-  <div class="eyebrow">Engati · Hospitality Intelligence Suite</div>
-  <h1>Solene Hotels &amp; Resorts</h1>
-  <p>End-to-end conversational AI journeys for hotel stays, dining, guest services and travel discovery — live on WhatsApp and website chat.</p>
-  <div class="hbadges">
-    <span class="hbadge">6 Use Cases</span>
-    <span class="hbadge">WhatsApp + Website</span>
-    <span class="hbadge">Gen AI Powered</span>
-    <span class="hbadge">Meta Business Partner</span>
+<nav class="site-nav" aria-label="Primary navigation">
+  <a class="brand-logo" href="../../usecases-portal.html" aria-label="Engati Use Case Hub">
+    <img src="../../Logo's/engati-logo.svg" alt="Engati — Simply Intelligent" />
+  </a>
+  <div class="nav-actions">
+    <a class="nav-back" href="../../usecases-portal.html">← Use Case Hub</a>
+    <a class="nav-cta" href="../../index.html#partner-form">Become a Partner →</a>
+  </div>
+</nav>
+
+<header class="hero-header">
+  <div class="hero-inner">
+    <div class="eyebrow">Engati · Hospitality Intelligence Suite</div>
+    <h1>Solene Hotels &amp; Resorts</h1>
+    <p>End-to-end conversational AI journeys for hotel stays, dining, guest services and travel discovery — live on WhatsApp and website chat.</p>
+    <div class="hbadges">
+      <span class="hbadge">6 Use Cases</span>
+      <span class="hbadge">WhatsApp + Website</span>
+      <span class="hbadge">Gen AI Powered</span>
+      <span class="hbadge">Meta Business Partner</span>
+    </div>
   </div>
 </header>
 
@@ -400,6 +490,14 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
   <div class="modal" id="modalRoot">
+    <div class="mh" id="modalHeader">
+      <div class="mh-av" id="modalAvatar">🤖</div>
+      <div class="mh-info">
+        <div class="nm" id="modalTitle">Solene Concierge</div>
+        <div class="st" id="modalSub">● Online</div>
+      </div>
+      <button class="mc" onclick="closeModal()">✕</button>
+    </div>
     <div class="mode-bar">
       <div class="mode-switch" aria-label="Journey mode">
         <button class="mode-btn active" id="textModeBtn" type="button" onclick="setMode('text')">Text Agent</button>
@@ -416,14 +514,6 @@
     <div class="browser-bar" id="browserBar">
       <span class="bb-dot" style="background:#ff5f57"></span><span class="bb-dot" style="background:#febc2e"></span><span class="bb-dot" style="background:#28c840"></span>
       <div class="bb-url">🔒 solenehotels.com</div>
-    </div>
-    <div class="mh" id="modalHeader">
-      <div class="mh-av" id="modalAvatar">🤖</div>
-      <div class="mh-info">
-        <div class="nm" id="modalTitle">Solene Concierge</div>
-        <div class="st" id="modalSub">● Online</div>
-      </div>
-      <button class="mc" onclick="closeModal()">✕</button>
     </div>
     <div class="steps-bar" id="stepsBar"></div>
     <div class="chat-area" id="chatArea">

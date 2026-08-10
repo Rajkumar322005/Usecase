@@ -96,6 +96,13 @@
     .modal-overlay.open{display:flex}
     .modal{background:#fff;border-radius:16px;width:100%;max-width:430px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.28);transition:border-radius .2s}
 
+    /* shared journey controls */
+    .mode-bar{display:flex;align-items:center;gap:8px;padding:9px 10px;background:#fff;border-bottom:1px solid #eee;flex-shrink:0}
+    .mode-switch{display:flex;gap:3px;padding:3px;background:#f5eeee;border-radius:20px}
+    .mode-btn{border:0;background:transparent;color:#8b7b7f;border-radius:16px;padding:6px 12px;font:600 11px 'Inter',sans-serif;cursor:pointer}
+    .mode-btn.active{background:var(--red);color:#fff}
+    .language-select{margin-left:auto;border:1px solid #eadde0;background:#fff;color:#333;border-radius:18px;padding:6px 9px;font:600 11px 'Inter',sans-serif;outline:none}
+
     /* skin toggle */
     .chan-toggle{display:flex;background:#f0f0f0;padding:3px;gap:3px;flex-shrink:0}
     .ct-btn{flex:1;text-align:center;padding:8px 0;font-size:11px;font-weight:700;letter-spacing:.4px;color:#888;background:transparent;border:none;border-radius:8px;cursor:pointer;transition:background .2s,color .2s;display:flex;align-items:center;justify-content:center;gap:5px}
@@ -180,14 +187,24 @@
     .carousel-track::-webkit-scrollbar-thumb{background:#c8c0bb;border-radius:3px}
     .cc-card{flex:0 0 152px;background:#fff;border:1px solid var(--lg);border-radius:10px;overflow:hidden;scroll-snap-align:start;box-shadow:0 1px 3px rgba(0,0,0,.1)}
     .cc-img{height:78px;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,var(--red) 0%,#7a0e25 100%);color:#fff}
+    .cc-img.has-image{background-size:cover;background-position:center;font-size:0}
     .cc-body{padding:8px 9px 9px}
     .cc-tag{display:inline-block;font-size:8.5px;font-weight:700;background:var(--red-light);color:var(--red);padding:2px 6px;border-radius:6px;margin-bottom:4px;letter-spacing:.3px;text-transform:uppercase}
     .cc-title{font-size:12px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:2px}
     .cc-sub{font-size:10px;color:#888;margin-bottom:6px}
     .cc-price{font-size:11.5px;font-weight:700;color:var(--red)}
+    .cc-action{display:block;width:100%;margin-top:7px;border:0;border-radius:14px;background:var(--red);color:#fff;padding:5px 7px;font-size:10px;font-weight:700;cursor:pointer}
     .cc-hint{font-size:10px;color:#999;padding:0 2px 2px;display:flex;align-items:center;gap:4px}
     .chat-area.skin-web .cc-card{border-radius:6px;box-shadow:none;border-color:var(--web-border)}
     .chat-area.skin-web .cc-img{background:#1a1a1a}
+
+    .rich-card{align-self:flex-start;max-width:90%;background:#fff;border-left:3px solid var(--red);border-radius:8px;padding:10px 12px;box-shadow:0 1px 2px rgba(0,0,0,.1);font-size:12px;line-height:1.55;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+    .rich-card.visible{opacity:1;transform:translateY(0)}
+    .rich-card strong:first-child{display:block;color:var(--red);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+    .demo-form{align-self:flex-start;width:92%;display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#fff;border-radius:8px;padding:10px;border:1px solid #eadde0}
+    .demo-form input,.demo-form select{width:100%;min-width:0;border:1px solid #ddd;border-radius:6px;padding:7px 8px;font:11px 'Inter',sans-serif;background:#fff}
+    .demo-form .full{grid-column:1/-1}
+    .demo-form button{grid-column:1/-1;border:0;border-radius:16px;background:var(--red);color:#fff;padding:7px 10px;font:700 11px 'Inter',sans-serif;cursor:pointer}
 
     /* quick replies */
     .qr{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;background:var(--wa-bg);opacity:0;transition:opacity .3s;pointer-events:none;flex-shrink:0}
@@ -223,6 +240,8 @@
       header{padding:40px 20px}
       .featured-banner{flex-direction:column;text-align:center}
       .modal{max-height:95vh}
+      .mode-btn{padding:6px 9px}
+      .language-select{max-width:104px}
     }
   </style>
 </head>
@@ -232,9 +251,9 @@
   <a href="../../usecases-portal.html" style="position:absolute;top:18px;left:24px;z-index:1;color:#fff;text-decoration:none;font-size:13px;font-weight:700;">← Use Case Hub</a>
   <div class="eyebrow">Engati · Hospitality Intelligence Suite</div>
   <h1>Solene Hotels &amp; Resorts</h1>
-  <p>End-to-end conversational AI journeys across every guest touchpoint — from first search to loyalty renewal — live on WhatsApp and website chat.</p>
+  <p>End-to-end conversational AI journeys for hotel stays, dining, guest services and travel discovery — live on WhatsApp and website chat.</p>
   <div class="hbadges">
-    <span class="hbadge">11 Use Cases</span>
+    <span class="hbadge">6 Use Cases</span>
     <span class="hbadge">WhatsApp + Website</span>
     <span class="hbadge">Gen AI Powered</span>
     <span class="hbadge">Meta Business Partner</span>
@@ -242,27 +261,27 @@
 </header>
 
 <div class="stats-bar">
-  <div class="stat"><div class="num">11+</div><div class="label">Use Cases</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">Use Cases</div></div>
   <div class="stat"><div class="num">24/7</div><div class="label">Guest Support</div></div>
-  <div class="stat"><div class="num">2.4x</div><div class="label">Direct Bookings</div></div>
-  <div class="stat"><div class="num">55%</div><div class="label">Front-desk Load Cut</div></div>
-  <div class="stat"><div class="num">38%</div><div class="label">Abandoned Booking Recovered</div></div>
+  <div class="stat"><div class="num">3</div><div class="label">Business Journeys</div></div>
+  <div class="stat"><div class="num">2</div><div class="label">Digital Channels</div></div>
+  <div class="stat"><div class="num">API</div><div class="label">Integration Ready</div></div>
 </div>
 
 <main>
   <div class="journey-rail">
-    <span class="rail-chip">Pre-Arrival</span><span class="rail-chip">Arrival</span><span class="rail-chip">In-Stay</span><span class="rail-chip">Departure</span><span class="rail-chip">Post-Stay</span><span class="rail-chip">Back-of-House</span>
+    <span class="rail-chip">Hotel Stay</span><span class="rail-chip">Dining</span><span class="rail-chip">Guest Experience</span><span class="rail-chip">Travel Sales</span><span class="rail-chip">Travel Support</span><span class="rail-chip">Customer Support</span>
   </div>
   <div class="sec-label">Interactive Journeys</div>
   <div class="sec-title">Click any card to explore the live conversation flow</div>
 
   <!-- FEATURED -->
-  <div class="featured-banner" onclick="openFlow(8)">
+  <div class="featured-banner" onclick="openFlow(0)">
     <div class="fb-icon">🏨</div>
     <div class="fb-content">
-      <div class="fb-badge">⭐ Featured — Gen AI Concierge Demo</div>
-      <h2>Room Search, Compare &amp; Book — End to End</h2>
-      <p>AI-powered WhatsApp &amp; website concierge helps guests swipe through properties, compare rate plans, check offers, and complete booking — all in one seamless conversation.</p>
+      <div class="fb-badge">⭐ Featured — Reservations Journey</div>
+      <h2>Hotel Stay Discovery &amp; Booking</h2>
+      <p>Explore an integration-ready hotel journey from stay requirements and room discovery to guest details and a reservation request.</p>
       <button class="fb-cta">▶ Watch the Full Journey</button>
     </div>
   </div>
@@ -272,170 +291,102 @@
     <div class="card fc" onclick="openFlow(0)">
       <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
       <div class="card-top">
-        <div class="card-icon">🛎️</div>
-        <div class="card-meta"><div class="card-tag">Pre-Arrival · Acquisition</div><h3>Reservations &amp; Direct Booking</h3></div>
+        <div class="card-icon">🏨</div>
+        <div class="card-meta"><div class="card-tag">Reservations</div><h3>Hotel Stay Discovery &amp; Booking</h3></div>
       </div>
       <ul>
-        <li>Room search by dates, occupancy &amp; view</li>
-        <li>Swipeable room carousel with live rates</li>
-        <li>Add-on upsell — breakfast, airport pickup</li>
-        <li>Secure payment link &amp; instant confirmation</li>
-        <li>Booking reference sent as e-voucher</li>
+        <li>Property, date &amp; guest requirement capture</li>
+        <li>Room discovery with rich room carousel</li>
+        <li>Rates, amenities &amp; room details</li>
+        <li>Guest information &amp; special requests</li>
+        <li>Reservation submission / confirmation</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Search</span><span class="step-chip">Compare</span><span class="step-chip">Upsell</span><span class="step-chip">Pay</span><span class="step-chip">Confirm</span></div>
+      <div class="flow-steps"><span class="step-chip">Stay</span><span class="step-chip">Dates</span><span class="step-chip">Rooms</span><span class="step-chip">Details</span><span class="step-chip">Guest</span><span class="step-chip">Book</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
     <div class="card" onclick="openFlow(1)">
       <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
       <div class="card-top">
-        <div class="card-icon">🧳</div>
-        <div class="card-meta"><div class="card-tag">Pre-Arrival · Onboarding</div><h3>Digital Check-in &amp; Arrival Prep</h3></div>
+        <div class="card-icon">🍽️</div>
+        <div class="card-meta"><div class="card-tag">Dining</div><h3>Restaurant &amp; Table Reservations</h3></div>
       </div>
       <ul>
-        <li>ID &amp; passport upload before arrival</li>
-        <li>Room preference &amp; special occasion notes</li>
-        <li>Early check-in / late checkout upsell</li>
-        <li>Estimated arrival time capture</li>
-        <li>Digital room key issued on approach</li>
+        <li>Restaurant &amp; outlet discovery</li>
+        <li>Menu and dining information</li>
+        <li>Guest count, date &amp; time capture</li>
+        <li>Dietary / special request capture</li>
+        <li>Table reservation submission</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Welcome</span><span class="step-chip">ID</span><span class="step-chip">Preferences</span><span class="step-chip">Upsell</span><span class="step-chip">Key</span></div>
+      <div class="flow-steps"><span class="step-chip">Dining</span><span class="step-chip">Restaurant</span><span class="step-chip">Guests</span><span class="step-chip">Slot</span><span class="step-chip">Details</span><span class="step-chip">Reserve</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
     <div class="card" onclick="openFlow(2)">
-      <div class="chan-row"><span class="chan">WhatsApp</span></div>
+      <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
       <div class="card-top">
-        <div class="card-icon">🛏️</div>
-        <div class="card-meta"><div class="card-tag">In-Stay</div><h3>Concierge &amp; In-Room Requests</h3></div>
+        <div class="card-icon">🛎️</div>
+        <div class="card-meta"><div class="card-tag">Guest Experience</div><h3>Guest Services &amp; Concierge</h3></div>
       </div>
       <ul>
-        <li>Room service ordering with live menu</li>
-        <li>Housekeeping &amp; amenity requests</li>
-        <li>Wake-up call &amp; spa slot booking</li>
-        <li>Instant issue escalation to duty manager</li>
-        <li>Request status tracking in-chat</li>
+        <li>In-stay guest assistance</li>
+        <li>Room service &amp; housekeeping requests</li>
+        <li>Hotel facilities &amp; dining information</li>
+        <li>Transport / local information</li>
+        <li>Human concierge escalation</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Request</span><span class="step-chip">Menu</span><span class="step-chip">Confirm</span><span class="step-chip">Track</span><span class="step-chip">Escalate</span></div>
+      <div class="flow-steps"><span class="step-chip">Identify</span><span class="step-chip">Request</span><span class="step-chip">Service</span><span class="step-chip">Status</span><span class="step-chip">Support</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
     <div class="card" onclick="openFlow(3)">
       <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
       <div class="card-top">
-        <div class="card-icon">💎</div>
-        <div class="card-meta"><div class="card-tag">In-Stay · Engagement</div><h3>Guest Loyalty &amp; Personalization</h3></div>
+        <div class="card-icon">✈️</div>
+        <div class="card-meta"><div class="card-tag">Travel Sales</div><h3>Tour Package Discovery &amp; Lead Qualification</h3></div>
       </div>
       <ul>
-        <li>Loyalty tier &amp; points balance lookup</li>
-        <li>Personalised offers based on stay history</li>
-        <li>Birthday &amp; anniversary perks</li>
-        <li>Tier upgrade progress tracking</li>
-        <li>Redeem points for upgrades &amp; dining</li>
+        <li>Destination / tour intent discovery</li>
+        <li>Traveller profile &amp; travel-date capture</li>
+        <li>Matching tour package carousel</li>
+        <li>Departure &amp; itinerary exploration</li>
+        <li>Qualified lead capture &amp; CRM handoff</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Balance</span><span class="step-chip">Offer</span><span class="step-chip">Redeem</span><span class="step-chip">Upgrade</span><span class="step-chip">Confirm</span></div>
+      <div class="flow-steps"><span class="step-chip">Intent</span><span class="step-chip">Profile</span><span class="step-chip">Tours</span><span class="step-chip">Details</span><span class="step-chip">Lead</span><span class="step-chip">Advisor</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
     <div class="card" onclick="openFlow(4)">
       <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
       <div class="card-top">
-        <div class="card-icon">🧾</div>
-        <div class="card-meta"><div class="card-tag">Departure · Finance</div><h3>Billing, Folio &amp; Checkout</h3></div>
+        <div class="card-icon">🗺️</div>
+        <div class="card-meta"><div class="card-tag">Travel Support</div><h3>Tour Details &amp; Travel Advisor</h3></div>
       </div>
       <ul>
-        <li>Live folio &amp; itemised charge preview</li>
-        <li>Split bill between room &amp; incidentals</li>
-        <li>Express checkout without front-desk queue</li>
-        <li>Digital invoice &amp; GST receipt</li>
-        <li>Dispute or charge query handling</li>
+        <li>Itinerary &amp; places-to-visit queries</li>
+        <li>Departure date &amp; duration information</li>
+        <li>Inclusions, pricing &amp; policy questions</li>
+        <li>Visa / insurance information where available</li>
+        <li>Travel Advisor handoff</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Folio</span><span class="step-chip">Split</span><span class="step-chip">Pay</span><span class="step-chip">Checkout</span><span class="step-chip">Invoice</span></div>
+      <div class="flow-steps"><span class="step-chip">Tour</span><span class="step-chip">Explore</span><span class="step-chip">Dates</span><span class="step-chip">Details</span><span class="step-chip">Advisor</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
     <div class="card" onclick="openFlow(5)">
       <div class="chan-row"><span class="chan">WhatsApp</span></div>
       <div class="card-top">
-        <div class="card-icon">🔁</div>
-        <div class="card-meta"><div class="card-tag">Post-Stay · Retention</div><h3>Feedback &amp; Win-back</h3></div>
+        <div class="card-icon">🎧</div>
+        <div class="card-meta"><div class="card-tag">Support</div><h3>Booking &amp; Enquiry Support</h3></div>
       </div>
       <ul>
-        <li>Post-stay review &amp; NPS capture</li>
-        <li>Service recovery for low ratings</li>
-        <li>Lapsed-guest re-engagement outreach</li>
-        <li>Anniversary-of-stay return offers</li>
-        <li>Referral &amp; friends-and-family codes</li>
+        <li>Existing reservation / enquiry assistance</li>
+        <li>Modification or cancellation request</li>
+        <li>Hotel and tour FAQ support</li>
+        <li>Incomplete enquiry recovery</li>
+        <li>Human-support escalation</li>
       </ul>
-      <div class="flow-steps"><span class="step-chip">Feedback</span><span class="step-chip">Recover</span><span class="step-chip">Re-engage</span><span class="step-chip">Offer</span><span class="step-chip">Refer</span></div>
-      <button class="view-flow-btn">▶ View Journey</button>
-    </div>
-
-    <div class="card" onclick="openFlow(6)">
-      <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
-      <div class="card-top">
-        <div class="card-icon">💒</div>
-        <div class="card-meta"><div class="card-tag">Events</div><h3>Weddings, MICE &amp; Banquets</h3></div>
-      </div>
-      <ul>
-        <li>Venue &amp; date availability check</li>
-        <li>Swipeable package comparison carousel</li>
-        <li>Guest headcount &amp; room block quoting</li>
-        <li>Site visit scheduling</li>
-        <li>Advance booking &amp; contract dispatch</li>
-      </ul>
-      <div class="flow-steps"><span class="step-chip">Enquiry</span><span class="step-chip">Package</span><span class="step-chip">Quote</span><span class="step-chip">Site Visit</span><span class="step-chip">Book</span></div>
-      <button class="view-flow-btn">▶ View Journey</button>
-    </div>
-
-    <div class="card" onclick="openFlow(7)">
-      <div class="chan-row"><span class="chan">WhatsApp</span></div>
-      <div class="card-top">
-        <div class="card-icon">🧹</div>
-        <div class="card-meta"><div class="card-tag">Back-of-House · Operations</div><h3>Staff &amp; Housekeeping Coordination</h3></div>
-      </div>
-      <ul>
-        <li>Daily arrivals / departures briefing</li>
-        <li>Room-ready &amp; turnover task assignment</li>
-        <li>Maintenance issue routing &amp; SLA tracking</li>
-        <li>Shift handover notes</li>
-        <li>Staff leave &amp; roster requests</li>
-      </ul>
-      <div class="flow-steps"><span class="step-chip">Briefing</span><span class="step-chip">Assign</span><span class="step-chip">Maintenance</span><span class="step-chip">Handover</span><span class="step-chip">Roster</span></div>
-      <button class="view-flow-btn">▶ View Journey</button>
-    </div>
-
-    <div class="card" onclick="openFlow(9)">
-      <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
-      <div class="card-top">
-        <div class="card-icon">🗺️</div>
-        <div class="card-meta"><div class="card-tag">In-Stay · Discovery</div><h3>Local Discovery &amp; Activities</h3></div>
-      </div>
-      <ul>
-        <li>Curated things-to-do carousel near the property</li>
-        <li>Restaurant &amp; table reservations</li>
-        <li>Excursion &amp; activity booking</li>
-        <li>Cab &amp; airport transfer arrangement</li>
-        <li>Weather-aware itinerary suggestions</li>
-      </ul>
-      <div class="flow-steps"><span class="step-chip">Explore</span><span class="step-chip">Recommend</span><span class="step-chip">Reserve</span><span class="step-chip">Transfer</span><span class="step-chip">Confirm</span></div>
-      <button class="view-flow-btn">▶ View Journey</button>
-    </div>
-
-    <div class="card" onclick="openFlow(10)">
-      <div class="chan-row"><span class="chan">WhatsApp</span><span class="chan web">Website</span></div>
-      <div class="card-top">
-        <div class="card-icon">🚨</div>
-        <div class="card-meta"><div class="card-tag">Recovery</div><h3>Abandoned Booking Recovery</h3></div>
-      </div>
-      <ul>
-        <li>Detect dropped bookings mid-checkout</li>
-        <li>Personalised re-engagement message</li>
-        <li>Address objections — price, dates, room type</li>
-        <li>Limited-time incentive to complete booking</li>
-        <li>One-tap resume of saved booking</li>
-      </ul>
-      <div class="flow-steps"><span class="step-chip">Detect</span><span class="step-chip">Re-engage</span><span class="step-chip">Objection</span><span class="step-chip">Incentive</span><span class="step-chip">Convert</span></div>
+      <div class="flow-steps"><span class="step-chip">Identify</span><span class="step-chip">Booking</span><span class="step-chip">Request</span><span class="step-chip">Resolve</span><span class="step-chip">Handoff</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
     </div>
 
@@ -449,6 +400,15 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
   <div class="modal" id="modalRoot">
+    <div class="mode-bar">
+      <div class="mode-switch" aria-label="Journey mode">
+        <button class="mode-btn active" id="textModeBtn" type="button" onclick="setMode('text')">Text Agent</button>
+        <button class="mode-btn" id="structuredModeBtn" type="button" onclick="setMode('structured')">Structured</button>
+      </div>
+      <select class="language-select" id="languageSelect" aria-label="Language" onchange="setLanguage(this.value)">
+        <option value="en">🌐 English</option>
+      </select>
+    </div>
     <div class="chan-toggle">
       <button class="ct-btn active" id="chanWaBtn" onclick="setChannel('wa')"><span class="dot"></span>WhatsApp</button>
       <button class="ct-btn web" id="chanWebBtn" onclick="setChannel('web')"><span class="dot"></span>Website Chat</button>
@@ -479,436 +439,516 @@
 </div>
 
 <script>
+const roomImages = {
+  deluxe:"../../assets/hospitality/deluxe-king-room.png",
+  club:"../../assets/hospitality/grand-club-room.png",
+  suite:"../../assets/hospitality/executive-suite.png"
+};
+
 const flows = [
-
-  // ── 0: RESERVATIONS & DIRECT BOOKING ────────────────────────
   {
-    title:"Reservations Desk", icon:"🛎️", hd:"#ae1536",
-    steps:["Search","Compare","Upsell","Payment","Confirmation"],
+    title:"Hotel Reservations", icon:"🏨", hd:"#ae1536",
+    steps:["Stay","Dates","Rooms","Details","Guest","Book"],
     messages:[
-      {from:"bot", step:0, text:"👋 Welcome to *Solene Hotels & Resorts*! I can help you find and book the perfect stay.\n\nWhich property and dates are you looking at?"},
-      {from:"user", step:0, text:"Solene Goa Beach Resort, 14–17 Aug, 2 adults."},
-      {from:"bot", step:0, text:"🏖️ *Solene Goa Beach Resort*\n📅 14–17 Aug 2026 (3 nights) · 2 Adults\n\nChecking live availability... ✅ Rooms available!\n\nWhat kind of view do you prefer — Garden, Pool, or Sea-facing?"},
-      {from:"user", step:1, text:"Sea-facing please."},
-      {from:"bot", step:1, text:"🌊 Here are our sea-view rooms — swipe to compare:"},
-      {from:"bot", step:1, type:"carousel", items:[
-        {icon:"🌿", tag:"Room Only", title:"Garden View Deluxe", sub:"32 sqm · King bed", price:"₹10,200/night"},
-        {icon:"🌊", tag:"Room Only", title:"Sea View Deluxe", sub:"34 sqm · Balcony", price:"₹14,500/night"},
-        {icon:"🛋️", tag:"Breakfast incl.", title:"Sea View Suite", sub:"48 sqm · Private deck", price:"₹21,000/night"}
+      {from:"bot",step:0,text:"🏨 Welcome to *Solene Grand Mumbai*.\n\nI'm your Hotel Assistant. I can help you explore rooms, dining and hotel services. How can I help today?"},
+      {from:"user",step:0,text:"I'm looking for a room in Mumbai for this weekend."},
+      {from:"bot",step:1,text:"Absolutely. What dates would you like to stay?"},
+      {from:"user",step:1,text:"15 to 17 August."},
+      {from:"bot",step:1,text:"Great. How many guests and rooms should I check?"},
+      {from:"user",step:1,text:"Two adults, one room."},
+      {from:"bot",step:2,text:"Perfect. Checking room availability and current demo rates..."},
+      {from:"bot",step:2,type:"carousel",items:[
+        {image:roomImages.deluxe,tag:"City View",title:"Deluxe King Room",sub:"2 Guests · King Bed · Wi-Fi · Breakfast optional",price:"₹12,500/night · Illustrative Demo Rate",action:"View Room"},
+        {image:roomImages.club,tag:"Club Access",title:"Grand Club Room",sub:"2 Guests · King Bed · Breakfast included",price:"₹16,500/night · Illustrative Demo Rate",action:"View Room"},
+        {image:roomImages.suite,tag:"Separate Living Area",title:"Executive Suite",sub:"2–3 Guests · King Bed · City View",price:"₹22,000/night · Illustrative Demo Rate",action:"View Room"}
       ]},
-      {from:"user", step:1, text:"The Sea View Suite on the right looks great."},
-      {from:"bot", step:2, text:"Great pick! 🌟 Guests booking this room often add:\n\n➕ Airport pickup (Goa/GOI) — ₹1,800\n➕ Candlelight dinner on the beach — ₹4,500\n➕ Couple's spa session (60 min) — ₹5,200\n\nWould you like to add any of these?"},
-      {from:"user", step:2, text:"Add the airport pickup only."},
-      {from:"bot", step:3, text:"📋 *Booking Summary*\n\n🏨 Sea View Suite × 3 nights — ₹63,000\n🍳 Breakfast included\n🚗 Airport pickup — ₹1,800\n──────────────────\n💰 *Total: ₹64,800* (taxes included)\n\n🔗 Secure payment: pay.solenehotels.com/goa-aug14\n\nShall I hold this room while you pay?"},
-      {from:"user", step:3, text:"Yes, paying now."},
-      {from:"bot", step:3, text:"⏳ Room held for *10 minutes*. Awaiting payment confirmation..."},
-      {from:"user", step:4, text:"Done, payment complete!"},
-      {from:"bot", step:4, text:"🎉 *Booking Confirmed!*\n\n🔖 Confirmation: *SOL-GOA-88213*\n🏨 Solene Goa Beach Resort\n📅 14–17 Aug 2026 · Sea View Suite\n🚗 Airport pickup arranged\n📧 E-voucher sent to your email\n\nWe can't wait to host you! Reply anytime before your stay if you need anything. 🌴"},
-    ]
-  },
-
-  // ── 1: DIGITAL CHECK-IN & ARRIVAL PREP ──────────────────────
-  {
-    title:"Arrival Desk", icon:"🧳", hd:"#075e54",
-    steps:["Welcome","ID Upload","Preferences","Upsell","Digital Key"],
-    messages:[
-      {from:"bot", step:0, text:"🌴 Hi *Meera*! Your stay at *Solene Goa Beach Resort* is coming up on *14th August*.\n\nLet's get you checked in digitally so you can skip the front-desk queue. Ready?"},
-      {from:"user", step:0, text:"Yes, let's do it!"},
-      {from:"bot", step:1, text:"📎 Please upload a photo of your *Passport / Aadhar / Driving Licence* for all guests staying in the room.\n\nThis is required as per local guest registration rules and is fully encrypted."},
-      {from:"user", step:1, text:"[ID photo uploaded]"},
-      {from:"bot", step:1, text:"✅ ID received and verified!\n\nOne more for your companion, or just yourself?"},
-      {from:"user", step:1, text:"Just myself and my husband — his ID is also uploaded."},
-      {from:"bot", step:2, text:"Perfect, both verified ✅\n\nA couple of quick preferences to make your stay smoother:\n\n🛏️ Bed type: King or Twin?\n🎉 Any special occasion? (Anniversary, Birthday, etc.)"},
-      {from:"user", step:2, text:"King bed, and it's our anniversary!"},
-      {from:"bot", step:2, text:"💐 Congratulations! We've noted a *King bed* and flagged this as an *Anniversary Stay* — our team will add a little surprise for you both. 🥂"},
-      {from:"user", step:3, text:"That's sweet, thank you!"},
-      {from:"bot", step:3, text:"🕐 You're arriving around 2 PM — standard check-in is 3 PM.\n\nWould you like *Early Check-in (guaranteed by 11 AM)* for ₹2,000, so your room is ready the moment you land?"},
-      {from:"user", step:3, text:"Yes, worth it after the flight."},
-      {from:"bot", step:4, text:"✅ *Early Check-in Confirmed* — Room guaranteed by 11 AM\n\n🔑 *Your Digital Room Key* will activate automatically once you're within 500m of the resort — no front-desk stop needed.\n\n📍 Resort location: maps.solenehotels.com/goa\n\nSafe travels, Meera — see you on the 14th! 🌊"},
-    ]
-  },
-
-  // ── 2: CONCIERGE & IN-ROOM REQUESTS ─────────────────────────
-  {
-    title:"In-Room Concierge", icon:"🛏️", hd:"#1a73e8",
-    steps:["Request","Menu","Confirmation","Tracking","Escalation"],
-    messages:[
-      {from:"bot", step:0, text:"🛎️ Hi *Room 412*! I'm your in-stay concierge, available 24/7. What can I help with — room service, housekeeping, spa, or something else?"},
-      {from:"user", step:0, text:"Can I see the room service menu?"},
-      {from:"bot", step:1, text:"🍽️ *Room Service — Available Now*\n\n🥗 Caesar Salad — ₹650\n🍕 Margherita Pizza — ₹800\n🍛 Goan Fish Curry & Rice — ₹950\n🍰 Chocolate Lava Cake — ₹450\n🍹 Mocktail of the day — ₹400\n\nWhat would you like to order?"},
-      {from:"user", step:1, text:"1 Fish Curry, 1 Lava Cake and a mocktail please."},
-      {from:"bot", step:2, text:"📋 *Order Summary — Room 412*\n\n🍛 Goan Fish Curry & Rice — ₹950\n🍰 Chocolate Lava Cake — ₹450\n🍹 Mocktail — ₹400\n──────────────────\n💰 Total: ₹1,800 (added to room folio)\n⏱️ Est. delivery: *35 minutes*\n\nConfirm this order?"},
-      {from:"user", step:2, text:"Yes, confirm please."},
-      {from:"bot", step:3, text:"✅ *Order placed!* Kitchen has been notified.\n\n📍 Status: Preparing → will update you at each step\n\nAnything else — housekeeping or a wake-up call?"},
-      {from:"user", step:3, text:"Yes, extra towels please, and a wake-up call at 7 AM tomorrow."},
-      {from:"bot", step:3, text:"✅ *Housekeeping notified* — extra towels on the way (~10 min)\n✅ *Wake-up call set* — 7:00 AM tomorrow\n\nI'll keep you posted on your food order too. 😊"},
-      {from:"user", step:4, text:"The AC in the room isn't cooling properly."},
-      {from:"bot", step:4, text:"⚠️ Sorry about that, Room 412! I've escalated this to our *Duty Manager* right away.\n\n🔧 Maintenance team ETA: *15 minutes*\n👤 Duty Manager: Rohan D'Souza will also check in with you personally.\n\nWe'll make this right — thank you for letting us know immediately. 🙏"},
-    ]
-  },
-
-  // ── 3: LOYALTY & PERSONALIZATION ────────────────────────────
-  {
-    title:"Solene Rewards", icon:"💎", hd:"#5b21b6",
-    steps:["Balance","Offer","Redeem","Upgrade","Confirmation"],
-    messages:[
-      {from:"bot", step:0, text:"💎 Hi *Arjun*! Welcome back to *Solene Rewards*.\n\nHere's your loyalty snapshot 👇"},
-      {from:"user", step:0, text:"Hi! How many points do I have?"},
-      {from:"bot", step:1, text:"⭐ *Your Solene Rewards Status*\n\n🏅 Tier: *Gold Member*\n✨ Points balance: *18,450 pts*\n📈 4,550 pts to reach *Platinum*\n🗓️ Member since: March 2023\n\nYou also have a personalised offer waiting!"},
-      {from:"user", step:1, text:"Ooh, what's the offer?"},
-      {from:"bot", step:1, text:"🎁 *Just for you, Arjun:*\n\nBased on your last 3 stays at our Goa & Udaipur properties, we're offering:\n\n✨ *Complimentary room upgrade* on your next booking\n✨ *20% off spa treatments* — valid till 30 Sept\n\nWant to redeem the upgrade on an upcoming stay?"},
-      {from:"user", step:2, text:"Yes, I have a booking for Udaipur next month."},
-      {from:"bot", step:2, text:"🔍 Found it — *Solene Udaipur Palace*, 5–8 Sept, Deluxe Lake View room.\n\nRedeeming your Gold perk would upgrade this to a *Premium Lake-Facing Suite* at no extra cost. Confirm?"},
-      {from:"user", step:2, text:"Yes please, confirm!"},
-      {from:"bot", step:3, text:"🎉 *Upgrade Confirmed!*\n\n🏨 Solene Udaipur Palace\n📅 5–8 Sept 2026\n🛏️ Premium Lake-Facing Suite (upgraded from Deluxe Lake View)\n💎 200 bonus points credited for redemption\n\nYour points balance is now *18,650 pts*."},
-      {from:"user", step:4, text:"Amazing, thank you!"},
-      {from:"bot", step:4, text:"Our pleasure, Arjun! 🙏 A little more about your journey to *Platinum*:\n\n📈 4,350 pts away — roughly *2 more stays*\n🏆 Platinum unlocks: airport lounge access, guaranteed late checkout, and a dedicated concierge line\n\nSee you in Udaipur! 🌇"},
-    ]
-  },
-
-  // ── 4: BILLING, FOLIO & CHECKOUT ────────────────────────────
-  {
-    title:"Express Checkout", icon:"🧾", hd:"#1a1a2e",
-    steps:["Folio","Split Bill","Payment","Checkout","Invoice"],
-    messages:[
-      {from:"bot", step:0, text:"🧾 Good morning, *Room 208*! Your checkout is scheduled for today at 11 AM.\n\nWould you like to review your folio and check out via chat — no front-desk queue?"},
-      {from:"user", step:0, text:"Yes please, show me the bill."},
-      {from:"bot", step:1, text:"📄 *Folio Summary — Room 208 (3 nights)*\n\n🏨 Room charges: ₹43,500\n🍽️ Room service (2 orders): ₹3,200\n🧖 Spa session: ₹5,200\n🚗 Airport pickup: ₹1,800\n🍹 Minibar: ₹950\n──────────────────\n💰 *Total: ₹54,650* (incl. taxes)\n\nWould you like to split this or pay in full?"},
-      {from:"user", step:1, text:"Can we split — room on my card, rest on my partner's?"},
-      {from:"bot", step:1, text:"Sure! Here's the split:\n\n💳 *Card 1 (yours):* Room charges — ₹43,500\n💳 *Card 2 (partner):* Room service + Spa + Pickup + Minibar — ₹11,150\n\nShall I send both payment links?"},
-      {from:"user", step:2, text:"Yes, send both."},
-      {from:"bot", step:2, text:"🔗 *Payment Links Sent*\n\nCard 1: pay.solenehotels.com/208-a\nCard 2: pay.solenehotels.com/208-b\n\nWaiting for both payments to confirm checkout..."},
-      {from:"user", step:2, text:"Both done!"},
-      {from:"bot", step:3, text:"✅ *Both payments received — thank you!*\n\n🚪 *Checkout Complete*\n🕚 Checked out at 10:42 AM\n🧳 Bell desk notified for luggage assistance if needed\n\nYour room key will deactivate at 11 AM automatically."},
-      {from:"user", step:4, text:"Can I get the GST invoice for my company?"},
-      {from:"bot", step:4, text:"📧 *Invoice Sent!*\n\n🧾 GST Invoice #SOL-INV-24471\n🏢 Billed to: as per your company details on file\n📎 PDF sent to your registered email\n\nThank you for staying with Solene, and safe travels! We hope to welcome you back soon. 🌴"},
-    ]
-  },
-
-  // ── 5: FEEDBACK & WIN-BACK ──────────────────────────────────
-  {
-    title:"Guest Relations", icon:"🔁", hd:"#0d7377",
-    steps:["Feedback","Recovery","Re-engagement","Offer","Referral"],
-    messages:[
-      {from:"bot", step:0, text:"🙏 Hi *Kavya*! Thank you for staying with us at *Solene Udaipur Palace*.\n\nWe'd love your feedback — how was your stay overall? (1–5 ⭐)"},
-      {from:"user", step:0, text:"3 stars. It was okay but the room wasn't very clean on arrival."},
-      {from:"bot", step:1, text:"We're really sorry to hear that, Kavya — that's not the standard we hold ourselves to. 🙏\n\nCould you tell me a bit more so we can make this right and address it with our housekeeping team?"},
-      {from:"user", step:1, text:"There was dust on the furniture and the bathroom wasn't fully stocked."},
-      {from:"bot", step:1, text:"Thank you for the detail — this has been logged and escalated to our *Housekeeping Head* and *GM* for review. 📋\n\nAs an apology, we'd like to offer you *2,500 Solene Reward points* and a *15% discount* on your next stay at any property. Would that help?"},
-      {from:"user", step:1, text:"That's kind, thank you — I appreciate it."},
-      {from:"bot", step:2, text:"✅ *2,500 points* credited to your account\n✅ *15% off* code: WELCOME-BACK-KAVYA (valid 6 months)\n\nWe genuinely hope to host you again and show you the experience we aim for. 💙"},
-      {from:"user", step:3, text:"[62 days later]"},
-      {from:"bot", step:3, text:"👋 Hi Kavya! It's been a couple of months since we last had you as a guest.\n\nOur Udaipur property has since completed a full room refresh — new furnishings, upgraded amenities, and a new executive housekeeping team. We'd love another chance to host you. 🏨"},
-      {from:"user", step:4, text:"Okay, I might consider it — any offer?"},
-      {from:"bot", step:4, text:"🎁 *Welcome Back Offer*\n\n✨ Your saved 15% discount code is still valid\n✨ Complimentary room upgrade on arrival\n✨ Personal check-in with our GM to ensure everything's perfect\n\nShall I check availability for your preferred dates?"},
-      {from:"user", step:4, text:"Yes, and I'll tell my sister too, she loved your Goa property."},
-      {from:"bot", step:4, text:"That means a lot, thank you Kavya! 🙏\n\n🎉 Here's a *Referral Code* for your sister — she gets 10% off her first booking, and you'll earn 1,000 bonus points once she completes her stay.\n\nCode: KAVYA-REFER-SOL\n\nLooking forward to hosting you both again! 🌇"},
-    ]
-  },
-
-  // ── 6: WEDDINGS, MICE & BANQUETS ────────────────────────────
-  {
-    title:"Events & Celebrations", icon:"💒", hd:"#8a1029",
-    steps:["Enquiry","Packages","Quote","Site Visit","Booking"],
-    messages:[
-      {from:"bot", step:0, text:"💐 Hi *Neha*! Thank you for your interest in hosting an event at *Solene Udaipur Palace*.\n\nAre you planning a wedding, corporate offsite, or a private celebration?"},
-      {from:"user", step:0, text:"A wedding — around 150 guests, sometime in December."},
-      {from:"bot", step:1, text:"🎉 Wonderful! December is one of our most popular wedding months at the Palace lawns.\n\nHere are our wedding packages — swipe to compare:"},
-      {from:"bot", step:1, type:"carousel", items:[
-        {icon:"🌿", tag:"150 guests", title:"Heritage Lawn", sub:"Venue + basic decor + catering", price:"From ₹8.5L"},
-        {icon:"🏛️", tag:"150 guests", title:"Palace Grand", sub:"Lawn + banquet hall, premium decor + bar", price:"From ₹18.6L"},
-        {icon:"👑", tag:"150 guests", title:"Royal Experience", sub:"Full property buyout, curated decor", price:"From ₹35L"}
-      ]},
-      {from:"user", step:1, text:"Palace Grand sounds right. What's included exactly?"},
-      {from:"bot", step:2, text:"📋 *Palace Grand — Indicative Quote (150 guests)*\n\n🏛️ Venue hire (lawn + banquet hall): ₹4,50,000\n🍽️ Catering (multi-cuisine, veg + non-veg): ₹2,25,000\n🎊 Decor (premium): ₹1,80,000\n🥂 Bar package: ₹1,10,000\n🛏️ Guest room block (30 rooms, 2 nights): ₹9,00,000\n──────────────────\n💰 *Estimated Total: ₹18,65,000*\n\nWould you like to visit the property before finalising?"},
-      {from:"user", step:3, text:"Yes, can we schedule a site visit?"},
-      {from:"bot", step:3, text:"📅 *Available Site Visit Slots*\n\n• Sat 25 Jul — 11:00 AM (with our Wedding Curator)\n• Sun 26 Jul — 4:00 PM\n• Wed 29 Jul — 10:00 AM\n\nOur curator will also walk you through decor mock-ups and menu tasting options."},
-      {from:"user", step:3, text:"Saturday 11 AM works."},
-      {from:"bot", step:3, text:"✅ *Site Visit Confirmed*\n\n📅 Sat 25 Jul, 11:00 AM\n👤 Wedding Curator: Ms. Ritika Shah\n📍 Solene Udaipur Palace, Lakefront Wing\n📧 Calendar invite sent\n\nSee you soon, Neha!"},
-      {from:"user", step:4, text:"After the visit — how do we lock the date?"},
-      {from:"bot", step:4, text:"📝 *To Lock Your December Date:*\n\n1️⃣ 20% advance on the estimated total (₹3,73,000)\n2️⃣ Signed event agreement (sent after site visit)\n3️⃣ Final guest count & menu confirmed 45 days prior\n\n🔗 Advance payment link will be shared post site visit.\n\nWe'd be honoured to host your wedding, Neha! 🤍"},
-    ]
-  },
-
-  // ── 7: STAFF & HOUSEKEEPING COORDINATION ────────────────────
-  {
-    title:"Ops Desk — Housekeeping", icon:"🧹", hd:"#1a73e8",
-    steps:["Briefing","Assignment","Maintenance","Handover","Roster"],
-    messages:[
-      {from:"bot", step:0, text:"📢 Good morning, *Sunita*!\n\nHere's your *Daily Ops Briefing — Solene Goa, 24th July* 👇"},
-      {from:"user", step:0, text:"Good morning! What's on today?"},
-      {from:"bot", step:1, text:"📋 *Today's Snapshot*\n\n🛬 Arrivals: 14 rooms\n🛫 Departures: 11 rooms\n🧹 Rooms needing turnover: 11\n🌟 VIP arrival: Room 412 (Anniversary flag — extra amenities needed)\n\nAssigning your team now."},
-      {from:"user", step:1, text:"Who's covering the turnover rooms?"},
-      {from:"bot", step:1, text:"👥 *Turnover Assignment*\n\n• Rooms 101–105 → Team A (Ramesh, Geeta)\n• Rooms 201–205 → Team B (Suresh, Anjali)\n• Room 412 (VIP/Anniversary) → You, Sunita — priority setup\n\nAll turnovers to be completed by *1:00 PM* for 3 PM check-ins."},
-      {from:"user", step:2, text:"Noted. Also, Room 305 reported AC not cooling."},
-      {from:"bot", step:2, text:"🔧 *Maintenance Ticket Raised*\n\n🔖 Ref: MNT-2026-1187\n📍 Room 305 — AC not cooling\n⚙️ Assigned to: Vikas (Maintenance)\n⏱️ SLA: 30 minutes\n\nI'll notify you once it's marked resolved."},
-      {from:"user", step:3, text:"Thanks. I'm heading off shift at 2 PM, need to hand over."},
-      {from:"bot", step:3, text:"📝 *Shift Handover — Sunita → Priya (2 PM shift)*\n\nPlease confirm handover notes:\n\n✅ Room 412 VIP setup — completed\n⬜ Room 305 maintenance — pending (ETA 30 min)\n⬜ 3 rooms turnover — in progress\n\nShall I send this to Priya now?"},
-      {from:"user", step:3, text:"Yes, send it."},
-      {from:"bot", step:4, text:"✅ *Handover sent to Priya* — she's been notified and has acknowledged.\n\n📅 Also — your leave request for *2–4 Aug* is pending approval from the Housekeeping Head. You'll be notified by end of day.\n\nHave a good rest, Sunita! 👋"},
-    ]
-  },
-
-  // ── 8: FEATURED — GEN AI CONCIERGE FULL JOURNEY ─────────────
-  {
-    title:"Solene AI Concierge", icon:"🏨", hd:"#ae1536", isFeatured:true,
-    steps:["Search","Compare","Offer","Add-ons","Payment","Confirmed"],
-    messages:[
-      {from:"user", step:0, text:"Hi, looking for a beach resort for early September, 2 people"},
-      {from:"bot", step:1, text:"Hi! Happy to help you find the perfect beach stay 🌊 Here are your best matches for early September — swipe through:"},
-      {from:"bot", step:1, type:"carousel", items:[
-        {icon:"🏖️", tag:"Beach", title:"Solene Goa Beach Resort", sub:"Sea View Suites", price:"from ₹19,800/night"},
-        {icon:"🏝️", tag:"Villa", title:"Solene Alibaug Coastal Retreat", sub:"Pool Villas", price:"from ₹24,500/night"},
-        {icon:"🏛️", tag:"Heritage", title:"Solene Pondicherry Bay", sub:"Heritage sea-facing", price:"from ₹15,200/night"}
-      ]},
-      {from:"user", step:2, text:"Tell me more about Solene Goa options"},
-      {from:"bot", step:2, text:"Here's what's available at *Solene Goa Beach Resort*, 5–8 Sept (3 nights):\n\n🔹 *Garden View Deluxe* — ₹12,500/night\n🔹 *Sea View Deluxe* — ₹14,500/night\n🔹 *Sea View Suite* — ₹19,800/night (breakfast incl.)\n\nAll rates inclusive of taxes. Which would you like to explore?"},
-      {from:"user", step:2, text:"Sea View Suite looks good, any current offers?"},
-      {from:"bot", step:3, text:"Yes! You're in luck 🎉\n\n🏷️ *Live Offers on Sea View Suite:*\n• Early Bird — 12% off if booked 14+ days ahead ✅ (you qualify!)\n• Stay 3 Pay 2 — applicable on 3-night stays ✅\n• Free airport transfer on suite bookings\n\nWith these applied, your effective rate drops to *₹14,650/night*.\n\nPowered by *eSenseGPT*"},
-      {from:"user", step:4, text:"That's great, what else can I add?"},
-      {from:"bot", step:4, text:"Popular add-ons for this room:\n\n➕ Candlelight beach dinner — ₹4,500\n➕ Couple's spa (60 min) — ₹5,200\n➕ Sunset cruise for two — ₹3,800\n\nWould you like to include any of these in your booking?"},
-      {from:"user", step:4, text:"Add the candlelight dinner"},
-      {from:"bot", step:5, text:"📋 *Booking Summary*\n\n🏨 Sea View Suite × 3 nights (Stay 3 Pay 2 + Early Bird) — ₹29,300\n🍽️ Candlelight beach dinner — ₹4,500\n🚗 Free airport transfer\n──────────────────\n💰 *Total: ₹33,800* (taxes included)\n\n🔗 Secure payment: pay.solenehotels.com/goa-sept5\n\nShall I proceed to payment?"},
-      {from:"user", step:5, text:"Yes, go ahead"},
-      {from:"bot", step:5, text:"🎉 *Booking Confirmed!*\n\n🔖 Confirmation: *SOL-GOA-91048*\n🏨 Solene Goa Beach Resort — Sea View Suite\n📅 5–8 Sept 2026\n🍽️ Candlelight dinner arranged for Day 2\n📧 E-voucher sent to your email\n\n*Welcome to Solene! 🌴*\nYour beach escape is all set."},
+      {from:"user",step:3,text:"The Grand Club Room looks good. Does it include breakfast and Wi-Fi?"},
+      {from:"bot",step:3,text:"Yes. The configured demo details include breakfast for two, Wi-Fi, club access and a city view. An extra bed can be requested for a fee, subject to hotel confirmation.\n\nThe demo rate follows a 24-hour cancellation window. For early check-in or airport transfer, I can ask the reservations team to confirm availability."},
+      {from:"user",step:4,text:"Please use Rahul Mehta, rahul@example.com, +91 98765 43210. We may arrive late."},
+      {from:"bot",step:4,text:"Thanks, Rahul. I've captured 2 adults, 1 room and a late-arrival request. Special requests are noted but remain subject to hotel availability."},
+      {from:"bot",step:5,type:"rich",text:"*STAY SUMMARY*\nHotel: Solene Grand Mumbai\nRoom: Grand Club Room\nGuests: 2 Adults · 1 Room\nCheck-in: 15 Aug\nCheck-out: 17 Aug\nNights: 2\nIllustrative Rate: ₹16,500/night\nGuest: Rahul Mehta\nSpecial Request: Late arrival"},
+      {from:"user",step:5,text:"Submit the reservation request."},
+      {from:"bot",step:5,text:"✅ *Reservation Request Submitted*\n\nReference: *STAY-48291*\nStatus: *Awaiting Hotel Confirmation*\n\nThe reservations team will verify the integration-backed room status and contact you shortly. No payment has been taken."}
     ],
-    enrolCta:true
-  },
-
-  // ── 9: LOCAL DISCOVERY & ACTIVITIES ─────────────────────────
-  {
-    title:"Local Discovery Guide", icon:"🗺️", hd:"#0d7377",
-    steps:["Explore","Recommend","Reserve","Transfer","Confirmation"],
-    messages:[
-      {from:"bot", step:0, text:"🗺️ Hi *Rohan*! I'm your local discovery guide for your stay at *Solene Udaipur Palace*.\n\nLooking for things to do, places to eat, or need a cab arranged?"},
-      {from:"user", step:0, text:"What's worth seeing nearby? We have a free evening today."},
-      {from:"bot", step:1, text:"🌇 Here's what's happening nearby this evening — swipe through:"},
-      {from:"bot", step:1, type:"carousel", items:[
-        {icon:"🏰", tag:"Walk", title:"City Palace Sunset Walk", sub:"15 min away", price:"Free"},
-        {icon:"⛵", tag:"Activity", title:"Lake Pichola Boat Ride", sub:"Sunset slots available", price:"₹1,400/person"},
-        {icon:"🎭", tag:"Culture", title:"Dharohar Folk Dance Show", sub:"7 PM · Bagore Ki Haveli", price:"₹350/person"}
+    structured:[
+      {prompt:"What type of stay would you like to explore?",choices:["Rooms","Suites"]},
+      {prompt:"Select your check-in and check-out dates.",choices:["15–17 Aug","22–24 Aug","Choose other dates"]},
+      {prompt:"How many guests will be staying?",choices:["1 Guest","2 Guests","3 Guests","4+ Guests"]},
+      {prompt:"How many rooms do you need?",choices:["1 Room","2 Rooms","3+ Rooms"]},
+      {prompt:"Checking integration-backed demo availability... Select a room to continue.",type:"carousel",items:[
+        {image:roomImages.deluxe,tag:"City View",title:"Deluxe King Room",sub:"2 Guests · King Bed · Wi-Fi",price:"₹12,500/night · Demo Rate",action:"Select Room"},
+        {image:roomImages.club,tag:"Club Access",title:"Grand Club Room",sub:"2 Guests · Breakfast included",price:"₹16,500/night · Demo Rate",action:"Select Room"},
+        {image:roomImages.suite,tag:"Living Area",title:"Executive Suite",sub:"2–3 Guests · City View",price:"₹22,000/night · Demo Rate",action:"Select Room"}
       ]},
-      {from:"user", step:2, text:"The boat ride and dinner at Ambrai sound perfect."},
-      {from:"bot", step:2, text:"⛵ *Lake Pichola Sunset Boat Ride*\n📅 Today, 6:15 PM slot\n👥 2 guests\n💰 ₹1,400 per person\n\n🍽️ *Ambrai Restaurant*\n📅 Today, 8:00 PM\n👥 Table for 2, lakeside seating\n\nShall I confirm both?"},
-      {from:"user", step:2, text:"Yes, please confirm."},
-      {from:"bot", step:3, text:"✅ *Boat ride booked* — 6:15 PM, jetty pickup from hotel lobby at 5:45 PM\n✅ *Table reserved at Ambrai* — 8:00 PM, lakeside seating\n\nWould you like a cab arranged between the two, and back to the hotel?"},
-      {from:"user", step:3, text:"Yes, that'd be great."},
-      {from:"bot", step:3, text:"🚗 *Transfers Arranged*\n\n5:45 PM — Hotel → Jetty\n7:30 PM — Jetty → Ambrai Restaurant\n9:30 PM — Ambrai → Hotel\n\nAll transfers on the resort's private cab, no separate payment needed — added to your folio."},
-      {from:"user", step:4, text:"Perfect, thank you!"},
-      {from:"bot", step:4, text:"🌟 *Your Evening Itinerary*\n\n5:45 PM — Depart for jetty\n6:15 PM — Sunset boat ride on Lake Pichola\n7:30 PM — Transfer to Ambrai\n8:00 PM — Dinner reservation\n9:30 PM — Return to hotel\n\n☀️ Clear skies expected this evening — perfect for the sunset! Enjoy, Rohan. 🌇"},
+      {prompt:"Grand Club Room includes breakfast, Wi-Fi, club access and a city view. Continue with this room?",choices:["Continue","Compare Rooms"]},
+      {prompt:"Please add the guest details needed for this demo request.",type:"form",fields:[
+        {name:"Full Name",value:"Rahul Mehta"},{name:"Mobile",value:"+91 98765 43210"},{name:"Email",value:"rahul@example.com"},{name:"Special Request",value:"Late arrival",full:true}
+      ]},
+      {prompt:"Review the stay before submission.",type:"rich",text:"*STAY SUMMARY*\nSolene Grand Mumbai\nGrand Club Room · 2 Adults · 1 Room\n15–17 Aug · 2 nights\n₹16,500/night · Illustrative Demo Rate\nSpecial Request: Late arrival",choices:["Submit Reservation","Review"]},
+      {prompt:"✅ *Reservation Request Submitted*\nReference: *STAY-48291*\nStatus: *Awaiting Hotel Confirmation*\n\nThe hotel reservations team will verify availability. No payment has been taken.",end:true}
     ]
   },
-
-  // ── 10: ABANDONED BOOKING RECOVERY ──────────────────────────
   {
-    title:"Reservations Follow-up", icon:"🚨", hd:"#ae1536",
-    steps:["Detect","Re-engage","Objection","Incentive","Convert"],
+    title:"Dining Reservations", icon:"🍽️", hd:"#ae1536",
+    steps:["Dining","Restaurant","Guests","Slot","Details","Reserve"],
     messages:[
-      {from:"bot", step:0, text:"👋 Hi *Sanjana*! We noticed you were checking out *Solene Alibaug Coastal Retreat* for 10–12 Aug but didn't complete your booking.\n\nYour selected *Pool Villa* is still available — can I help with anything?"},
-      {from:"user", step:0, text:"Hi, yes — I got a bit hesitant about the price."},
-      {from:"bot", step:1, text:"Totally understandable, Sanjana! 😊 Let me see what I can do.\n\nMay I ask — was it the room rate, the add-ons, or something else that gave you pause?\n\n1️⃣ 💰 Room rate\n2️⃣ 📅 Flexible dates needed\n3️⃣ 🏊 Unsure about the villa vs regular room\n4️⃣ 📋 Just comparing options"},
-      {from:"user", step:2, text:"Mainly the rate — ₹24,500/night felt steep for 2 nights."},
-      {from:"bot", step:2, text:"I hear you! Here's something that might help — you saved this for a *2-night stay*, but our *Stay 3 Pay 2* offer would actually bring your effective rate down significantly if you extend by one night.\n\n💡 *2 nights (as saved):* ₹49,000\n💡 *3 nights with Stay 3 Pay 2:* ₹49,000 for 3 nights — same price, one extra night free!\n\nWant me to update your dates to 10–13 Aug?"},
-      {from:"user", step:2, text:"Oh that's actually a great deal, yes!"},
-      {from:"bot", step:3, text:"🎉 Updated! Here's your revised booking:\n\n🏨 Solene Alibaug Coastal Retreat — Pool Villa\n📅 10–13 Aug 2026 (3 nights)\n💰 ₹49,000 total (was ₹49,000 for 2 nights — now 3!)\n🎁 Complimentary breakfast for both included\n\nThis offer is held for the next *2 hours*. Shall I send the payment link?"},
-      {from:"user", step:4, text:"Yes, send it — let's complete this."},
-      {from:"bot", step:4, text:"🔗 *Payment Link:* pay.solenehotels.com/alibaug-aug10\n\nYour saved details have carried over — just tap and pay, no need to re-enter anything. 💳"},
-      {from:"user", step:4, text:"Done!"},
-      {from:"bot", step:4, text:"🎉 *Booking Confirmed, Sanjana!*\n\n🔖 Confirmation: *SOL-ALB-77302*\n🏨 Pool Villa · 10–13 Aug 2026\n🍳 Breakfast included\n📧 E-voucher sent to your email\n\nSo glad we could make this work for you — see you at Alibaug! 🌊"},
+      {from:"bot",step:0,text:"🍽️ Welcome. I can help you explore our restaurants, menus and table availability."},
+      {from:"user",step:0,text:"I'd like to book dinner for four people tomorrow evening."},
+      {from:"bot",step:1,text:"Absolutely. We have a few fictional demo outlets you can explore:"},
+      {from:"bot",step:1,type:"carousel",items:[
+        {icon:"🍝",tag:"Italian · Dinner",title:"Celeste",sub:"Indoor dining · 6:00–11:00 PM",price:"View Menu",action:"Select Restaurant"},
+        {icon:"🍛",tag:"Indian",title:"Saffron",sub:"Lunch & dinner · Lobby level",price:"View Menu",action:"Select Restaurant"},
+        {icon:"🥢",tag:"Asian · Dinner",title:"China House",sub:"Dinner · Garden wing",price:"View Menu",action:"Select Restaurant"}
+      ]},
+      {from:"user",step:1,text:"Can I see the Celeste menu first?"},
+      {from:"bot",step:1,type:"rich",text:"*CELESTE · DEMO MENU*\nHandmade pasta · wood-fired pizza · seasonal salads\nVegetarian and gluten-aware choices are available.\n\nWould you like me to reserve a table?"},
+      {from:"user",step:2,text:"Yes, for four people tomorrow."},
+      {from:"bot",step:3,text:"I've got the date and guest count. What time would you prefer?"},
+      {from:"user",step:3,text:"8:00 PM."},
+      {from:"bot",step:4,text:"Great. May I have the name, email and mobile number, plus any special request?"},
+      {from:"user",step:4,text:"Rahul Mehta, rahul@example.com, +91 98765 43210. It's a birthday celebration."},
+      {from:"bot",step:4,text:"Thank you. We've noted the birthday request; fulfilment is subject to restaurant availability."},
+      {from:"bot",step:5,type:"rich",text:"*TABLE RESERVATION*\nRestaurant: Celeste\nDate: 15 Aug\nTime: 8:00 PM\nGuests: 4\nGuest: Rahul Mehta\nSpecial Request: Birthday celebration\nReference: DIN-48291\nStatus: Reservation Submitted"},
+      {from:"bot",step:5,text:"The dining team will confirm table availability through the connected reservation system. If a chosen time is invalid or unavailable, I'll ask only for a replacement time—not restart the journey."}
+    ],
+    structured:[
+      {prompt:"What would you like to do?",choices:["Explore Restaurants","Reserve a Table","View Menu"]},
+      {prompt:"Select a demo restaurant.",type:"carousel",items:[
+        {icon:"🍝",tag:"Italian",title:"Celeste",sub:"Dinner · Indoor dining",price:"Menu available",action:"Select"},
+        {icon:"🍛",tag:"Indian",title:"Saffron",sub:"Lunch & dinner",price:"Menu available",action:"Select"},
+        {icon:"🥢",tag:"Asian",title:"China House",sub:"Dinner",price:"Menu available",action:"Select"}
+      ]},
+      {prompt:"Celeste serves handmade pasta, pizza and seasonal dishes. Vegetarian options are available.",choices:["Reserve Celeste","Compare Restaurants"]},
+      {prompt:"How many guests?",choices:["2 Guests","3 Guests","4 Guests","5+ Guests"]},
+      {prompt:"Choose a demo date and time.",choices:["15 Aug · 7:30 PM","15 Aug · 8:00 PM","15 Aug · 8:30 PM"]},
+      {prompt:"Add the reservation details.",type:"form",fields:[
+        {name:"Name",value:"Rahul Mehta"},{name:"Email",value:"rahul@example.com"},{name:"Mobile",value:"+91 98765 43210"},{name:"Special Request",value:"Birthday celebration",full:true}
+      ]},
+      {prompt:"Review the table request.",type:"rich",text:"*TABLE RESERVATION*\nCeleste · 15 Aug · 8:00 PM\n4 Guests · Rahul Mehta\nBirthday celebration\nStatus: Reservation Submitted",choices:["Submit Reservation","Change Slot"]},
+      {prompt:"✅ Request submitted. Reference *DIN-48291*. The dining team will verify availability; special requests are not guaranteed.",end:true}
+    ]
+  },
+  {
+    title:"Guest Concierge", icon:"🛎️", hd:"#1a73e8",
+    steps:["Identify","Request","Service","Status","Support"],
+    messages:[
+      {from:"bot",step:0,text:"🛎️ Good evening, Priya. How can I help during your stay?"},
+      {from:"user",step:1,text:"Could I get two extra towels sent to my room?"},
+      {from:"bot",step:1,text:"Certainly. May I confirm you're staying in Room 812?"},
+      {from:"user",step:1,text:"Yes."},
+      {from:"bot",step:2,text:"Creating a service request with the simulated hotel system..."},
+      {from:"bot",step:3,type:"rich",text:"*GUEST SERVICE REQUEST*\nRoom: 812\nRequest: 2 Extra Towels\nDepartment: Housekeeping\nStatus: Submitted\nReference: GS-48291"},
+      {from:"user",step:3,text:"Thank you. Is airport transfer available tomorrow morning?"},
+      {from:"bot",step:4,text:"I can submit an airport-transfer enquiry to the concierge. Pickup and pricing must be confirmed by the transport team. Would you like a human concierge to follow up?"},
+      {from:"user",step:4,text:"Yes, please."},
+      {from:"bot",step:4,text:"✅ Concierge follow-up requested with your room and transport context. A team member will contact Room 812 shortly."}
+    ],
+    structured:[
+      {prompt:"Please choose a guest service.",choices:["Housekeeping","Room Service","Hotel Facilities","Dining","Transport","Talk to Concierge"]},
+      {prompt:"Select a housekeeping request.",choices:["Extra Towels","Room Cleaning","Toiletries","Laundry Assistance"]},
+      {prompt:"May I confirm the room?",choices:["Room 812","Use another room"]},
+      {prompt:"Review the service request.",type:"rich",text:"*GUEST SERVICE REQUEST*\nRoom 812\n2 Extra Towels\nDepartment: Housekeeping\nStatus: Ready to submit",choices:["Submit Request","Talk to Concierge"]},
+      {prompt:"✅ Request submitted to the simulated hotel system.\nReference: *GS-48291*\nStatus: Submitted",choices:["Track Status","Request More Help"]},
+      {prompt:"The request is with Housekeeping. A human concierge can assist with exceptions or transport enquiries.",end:true}
+    ]
+  },
+  {
+    title:"Travel Discovery", icon:"✈️", hd:"#0d7377",
+    steps:["Intent","Profile","Tours","Details","Lead","Advisor"],
+    messages:[
+      {from:"bot",step:0,text:"✈️ Hi there! Welcome to *Solene Travel*.\n\nI can help you explore international tours and connect you with a Travel Advisor. What kind of trip are you planning?"},
+      {from:"user",step:0,text:"I'm planning a Europe trip with my wife around December."},
+      {from:"bot",step:1,text:"That sounds exciting. Are there countries or places you'd particularly like to visit?"},
+      {from:"user",step:1,text:"Switzerland and Italy would be great, for around 8 to 10 days."},
+      {from:"bot",step:1,text:"And when in December are you planning to travel?"},
+      {from:"user",step:1,text:"Second week of December. Two travellers."},
+      {from:"bot",step:2,text:"Great. Searching configured demo tours for Switzerland, Italy and your travel window..."},
+      {from:"bot",step:2,type:"carousel",items:[
+        {icon:"🏔️",tag:"9 Days / 8 Nights",title:"Swiss & Italian Escape",sub:"Zurich · Lucerne · Interlaken · Venice · Florence · Rome\nDeparture: 12 Dec",price:"₹1,89,000/person · Indicative Demo Price",action:"Explore Tour"},
+        {icon:"🏛️",tag:"10 Days / 9 Nights",title:"European Highlights",sub:"Paris · Lucerne · Venice · Rome\nDeparture: 14 Dec",price:"₹1,74,000/person · Indicative Demo Price",action:"Explore Tour"},
+        {icon:"🚞",tag:"7 Days / 6 Nights",title:"Swiss Alps Explorer",sub:"Zurich · Lucerne · Interlaken\nDeparture: 10 Dec",price:"₹1,49,000/person · Indicative Demo Price",action:"Explore Tour"}
+      ]},
+      {from:"user",step:3,text:"The Swiss & Italian Escape looks interesting. What's included?"},
+      {from:"bot",step:3,text:"The configured demo package includes hotel accommodation, breakfast, scheduled inter-city transfers and listed sightseeing. Flights, visa fees, insurance and personal expenses are excluded.\n\nThe indicative demo price is ₹1,89,000 per person. Final price and departure availability require advisor verification."},
+      {from:"user",step:4,text:"Please ask an advisor to help with availability. I'm Arjun Sharma, arjun@example.com, +91 98765 43210."},
+      {from:"bot",step:4,text:"Registering your travel enquiry with the simulated CRM..."},
+      {from:"bot",step:5,type:"rich",text:"*TRAVEL ENQUIRY*\nTraveller: Arjun Sharma\nTour: Swiss & Italian Escape\nTravel Window: Second week of December\nTravellers: 2\nInterest: Switzerland + Italy\nPhone: +91 98••••3210\nEmail: arjun@example.com\nReference: TRV-48291\nStatus: Travel Advisor Follow-up Requested"},
+      {from:"bot",step:5,text:"Thanks, Arjun. Your travel enquiry has been registered. One of our Travel Advisors will contact you shortly. This is a lead handoff—not a tour booking or payment confirmation."}
+    ],
+    structured:[
+      {prompt:"What would you like to explore?",choices:["Europe","Asia","Middle East","Islands","Other"]},
+      {prompt:"Which Europe destinations interest you?",choices:["Switzerland","Italy","France","Multiple Countries"]},
+      {prompt:"Choose a travel month.",choices:["November","December","January","Other"]},
+      {prompt:"How many travellers?",choices:["1 Traveller","2 Travellers","3 Travellers","4+ Travellers"]},
+      {prompt:"What duration do you prefer?",choices:["6–7 Days","8–10 Days","11–14 Days","Flexible"]},
+      {prompt:"Searching configured tour data... Select a package to explore.",type:"carousel",items:[
+        {icon:"🏔️",tag:"9D / 8N",title:"Swiss & Italian Escape",sub:"Switzerland + Italy · 12 Dec",price:"₹1,89,000/person · Demo",action:"Explore Tour"},
+        {icon:"🏛️",tag:"10D / 9N",title:"European Highlights",sub:"France + Switzerland + Italy · 14 Dec",price:"₹1,74,000/person · Demo",action:"Explore Tour"},
+        {icon:"🚞",tag:"7D / 6N",title:"Swiss Alps Explorer",sub:"Switzerland · 10 Dec",price:"₹1,49,000/person · Demo",action:"Explore Tour"}
+      ]},
+      {prompt:"Swiss & Italian Escape includes demo hotels, breakfast, scheduled transfers and listed sightseeing. Flights, visas and insurance are excluded.",choices:["Request Advisor","View Itinerary"]},
+      {prompt:"Add contact details for the CRM-style handoff.",type:"form",fields:[
+        {name:"First Name",value:"Arjun"},{name:"Last Name",value:"Sharma"},{name:"Phone",value:"+91 98765 43210"},{name:"Email",value:"arjun@example.com"},{name:"Message",value:"Availability and next steps",full:true}
+      ]},
+      {prompt:"Review the qualified enquiry.",type:"rich",text:"*TRAVEL ENQUIRY*\nSwiss & Italian Escape\nDecember · 2 Travellers\nSwitzerland + Italy\nAdvisor follow-up requested",choices:["Register Enquiry","Continue Exploring"]},
+      {prompt:"✅ Lead registered in the simulated CRM.\nReference: *TRV-48291*\nA Travel Advisor will contact you shortly. No booking or payment has been created.",end:true}
+    ]
+  },
+  {
+    title:"Travel Advisor", icon:"🗺️", hd:"#0d7377",
+    steps:["Tour","Explore","Dates","Details","Advisor"],
+    messages:[
+      {from:"bot",step:0,text:"🗺️ Welcome to Solene Travel support. Which tour would you like help with?"},
+      {from:"user",step:0,text:"I want more information about the Swiss & Italian Escape package."},
+      {from:"bot",step:1,text:"Absolutely. What would you like to know—price, itinerary, departure dates, inclusions, visa information or terms?"},
+      {from:"user",step:1,text:"What's included, and do I need a visa?"},
+      {from:"bot",step:2,text:"The configured package includes demo hotels, breakfast, scheduled transfers and listed sightseeing. The next demo departure is 12 December and the duration is 9 days / 8 nights."},
+      {from:"bot",step:3,text:"For visas, requirements depend on nationality and current government rules. I don't have verified immigration guidance in this demo, so I won't guess. A Travel Advisor can share the current checklist; please verify it with the relevant embassy or official authority.\n\nTravel insurance is not included unless it appears in the selected package data."},
+      {from:"user",step:3,text:"The indicative price works. Can an advisor clarify visa and availability?"},
+      {from:"bot",step:4,type:"rich",text:"*TRAVEL ADVISOR HANDOFF*\nTour: Swiss & Italian Escape\nTraveller Count: 2\nTravel Window: December\nQuestion: Visa + Availability\nLead Intent: High\nReference: TRV-ADV-48291"},
+      {from:"bot",step:4,text:"Our Travel Advisor will contact you shortly with verified availability and current visa-source guidance. No discount, booking or insurance coverage has been assumed."}
+    ],
+    structured:[
+      {prompt:"Select the tour you already know.",choices:["Swiss & Italian Escape","European Highlights","Swiss Alps Explorer"]},
+      {prompt:"What would you like to review?",choices:["Price","Itinerary","Departure Dates","Inclusions","Visa Information","Brochure"]},
+      {prompt:"The indicative demo price is ₹1,89,000/person. The 9-day itinerary covers Zurich, Lucerne, Interlaken, Venice, Florence and Rome.",choices:["View Inclusions","Visa Question","Talk to Advisor"]},
+      {prompt:"Visa rules vary by nationality and can change. This demo has no verified legal guidance. A Travel Advisor can share a current checklist for you to verify with official authorities.",choices:["Talk to Travel Advisor","Continue Exploring"]},
+      {prompt:"Add the missing handoff details.",type:"form",fields:[
+        {name:"Name",value:"Arjun Sharma"},{name:"Phone",value:"+91 98765 43210"},{name:"Email",value:"arjun@example.com"},{name:"Preferred Contact",value:"Weekday afternoon",full:true}
+      ]},
+      {prompt:"*TRAVEL ADVISOR HANDOFF*\nSwiss & Italian Escape · 2 Travellers\nDecember · Visa + Availability\nReference: TRV-ADV-48291",choices:["Request Callback","Continue Exploring"]},
+      {prompt:"✅ Advisor callback requested. A Travel Advisor will contact you shortly with verified information.",end:true}
+    ]
+  },
+  {
+    title:"Booking Support", icon:"🎧", hd:"#ae1536",
+    steps:["Identify","Booking","Request","Resolve","Handoff"],
+    messages:[
+      {from:"bot",step:0,text:"🎧 Welcome to booking and enquiry support. I can help with a hotel reservation, restaurant reservation, travel enquiry or general question."},
+      {from:"user",step:0,text:"I need to change the dates on my hotel reservation."},
+      {from:"bot",step:1,text:"I can raise a modification request. What is your reservation reference?"},
+      {from:"user",step:1,text:"STAY-48291."},
+      {from:"bot",step:1,text:"Checking the simulated reservation record... I found the Grand Club Room request for Rahul Mehta, 15–17 August."},
+      {from:"bot",step:2,text:"What new dates would you prefer?"},
+      {from:"user",step:2,text:"22 to 24 August."},
+      {from:"bot",step:3,text:"I'll submit the change for hotel confirmation. This does not alter a live booking automatically."},
+      {from:"bot",step:3,type:"rich",text:"*MODIFICATION REQUEST*\nReference: STAY-48291\nCurrent Dates: 15–17 Aug\nRequested Dates: 22–24 Aug\nRoom: Grand Club Room\nStatus: Submitted for Hotel Confirmation"},
+      {from:"user",step:4,text:"Please have the reservations team call me if the room isn't available."},
+      {from:"bot",step:4,text:"✅ Reservations Team handoff requested. Your booking context and preferred dates have been included so you won't need to repeat them."}
+    ],
+    structured:[
+      {prompt:"What do you need help with?",choices:["Hotel Reservation","Restaurant Reservation","Travel Enquiry","General Question"]},
+      {prompt:"Choose an action.",choices:["View Reservation","Modification Request","Cancellation Request","Special Request","Talk to Reservations"]},
+      {prompt:"Enter or select the demo reference.",choices:["STAY-48291","Use another reference"]},
+      {prompt:"What would you like to change?",choices:["Dates","Room Type","Guest Count","Special Request"]},
+      {prompt:"Select the requested new dates.",choices:["22–24 Aug","29–31 Aug","Choose other dates"]},
+      {prompt:"Review the support request.",type:"rich",text:"*MODIFICATION REQUEST*\nSTAY-48291\n15–17 Aug → 22–24 Aug\nStatus: Ready to submit",choices:["Submit Request","Talk to Reservations"]},
+      {prompt:"✅ *Modification Request Submitted*\nThe hotel must confirm availability. A Reservations Team handoff is available for exceptions.",choices:["Request Callback","Close"]},
+      {prompt:"Context transferred to Customer Support. You will not need to repeat the reservation details.",end:true}
     ]
   }
-
 ];
 
 let currentFlow = 0;
 let messageIndex = 0;
-let currentChannel = 'wa';
+let structuredIndex = 0;
+let currentChannel = "wa";
+let currentMode = "text";
+let currentLanguage = "en";
+let runToken = 0;
+const pendingTimers = new Set();
+
+function schedule(fn, delay) {
+  const token = runToken;
+  const timer = setTimeout(function(){
+    pendingTimers.delete(timer);
+    if (token === runToken) fn();
+  }, delay);
+  pendingTimers.add(timer);
+  return timer;
+}
+
+function cancelRun() {
+  runToken += 1;
+  pendingTimers.forEach(function(timer){ clearTimeout(timer); });
+  pendingTimers.clear();
+  const typing = document.getElementById("typingIndicator");
+  if (typing) typing.classList.remove("show");
+}
 
 function setChannel(ch) {
   currentChannel = ch;
-  document.getElementById('chanWaBtn').classList.toggle('active', ch === 'wa');
-  document.getElementById('chanWebBtn').classList.toggle('active', ch === 'web');
-  const modal = document.getElementById('modalRoot');
-  const ca = document.getElementById('chatArea');
-  const qr = document.getElementById('quickReplies');
-  const browserBar = document.getElementById('browserBar');
-  modal.classList.toggle('skin-web', ch === 'web');
-  ca.classList.toggle('skin-web', ch === 'web');
-  qr.classList.toggle('skin-web', ch === 'web');
-  browserBar.classList.toggle('show', ch === 'web');
+  document.getElementById("chanWaBtn").classList.toggle("active", ch === "wa");
+  document.getElementById("chanWebBtn").classList.toggle("active", ch === "web");
+  const modal = document.getElementById("modalRoot");
+  const ca = document.getElementById("chatArea");
+  const qr = document.getElementById("quickReplies");
+  const browserBar = document.getElementById("browserBar");
+  modal.classList.toggle("skin-web", ch === "web");
+  ca.classList.toggle("skin-web", ch === "web");
+  qr.classList.toggle("skin-web", ch === "web");
+  browserBar.classList.toggle("show", ch === "web");
   paintHeader();
+}
+
+function setMode(mode) {
+  if (mode === currentMode) return;
+  cancelRun();
+  currentMode = mode;
+  document.getElementById("textModeBtn").classList.toggle("active", mode === "text");
+  document.getElementById("structuredModeBtn").classList.toggle("active", mode === "structured");
+  startFlowContent();
+}
+
+function setLanguage(language) {
+  cancelRun();
+  currentLanguage = language;
+  startFlowContent();
 }
 
 function paintHeader() {
   const flow = flows[currentFlow];
-  const hdr = document.getElementById('modalHeader');
-  const av = document.getElementById('modalAvatar');
-  const sub = document.getElementById('modalSub');
-  if (currentChannel === 'wa') {
+  const hdr = document.getElementById("modalHeader");
+  const av = document.getElementById("modalAvatar");
+  const sub = document.getElementById("modalSub");
+  document.getElementById("modalTitle").textContent = flow.title;
+  if (currentChannel === "wa") {
     hdr.style.background = flow.hd;
     av.textContent = flow.icon;
-    sub.textContent = '● Online';
+    sub.textContent = "● Online";
   } else {
-    hdr.style.background = '#ae1536';
-    av.textContent = '🏨';
-    sub.textContent = 'Typically replies instantly';
+    hdr.style.background = "#ae1536";
+    av.textContent = flow.icon;
+    sub.textContent = "Typically replies instantly";
   }
 }
 
 function openFlow(index) {
+  cancelRun();
   currentFlow = index;
-  messageIndex = 0;
-  currentChannel = 'wa';
-  const flow = flows[index];
-
-  document.getElementById('modalTitle').textContent = flow.title;
-  document.getElementById('chanWaBtn').classList.add('active');
-  document.getElementById('chanWebBtn').classList.remove('active');
-  document.getElementById('modalRoot').classList.remove('skin-web');
-  document.getElementById('browserBar').classList.remove('show');
+  currentMode = "text";
+  currentLanguage = "en";
+  currentChannel = "wa";
+  document.getElementById("textModeBtn").classList.add("active");
+  document.getElementById("structuredModeBtn").classList.remove("active");
+  document.getElementById("languageSelect").value = "en";
+  document.getElementById("chanWaBtn").classList.add("active");
+  document.getElementById("chanWebBtn").classList.remove("active");
+  document.getElementById("modalRoot").classList.remove("skin-web");
+  document.getElementById("browserBar").classList.remove("show");
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
   paintHeader();
-
-  // Steps bar
-  const sb = document.getElementById('stepsBar');
-  sb.innerHTML = flow.steps.map((s,i) => `<span class="sb-step" id="sbstep${i}">${s}</span>`).join('');
-
-  // Chat reset
-  const ca = document.getElementById('chatArea');
-  ca.className = 'chat-area';
-  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
-
-  const qr = document.getElementById('quickReplies');
-  qr.className = 'qr';
-  qr.innerHTML = '';
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  updateStep(0);
-  setTimeout(() => playNext(), 600);
+  startFlowContent();
 }
 
-function updateStep(s) {
+function startFlowContent() {
+  messageIndex = 0;
+  structuredIndex = 0;
   const flow = flows[currentFlow];
-  flow.steps.forEach((_,i) => {
-    const el = document.getElementById('sbstep'+i);
-    if(!el) return;
-    el.className = 'sb-step' + (i < s ? ' done' : i === s ? ' active' : '');
+  const sb = document.getElementById("stepsBar");
+  sb.innerHTML = flow.steps.map(function(step,index){
+    return '<span class="sb-step" id="sbstep' + index + '">' + step + '</span>';
+  }).join("");
+  const ca = document.getElementById("chatArea");
+  ca.className = "chat-area" + (currentChannel === "web" ? " skin-web" : "");
+  ca.innerHTML = '<div class="date-chip"><span>Today</span></div><div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>';
+  const qr = document.getElementById("quickReplies");
+  qr.className = "qr" + (currentChannel === "web" ? " skin-web" : "");
+  qr.innerHTML = "";
+  updateStep(0);
+  if (currentMode === "text") schedule(playNext, 650);
+  else schedule(renderStructuredStage, 450);
+}
+
+function updateStep(step) {
+  const flow = flows[currentFlow];
+  const max = flow.steps.length - 1;
+  const safeStep = Math.min(step, max);
+  flow.steps.forEach(function(_,index){
+    const el = document.getElementById("sbstep" + index);
+    if (!el) return;
+    el.className = "sb-step" + (index < safeStep ? " done" : index === safeStep ? " active" : "");
   });
 }
 
 function playNext() {
   const flow = flows[currentFlow];
+  if (currentMode !== "text") return;
   if (messageIndex >= flow.messages.length) {
-    if (flow.enrolCta) showEnrolCta();
-    else showQR();
+    showQR();
     return;
   }
-
   const msg = flow.messages[messageIndex];
-  const ca = document.getElementById('chatArea');
-  const ty = document.getElementById('typingIndicator');
-
+  const ca = document.getElementById("chatArea");
+  const typing = document.getElementById("typingIndicator");
   updateStep(msg.step || 0);
-
-  if (msg.from === 'bot') {
-    ty.classList.add('show');
+  const finish = function(){
+    if (msg.type === "carousel") addCarousel(msg.items, false);
+    else if (msg.type === "rich") addRich(msg.text);
+    else addMsg(msg.from, msg.text);
+    messageIndex += 1;
+    schedule(playNext, msg.from === "user" ? 700 : 900);
+  };
+  if (msg.from === "bot") {
+    typing.classList.add("show");
     ca.scrollTop = ca.scrollHeight;
-    const textLen = msg.type === 'carousel' ? 120 : msg.text.length;
-    const delay = Math.min(700 + textLen * 8, 2000);
-    setTimeout(() => {
-      ty.classList.remove('show');
-      if (msg.type === 'carousel') addCarousel(msg.items);
-      else addMsg(msg.from, msg.text);
-      messageIndex++;
-      setTimeout(() => playNext(), 800);
-    }, delay);
+    const delay = msg.type === "carousel" ? 1800 : msg.type === "rich" ? 1450 : Math.min(720 + msg.text.length * 3, 1100);
+    schedule(function(){ typing.classList.remove("show"); finish(); }, delay);
   } else {
-    setTimeout(() => {
-      addMsg(msg.from, msg.text);
-      messageIndex++;
-      setTimeout(() => playNext(), 500);
-    }, 300);
+    schedule(finish, 850);
   }
 }
 
-function addMsg(from, text) {
-  const ca = document.getElementById('chatArea');
-  const ty = document.getElementById('typingIndicator');
-  const now = new Date();
-  const tm = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-
-  const div = document.createElement('div');
-  div.className = `msg ${from}`;
-
-  // Convert *bold* to <strong>
-  let html = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-  const tick = from === 'user' ? '<span class="tk">✓✓</span>' : '';
-  div.innerHTML = html + `<div class="tr"><span class="tm">${tm}</span>${tick}</div>`;
-
-  ca.insertBefore(div, ty);
-  setTimeout(() => div.classList.add('visible'), 30);
+function addMsg(from, message) {
+  const ca = document.getElementById("chatArea");
+  const typing = document.getElementById("typingIndicator");
+  const div = document.createElement("div");
+  div.className = "msg " + from;
+  let html = String(message).replace(/\*(.*?)\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
+  const tick = from === "user" ? '<span class="tk">✓✓</span>' : "";
+  const time = new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+  div.innerHTML = html + '<div class="tr"><span class="tm">' + time + "</span>" + tick + "</div>";
+  ca.insertBefore(div, typing);
+  schedule(function(){ div.classList.add("visible"); }, 30);
   ca.scrollTop = ca.scrollHeight;
 }
 
-function addCarousel(items) {
-  const ca = document.getElementById('chatArea');
-  const ty = document.getElementById('typingIndicator');
+function addRich(message) {
+  const ca = document.getElementById("chatArea");
+  const typing = document.getElementById("typingIndicator");
+  const div = document.createElement("div");
+  div.className = "rich-card";
+  div.innerHTML = String(message).replace(/\*(.*?)\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
+  ca.insertBefore(div, typing);
+  schedule(function(){ div.classList.add("visible"); }, 30);
+  ca.scrollTop = ca.scrollHeight;
+}
 
-  const wrap = document.createElement('div');
-  wrap.className = 'carousel-wrap';
-
-  const track = document.createElement('div');
-  track.className = 'carousel-track';
-  track.innerHTML = items.map(it => `
-    <div class="cc-card">
-      <div class="cc-img">${it.icon}</div>
-      <div class="cc-body">
-        <div class="cc-tag">${it.tag}</div>
-        <div class="cc-title">${it.title}</div>
-        <div class="cc-sub">${it.sub}</div>
-        <div class="cc-price">${it.price}</div>
-      </div>
-    </div>
-  `).join('');
-
-  const hint = document.createElement('div');
-  hint.className = 'cc-hint';
-  hint.textContent = '← swipe to explore →';
-
+function addCarousel(items, interactive) {
+  const ca = document.getElementById("chatArea");
+  const typing = document.getElementById("typingIndicator");
+  const wrap = document.createElement("div");
+  wrap.className = "carousel-wrap";
+  const track = document.createElement("div");
+  track.className = "carousel-track";
+  track.innerHTML = items.map(function(item,index){
+    const imageClass = item.image ? "cc-img has-image" : "cc-img";
+    const imageStyle = item.image ? ' style="background-image:url(&quot;' + item.image + '&quot;)"' : "";
+    const imageContent = item.image ? "" : (item.icon || "✨");
+    const action = item.action ? '<button class="cc-action" type="button"' + (interactive ? ' data-choice="' + index + '"' : ' tabindex="-1"') + ">" + item.action + "</button>" : "";
+    return '<div class="cc-card"><div class="' + imageClass + '"' + imageStyle + ">" + imageContent + '</div><div class="cc-body"><div class="cc-tag">' + item.tag + '</div><div class="cc-title">' + item.title + '</div><div class="cc-sub">' + item.sub.replace(/\n/g,"<br>") + '</div><div class="cc-price">' + item.price + "</div>" + action + "</div></div>";
+  }).join("");
+  if (interactive) {
+    track.querySelectorAll("[data-choice]").forEach(function(button){
+      button.addEventListener("click", function(){
+        const item = items[Number(button.getAttribute("data-choice"))];
+        structuredChoose(item.title);
+      });
+    });
+  }
+  const hint = document.createElement("div");
+  hint.className = "cc-hint";
+  hint.textContent = "← swipe to explore →";
   wrap.appendChild(track);
   wrap.appendChild(hint);
-  ca.insertBefore(wrap, ty);
-  setTimeout(() => wrap.classList.add('visible'), 30);
+  ca.insertBefore(wrap, typing);
+  schedule(function(){ wrap.classList.add("visible"); }, 30);
   ca.scrollTop = ca.scrollHeight;
 }
 
-function showEnrolCta() {
-  const ca = document.getElementById('chatArea');
-  const ty = document.getElementById('typingIndicator');
-  const div = document.createElement('div');
-  div.className = 'enrol-cta';
-  div.innerHTML = `<div class="cl">Solene Hotels & Resorts</div><div class="ct">Ready to plan your next stay with us?</div><button class="cb" onclick="window.open('https://example.com','_blank')">Explore Solene Properties →</button>`;
-  ca.insertBefore(div, ty);
-  setTimeout(() => div.classList.add('visible'), 50);
+function renderStructuredStage() {
+  if (currentMode !== "structured") return;
+  const flow = flows[currentFlow];
+  const stage = flow.structured[structuredIndex];
+  if (!stage) {
+    showQR();
+    return;
+  }
+  updateStep(Math.round((structuredIndex / Math.max(flow.structured.length - 1, 1)) * (flow.steps.length - 1)));
+  addMsg("bot", stage.prompt);
+  const qr = document.getElementById("quickReplies");
+  qr.innerHTML = "";
+  qr.classList.remove("visible");
+  if (stage.type === "carousel") {
+    schedule(function(){ addCarousel(stage.items, true); }, 350);
+    return;
+  }
+  if (stage.type === "form") {
+    schedule(function(){ addStructuredForm(stage.fields); }, 300);
+    return;
+  }
+  if (stage.type === "rich") addRich(stage.text);
+  if (stage.end) {
+    schedule(showQR, 350);
+    return;
+  }
+  if (stage.choices) {
+    qr.innerHTML = stage.choices.map(function(choice){
+      return '<button class="qr-btn" type="button">' + choice + "</button>";
+    }).join("");
+    qr.querySelectorAll("button").forEach(function(button){
+      button.addEventListener("click", function(){ structuredChoose(button.textContent); });
+    });
+    schedule(function(){ qr.classList.add("visible"); }, 250);
+  }
+}
+
+function addStructuredForm(fields) {
+  const ca = document.getElementById("chatArea");
+  const typing = document.getElementById("typingIndicator");
+  const form = document.createElement("form");
+  form.className = "demo-form";
+  form.innerHTML = fields.map(function(field){
+    return '<input class="' + (field.full ? "full" : "") + '" name="' + field.name + '" value="' + field.value + '" aria-label="' + field.name + '" required>';
+  }).join("") + '<button type="submit">Continue with Demo Details</button>';
+  form.addEventListener("submit", function(event){
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = data.get("Full Name") || data.get("Name") || data.get("First Name") || "Details";
+    structuredChoose(String(name) + " · details added");
+  });
+  ca.insertBefore(form, typing);
   ca.scrollTop = ca.scrollHeight;
-  showQR();
+}
+
+function structuredChoose(choice) {
+  if (currentMode !== "structured") return;
+  cancelRun();
+  const qr = document.getElementById("quickReplies");
+  qr.classList.remove("visible");
+  qr.innerHTML = "";
+  const forms = document.querySelectorAll(".demo-form");
+  forms.forEach(function(form){ form.querySelectorAll("input,button").forEach(function(control){ control.disabled = true; }); });
+  addMsg("user", choice);
+  structuredIndex += 1;
+  schedule(renderStructuredStage, 600);
 }
 
 function showQR() {
-  const qr = document.getElementById('quickReplies');
-  qr.innerHTML = `<button class="qr-btn" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" onclick="closeModal()">✕ Close</button>`;
-  qr.classList.add('visible');
+  const qr = document.getElementById("quickReplies");
+  qr.innerHTML = '<button class="qr-btn" type="button" onclick="restartFlow()">↺ Replay</button><button class="qr-btn" type="button" onclick="closeModal()">✕ Close</button>';
+  qr.classList.add("visible");
 }
 
-function restartFlow() { openFlow(currentFlow); }
+function restartFlow() {
+  cancelRun();
+  startFlowContent();
+}
+
 function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+  cancelRun();
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow = "";
 }
-function closeOnOverlay(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
+
+function closeOnOverlay(event) {
+  if (event.target === document.getElementById("modalOverlay")) closeModal();
 }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+document.addEventListener("keydown", function(event){
+  if (event.key === "Escape") closeModal();
+});
 </script>
 </body>
 </html>

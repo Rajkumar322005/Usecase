@@ -488,6 +488,7 @@
     chat.insertBefore(div, typing);
     requestAnimationFrame(function () { div.classList.add('visible'); });
     scrollChat();
+    return div;
   }
 
   function insertBlock(node) {
@@ -571,9 +572,12 @@
       if (!state.awaiting || button.disabled) return;
       if (button.dataset.action === 'rate') {
         const rating = Number(button.dataset.value);
-        button.closest('.rating-row').querySelectorAll('.star-btn').forEach(function (star, index) {
-          if (index < rating) star.classList.add('demo-pick');
-        });
+        const ratingRow = button.closest('.rating-row');
+        if (ratingRow) {
+          ratingRow.querySelectorAll('.star-btn').forEach(function (star, index) {
+            if (index < rating) star.classList.add('demo-pick');
+          });
+        } else button.classList.add('demo-pick');
       } else {
         button.classList.add('demo-pick');
       }
@@ -592,10 +596,34 @@
       scheduleVirtualSelection(items);
       return;
     }
+    optionsBlock(items);
+  }
+
+  function latestBotMessage() {
+    const messages = chat.querySelectorAll('.msg.bot');
+    return messages[messages.length - 1] || null;
+  }
+
+  function compactBotMessage(message, width) {
+    message.style.width = 'min(78%,' + width + 'px)';
+    message.style.maxWidth = '78%';
+  }
+
+  function optionsBlock(items, className, parentMessage) {
     const wrap = document.createElement('div');
-    wrap.className = 'choice-grid';
-    items.forEach(function (item) { wrap.appendChild(makeButton(item.label, item.action, item.value)); });
-    insertBlock(wrap);
+    wrap.className = 'choice-grid vertical-options interactive-block visible' + (className ? ' ' + className : '');
+    items.forEach(function (item) {
+      const button = makeButton(item.label, item.action, item.value);
+      if (item.userLabel) button.dataset.label = item.userLabel;
+      wrap.appendChild(button);
+    });
+    const parent = parentMessage || latestBotMessage();
+    if (parent) {
+      parent.classList.add('has-options');
+      compactBotMessage(parent, 320);
+      parent.insertBefore(wrap, parent.querySelector('.tr'));
+      scrollChat();
+    } else insertBlock(wrap);
     state.awaiting = true;
     scheduleAutoSelection('normal');
   }
@@ -717,162 +745,106 @@
     }));
   }
 
-  function datePicker(action) {
+  function dropdownPicker(label, groups, action) {
     const wrap = document.createElement('div');
-    const row = document.createElement('div');
-    row.className = 'dates-row';
-    [
-      { value:'Today', label:tx('today'), small:'Sun' },
-      { value:'Tomorrow', key:'tomorrow', small:'Mon' },
-      { value:'12 Aug', key:'aug12', small:'Tue' },
-      { value:'13 Aug', key:'aug13', small:'Wed' },
-      { value:'14 Aug', key:'aug14', small:'Thu' }
-    ].forEach(function (date) {
-      const button = makeButton(date.label || optx(date.key), action, date.value, 'date-btn');
-      const small = document.createElement('small');
-      small.textContent = date.small;
-      button.appendChild(small);
-      row.appendChild(button);
+    wrap.className = 'dropdown-picker';
+    const title = document.createElement('label');
+    title.className = 'dropdown-label';
+    title.textContent = label;
+    const select = document.createElement('select');
+    select.className = 'engati-dropdown';
+    select.setAttribute('aria-label', label);
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = tx('select');
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.appendChild(placeholder);
+    groups.forEach(function (group) {
+      const parent = group.label ? document.createElement('optgroup') : select;
+      if (group.label) parent.label = group.label;
+      group.options.forEach(function (item) {
+        const option = document.createElement('option');
+        option.value = item.value;
+        option.textContent = item.label;
+        parent.appendChild(option);
+      });
+      if (group.label) select.appendChild(parent);
     });
-    wrap.appendChild(row);
-    insertBlock(wrap);
-    state.awaiting = true;
-    scheduleAutoSelection('rich');
-  }
-
-  function slotPicker(action) {
-    const wrap = document.createElement('div');
-    [
-      { label:tx('morning'), slots:['10:00 AM','11:30 AM'] },
-      { label:tx('afternoon'), slots:['2:15 PM','4:30 PM'] },
-      { label:tx('evening'), slots:['6:00 PM'] }
-    ].forEach(function (group) {
-      const heading = document.createElement('div');
-      heading.className = 'slot-section';
-      heading.textContent = group.label;
-      wrap.appendChild(heading);
-      const row = document.createElement('div');
-      row.className = 'slots-row';
-      group.slots.forEach(function (slot) { row.appendChild(makeButton(slot, action, slot, 'slot-btn')); });
-      wrap.appendChild(row);
-    });
+    const submit = makeButton(tx('select'), action, '', 'dropdown-submit');
+    submit.disabled = true;
+    function syncSelection() {
+      const selected = select.options[select.selectedIndex];
+      submit.dataset.value = select.value;
+      submit.dataset.label = selected ? selected.textContent : tx('select');
+      submit.disabled = !select.value;
+    }
+    select.addEventListener('change', syncSelection);
+    const expected = expectedSelection();
+    if (state.mode === 'text' && expected && expected[0] === action) {
+      select.value = String(expected[1]);
+      syncSelection();
+    }
+    title.appendChild(select);
+    wrap.appendChild(title);
+    wrap.appendChild(submit);
     insertBlock(wrap);
     state.awaiting = true;
     scheduleAutoSelection('normal');
   }
 
+  function datePicker(action) {
+    dropdownPicker(tx('chooseDate'), [{ options:[
+      { value:'Today', label:tx('today') + ' · Sun' },
+      { value:'Tomorrow', label:optx('tomorrow') + ' · Mon' },
+      { value:'12 Aug', label:optx('aug12') + ' · Tue' },
+      { value:'13 Aug', label:optx('aug13') + ' · Wed' },
+      { value:'14 Aug', label:optx('aug14') + ' · Thu' }
+    ] }], action);
+  }
+
+  function slotPicker(action) {
+    dropdownPicker(tx('chooseSlot'), [
+      { label:tx('morning'), options:[{ value:'10:00 AM', label:'10:00 AM' },{ value:'11:30 AM', label:'11:30 AM' }] },
+      { label:tx('afternoon'), options:[{ value:'2:15 PM', label:'2:15 PM' },{ value:'4:30 PM', label:'4:30 PM' }] },
+      { label:tx('evening'), options:[{ value:'6:00 PM', label:'6:00 PM' }] }
+    ], action);
+  }
+
   function summaryCard(title, subtitle, rows, actions, note, icon) {
-    const card = document.createElement('div');
-    card.className = 'summary-card';
-    const head = document.createElement('div');
-    head.className = 'summary-head';
-    const iconEl = document.createElement('div');
-    iconEl.className = 'summary-icon';
-    iconEl.textContent = icon || '✓';
-    const headText = document.createElement('div');
-    const titleEl = document.createElement('div');
-    titleEl.className = 'summary-title';
-    titleEl.textContent = title;
-    const subEl = document.createElement('div');
-    subEl.className = 'summary-sub';
-    subEl.textContent = subtitle || '';
-    headText.appendChild(titleEl);
-    headText.appendChild(subEl);
-    head.appendChild(iconEl);
-    head.appendChild(headText);
-    card.appendChild(head);
-    rows.forEach(function (row) {
-      const el = document.createElement('div');
-      el.className = 'summary-row';
-      const label = document.createElement('span');
-      label.textContent = row[0];
-      const value = document.createElement('strong');
-      value.textContent = row[1];
-      el.appendChild(label);
-      el.appendChild(value);
-      card.appendChild(el);
-    });
-    if (note) {
-      const noteEl = document.createElement('div');
-      noteEl.className = 'summary-note';
-      noteEl.textContent = note;
-      card.appendChild(noteEl);
-    }
-    if (actions && actions.length) {
-      const actionsEl = document.createElement('div');
-      actionsEl.className = 'card-actions';
-      actions.forEach(function (action, index) {
-        actionsEl.appendChild(makeButton(action.label, action.action, action.value || '', 'card-action' + (index ? ' secondary' : '')));
-      });
-      card.appendChild(actionsEl);
-      state.awaiting = true;
-    }
-    insertBlock(card);
-    if (actions && actions.length) scheduleAutoSelection('rich');
-    return card;
+    let text = (icon || '✅') + ' *' + title + '*';
+    if (subtitle) text += '\n' + subtitle;
+    rows.forEach(function (row, index) { text += (index === 0 ? '\n\n' : '\n') + row[0] + ': *' + row[1] + '*'; });
+    if (note) text += '\n\n' + note;
+    const message = addMessage('bot', text);
+    message.classList.add('summary-message');
+    compactBotMessage(message, 340);
+    if (actions && actions.length) optionsBlock(actions, '', message);
   }
 
   function reportCard() {
-    summaryCard(
-      '📄 CarePlus Diagnostics Report', 'Order #LAB-8812 · PDF · 1.8 MB',
-      [[tx('labelTest'),'Executive Health Check'],[tx('labelDate'),'08 Aug 2026'],[stepText('Status'),tx('statusReady')]],
-      [
-        { label:tx('viewReport'), action:'view-report' },
-        { label:tx('downloadReport'), action:'download-report' },
-        { label:tx('bookFollowup'), action:'book-followup' },
-        { label:tx('notNow'), action:'not-now' }
-      ],
-      tx('reportSafe'), '📄'
-    );
+    const message = addMessage('bot', '📄 *CarePlus Diagnostics Report*\nOrder #LAB-8812 · PDF · 1.8 MB\n\n' + tx('labelTest') + ': *Executive Health Check*\n' + tx('labelDate') + ': *08 Aug 2026*\n' + stepText('Status') + ': *' + tx('statusReady') + '*\n\n' + tx('reportSafe'));
+    message.classList.add('summary-message', 'document-message');
+    compactBotMessage(message, 340);
+    optionsBlock([
+      { label:tx('viewReport'), action:'view-report' },
+      { label:tx('downloadReport'), action:'download-report' },
+      { label:tx('bookFollowup'), action:'book-followup' },
+      { label:tx('notNow'), action:'not-now' }
+    ], 'document-actions', message);
   }
 
   function ratingControl() {
-    const card = document.createElement('div');
-    card.className = 'rating-card';
-    const title = document.createElement('div');
-    title.className = 'rating-title';
-    title.textContent = tx('rateExperience');
-    card.appendChild(title);
-    const row = document.createElement('div');
-    row.className = 'rating-row';
-    for (let i = 1; i <= 5; i += 1) {
-      const button = makeButton('★', 'rate', String(i), 'star-btn');
-      button.dataset.label = String(i) + ' / 5 ★';
-      button.setAttribute('aria-label', String(i) + ' out of 5 stars');
-      row.appendChild(button);
-    }
-    card.appendChild(row);
-    insertBlock(card);
-    state.awaiting = true;
-    scheduleAutoSelection('rich');
+    optionsBlock([1,2,3,4,5].map(function (rating) {
+      return { label:String(rating) + ' ★', action:'rate', value:String(rating), userLabel:String(rating) + ' / 5 ★' };
+    }), 'feedback-options');
   }
 
   function statusCard() {
-    const card = document.createElement('div');
-    card.className = 'status-card';
-    [
-      { label:tx('prescriptionVerified'), current:false },
-      { label:tx('orderPacked'), current:false },
-      { label:tx('outDelivery'), current:true }
-    ].forEach(function (item) {
-      const line = document.createElement('div');
-      line.className = 'status-line' + (item.current ? ' current' : '');
-      const dot = document.createElement('span');
-      dot.className = 'status-dot';
-      dot.textContent = '✓';
-      const label = document.createElement('strong');
-      label.textContent = item.label;
-      line.appendChild(dot);
-      line.appendChild(label);
-      card.appendChild(line);
-    });
-    const actions = document.createElement('div');
-    actions.className = 'card-actions';
-    actions.appendChild(makeButton(tx('done'), 'done', '', 'card-action'));
-    card.appendChild(actions);
-    insertBlock(card);
-    state.awaiting = true;
-    scheduleAutoSelection('rich');
+    const message = addMessage('bot', '✅ ' + tx('prescriptionVerified') + '\n✅ ' + tx('orderPacked') + '\n● ' + tx('outDelivery'));
+    message.classList.add('summary-message');
+    compactBotMessage(message, 340);
+    optionsBlock([{ label:tx('done'), action:'done', value:'' }], '', message);
   }
 
   function startJourney() {
@@ -1041,23 +1013,21 @@
 
   function showPaymentCard() {
     reply(interpolate('paymentPrepared', { fee:state.data.doctor.fee }), function () {
-      const card = summaryCard(tx('consultationPayment'), state.data.doctor.name + ' · ' + tx(state.data.specialty), [
+      summaryCard(tx('consultationPayment'), state.data.doctor.name + ' · ' + tx(state.data.specialty), [
         [tx('consultationFee'),state.data.doctor.fee]
       ], [
         { label:interpolate('payAmount', { fee:state.data.doctor.fee }), action:'payment-pay' }
       ], tx('demoPaymentNote'), '₹');
-      card.classList.add('payment-card');
     });
   }
 
   function completeDemoPayment() {
     reply(tx('processingPayment'), function () {
-      const card = summaryCard(tx('paymentSuccessful'), tx('consultationPayment'), [
+      summaryCard(tx('paymentSuccessful'), tx('consultationPayment'), [
         [tx('transactionId'),'DEMO-PAY-82491'],
         [tx('amount'),state.data.doctor.fee],
         [tx('paymentMethod'),'UPI']
-      ], [], tx('demoPaymentNote'), '✓');
-      card.classList.add('payment-card', 'payment-success');
+      ], [], tx('demoPaymentNote'), '✅');
       const token = state.token;
       later(function () {
         addMessage('user', autoTx('paymentDone'));
@@ -1085,7 +1055,7 @@
       { label:tx('directions'), action:'directions' },
       { label:tx('reschedule'), action:'appointment-reschedule' },
       { label:tx('done'), action:'done' }
-    ], '', '✓');
+    ], '', '✅');
   }
 
   function labSelectionPrompt(mode) {
@@ -1151,7 +1121,7 @@
       { label:tx('reschedule'), action:'lab-reschedule' },
       { label:tx('cancel'), action:'lab-cancel' },
       { label:tx('done'), action:'done' }
-    ], '', '✓');
+    ], '', '✅');
   }
 
   function pharmacyFulfilment() {
@@ -1273,7 +1243,7 @@
       reply(tx('previousNewSlot'), function () {
         summaryCard(tx('appointmentRescheduled'), 'CP-A-20481', [
           [tx('previous'),optx('tomorrow') + ' · 10:30 AM'],[tx('newSlot'),state.data.date + ' · ' + state.data.slot]
-        ], [{ label:tx('directions'), action:'directions', value:'central' },{ label:tx('done'), action:'done' }], '', '✓');
+        ], [{ label:tx('directions'), action:'directions', value:'central' },{ label:tx('done'), action:'done' }], '', '✅');
       });
     } else if (action === 'manage-cancel') {
       setStep(3);
@@ -1374,7 +1344,7 @@
       reply(tx('followupConfirmed'), function () {
         summaryCard(tx('followupConfirmed'), 'CP-FU-8812', [
           [tx('labelDoctor'),state.data.doctor.name],[tx('labelDate'),state.data.date],[tx('labelTime'),state.data.slot]
-        ], [{ label:tx('done'), action:'done' }], tx('reportSafe'), '✓');
+        ], [{ label:tx('done'), action:'done' }], tx('reportSafe'), '✅');
       });
     } else if (action === 'not-now') {
       reply(tx('done'), function () { choices([{ label:tx('close'), action:'close' }]); });
@@ -1417,7 +1387,7 @@
       reply(tx('pharmacyConfirmed'), function () {
         summaryCard(tx('pharmacyConfirmed'), 'Order #RX-2026-4488', [
           [tx('labelMode'),state.data.fulfilment],[tx('estimatedDelivery'),tx('today') + ' · 6:00 PM'],[tx('total'),'₹840']
-        ], [{ label:tx('track'), action:'pharmacy-track' },{ label:tx('done'), action:'done' }], 'Prescription verified by demo pharmacy workflow.', '✓');
+        ], [{ label:tx('track'), action:'pharmacy-track' },{ label:tx('done'), action:'done' }], 'Prescription verified by demo pharmacy workflow.', '✅');
       });
     } else if (action === 'pharmacy-fulfil' && value === 'pickup') {
       reply(tx('choosePharmacy'), function () { locationCards('pharmacy-branch', LOCATIONS.slice(0,3)); });
@@ -1426,7 +1396,7 @@
       setStep(3);
       summaryCard(tx('pharmacyConfirmed'), 'Pickup Order #RX-2026-4488', [
         [tx('labelMode'),branch.name + ' ' + tx('pharmacy')],[tx('readyBy'),tx('today') + ' · 5:30 PM'],[tx('total'),'₹840']
-      ], [{ label:tx('directions'), action:'directions', value:value },{ label:tx('done'), action:'done' }], '', '✓');
+      ], [{ label:tx('directions'), action:'directions', value:value },{ label:tx('done'), action:'done' }], '', '✅');
     } else if (action === 'pharmacy-track') {
       setStep(3);
       reply(tx('orderStatus'), statusCard);

@@ -337,6 +337,12 @@
     ]
   };
 
+  const DOCTOR_PORTRAITS = {
+    ananya: '../../assets/healthcare/doctor-ananya-menon.jpg',
+    'vikram-rao': '../../assets/healthcare/doctor-vikram-rao.jpg',
+    'arjun-shah': '../../assets/healthcare/doctor-arjun.jpg'
+  };
+
   const LAB_PACKAGES = [
     { id:'basic', title:'Basic Health Check', tag:'42 tests', meta:'Blood & urine · Report in 24 hrs', price:'₹1,499' },
     { id:'executive', title:'Executive Health Check', tag:'68 tests', meta:'Blood & urine · Report in 24 hrs', price:'₹2,799' },
@@ -660,7 +666,7 @@
         const img = document.createElement('img');
         img.src = item.image;
         img.alt = item.alt || item.title;
-        img.className = 'sprite-' + (item.sprite || 0);
+        img.className = item.sprite === null ? 'cc-portrait' : 'sprite-' + (item.sprite || 0);
         img.loading = 'eager';
         img.onerror = function () { photo.style.background = 'linear-gradient(135deg,#fdf2f2,#ead9d9)'; img.style.display = 'none'; };
         photo.appendChild(img);
@@ -736,8 +742,9 @@
 
   function doctorCards(action, list, specialtyKey) {
     renderCarousel(list.map(function (doctor) {
+      const portrait = DOCTOR_PORTRAITS[doctor.id];
       return {
-        id:doctor.id, image:'../../assets/healthcare/careplus-doctors.jpg', sprite:doctor.sprite, alt:doctor.name + ' profile',
+        id:doctor.id, image:portrait || '../../assets/healthcare/careplus-doctors.jpg', sprite:portrait ? null : doctor.sprite, alt:doctor.name + ' profile',
         tag:tx(specialtyKey), title:doctor.name, subtitle:interpolate('yearsExperience', { n:parseInt(doctor.experience, 10) }),
         meta:doctor.languages + ' · ' + localizedNext(doctor.next), price:doctor.fee,
         primaryAction:action, primaryLabel:tx('selectDoctor'), secondary:[]

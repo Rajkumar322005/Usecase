@@ -612,6 +612,8 @@
     .edtech-v3-page .steps-bar { min-height: 40px; align-items: center }
     .edtech-v3-page .chat-area { padding: 12px 10px; min-height: 0 }
     .edtech-v3-page .msg { max-width: 88%; padding: 8px 10px 4px }
+    .edtech-v3-page .msg.bot.has-options { width: min(78%,320px); max-width: 78%; box-sizing: border-box }
+    .edtech-v3-page .msg.bot.summary-message { width: min(78%,340px); max-width: 78%; line-height: 1.42 }
     .edtech-v3-page .msg-content strong { font-weight: 800 }
     .edtech-v3-page .interactive-block {
       width: 96%; align-self: flex-start; opacity: 0; transform: translateY(6px);
@@ -619,8 +621,19 @@
     }
     .edtech-v3-page .interactive-block.visible { opacity: 1; transform: translateY(0) }
     .edtech-v3-page .choice-grid {
-      display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin: 5px 0
+      display: flex; flex-direction: column; align-items: stretch; gap: 7px;
+      width: min(100%,290px); margin: 5px 0
     }
+    .edtech-v3-page .choice-grid .choice-btn { width: 100%; text-align: center }
+    .edtech-v3-page .msg .choice-grid {
+      width: 100%; max-width: none; margin: 10px 0 3px; gap: 6px;
+      opacity: 1; transform: none; box-sizing: border-box
+    }
+    .edtech-v3-page .msg .choice-grid .choice-btn {
+      width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;
+      padding: 8px 9px; border-radius: 8px
+    }
+    .edtech-v3-page .msg.has-options .tr { margin-top: 3px }
     .edtech-v3-page .choice-btn,
     .edtech-v3-page .date-btn,
     .edtech-v3-page .slot-btn,
@@ -650,35 +663,23 @@
     .edtech-v3-page [data-action]:disabled {
       cursor: default; opacity: .55; transform: none !important; box-shadow: none !important
     }
-    .edtech-v3-page .summary-card,
-    .edtech-v3-page .status-card,
     .edtech-v3-page .details-form {
       background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 12px;
       box-shadow: 0 3px 12px rgba(16,13,13,.06)
     }
-    .edtech-v3-page .summary-head {
-      display: flex; align-items: center; gap: 8px; padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-sm); margin-bottom: 8px
-    }
-    .edtech-v3-page .summary-icon {
-      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
-      background: var(--red-pale); color: var(--red); font-size: 1rem
-    }
-    .edtech-v3-page .summary-title { color: var(--body-head); font: 800 .78rem/1.2 'Outfit',sans-serif }
-    .edtech-v3-page .summary-sub { color: var(--body-muted); font-size: .59rem; margin-top: 2px }
-    .edtech-v3-page .summary-row {
-      display: grid; grid-template-columns: 96px 1fr; gap: 8px; padding: 4px 0;
-      font-size: .66rem; line-height: 1.4
-    }
-    .edtech-v3-page .summary-row span:first-child { color: var(--body-muted) }
-    .edtech-v3-page .summary-row strong { color: var(--body-head) }
-    .edtech-v3-page .summary-note {
-      margin-top: 8px; padding: 7px 8px; border-radius: 8px;
-      background: var(--red-faint); font-size: .61rem; line-height: 1.45
-    }
-    .edtech-v3-page .card-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px }
+    .edtech-v3-page .card-actions { display: flex; flex-direction: column; align-items: stretch; gap: 5px; margin-top: 9px }
     .edtech-v3-page .card-action { flex: 1 1 105px; padding: 7px 8px; border-radius: 8px; font-size: .61rem }
     .edtech-v3-page .card-action.secondary { color: var(--body-text); border-color: var(--border); background: var(--cream) }
+    .edtech-v3-page .cc-card .card-action {
+      flex: none; width: 100%; min-height: 0; padding: 5px 0; border: 0 !important;
+      border-radius: 0; background: transparent !important; color: var(--red) !important;
+      box-shadow: none !important; text-align: center; transform: none !important
+    }
+    .edtech-v3-page .cc-card .card-action:hover { text-decoration: underline }
+    .edtech-v3-page .webchat-enhanced.web-channel .cc-card .card-action {
+      background: var(--web-accent,var(--red)) !important; color: #fff !important;
+      text-align: center
+    }
     .edtech-v3-page .carousel-wrap { max-width: 100%; width: 100% }
     .edtech-v3-page .carousel-track {
       display: flex; gap: 9px; overflow-x: auto; padding: 3px 2px 8px;
@@ -708,17 +709,29 @@
     .edtech-v3-page .cc-meta { color: var(--body-text); font-size: .58rem; line-height: 1.45; margin: 4px 0 }
     .edtech-v3-page .cc-price { color: var(--red); font: 800 .68rem 'Outfit',sans-serif }
     .edtech-v3-page .cc-hint { display: flex; justify-content: flex-end; color: var(--body-muted); font-size: .6rem }
-    .edtech-v3-page .dates-row,
-    .edtech-v3-page .slots-row { display: flex; gap: 7px; overflow-x: auto; padding: 3px 2px 7px }
-    .edtech-v3-page .date-btn { flex: 0 0 82px; display: grid; gap: 2px; place-items: center }
-    .edtech-v3-page .date-btn small { color: var(--body-muted); font-size: .55rem }
-    .edtech-v3-page .slots-row { flex-wrap: wrap; overflow: visible }
-    .edtech-v3-page .slot-btn { border-radius: 999px; padding: 7px 11px }
-    .edtech-v3-page .details-form { display: grid; gap: 10px }
+    .edtech-v3-page .dropdown-picker {
+      width: min(100%,290px); display: grid; gap: 8px; padding: 11px;
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(16,13,13,.06)
+    }
+    .edtech-v3-page .dropdown-label { display: grid; gap: 6px; color: var(--body-head); font-size: .68rem; font-weight: 800 }
+    .edtech-v3-page .engati-dropdown {
+      width: 100%; min-height: 40px; border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 8px 34px 8px 10px; background: var(--cream); color: var(--body-head);
+      font: 700 .7rem 'DM Sans',sans-serif; cursor: pointer; outline: 0
+    }
+    .edtech-v3-page .engati-dropdown:focus { border-color: var(--red); background: #fff }
+    .edtech-v3-page .dropdown-submit {
+      width: 100%; border: 1.5px solid rgba(174,21,54,.28); border-radius: 8px;
+      padding: 8px 10px; background: #fff; color: var(--red); font-size: .68rem;
+      font-weight: 800; cursor: pointer
+    }
+    .edtech-v3-page .dropdown-submit:hover { background: var(--red); color: #fff }
+    .edtech-v3-page .details-form { display: grid; gap: 10px; width: min(100%,300px) }
     .edtech-v3-page .details-form-title { color: var(--body-head); font: 800 .78rem/1.3 'Outfit',sans-serif }
-    .edtech-v3-page .details-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px }
+    .edtech-v3-page .details-fields { display: grid; grid-template-columns: 1fr; gap: 8px }
     .edtech-v3-page .details-field { display: grid; gap: 4px; color: var(--body-muted); font-size: .6rem; font-weight: 800 }
-    .edtech-v3-page .details-field.wide { grid-column: 1 / -1 }
+    .edtech-v3-page .details-field.wide { grid-column: auto }
     .edtech-v3-page .details-field input {
       min-width: 0; width: 100%; border: 1.5px solid var(--border); border-radius: 9px;
       padding: 8px 9px; color: var(--body-head); background: var(--cream); font: 600 .68rem 'DM Sans',sans-serif
@@ -729,17 +742,6 @@
     .edtech-v3-page .details-submit,
     .edtech-v3-page .upload-btn { width: 100% }
     .edtech-v3-page .upload-btn { border-style: dashed; background: var(--red-faint) }
-    .edtech-v3-page .status-line {
-      display: flex; gap: 9px; align-items: flex-start; padding: 6px 0;
-      font-size: .66rem; color: var(--body-head)
-    }
-    .edtech-v3-page .status-dot {
-      width: 18px; height: 18px; flex: 0 0 18px; border-radius: 50%; display: grid;
-      place-items: center; background: #e6f7ed; color: #17834c; font-size: .58rem; font-weight: 900
-    }
-    .edtech-v3-page .status-line.current .status-dot {
-      background: var(--red); color: #fff; box-shadow: 0 0 0 3px var(--red-pale)
-    }
     .edtech-v3-page .mfooter { min-height: 51px }
     .edtech-v3-page .mfooter input { cursor: default }
 

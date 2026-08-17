@@ -177,21 +177,48 @@
   function scroll(){requestAnimationFrame(()=>{chat.scrollTop=chat.scrollHeight;});}
   function addDate(){const d=document.createElement('div');d.className='date-chip';d.innerHTML='<span></span>';d.firstChild.textContent=tx('today');chat.insertBefore(d,typing);}
   function formatted(el,text){String(text).split('*').forEach((p,i)=>{if(i%2){const b=document.createElement('strong');b.textContent=p;el.appendChild(b);}else p.split('\n').forEach((line,j)=>{if(j)el.appendChild(document.createElement('br'));el.appendChild(document.createTextNode(line));});});}
-  function message(from,text){const m=document.createElement('div');m.className='msg '+from;m.dataset.messageId=state.token+'-'+(++state.serial);const c=document.createElement('div');c.className='msg-content';formatted(c,text);const tr=document.createElement('div');tr.className='tr';tr.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});if(from==='user')tr.textContent+='  ✓✓';m.append(c,tr);chat.insertBefore(m,typing);requestAnimationFrame(()=>m.classList.add('visible'));scroll();}
+  function message(from,text){const m=document.createElement('div');m.className='msg '+from;m.dataset.messageId=state.token+'-'+(++state.serial);const c=document.createElement('div');c.className='msg-content';formatted(c,text);const tr=document.createElement('div');tr.className='tr';tr.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});if(from==='user')tr.textContent+='  ✓✓';m.append(c,tr);chat.insertBefore(m,typing);requestAnimationFrame(()=>m.classList.add('visible'));scroll();return m;}
   function insert(node){node.classList.add('interactive-block');chat.insertBefore(node,typing);requestAnimationFrame(()=>node.classList.add('visible'));scroll();}
   function reply(text,after,delay){state.awaiting=false;const token=state.token;typing.classList.add('show');scroll();later(()=>{typing.classList.remove('show');message('bot',text);if(after)after();},delay||(state.mode==='text'?500:260),token);}
   function button(label,action,value='',cls='choice-btn'){const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=label;b.dataset.action=action;b.dataset.value=value;b.dataset.label=label;if(state.mode==='text')b.tabIndex=-1;return b;}
   const expected=()=>DEMO[state.flow]&&DEMO[state.flow][state.demoIndex];
   function virtual(items){const e=expected();if(!e)return;const item=items.find(x=>x.action===e[0]&&String(x.value||'')===String(e[1]||''));if(!item)return;const b=button(item.label,item.action,item.value);b.dataset.label=ax(e[2])||item.label;state.awaiting=true;later(()=>{if(state.awaiting){state.demoIndex++;processAction(b);}},650);}
   function autoPick(){if(state.mode!=='text')return;const e=expected();if(!e)return;const all=[...chat.querySelectorAll('[data-action]')];const b=all.reverse().find(x=>!x.disabled&&x.dataset.action===e[0]&&String(x.dataset.value||'')===String(e[1]||''));if(!b)return;b.dataset.label=ax(e[2])||b.dataset.label;later(()=>{if(state.awaiting&&!b.disabled){state.demoIndex++;b.click();}},700);}
-  function choices(items){if(state.mode==='text'){virtual(items);return;}const w=document.createElement('div');w.className='choice-grid';items.forEach(x=>w.appendChild(button(x.label,x.action,x.value)));insert(w);state.awaiting=true;}
+  function latestBotMessage(){return [...chat.querySelectorAll('.msg.bot')].pop()||null;}
+  function compactBotMessage(m,width=340){if(!m)return;m.style.width='min(78%, '+width+'px)';m.style.maxWidth='78%';}
+  function optionsBlock(items,parentMessage=latestBotMessage()){
+    const w=document.createElement('div');w.className='choice-grid vertical-options interactive-block visible';items.forEach((x,i)=>w.appendChild(button(x.label,x.action,x.value||'','choice-btn'+(i?' secondary':''))));
+    if(parentMessage){parentMessage.classList.add('has-options');compactBotMessage(parentMessage,340);parentMessage.insertBefore(w,parentMessage.querySelector('.tr'));}
+    else insert(w);
+    state.awaiting=true;scroll();return w;
+  }
+  function choices(items){if(state.mode==='text'){virtual(items);return;}optionsBlock(items);}
   function setStep(n){steps.querySelectorAll('.sb-step').forEach((el,i)=>el.className='sb-step'+(i<n?' done':i===n?' active':''));}
   function buildSteps(){steps.innerHTML='';META[state.flow].steps.forEach(k=>{const s=document.createElement('span');s.className='sb-step';s.textContent=sx(k);steps.appendChild(s);});setStep(0);}
   function disable(){chat.querySelectorAll('[data-action]').forEach(b=>b.disabled=true);}
-  function summary(title,sub,rows,actions=[],note='',icon='✓'){const c=document.createElement('div');c.className='summary-card';const h=document.createElement('div');h.className='summary-head';const ic=document.createElement('div');ic.className='summary-icon';ic.textContent=icon;const ht=document.createElement('div');ht.innerHTML='<div class="summary-title"></div><div class="summary-sub"></div>';ht.children[0].textContent=title;ht.children[1].textContent=sub;h.append(ic,ht);c.appendChild(h);rows.forEach(r=>{const row=document.createElement('div');row.className='summary-row';const l=document.createElement('span'),v=document.createElement('strong');l.textContent=r[0];v.textContent=r[1];row.append(l,v);c.appendChild(row);});if(note){const n=document.createElement('div');n.className='summary-note';n.textContent=note;c.appendChild(n);}if(actions.length){const a=document.createElement('div');a.className='card-actions';actions.forEach((x,i)=>a.appendChild(button(x.label,x.action,x.value||'','card-action'+(i?' secondary':''))));c.appendChild(a);state.awaiting=true;}insert(c);autoPick();return c;}
+  function summary(title,sub,rows,actions=[],note='',icon='✅'){
+    const mark=icon==='✓'||icon==='✔'?'✅':icon;
+    let text=(mark?mark+' ':'')+'*'+title+'*';
+    if(sub)text+='\n'+sub;
+    rows.forEach((r,i)=>{text+=(i===0?'\n\n':'\n')+r[0]+': *'+r[1]+'*';});
+    if(note)text+='\n\n'+note;
+    const m=message('bot',text);m.classList.add('summary-message');compactBotMessage(m,340);
+    if(actions.length)optionsBlock(actions,m);
+    autoPick();return m;
+  }
   function richProjects(items,action){const wrap=document.createElement('div');wrap.className='carousel-wrap';const track=document.createElement('div');track.className='carousel-track';items.forEach(p=>{const c=document.createElement('article');c.className='cc-card';const img=document.createElement('div');img.className='cc-img';img.textContent=p.icon;const body=document.createElement('div');body.className='cc-body';body.innerHTML='<span class="cc-tag"></span><div class="cc-title"></div><div class="cc-sub"></div><div class="cc-meta"></div><div class="cc-price"></div><div class="card-actions"></div>';body.children[0].textContent=p.tag;body.children[1].textContent=p.title;body.children[2].textContent=p.locality+' · '+p.city;body.children[3].textContent=p.configuration+' · '+p.area+' · '+p.status;body.children[4].textContent=p.price;const b=button(tx('select'),action,p.id,'card-action');b.dataset.label=p.title;body.lastChild.appendChild(b);c.append(img,body);track.appendChild(c);});const hint=document.createElement('div');hint.className='cc-hint';hint.textContent='↔ '+tx('swipe');wrap.append(track,hint);insert(wrap);state.awaiting=true;autoPick();}
-  function datePicker(action){const w=document.createElement('div');w.className='dates-row';[['Thursday, 13 Aug','13','Thu'],['Friday, 14 Aug','14','Fri'],['Saturday, 15 Aug','15','Sat'],['Sunday, 16 Aug','16','Sun']].forEach(d=>{const b=button(d[1],action,d[0],'date-btn');b.dataset.label=d[0];const sm=document.createElement('small');sm.textContent=d[2];b.appendChild(sm);w.appendChild(b);});insert(w);state.awaiting=true;autoPick();}
-  function slotPicker(action){const w=document.createElement('div');w.className='slots-row';['10:00 AM','11:30 AM','2:30 PM','4:00 PM'].forEach(v=>w.appendChild(button(v,action,v,'slot-btn')));insert(w);state.awaiting=true;autoPick();}
+  function dropdownPicker(label,values,action){
+    const w=document.createElement('div');w.className='engati-dropdown interactive-block';
+    const select=document.createElement('select');select.className='engati-select';select.setAttribute('aria-label',label);
+    const placeholder=document.createElement('option');placeholder.value='';placeholder.textContent=label;placeholder.disabled=true;placeholder.selected=true;select.appendChild(placeholder);
+    values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o);});
+    const submit=button(tx('submit'),action,'','engati-dropdown-submit');submit.disabled=true;
+    select.addEventListener('change',()=>{submit.value=select.value;submit.dataset.value=select.value;submit.dataset.label=select.value;submit.disabled=!select.value;});
+    const e=expected();if(state.mode==='text'&&e&&e[0]===action&&values.includes(e[1])){select.value=e[1];select.dispatchEvent(new Event('change'));}
+    w.append(select,submit);insert(w);state.awaiting=true;autoPick();
+  }
+  function datePicker(action){dropdownPicker(tx('date'),['Thursday, 13 Aug','Friday, 14 Aug','Saturday, 15 Aug','Sunday, 16 Aug'],action);}
+  function slotPicker(action){dropdownPicker(tx('time'),['10:00 AM','11:30 AM','2:30 PM','4:00 PM'],action);}
   function form(title,fields,action,label){const f=document.createElement('div');f.className='details-form';const h=document.createElement('div');h.className='details-form-title';h.textContent=title;const fieldWrap=document.createElement('div');fieldWrap.className='details-fields';fields.forEach(x=>{const l=document.createElement('label');l.className='details-field'+(x.wide?' wide':'');const s=document.createElement('span');s.textContent=x.label;const i=document.createElement('input');i.name=x.name;i.value=x.value||'';i.type=x.type||'text';l.append(s,i);fieldWrap.appendChild(l);});const b=button(label,action,'','details-submit');f.append(h,fieldWrap,b);insert(f);state.awaiting=true;}
   function contactForm(action,title=tx('propertyEnquiry')){form(title,[{label:tx('fullName'),name:'name',value:'Rahul Mehta'},{label:tx('mobile'),name:'mobile',value:'9876543210'},{label:tx('email'),name:'email',value:'rahul@example.com',wide:true,type:'email'}],action,tx('submit'));}
   function textContact(prefix){reply(tx('askName'),()=>choices([{label:'Rahul Mehta',action:prefix+'-name',value:'Rahul Mehta'}]));}

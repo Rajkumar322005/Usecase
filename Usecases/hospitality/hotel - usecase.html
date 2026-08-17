@@ -323,9 +323,63 @@
       .stats-bar{gap:24px;padding:24px 18px}.stat{min-width:92px}.grid{grid-template-columns:1fr}main{padding:46px 18px 58px}
       .featured-banner{padding:28px 24px}.fb-icon{font-size:40px}.modal{max-height:95vh}.mode-btn{padding:6px 9px}.language-select{max-width:104px}
     }
+
+    /* Compact Engati-native Hospitality conversation UI */
+    .hospitality-page .modal,.hospitality-page .msg,.hospitality-page .opt-btn,
+    .hospitality-page .cc-card,.hospitality-page .demo-form input,
+    .hospitality-page .demo-form select,.hospitality-page .demo-form button{
+      font-family:'DM Sans',sans-serif
+    }
+    .hospitality-page .msg{font-size:12px;line-height:1.48;max-width:82%;padding:8px 10px 5px}
+    .hospitality-page .msg.summary-message{width:min(82%,350px);max-width:82%}
+    .hospitality-page .summary-layout{display:flex;flex-direction:column;width:100%;line-height:1.42}
+    .hospitality-page .summary-line{display:block;white-space:normal}
+    .hospitality-page .summary-line+.summary-line{margin-top:3px}
+    .hospitality-page .summary-line.heading{font-size:12.5px;font-weight:700;margin-bottom:7px}
+    .hospitality-page .summary-line.reference{margin-bottom:5px}
+    .hospitality-page .summary-spacer{display:block;height:5px}
+    .hospitality-page .summary-message .tr{margin-top:7px}
+    .hospitality-page .msg.has-options{width:min(82%,350px);max-width:82%}
+    .hospitality-page .msg .opt-row{width:100%;max-width:none;margin-top:9px;display:flex;flex-direction:column;gap:6px}
+    .hospitality-page .msg .opt-btn{width:100%;min-height:34px;border-radius:9px;padding:7px 9px;text-align:center;font-size:10.5px}
+    .hospitality-page .carousel-wrap{width:96%;max-width:96%}
+    .hospitality-page .carousel-track{gap:10px;padding:2px 2px 8px}
+    .hospitality-page .cc-card{flex:0 0 218px;border-radius:12px;box-shadow:0 2px 8px rgba(32,22,25,.07)}
+    .hospitality-page .cc-img{height:106px;font-size:27px}
+    .hospitality-page .cc-body{padding:10px 11px 11px}
+    .hospitality-page .cc-tag{display:block;margin:0 0 5px;padding:0;border-radius:0;background:transparent;font-size:8px;letter-spacing:.55px}
+    .hospitality-page .cc-title{font:700 12.5px/1.3 'DM Sans',sans-serif;margin-bottom:4px}
+    .hospitality-page .cc-sub{font-size:10px;line-height:1.45;margin-bottom:5px}
+    .hospitality-page .cc-price{font-size:11px;line-height:1.35;margin-top:5px}
+    .hospitality-page .cc-actions{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+    .hospitality-page .cc-action{margin:0;min-height:32px;border:1px solid rgba(174,21,54,.25);border-radius:8px;background:#fff;color:var(--red);padding:7px 8px;text-align:center;font-size:10px}
+    .hospitality-page .cc-action:hover{background:var(--red);color:#fff}
+    .hospitality-page .cc-hint{font-size:9px}
+    .hospitality-page .demo-form{width:100%;display:grid;grid-template-columns:1fr;gap:7px;margin-top:9px;padding:0;border:0;border-radius:0;box-shadow:none}
+    .hospitality-page .demo-form .full{grid-column:auto}
+    .hospitality-page .demo-form input,.hospitality-page .demo-form select{font-size:10.5px;padding:8px;border-radius:7px}
+    .hospitality-page .demo-form button{grid-column:auto;border-radius:8px;padding:8px;font-size:10.5px;text-align:center}
+    .hospitality-page .select-control{width:100%;display:grid;gap:7px;margin-top:9px}
+    .hospitality-page .select-control select{width:100%;border:1px solid #ddd;border-radius:8px;background:#fff;color:#2f2829;padding:8px;font:10.5px 'DM Sans',sans-serif}
+    .hospitality-page .select-control button{width:100%;border:1px solid rgba(174,21,54,.25);border-radius:8px;background:#fff;color:var(--red);padding:8px;font:700 10.5px 'DM Sans',sans-serif;text-align:center;cursor:pointer}
+    .hospitality-page .select-control button:disabled{opacity:.55;cursor:default}
+    .hospitality-page .select-control button:not(:disabled):hover{background:var(--red);color:#fff}
+    .hospitality-page .qr{gap:7px}
+    .hospitality-page .qr-btn{text-align:center}
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .msg.bot{background:#fff!important;border:1px solid #e6e0e1!important;box-shadow:0 3px 10px rgba(56,31,38,.05)!important}
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .msg.user{background:#f4e2e6!important;color:#3e1f28!important;border:1px solid #e7c5cd!important;box-shadow:none!important}
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .msg.user .tr,
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .msg.user .tk{display:none!important}
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .cc-action{background:#7b2638!important;color:#fff!important;border-color:#7b2638!important;text-align:center}
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .opt-btn,
+    .hospitality-page #modalRoot.webchat-enhanced.web-channel>.web-demo-widget .select-control button{color:#7b2638!important;border-color:#d8aeb7!important;text-align:center}
+    @media(max-width:600px){
+      .hospitality-page .cc-card{flex-basis:205px}
+      .hospitality-page .msg,.hospitality-page .msg.has-options,.hospitality-page .msg.summary-message{max-width:86%;width:auto}
+    }
   </style>
 </head>
-<body>
+<body class="hospitality-page">
 
 <nav class="site-nav" aria-label="Primary navigation">
   <a class="brand-logo" href="../../usecases-portal.html" aria-label="Engati Use Case Hub">
@@ -509,8 +563,8 @@
       </select>
     </div>
     <div class="chan-toggle">
-      <button class="ct-btn active" id="chanWaBtn" onclick="setChannel('wa')"><span class="dot"></span>WhatsApp</button>
-      <button class="ct-btn web" id="chanWebBtn" onclick="setChannel('web')"><span class="dot"></span>Website Chat</button>
+      <button class="ct-btn active" id="chanWaBtn" onclick="setChannel('wa')">WhatsApp</button>
+      <button class="ct-btn web" id="chanWebBtn" onclick="setChannel('web')">Website Chat</button>
     </div>
     <div class="browser-bar" id="browserBar">
       <span class="bb-dot" style="background:#ff5f57"></span><span class="bb-dot" style="background:#febc2e"></span><span class="bb-dot" style="background:#28c840"></span>
@@ -891,29 +945,75 @@ function playNext() {
   }
 }
 
-function addMsg(from, message) {
+function displayMessage(from, message) {
+  let text = String(message);
+  if (from === "bot") {
+    text = text.replace(/indicative demo price/gi, "price").replace(/illustrative demo price/gi, "price");
+  }
+  return text;
+}
+
+function inlineMessageMarkup(line) {
+  return String(line).replace(/\*(.*?)\*/g, "<strong>$1</strong>");
+}
+
+function verticalMessageMarkup(message) {
+  let headingSeen = false;
+  return '<div class="summary-layout">' + String(message).split("\n").map(function(line){
+    if (!line.trim()) return '<span class="summary-spacer" aria-hidden="true"></span>';
+    const classes = ["summary-line"];
+    if (!headingSeen) {
+      classes.push("heading");
+      headingSeen = true;
+    }
+    if (/^Reference(?: ID)?:/i.test(line.trim())) classes.push("reference");
+    return '<div class="' + classes.join(" ") + '">' + inlineMessageMarkup(line) + "</div>";
+  }).join("") + "</div>";
+}
+
+function addMsg(from, message, extraClass) {
   const ca = document.getElementById("chatArea");
   const typing = document.getElementById("typingIndicator");
   const div = document.createElement("div");
-  div.className = "msg " + from;
-  let html = String(message).replace(/\*(.*?)\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
-  const tick = from === "user" ? '<span class="tk">✓✓</span>' : "";
+  const displayedMessage = displayMessage(from, message);
+  const isVerticalSummary = from === "bot" && ((extraClass || "").includes("summary-message") || /^\s*✅/u.test(displayedMessage));
+  div.className = "msg " + from + (extraClass ? " " + extraClass : "") + (isVerticalSummary && !(extraClass || "").includes("summary-message") ? " summary-message" : "");
+  let html = isVerticalSummary ? verticalMessageMarkup(displayedMessage) : inlineMessageMarkup(displayedMessage).replace(/\n/g, "<br>");
+  const tick = from === "user" && currentChannel === "wa" ? '<span class="tk">✓✓</span>' : "";
   const time = new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
   div.innerHTML = html + '<div class="tr"><span class="tm">' + time + "</span>" + tick + "</div>";
+  if (from === "user" && currentChannel === "web") {
+    div.style.setProperty("background-color", "#f4e2e6", "important");
+    div.style.setProperty("color", "#3e1f28", "important");
+    div.style.setProperty("border", "1px solid #e7c5cd", "important");
+  }
   ca.insertBefore(div, typing);
   schedule(function(){ div.classList.add("visible"); }, 30);
   ca.scrollTop = ca.scrollHeight;
+  return div;
 }
 
 function addRich(message) {
-  const ca = document.getElementById("chatArea");
-  const typing = document.getElementById("typingIndicator");
-  const div = document.createElement("div");
-  div.className = "rich-card";
-  div.innerHTML = String(message).replace(/\*(.*?)\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
-  ca.insertBefore(div, typing);
-  schedule(function(){ div.classList.add("visible"); }, 30);
-  ca.scrollTop = ca.scrollHeight;
+  let text = String(message);
+  if (/\*STAY SUMMARY\*/i.test(text)) text = text.replace(/\*STAY SUMMARY\*/i, "*🏨 Stay Summary*").replace(/Illustrative Rate:/i, "Rate:");
+  if (/\*TABLE RESERVATION\*[\s\S]*Status: Reservation Submitted/i.test(text)) text = text.replace(/\*TABLE RESERVATION\*/i, "*✅ Table Reservation Submitted*");
+  else if (/\*GUEST SERVICE REQUEST\*[\s\S]*Status: Submitted/i.test(text)) text = text.replace(/\*GUEST SERVICE REQUEST\*/i, "*✅ Guest Service Request Submitted*");
+  else if (/\*TRAVEL ENQUIRY\*[\s\S]*Status: Travel Advisor Follow-up Requested/i.test(text)) text = text.replace(/\*TRAVEL ENQUIRY\*/i, "*✅ Travel Enquiry Submitted*");
+  else if (/\*MODIFICATION REQUEST\*[\s\S]*Status: Submitted for Hotel Confirmation/i.test(text)) text = text.replace(/\*MODIFICATION REQUEST\*/i, "*✅ Modification Request Submitted*");
+  return addMsg("bot", text, "summary-message");
+}
+
+function carouselPrice(item) {
+  const price = String(item.price || "");
+  if (/\/person/i.test(price)) return price.replace(/\s*·\s*(?:Indicative Demo Price|Illustrative Demo Price|Demo)$/i, "");
+  return price;
+}
+
+function carouselImage(item) {
+  if (item.image) return item.image;
+  if (/menu/i.test(String(item.price || ""))) return "../../assets/website-previews/hospitality/fine-dining.webp";
+  if (/\/person/i.test(String(item.price || ""))) return "../../assets/website-previews/hospitality/travel-landscape.webp";
+  return "";
 }
 
 function addCarousel(items, interactive) {
@@ -924,12 +1024,26 @@ function addCarousel(items, interactive) {
   const track = document.createElement("div");
   track.className = "carousel-track";
   track.innerHTML = items.map(function(item,index){
-    const imageClass = item.image ? "cc-img has-image" : "cc-img";
-    const imageStyle = item.image ? ' style="background-image:url(&quot;' + item.image + '&quot;)"' : "";
-    const imageContent = item.image ? "" : (item.icon || "✨");
-    const action = item.action ? '<button class="cc-action" type="button"' + (interactive ? ' data-choice="' + index + '"' : ' tabindex="-1"') + ">" + item.action + "</button>" : "";
-    return '<div class="cc-card"><div class="' + imageClass + '"' + imageStyle + ">" + imageContent + '</div><div class="cc-body"><div class="cc-tag">' + item.tag + '</div><div class="cc-title">' + item.title + '</div><div class="cc-sub">' + item.sub.replace(/\n/g,"<br>") + '</div><div class="cc-price">' + item.price + "</div>" + action + "</div></div>";
+    const image = carouselImage(item);
+    const imageClass = image ? "cc-img has-image" : "cc-img";
+    const imageStyle = image ? ' style="background-image:url(&quot;' + image + '&quot;)"' : "";
+    const imageContent = image ? "" : (item.icon || "✨");
+    const isRestaurant = /menu/i.test(String(item.price || ""));
+    const actionLabels = isRestaurant ? ["View Menu", item.action === "Select" ? "Select Restaurant" : item.action] : [item.action];
+    const actions = actionLabels.filter(Boolean).map(function(label){
+      return '<button class="cc-action" type="button"' + (interactive ? ' data-choice="' + index + '"' : ' tabindex="-1"') + ">" + label + "</button>";
+    }).join("");
+    const price = isRestaurant ? "" : carouselPrice(item);
+    const priceMarkup = price ? '<div class="cc-price">' + price + "</div>" : "";
+    return '<div class="cc-card"><div class="' + imageClass + '"' + imageStyle + ">" + imageContent + '</div><div class="cc-body"><div class="cc-tag">' + item.tag + '</div><div class="cc-title">' + item.title + '</div><div class="cc-sub">' + item.sub.replace(/\n/g,"<br>") + "</div>" + priceMarkup + '<div class="cc-actions">' + actions + "</div></div></div>";
   }).join("");
+  if (currentChannel === "web") {
+    track.querySelectorAll(".cc-action").forEach(function(button){
+      button.style.setProperty("background-color", "#7b2638", "important");
+      button.style.setProperty("color", "#fff", "important");
+      button.style.setProperty("border-color", "#7b2638", "important");
+    });
+  }
   if (interactive) {
     track.querySelectorAll("[data-choice]").forEach(function(button){
       button.addEventListener("click", function(){
@@ -948,6 +1062,46 @@ function addCarousel(items, interactive) {
   ca.scrollTop = ca.scrollHeight;
 }
 
+function isDateTimeStage(stage) {
+  return /check-in and check-out dates|demo date and time|travel month|requested new dates/i.test(stage.prompt || "");
+}
+
+function insertBeforeTime(parent, control) {
+  const time = parent.querySelector(":scope > .tr");
+  parent.insertBefore(control, time || null);
+  parent.classList.add("has-options");
+}
+
+function addStructuredOptions(choices, parent) {
+  const options = document.createElement("div");
+  options.className = "opt-row guided-controls visible";
+  choices.forEach(function(choice){
+    const button = document.createElement("button");
+    button.className = "opt-btn";
+    button.type = "button";
+    button.textContent = choice;
+    button.addEventListener("click", function(){ structuredChoose(choice); });
+    options.appendChild(button);
+  });
+  insertBeforeTime(parent, options);
+}
+
+function addStructuredDropdown(choices, parent) {
+  const control = document.createElement("div");
+  control.className = "select-control guided-controls";
+  const select = document.createElement("select");
+  select.setAttribute("aria-label", "Select an option");
+  select.innerHTML = '<option value="">Select an option</option>' + choices.map(function(choice){ return '<option value="' + choice + '">' + choice + "</option>"; }).join("");
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "Continue";
+  button.disabled = true;
+  select.addEventListener("change", function(){ button.disabled = !select.value; });
+  button.addEventListener("click", function(){ if (select.value) structuredChoose(select.value); });
+  control.append(select, button);
+  insertBeforeTime(parent, control);
+}
+
 function renderStructuredStage() {
   if (currentMode !== "structured") return;
   const flow = flows[currentFlow];
@@ -957,7 +1111,7 @@ function renderStructuredStage() {
     return;
   }
   updateStep(Math.round((structuredIndex / Math.max(flow.structured.length - 1, 1)) * (flow.steps.length - 1)));
-  addMsg("bot", stage.prompt);
+  const promptMessage = addMsg("bot", stage.prompt);
   const qr = document.getElementById("quickReplies");
   qr.innerHTML = "";
   qr.classList.remove("visible");
@@ -966,30 +1120,25 @@ function renderStructuredStage() {
     return;
   }
   if (stage.type === "form") {
-    schedule(function(){ addStructuredForm(stage.fields); }, 300);
+    schedule(function(){ addStructuredForm(stage.fields, promptMessage); }, 300);
     return;
   }
-  if (stage.type === "rich") addRich(stage.text);
+  const optionParent = stage.type === "rich" ? addRich(stage.text) : promptMessage;
   if (stage.end) {
     schedule(showQR, 350);
     return;
   }
   if (stage.choices) {
-    qr.innerHTML = stage.choices.map(function(choice){
-      return '<button class="qr-btn" type="button">' + choice + "</button>";
-    }).join("");
-    qr.querySelectorAll("button").forEach(function(button){
-      button.addEventListener("click", function(){ structuredChoose(button.textContent); });
-    });
-    schedule(function(){ qr.classList.add("visible"); }, 250);
+    schedule(function(){
+      if (isDateTimeStage(stage)) addStructuredDropdown(stage.choices, optionParent);
+      else addStructuredOptions(stage.choices, optionParent);
+    }, 250);
   }
 }
 
-function addStructuredForm(fields) {
-  const ca = document.getElementById("chatArea");
-  const typing = document.getElementById("typingIndicator");
+function addStructuredForm(fields, parent) {
   const form = document.createElement("form");
-  form.className = "demo-form";
+  form.className = "demo-form guided-controls";
   form.innerHTML = fields.map(function(field){
     return '<input class="' + (field.full ? "full" : "") + '" name="' + field.name + '" value="' + field.value + '" aria-label="' + field.name + '" required>';
   }).join("") + '<button type="submit">Continue with Demo Details</button>';
@@ -999,8 +1148,8 @@ function addStructuredForm(fields) {
     const name = data.get("Full Name") || data.get("Name") || data.get("First Name") || "Details";
     structuredChoose(String(name) + " · details added");
   });
-  ca.insertBefore(form, typing);
-  ca.scrollTop = ca.scrollHeight;
+  insertBeforeTime(parent, form);
+  document.getElementById("chatArea").scrollTop = document.getElementById("chatArea").scrollHeight;
 }
 
 function structuredChoose(choice) {
@@ -1009,8 +1158,7 @@ function structuredChoose(choice) {
   const qr = document.getElementById("quickReplies");
   qr.classList.remove("visible");
   qr.innerHTML = "";
-  const forms = document.querySelectorAll(".demo-form");
-  forms.forEach(function(form){ form.querySelectorAll("input,button").forEach(function(control){ control.disabled = true; }); });
+  document.querySelectorAll(".guided-controls input,.guided-controls select,.guided-controls button").forEach(function(control){ control.disabled = true; });
   addMsg("user", choice);
   structuredIndex += 1;
   schedule(renderStructuredStage, 600);

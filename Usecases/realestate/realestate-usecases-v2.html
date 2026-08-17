@@ -587,14 +587,22 @@
     .realestate-v2-page .chat-area { padding: 12px 10px; min-height: 0 }
     .realestate-v2-page .msg { max-width: 88%; padding: 8px 10px 4px }
     .realestate-v2-page .msg-content strong { font-weight: 800 }
+    .realestate-v2-page .msg.bot.summary-message,
+    .realestate-v2-page .msg.bot.has-options {
+      width: min(78%, 340px); max-width: 78%; line-height: 1.45
+    }
     .realestate-v2-page .interactive-block {
       width: 96%; align-self: flex-start; opacity: 0; transform: translateY(6px);
       transition: opacity .22s, transform .22s
     }
     .realestate-v2-page .interactive-block.visible { opacity: 1; transform: translateY(0) }
     .realestate-v2-page .choice-grid {
-      display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin: 5px 0
+      display: flex; flex-direction: column; gap: 7px; width: min(100%,290px); margin: 5px 0
     }
+    .realestate-v2-page .msg .choice-grid {
+      width: 100%; margin: 9px 0 4px; transform: none
+    }
+    .realestate-v2-page .choice-grid .choice-btn { width: 100%; text-align: center }
     .realestate-v2-page .choice-btn,
     .realestate-v2-page .date-btn,
     .realestate-v2-page .slot-btn,
@@ -626,35 +634,24 @@
     .realestate-v2-page [data-action]:disabled {
       cursor: default; opacity: .55; transform: none !important; box-shadow: none !important
     }
-    .realestate-v2-page .summary-card,
-    .realestate-v2-page .status-card,
     .realestate-v2-page .details-form {
       background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 12px;
       box-shadow: 0 3px 12px rgba(16,13,13,.06)
     }
-    .realestate-v2-page .summary-head {
-      display: flex; align-items: center; gap: 8px; padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-sm); margin-bottom: 8px
+    .realestate-v2-page .card-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 9px }
+    .realestate-v2-page .cc-card .card-action {
+      width: 100%; min-height: 0; flex: none; padding: 5px 0; border: 0; border-radius: 0;
+      background: transparent; color: var(--red); box-shadow: none; text-align: center; font-size: .61rem
     }
-    .realestate-v2-page .summary-icon {
-      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
-      background: var(--red-pale); color: var(--red); font-size: 1rem
+    .realestate-v2-page .cc-card .card-action:hover {
+      transform: none; background: transparent; color: var(--red); box-shadow: none; text-decoration: underline
     }
-    .realestate-v2-page .summary-title { color: var(--body-head); font: 800 .78rem/1.2 'Outfit',sans-serif }
-    .realestate-v2-page .summary-sub { color: var(--body-muted); font-size: .59rem; margin-top: 2px }
-    .realestate-v2-page .summary-row {
-      display: grid; grid-template-columns: 96px 1fr; gap: 8px; padding: 4px 0;
-      font-size: .66rem; line-height: 1.4
+    .realestate-v2-page .webchat-enhanced.web-channel .cc-card .card-action {
+      background: var(--web-accent,var(--red)); color: #fff; border-radius: 8px; padding: 7px 8px
     }
-    .realestate-v2-page .summary-row span:first-child { color: var(--body-muted) }
-    .realestate-v2-page .summary-row strong { color: var(--body-head) }
-    .realestate-v2-page .summary-note {
-      margin-top: 8px; padding: 7px 8px; border-radius: 8px;
-      background: var(--red-faint); font-size: .61rem; line-height: 1.45
+    .realestate-v2-page .webchat-enhanced.web-channel .cc-card .card-action:hover {
+      background: var(--web-accent,var(--red)); color: #fff; text-decoration: none
     }
-    .realestate-v2-page .card-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px }
-    .realestate-v2-page .card-action { flex: 1 1 105px; padding: 7px 8px; border-radius: 8px; font-size: .61rem }
-    .realestate-v2-page .card-action.secondary { color: var(--body-text); border-color: var(--border); background: var(--cream) }
     .realestate-v2-page .carousel-wrap { max-width: 100%; width: 100% }
     .realestate-v2-page .carousel-track {
       display: flex; gap: 9px; overflow-x: auto; padding: 3px 2px 8px;
@@ -675,8 +672,8 @@
     }
     .realestate-v2-page .cc-body { padding: 9px 10px 10px }
     .realestate-v2-page .cc-tag {
-      display: inline-block; margin-bottom: 4px; padding: 2px 6px; border-radius: 100px;
-      background: var(--red-pale); color: var(--red); font-size: .52rem; font-weight: 700;
+      display: block; margin-bottom: 4px; padding: 0; border-radius: 0;
+      background: transparent; color: var(--red); font-size: .52rem; font-weight: 700;
       letter-spacing: .04em; text-transform: uppercase
     }
     .realestate-v2-page .cc-title { color: var(--body-head); font: 700 .74rem/1.3 'Outfit',sans-serif; margin-bottom: 3px }
@@ -684,17 +681,29 @@
     .realestate-v2-page .cc-meta { color: var(--body-text); font-size: .58rem; line-height: 1.45; margin: 4px 0 }
     .realestate-v2-page .cc-price { color: var(--red); font: 800 .68rem 'Outfit',sans-serif }
     .realestate-v2-page .cc-hint { display: flex; justify-content: flex-end; color: var(--body-muted); font-size: .6rem }
-    .realestate-v2-page .dates-row,
-    .realestate-v2-page .slots-row { display: flex; gap: 7px; overflow-x: auto; padding: 3px 2px 7px }
-    .realestate-v2-page .date-btn { flex: 0 0 82px; display: grid; gap: 2px; place-items: center }
-    .realestate-v2-page .date-btn small { color: var(--body-muted); font-size: .55rem }
-    .realestate-v2-page .slots-row { flex-wrap: wrap; overflow: visible }
-    .realestate-v2-page .slot-btn { border-radius: 999px; padding: 7px 11px }
-    .realestate-v2-page .details-form { display: grid; gap: 10px }
+    .realestate-v2-page .engati-dropdown {
+      width: min(100%,300px); display: grid; gap: 7px; padding: 9px; margin: 5px 0;
+      border: 1px solid var(--border); border-radius: 12px; background: #fff;
+      box-shadow: 0 2px 8px rgba(16,13,13,.05)
+    }
+    .realestate-v2-page .engati-select {
+      width: 100%; min-width: 0; border: 1.5px solid var(--border); border-radius: 9px;
+      padding: 8px 28px 8px 9px; background: var(--cream); color: var(--body-head);
+      font: 600 .68rem 'DM Sans',sans-serif; cursor: pointer
+    }
+    .realestate-v2-page .engati-select:focus { outline: 2px solid rgba(174,21,54,.16); border-color: var(--red); background: #fff }
+    .realestate-v2-page .engati-dropdown-submit {
+      width: 100%; border: 1.5px solid rgba(174,21,54,.28); border-radius: 9px;
+      padding: 8px 9px; background: #fff; color: var(--red); text-align: center;
+      font: 800 .68rem/1.25 'DM Sans',sans-serif; cursor: pointer
+    }
+    .realestate-v2-page .engati-dropdown-submit:not(:disabled):hover { background: var(--red); color: #fff }
+    .realestate-v2-page .engati-dropdown-submit:disabled { opacity: .55; cursor: default }
+    .realestate-v2-page .details-form { width: min(100%,300px); display: grid; gap: 10px }
     .realestate-v2-page .details-form-title { color: var(--body-head); font: 800 .78rem/1.3 'Outfit',sans-serif }
-    .realestate-v2-page .details-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px }
+    .realestate-v2-page .details-fields { display: grid; grid-template-columns: 1fr; gap: 8px }
     .realestate-v2-page .details-field { display: grid; gap: 4px; color: var(--body-muted); font-size: .6rem; font-weight: 800 }
-    .realestate-v2-page .details-field.wide { grid-column: 1 / -1 }
+    .realestate-v2-page .details-field.wide { grid-column: auto }
     .realestate-v2-page .details-field input {
       min-width: 0; width: 100%; border: 1.5px solid var(--border); border-radius: 9px;
       padding: 8px 9px; color: var(--body-head); background: var(--cream); font: 600 .68rem 'DM Sans',sans-serif

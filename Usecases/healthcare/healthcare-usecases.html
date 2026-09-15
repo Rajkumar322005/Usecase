@@ -717,6 +717,7 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important }
     }
   </style>
+  <link rel="stylesheet" href="healthcare-voice-demo.css"/>
 </head>
 <body>
 
@@ -842,6 +843,7 @@
       <div class="mode-switch" role="tablist" aria-label="Demo mode">
         <button class="mode-btn active" id="textModeBtn" type="button" role="tab" aria-selected="true" data-mode="text">Text Agent</button>
         <button class="mode-btn" id="structuredModeBtn" type="button" role="tab" aria-selected="false" data-mode="structured" title="Try it yourself with guided options">Guided Demo</button>
+        <button class="mode-btn" id="voiceModeBtn" type="button" role="tab" aria-selected="false" data-mode="voice">Voice Agent</button>
       </div>
       <label class="lang-select-wrap" aria-label="Conversation language">🌐
         <select class="lang-select" id="langSelect">
@@ -854,6 +856,9 @@
         </select>
       </label>
     </div>
+    <section class="voice-experience" id="voiceExperience" aria-label="Healthcare Appointment Booking voice demo">
+      <div id="voiceDemoMount"></div>
+    </section>
     <div class="steps-bar" id="stepsBar"></div>
     <div class="chat-area" id="chatArea" aria-live="polite"></div>
     <div class="mfooter">
@@ -865,5 +870,6 @@
 
 <script src="healthcare-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
+<script src="healthcare-voice-demo.js"></script>
 </body>
 </html>

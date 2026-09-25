@@ -766,19 +766,25 @@
   </button>
 
   <div class="grid">
-    <button class="card fc" type="button" data-open-flow="0">
+    <article class="card fc voice-enabled" data-open-flow="0" role="button" tabindex="0" aria-label="Open Doctor Discovery and Appointment Booking demo">
       <div class="card-top"><div class="card-icon">👨‍⚕️</div><div class="card-meta"><div class="card-tag">Discovery &amp; Booking</div><h3>Book an Appointment</h3><span class="lang-pill">🌐 6 Languages</span></div></div>
       <ul><li>Find hospitals, doctors and available slots, then book instantly.</li><li>Hospital and doctor carousels</li><li>Date, time and patient selection</li></ul>
       <div class="flow-steps"><span class="step-chip">Hospital</span><span class="step-chip">Specialty</span><span class="step-chip">Doctor</span><span class="step-chip">Slot</span><span class="step-chip">Confirm</span></div>
-      <span class="view-flow-btn">▶ Start Journey</span>
-    </button>
+      <div class="card-demo-actions">
+        <button class="view-flow-btn" type="button" data-open-flow="0">▶ Start Journey</button>
+        <button class="view-flow-btn voice-flow-btn" type="button" data-open-voice data-voice-scenario="appointment-request" data-voice-flow="0">☎ Voice Demo</button>
+      </div>
+    </article>
 
-    <button class="card" type="button" data-open-flow="1">
+    <article class="card voice-enabled" data-open-flow="1" role="button" tabindex="0" aria-label="Open Appointment Management demo">
       <div class="card-top"><div class="card-icon">📅</div><div class="card-meta"><div class="card-tag">Appointment Lifecycle</div><h3>Manage Appointments</h3><span class="lang-pill">🌐 6 Languages</span></div></div>
       <ul><li>Confirm, reschedule or cancel appointments with automated reminders.</li><li>Outbound reminder experience</li><li>Live reschedule and cancellation branches</li></ul>
       <div class="flow-steps"><span class="step-chip">Reminder</span><span class="step-chip">RSVP</span><span class="step-chip">Reschedule</span><span class="step-chip">Cancel</span></div>
-      <span class="view-flow-btn">▶ Start Journey</span>
-    </button>
+      <div class="card-demo-actions">
+        <button class="view-flow-btn" type="button" data-open-flow="1">▶ Start Journey</button>
+        <button class="view-flow-btn voice-flow-btn" type="button" data-open-voice data-voice-scenario="appointment-reschedule" data-voice-flow="1">☎ Voice Demo</button>
+      </div>
+    </article>
 
     <button class="card" type="button" data-open-flow="2">
       <div class="card-top"><div class="card-icon">🧪</div><div class="card-meta"><div class="card-tag">Diagnostics</div><h3>Book Lab Tests</h3><span class="lang-pill">🌐 6 Languages</span></div></div>
@@ -794,12 +800,15 @@
       <span class="view-flow-btn">▶ Start Journey</span>
     </button>
 
-    <button class="card" type="button" data-open-flow="4">
+    <article class="card voice-enabled" data-open-flow="4" role="button" tabindex="0" aria-label="Open Pharmacy and Refills demo">
       <div class="card-top"><div class="card-icon">💊</div><div class="card-meta"><div class="card-tag">Pharmacy</div><h3>Pharmacy &amp; Refills</h3><span class="lang-pill">🌐 6 Languages</span></div></div>
       <ul><li>Manage prescription refills, fulfilment and pharmacy order updates.</li><li>Simulated prescription upload</li><li>Delivery, pickup and tracking branches</li></ul>
       <div class="flow-steps"><span class="step-chip">Request</span><span class="step-chip">Verify</span><span class="step-chip">Fulfil</span><span class="step-chip">Track</span></div>
-      <span class="view-flow-btn">▶ Start Journey</span>
-    </button>
+      <div class="card-demo-actions">
+        <button class="view-flow-btn" type="button" data-open-flow="4">▶ Start Journey</button>
+        <button class="view-flow-btn voice-flow-btn" type="button" data-open-voice data-voice-scenario="medicine-reorder" data-voice-flow="4">☎ Voice Demo</button>
+      </div>
+    </article>
 
     <button class="card" type="button" data-open-flow="5">
       <div class="card-top"><div class="card-icon">⭐</div><div class="card-meta"><div class="card-tag">Patient Experience</div><h3>Patient Feedback</h3><span class="lang-pill">🌐 6 Languages</span></div></div>
@@ -856,7 +865,7 @@
         </select>
       </label>
     </div>
-    <section class="voice-experience" id="voiceExperience" aria-label="Healthcare Appointment Booking voice demo">
+    <section class="voice-experience" id="voiceExperience" aria-label="Healthcare Voice Agent demo">
       <div id="voiceDemoMount"></div>
     </section>
     <div class="steps-bar" id="stepsBar"></div>
@@ -870,6 +879,7 @@
 
 <script src="healthcare-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
+<script src="../../assets/voice-demos/healthcare/voice-demos.js"></script>
 <script src="healthcare-voice-demo.js"></script>
 </body>
 </html>

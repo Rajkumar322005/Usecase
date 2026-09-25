@@ -378,6 +378,7 @@
       .hospitality-page .msg,.hospitality-page .msg.has-options,.hospitality-page .msg.summary-message{max-width:86%;width:auto}
     }
   </style>
+  <link rel="stylesheet" href="hospitality-voice-demo.css"/>
 </head>
 <body class="hospitality-page">
 
@@ -428,6 +429,7 @@
       <h2>Hotel Stay Discovery &amp; Booking</h2>
       <p>Explore an integration-ready hotel journey from stay requirements and room discovery to guest details and a reservation request.</p>
       <button class="fb-cta">▶ Watch the Full Journey</button>
+      <button class="fb-cta voice-flow-btn" type="button" data-open-voice data-voice-scenario="hotel-booking" data-voice-flow="0">☎ Voice Demo</button>
     </div>
   </div>
 
@@ -448,6 +450,7 @@
       </ul>
       <div class="flow-steps"><span class="step-chip">Stay</span><span class="step-chip">Dates</span><span class="step-chip">Rooms</span><span class="step-chip">Details</span><span class="step-chip">Guest</span><span class="step-chip">Book</span></div>
       <button class="view-flow-btn">▶ View Journey</button>
+      <button class="view-flow-btn voice-flow-btn" type="button" data-open-voice data-voice-scenario="hotel-booking" data-voice-flow="0">☎ Voice Demo</button>
     </div>
 
     <div class="card" onclick="openFlow(1)">
@@ -551,12 +554,13 @@
         <div class="nm" id="modalTitle">Solene Concierge</div>
         <div class="st" id="modalSub">● Online</div>
       </div>
-      <button class="mc" onclick="closeModal()">✕</button>
+      <button class="mc" id="closeModalBtn" onclick="closeModal()">✕</button>
     </div>
     <div class="mode-bar">
       <div class="mode-switch" aria-label="Journey mode">
-        <button class="mode-btn active" id="textModeBtn" type="button" onclick="setMode('text')">Text Agent</button>
-        <button class="mode-btn" id="structuredModeBtn" type="button" onclick="setMode('structured')" title="Try it yourself with guided options">Guided Demo</button>
+        <button class="mode-btn active" id="textModeBtn" data-mode="text" type="button" onclick="setMode('text')">Text Agent</button>
+        <button class="mode-btn" id="structuredModeBtn" data-mode="structured" type="button" onclick="setMode('structured')" title="Try it yourself with guided options">Guided Demo</button>
+        <button class="mode-btn" id="voiceModeBtn" data-mode="voice" type="button">Voice Agent</button>
       </div>
       <select class="language-select" id="languageSelect" aria-label="Language" onchange="setLanguage(this.value)">
         <option value="en">🌐 English</option>
@@ -571,6 +575,7 @@
       <div class="bb-url">🔒 solenehotels.com</div>
     </div>
     <div class="steps-bar" id="stepsBar"></div>
+    <div class="voice-experience" id="voiceDemoMount" aria-label="Voice Agent demo"></div>
     <div class="chat-area" id="chatArea">
       <div class="date-chip"><span>Today</span></div>
       <div class="typing" id="typingIndicator"><span></span><span></span><span></span></div>
@@ -578,7 +583,7 @@
     <div class="qr" id="quickReplies"></div>
     <div class="mfooter">
       <input type="text" placeholder="Type a message..." readonly />
-      <button class="rst-btn" onclick="restartFlow()" title="Restart">↺</button>
+      <button class="rst-btn" id="restartBtn" onclick="restartFlow()" title="Restart">↺</button>
     </div>
   </div>
 </div>
@@ -840,8 +845,10 @@ function setMode(mode) {
   if (mode === currentMode) return;
   cancelRun();
   currentMode = mode;
+  document.getElementById("modalRoot").dataset.mode = mode;
   document.getElementById("textModeBtn").classList.toggle("active", mode === "text");
   document.getElementById("structuredModeBtn").classList.toggle("active", mode === "structured");
+  document.getElementById("voiceModeBtn").classList.toggle("active", mode === "voice");
   startFlowContent();
 }
 
@@ -874,8 +881,10 @@ function openFlow(index) {
   currentMode = "text";
   currentLanguage = "en";
   currentChannel = "wa";
+  document.getElementById("modalRoot").dataset.mode = "text";
   document.getElementById("textModeBtn").classList.add("active");
   document.getElementById("structuredModeBtn").classList.remove("active");
+  document.getElementById("voiceModeBtn").classList.remove("active");
   document.getElementById("languageSelect").value = "en";
   document.getElementById("chanWaBtn").classList.add("active");
   document.getElementById("chanWebBtn").classList.remove("active");
@@ -1189,6 +1198,8 @@ document.addEventListener("keydown", function(event){
   if (event.key === "Escape") closeModal();
 });
 </script>
+<script src="../../assets/voice-demos/hospitality/voice-demos.js"></script>
+<script src="hospitality-voice-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
 </body>
 </html>

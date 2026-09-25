@@ -1,0 +1,10 @@
+# Local OS metadata
+.DS_Store
+**/.DS_Store
+
+# Internal source-recording review; never publish.
+/Usecases/healthcare/healthcare-voice-analysis.private.md
+/Usecases/edtech/edtech-voice-analysis.private.md
+/Usecases/realestate/realestate-voice-analysis.private.md
+/Usecases/ecommerce/ecommerce-voice-analysis.private.md
+/Usecases/bfsi/bfsi-voice-analysis.private.md

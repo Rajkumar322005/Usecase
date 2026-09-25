@@ -857,13 +857,13 @@
     <div class="sec-label">Voice Agent Demos</div>
     <h2 class="sec-title" id="voiceJourneysTitle">Voice AI Journeys</h2>
     <p class="voice-discovery-sub">Experience how AI Voice Agents handle real healthcare calls.</p>
-    <button class="voice-journey-card" type="button" data-open-flow="0" data-open-voice aria-label="Play Healthcare Appointment Booking voice demo">
+    <button class="voice-journey-card" type="button" data-open-flow="0" data-open-voice data-voice-scenario="appointment-request" aria-label="Play Healthcare Appointment Request voice demo">
       <span class="voice-card-icon" aria-hidden="true">☎</span>
       <span class="voice-card-copy">
-        <span class="voice-card-label">Inbound Voice</span>
-        <strong>Appointment Booking</strong>
-        <span>Patient calls → speciality → doctor → slot → appointment confirmation</span>
-        <small>English · 01:16</small>
+        <span class="voice-card-label">Outbound Voice</span>
+        <strong>Appointment Request</strong>
+        <span>Appointment preferences → team callback</span>
+        <small>English + Hindi</small>
       </span>
       <span class="voice-card-cta">▶ Play Voice Demo</span>
     </button>
@@ -930,6 +930,7 @@
 
 <script src="healthcare-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
+<script src="../../assets/voice-demos/healthcare/voice-demos.js"></script>
 <script src="healthcare-voice-demo.js"></script>
 </body>
 </html>

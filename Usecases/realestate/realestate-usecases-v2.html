@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../shared/website-chat.css"/>
+  <link rel="stylesheet" href="realestate-voice-demo.css"/>
   <style>
     :root {
       --red: #ae1536;
@@ -795,6 +796,7 @@
       <h2>Property Discovery &amp; Lead Qualification</h2>
       <p>Understand a buyer’s location, configuration, budget, purpose and timeline—then recommend relevant fictional projects and create a qualified Sales handoff.</p>
       <span class="fb-cta">▶ Watch the Full Journey</span>
+      <span class="fb-cta voice-flow-btn" data-open-voice data-voice-scenario="lead-qualification" data-voice-flow="0">☎ Voice Demo</span>
     </div>
   </button>
 
@@ -811,7 +813,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Need</span><span class="step-chip">Qualify</span><span class="step-chip">Match</span><span class="step-chip">Explore</span><span class="step-chip">Lead</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="lead-qualification" data-voice-flow="0">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -826,7 +831,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Project</span><span class="step-chip">Details</span><span class="step-chip">Visit</span><span class="step-chip">Slot</span><span class="step-chip">Sales</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="site-visit-scheduling" data-voice-flow="1">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -856,7 +864,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Intent</span><span class="step-chip">Details</span><span class="step-chip">Route</span><span class="step-chip">Handoff</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="callback-nurture" data-voice-flow="3">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -924,6 +935,7 @@
       <div class="mode-switch" role="tablist" aria-label="Demo mode">
         <button class="mode-btn active" id="textModeBtn" type="button" role="tab" aria-selected="true" data-mode="text">Text Agent</button>
         <button class="mode-btn" id="structuredModeBtn" type="button" role="tab" aria-selected="false" data-mode="structured" title="Try it yourself with guided options">Guided Demo</button>
+        <button class="mode-btn" id="voiceModeBtn" type="button" role="tab" aria-selected="false" data-mode="voice">Voice Agent</button>
       </div>
       <label class="lang-select-wrap" aria-label="Conversation language"><span aria-hidden="true">🌐</span>
         <select class="lang-select" id="langSelect">
@@ -934,6 +946,7 @@
     </div>
     <div class="steps-bar" id="stepsBar"></div>
     <div class="chat-area" id="chatArea" aria-live="polite"></div>
+    <div class="voice-experience" id="voiceDemoMount" aria-live="polite"></div>
     <div class="mfooter">
       <input id="chatInput" type="text" placeholder="Text Agent demo is running…" aria-label="Chat input is not required for this demo" readonly />
       <button class="rst-btn" id="restartBtn" type="button" title="Restart" aria-label="Restart journey">↺</button>
@@ -941,7 +954,9 @@
   </div>
 </div>
 
+<script src="../../assets/voice-demos/realestate/voice-demos.js"></script>
 <script src="realestate-v2-demo.js"></script>
+<script src="realestate-voice-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
 </body>
 </html>

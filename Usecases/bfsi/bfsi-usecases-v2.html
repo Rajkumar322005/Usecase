@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/website-chat.css">
   <link rel="stylesheet" href="bfsi-v2.css">
+  <link rel="stylesheet" href="bfsi-voice-demo.css">
 </head>
 <body class="bfsi-v2-page">
   <nav>
@@ -36,29 +37,29 @@
     <h2 class="sec-title">Click any card to explore the live conversation flow</h2>
 
     <button class="featured-banner" type="button" data-open-flow="0">
-      <span class="fb-icon">🛡️</span><span class="fb-content"><span class="fb-badge">⭐ Featured Insurance Journey</span><strong>Insurance Policy Discovery &amp; Purchase</strong><span>Discover Motor, Health or Travel cover, compare illustrative plans, generate an indicative quote and experience simulated payment and issuance.</span><span class="fb-cta">▶ Watch the Full Journey</span></span>
+      <span class="fb-icon">🛡️</span><span class="fb-content"><span class="fb-badge">⭐ Featured Insurance Journey</span><strong>Insurance Policy Discovery &amp; Purchase</strong><span>Discover Motor, Health or Travel cover, compare illustrative plans, generate an indicative quote and experience simulated payment and issuance.</span><span class="fb-cta">▶ Watch the Full Journey</span><span class="fb-cta voice-flow-btn" data-open-voice data-voice-scenario="motor-insurance-booking" data-voice-flow="0">☎ Voice Demo</span></span>
     </button>
 
     <div class="grid" aria-label="Six interactive BFSI journeys">
       <button class="card featured" type="button" data-open-flow="0">
         <span class="card-top"><span class="card-icon">🛡️</span><span class="card-meta"><span class="card-tag">Insurance Acquisition</span><strong>Insurance Policy Discovery &amp; Purchase</strong></span></span>
         <ul><li>Motor, Health &amp; Travel insurance discovery</li><li>Conversational customer requirement capture</li><li>Plan &amp; coverage comparison</li><li>Indicative quote and add-on selection</li><li>Payment &amp; policy issuance simulation</li></ul>
-        <span class="card-bottom"><span class="chips"><i>Need</i><i>Details</i><i>Plans</i><i>Quote</i><i>Pay</i><i>Policy</i></span><span class="view-btn">▶ View Journey</span></span>
+        <span class="card-bottom"><span class="chips"><i>Need</i><i>Details</i><i>Plans</i><i>Quote</i><i>Pay</i><i>Policy</i></span><span class="view-btn">▶ View Journey</span><span class="view-btn voice-flow-btn" data-open-voice data-voice-scenario="motor-insurance-booking" data-voice-flow="0">☎ Voice Demo</span></span>
       </button>
       <button class="card" type="button" data-open-flow="1">
         <span class="card-top"><span class="card-icon">🔄</span><span class="card-meta"><span class="card-tag">Policy Service</span><strong>Policy Renewal &amp; Documents</strong></span></span>
         <ul><li>Secure policy retrieval</li><li>Active &amp; expiring policy discovery</li><li>Renewal quote &amp; coverage review</li><li>Premium payment journey</li><li>Download policy &amp; related documents</li></ul>
-        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Policies</i><i>Renew</i><i>Pay</i><i>Documents</i></span><span class="view-btn">▶ View Journey</span></span>
+        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Policies</i><i>Renew</i><i>Pay</i><i>Documents</i></span><span class="view-btn">▶ View Journey</span><span class="view-btn voice-flow-btn" data-open-voice data-voice-scenario="policy-renewal" data-voice-flow="1">☎ Voice Demo</span></span>
       </button>
       <button class="card" type="button" data-open-flow="2">
         <span class="card-top"><span class="card-icon">🚗</span><span class="card-meta"><span class="card-tag">Claims</span><strong>Claims &amp; Cashless Assistance</strong></span></span>
         <ul><li>Motor / Health claim initiation</li><li>Claim document submission</li><li>Cashless hospital &amp; garage discovery</li><li>Roadside assistance routing</li><li>Claim status tracking</li></ul>
-        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Claim</i><i>Documents</i><i>Cashless</i><i>Status</i></span><span class="view-btn">▶ View Journey</span></span>
+        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Claim</i><i>Documents</i><i>Cashless</i><i>Status</i></span><span class="view-btn">▶ View Journey</span><span class="view-btn voice-flow-btn" data-open-voice data-voice-scenario="claim-guidance" data-voice-flow="2">☎ Voice Demo</span></span>
       </button>
       <button class="card" type="button" data-open-flow="3">
         <span class="card-top"><span class="card-icon">🏦</span><span class="card-meta"><span class="card-tag">Banking</span><strong>Banking Account &amp; Service Assistant</strong></span></span>
         <ul><li>Secure account authentication</li><li>Balance, transactions &amp; statements</li><li>Cheque-book / certificate requests</li><li>Branch &amp; ATM discovery</li><li>Service request &amp; support escalation</li></ul>
-        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Account</i><i>Services</i><i>Request</i><i>Support</i></span><span class="view-btn">▶ View Journey</span></span>
+        <span class="card-bottom"><span class="chips"><i>Verify</i><i>Account</i><i>Services</i><i>Request</i><i>Support</i></span><span class="view-btn">▶ View Journey</span><span class="view-btn voice-flow-btn" data-open-voice data-voice-scenario="address-verification" data-voice-flow="3">☎ Voice Demo</span></span>
       </button>
       <button class="card" type="button" data-open-flow="4">
         <span class="card-top"><span class="card-icon">💳</span><span class="card-meta"><span class="card-tag">Cards</span><strong>Cards &amp; Transaction Support</strong></span></span>
@@ -68,7 +69,7 @@
       <button class="card" type="button" data-open-flow="5">
         <span class="card-top"><span class="card-icon">💰</span><span class="card-meta"><span class="card-tag">Lending</span><strong>Loan Discovery &amp; Application Support</strong></span></span>
         <ul><li>Personal, Home, Auto &amp; Business loan discovery</li><li>Conversational eligibility pre-check</li><li>Indicative EMI calculation</li><li>Application lead capture</li><li>Application status &amp; advisor handoff</li></ul>
-        <span class="card-bottom"><span class="chips"><i>Need</i><i>Qualify</i><i>EMI</i><i>Apply</i><i>Advisor</i></span><span class="view-btn">▶ View Journey</span></span>
+        <span class="card-bottom"><span class="chips"><i>Need</i><i>Qualify</i><i>EMI</i><i>Apply</i><i>Advisor</i></span><span class="view-btn">▶ View Journey</span><span class="view-btn voice-flow-btn" data-open-voice data-voice-scenario="financial-advisory-callback" data-voice-flow="5">☎ Voice Demo</span></span>
       </button>
     </div>
   </main>
@@ -78,13 +79,15 @@
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
     <section class="modal" id="modalRoot" data-mode="text" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <header class="modal-header"><span class="modal-avatar" id="modalAvatar">🛡️</span><span class="modal-id"><strong id="modalTitle">BFSI Assistant</strong><small id="modalSub">● Online</small></span><button id="closeModalBtn" class="modal-close" type="button" aria-label="Close demo">✕</button></header>
-      <div class="demo-toolbar"><div class="mode-switch" role="tablist"><button class="mode-btn active" id="textModeBtn" data-mode="text" type="button" role="tab" aria-selected="true">Text Agent</button><button class="mode-btn" id="structuredModeBtn" data-mode="structured" type="button" role="tab" aria-selected="false" title="Try it yourself with guided options">Guided Demo</button></div><label class="lang-wrap"><span>🌐</span><select id="langSelect" aria-label="Conversation language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="ml">മലയാളം</option><option value="te">తెలుగు</option><option value="mr">मराठी</option><option value="kn">ಕನ್ನಡ</option></select></label></div>
-      <div class="steps-bar" id="stepsBar"></div><div class="chat-area" id="chatArea" aria-live="polite"></div>
+      <div class="demo-toolbar"><div class="mode-switch" role="tablist"><button class="mode-btn active" id="textModeBtn" data-mode="text" type="button" role="tab" aria-selected="true">Text Agent</button><button class="mode-btn" id="structuredModeBtn" data-mode="structured" type="button" role="tab" aria-selected="false" title="Try it yourself with guided options">Guided Demo</button><button class="mode-btn" id="voiceModeBtn" data-mode="voice" type="button" role="tab" aria-selected="false">Voice Agent</button></div><label class="lang-wrap"><span>🌐</span><select id="langSelect" aria-label="Conversation language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="ml">മലയാളം</option><option value="te">తెలుగు</option><option value="mr">मराठी</option><option value="kn">ಕನ್ನಡ</option></select></label></div>
+      <div class="steps-bar" id="stepsBar"></div><div class="voice-experience" id="voiceDemoMount" aria-label="Voice Agent demo"></div><div class="chat-area" id="chatArea" aria-live="polite"></div>
       <footer class="modal-footer"><input id="chatInput" readonly aria-label="Chat input is not required for this demo" placeholder="Text Agent demo is running…"><button id="restartBtn" type="button" title="Restart journey" aria-label="Restart journey">↺</button></footer>
     </section>
   </div>
+  <script src="../../assets/voice-demos/bfsi/voice-demos.js"></script>
   <script src="bfsi-v2-demo.js"></script>
   <script src="bfsi-v2-engine.js"></script>
+  <script src="bfsi-voice-demo.js"></script>
   <script src="../shared/website-chat.js"></script>
 </body>
 </html>

@@ -1,0 +1,285 @@
+/* E-Commerce Voice Agent additions; isolated from the existing text/guided journeys. */
+.ecommerce-v2-page {
+  --body-head: var(--head);
+  --body-text: var(--text);
+  --body-muted: var(--muted);
+  --charcoal: #2d2528;
+  --red-light: #e9a9b5;
+  --wa-bg: var(--chat);
+  --wa-user: var(--user);
+}
+.ecommerce-v2-page .voice-experience,
+.ecommerce-v2-page #voiceDemoMount { display: none; order: 3; flex: 1; min-height: 0 }
+.ecommerce-v2-page .modal[data-mode="voice"] {
+  width: min(780px, 96vw); max-width: 780px;
+  height: min(730px, 94dvh); max-height: 94dvh;
+}
+.ecommerce-v2-page .modal[data-mode="voice"] > .voice-experience,
+.ecommerce-v2-page .modal[data-mode="voice"] > #voiceDemoMount { display: flex }
+.ecommerce-v2-page .modal[data-mode="voice"] > .web-channel-switch,
+.ecommerce-v2-page .modal[data-mode="voice"] > .web-demo-stage,
+.ecommerce-v2-page .modal[data-mode="voice"] > .web-demo-widget,
+.ecommerce-v2-page .modal[data-mode="voice"] > .steps-bar,
+.ecommerce-v2-page .modal[data-mode="voice"] > .chat-area,
+.ecommerce-v2-page .modal[data-mode="voice"] > .modal-footer,
+.ecommerce-v2-page .modal[data-mode="voice"] .lang-wrap { display: none !important }
+.ecommerce-v2-page .modal[data-mode="voice"] .modal-header { background: var(--red) !important; padding: 14px 18px }
+.ecommerce-v2-page .modal[data-mode="voice"] #modalTitle { font-size: .98rem }
+.ecommerce-v2-page .modal[data-mode="voice"] #modalSub { margin-top: 2px; font-size: .7rem }
+.ecommerce-v2-page .modal[data-mode="voice"] .demo-toolbar { padding: 10px 15px }
+.ecommerce-v2-page .modal[data-mode="voice"] .mode-btn { font-size: .73rem; padding: 7px 13px }
+.ecommerce-v2-page .demo-toolbar { gap: 8px }
+.ecommerce-v2-page .mode-switch { min-width: 0; flex: 1 1 auto }
+.ecommerce-v2-page .mode-btn { padding-left: 10px; padding-right: 10px }
+.ecommerce-v2-page .lang-wrap { flex: 0 0 auto }
+.ecommerce-v2-page .card-demo-actions { display: flex; align-items: stretch; gap: 7px; flex-wrap: wrap; margin-top: 8px }
+.ecommerce-v2-page .card-demo-actions .view-flow-btn { flex: 1 1 128px; justify-content: center; min-height: 33px }
+.ecommerce-v2-page .voice-flow-btn { white-space: nowrap; justify-content: center }
+.ecommerce-v2-page .featured-banner .voice-flow-btn { margin-left: 8px }
+.ecommerce-v2-page .card-bottom > .voice-flow-btn { margin-top: -8px }
+.ecommerce-v2-page .voice-experience [hidden] { display: none !important }
+.ecommerce-v2-page .voice-experience button,
+.ecommerce-v2-page .voice-experience input { font-family: inherit }
+.ecommerce-v2-page .voice-experience button:focus-visible { outline: 3px solid var(--red-light); outline-offset: 4px }
+
+.ecommerce-v2-page #voiceDemoMount {
+  flex-direction: column; width: 100%; min-width: 0; min-height: 0;
+  background: var(--cream); color: var(--body-text); font: 400 .8rem/1.5 'DM Sans', sans-serif;
+}
+.vc-pickerbar {
+  display: grid; grid-template-columns: minmax(310px, 1.35fr) minmax(260px, 1fr) minmax(150px, .55fr); gap: 12px;
+  padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--border); flex: 0 0 auto;
+}
+.vc-pickerbar:not([data-has-variant="true"]) { grid-template-columns: minmax(280px, 1fr) minmax(160px, .5fr) }
+.vc-picker { position: relative; display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 10px; min-width: 0 }
+.vc-picker > span { color: var(--body-muted); font-size: .62rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase }
+.vc-native-select {
+  position: absolute; width: 1px; height: 1px; padding: 0; border: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.vc-select-ui { position: relative; min-width: 0 }
+.vc-select-button,
+.vc-static-value {
+  width: 100%; min-width: 0; height: 34px; border: 1px solid var(--border); border-radius: 9px;
+  padding: 5px 30px 5px 11px; background: var(--cream); color: var(--body-head);
+  font: 700 .69rem 'DM Sans', sans-serif; text-align: left; outline: 0;
+}
+.vc-select-button {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  box-shadow: 0 3px 10px rgba(174,21,54,.04);
+}
+.vc-select-button:hover { border-color: var(--red-light); background: #fff8f9 }
+.vc-select-button:focus-visible { border-color: var(--red); background: #fff; box-shadow: 0 0 0 3px rgba(174,21,54,.09) }
+.vc-select-value { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.vc-select-chevron {
+  position: absolute; right: 10px; top: 50%; width: 8px; height: 8px;
+  border-right: 2px solid var(--red); border-bottom: 2px solid var(--red);
+  transform: translateY(-65%) rotate(45deg); transition: transform .18s ease;
+}
+.vc-select-ui.open .vc-select-chevron { transform: translateY(-25%) rotate(225deg) }
+.vc-static-value {
+  display: none; align-items: center; padding-right: 10px; cursor: default;
+  background: #fff; color: var(--body-head);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vc-select-ui.is-static .vc-select-button { display: none }
+.vc-select-ui.is-static .vc-static-value { display: flex }
+.vc-select-list {
+  position: absolute; z-index: 30; inset: calc(100% + 6px) 0 auto 0; display: none;
+  max-height: min(220px, 42vh); overflow: auto; padding: 5px; border: 1px solid var(--red-light);
+  border-radius: 12px; background: #fff; box-shadow: 0 15px 34px rgba(45,25,30,.18);
+}
+.vc-select-ui.open .vc-select-list { display: grid; gap: 3px }
+.vc-select-list button {
+  width: 100%; border: 0; border-radius: 8px; padding: 8px 9px; background: transparent;
+  color: var(--body-head); font: 700 .7rem 'DM Sans', sans-serif; text-align: left; cursor: pointer;
+}
+.vc-select-list button:hover,
+.vc-select-list button:focus-visible { background: var(--red-faint); color: var(--red); outline: 0 }
+.vc-select-list button[aria-selected="true"] { background: var(--red-pale); color: var(--red) }
+.vc-channels {
+  display: flex; align-items: center; gap: 5px; padding: 10px 16px;
+  border-bottom: 1px solid var(--border); flex: 0 0 auto; background: #fff;
+}
+.vc-channel {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 8px 13px; border: 1px solid transparent; border-radius: 9px;
+  background: transparent; color: var(--body-muted); font-size: .72rem; font-weight: 700; cursor: pointer;
+}
+.vc-channel[aria-selected="true"] { background: var(--red-pale); border-color: var(--border); color: var(--red) }
+.vc-channel:hover { color: var(--red); background: var(--red-faint) }
+.vc-channel > svg { width: 15px; height: 15px; flex: 0 0 auto }
+.vc-meta { margin-left: auto; color: var(--body-muted); font-size: .64rem; white-space: nowrap }
+.vc-stage { flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 14px 16px 10px; overflow: auto }
+.vc-live { display: grid; grid-template-columns: minmax(230px, .86fr) minmax(0, 1.14fr); gap: 14px; flex: 1; min-height: 0 }
+.vc-call {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  min-height: 340px; padding: 18px 16px; border: 1px solid #cfe7dc;
+  border-radius: 18px; background: linear-gradient(180deg, #f6fffb 0%, #fbfdfb 44%, #f4fbf8 100%);
+  color: var(--body-head); text-align: center; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 28px rgba(20,87,68,.06);
+}
+.vc-call::before {
+  content: ''; position: absolute; inset: 0 0 auto; height: 58px;
+  background: linear-gradient(135deg, rgba(18,140,126,.14), rgba(37,211,102,.06));
+  border-bottom: 1px solid rgba(18,140,126,.12); pointer-events: none;
+}
+.vc-status {
+  position: relative; z-index: 1; display: inline-flex; gap: 7px; align-items: center;
+  align-self: flex-start; color: #087e63; padding: 5px 9px;
+  border: 1px solid rgba(18,140,126,.16); border-radius: 999px;
+  background: rgba(255,255,255,.76); box-shadow: 0 4px 12px rgba(18,140,126,.07);
+  font-size: .62rem; font-weight: 800;
+}
+.vc-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor }
+.vc-identity { position: relative; z-index: 1; margin: auto 0; padding: 22px 0 18px; width: 100% }
+.vc-avatar {
+  position: relative; isolation: isolate; width: 88px; height: 88px; margin: 0 auto 18px;
+  display: grid; place-items: center; border-radius: 50%; background: #fff;
+  color: #087e63; box-shadow: 0 11px 28px rgba(18,140,126,.15); font: 700 34px 'Outfit',sans-serif;
+}
+.vc-avatar::before, .vc-avatar::after {
+  content: ''; position: absolute; z-index: -1; inset: -9px; border: 1px solid rgba(18,140,126,.18); border-radius: 50%;
+}
+.vc-avatar::after { inset: -18px; border-color: rgba(37,211,102,.12) }
+[data-call-state="ringing"] .vc-avatar::before { animation: vcRing 2.5s ease-out infinite }
+[data-call-state="ringing"] .vc-avatar::after { animation: vcRing 2.5s .8s ease-out infinite }
+.vc-call h3 { margin: 0 0 4px; font: 800 1.25rem/1.18 'Outfit',sans-serif; letter-spacing: -.025em }
+.vc-role { color: #40635a; font-size: .72rem; font-weight: 700 }
+.vc-call-caption { margin-top: 12px; color: #6f8880; font-size: .66rem }
+.vc-timer { display: block; margin: 12px 0 0; color: #087e63; font-size: 1.38rem; font-weight: 600; letter-spacing: .08em; font-variant-numeric: tabular-nums }
+.vc-incoming-actions, .vc-active-actions {
+  position: relative; z-index: 1; display: flex; justify-content: center; align-items: center;
+  gap: 24px; min-width: min(100%, 250px); margin-top: auto;
+  padding: 14px 18px; border: 1px solid rgba(18,140,126,.12); border-radius: 24px;
+  background: rgba(255,255,255,.78); box-shadow: 0 12px 30px rgba(20,87,68,.09);
+  backdrop-filter: blur(10px);
+}
+.vc-call-button {
+  width: 62px; display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 0;
+  background: none; border: 0; color: inherit; font-size: .67rem; font-weight: 700; cursor: pointer;
+  transform: translateZ(0);
+}
+.vc-button-icon {
+  width: 47px; height: 47px; display: grid; place-items: center; border-radius: 50%;
+  background: #fff; color: #087e63; border: 1px solid rgba(18,140,126,.13); font-size: 1.18rem;
+  box-shadow: 0 7px 16px rgba(20,87,68,.12);
+  transform: translate3d(0,0,0) scale(1);
+  transition: transform .24s ease, box-shadow .24s ease, background .18s, border-color .18s, color .18s;
+  will-change: transform;
+}
+.vc-call-button:hover .vc-button-icon { transform: translate3d(0,-3px,0) scale(1.045); box-shadow: 0 13px 22px rgba(20,87,68,.18) }
+.vc-call-button:active .vc-button-icon { transform: translate3d(0,0,0) scale(.94); transition-duration: .1s }
+[data-call-state="ringing"] .vc-incoming-actions .vc-button-icon { animation: vcButtonFloat 2.8s ease-in-out infinite }
+[data-call-state="ringing"] .vc-call-button.answer .vc-button-icon { animation-delay: .18s }
+[data-call-state="ringing"] .vc-call-button:hover .vc-button-icon,
+[data-call-state="ringing"] .vc-call-button:focus-visible .vc-button-icon,
+[data-call-state="ringing"] .vc-call-button:active .vc-button-icon { animation: none }
+.vc-call-button.answer .vc-button-icon { background: #128c7e; border-color: #128c7e; color: #fff; box-shadow: 0 10px 22px rgba(18,140,126,.25) }
+.vc-call-button.decline .vc-button-icon, .vc-call-button.end .vc-button-icon { background: var(--red); border-color: var(--red); color: #fff }
+.vc-call-button[aria-pressed="true"] .vc-button-icon { background: #128c7e; color: #fff; border-color: #128c7e }
+.vc-active-actions { gap: 18px; min-width: min(100%, 285px) }
+.vc-active-actions .vc-button-icon { width: 42px; height: 42px; font-size: 1.1rem }
+#vcSpeaker { order: 1 } #vcMute { order: 2 } #vcEnd { order: 3 }
+.vc-audio-hint { min-height: 15px; margin-top: 12px; font-size: .62rem; color: var(--body-muted) }
+.vc-audio-hint:empty { display: none }
+[data-channel="telephony"] .vc-call { background: var(--charcoal); border-color: var(--charcoal); color: #fff; box-shadow: none }
+[data-channel="telephony"] .vc-call::before { display: none }
+[data-channel="telephony"] .vc-status { align-self: center; color: #efd1d7; background: transparent; border-color: transparent; box-shadow: none }
+[data-channel="telephony"] .vc-role { color: #eee4e6 }
+[data-channel="telephony"] .vc-call-caption, [data-channel="telephony"] .vc-audio-hint { color: #d4c5c8 }
+[data-channel="telephony"] .vc-avatar { background: #59494d; color: #fff; box-shadow: none }
+[data-channel="telephony"] .vc-avatar::before, [data-channel="telephony"] .vc-avatar::after { border-color: rgba(255,255,255,.16) }
+[data-channel="telephony"] .vc-incoming-actions, [data-channel="telephony"] .vc-active-actions { border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.06); box-shadow: none; backdrop-filter: none }
+[data-channel="telephony"] .vc-button-icon { background: #59494d; border-color: #756367; color: #fff; box-shadow: 0 8px 18px rgba(0,0,0,.2) }
+[data-channel="telephony"] .vc-call-button.answer .vc-button-icon { background: #19b96f; border-color: #19b96f; color: #fff }
+[data-channel="telephony"] .vc-call-button.decline .vc-button-icon,
+[data-channel="telephony"] .vc-call-button.end .vc-button-icon { background: #ef3355; border-color: #ef3355; color: #fff }
+[data-channel="telephony"] .vc-call-button[aria-pressed="true"] .vc-button-icon { background: #fff; border-color: #fff; color: var(--charcoal) }
+[data-call-state="connected"] .vc-status::before { animation: vcConnected 3s ease infinite }
+.vc-transcript {
+  min-height: 0; display: flex; flex-direction: column; border: 1px solid var(--border);
+  border-radius: 16px; background: #fff; overflow: hidden;
+}
+.vc-transcript-heading { display: flex; align-items: center; gap: 10px; padding: 14px 15px; border-bottom: 1px solid var(--border-sm) }
+.vc-transcript-heading h4 { color: var(--body-head); font: 800 .85rem 'Outfit',sans-serif }
+.vc-transcript-heading span { margin-left: auto; font-size: .58rem; color: var(--body-muted) }
+.vc-turns { flex: 1; min-height: 0; overflow-y: auto; padding: 0 15px 12px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--border) transparent }
+.vc-transcript-empty { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; height: 100%; min-height: 150px; color: var(--body-muted); font-size: .73rem }
+.vc-transcript-empty b { display: block; margin-bottom: 6px; font-weight: 600; color: var(--body-text) }
+.vc-transcript-empty .vc-empty-icon { color: var(--red); font-size: 1.65rem; margin-bottom: 10px }
+.vc-transcript-empty p { max-width: 235px; line-height: 1.6 }
+.vc-turn { padding: 12px 0; border-bottom: 1px solid var(--border-sm); animation: vcEnter .25s ease both }
+.vc-turn:last-child { border: 0 }
+.vc-turn-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px }
+.vc-speaker { font-size: .62rem; font-weight: 800; color: var(--red) }
+.vc-turn.prospect .vc-speaker { color: var(--body-text) }
+.vc-turn time { margin-left: auto; color: var(--body-muted); font-size: .57rem; font-variant-numeric: tabular-nums }
+.vc-turn p { color: var(--body-text); font-size: .75rem; line-height: 1.6 }
+.vc-turn.current p { color: var(--body-head) }
+.vc-turn.current .vc-speaker::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 5px; vertical-align: middle; border-radius: 50%; background: var(--red) }
+.vc-ended { display: grid; place-content: center; justify-items: center; gap: 12px; flex: 1; padding: 30px 18px; text-align: center; animation: vcEnter .3s ease both }
+.vc-ended h3 { color: var(--body-head); font: 800 1.3rem 'Outfit',sans-serif }
+.vc-ended p { max-width: 320px; color: var(--body-text); font-size: .8rem }
+.vc-post { flex: 1; min-height: 0; width: min(100%, 480px); margin: auto; animation: vcEnter .35s ease both }
+.vc-post-heading { display: flex; align-items: center; gap: 9px; padding: 0 0 12px; color: var(--body-head) }
+.vc-mini-avatar { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--red-pale); color: var(--red); font-size: 19px }
+.vc-post-heading strong { font: 800 .82rem 'Outfit',sans-serif }
+.vc-post-heading small { display: block; color: var(--body-muted); font-size: .63rem; margin-top: 1px }
+.vc-post-chat { padding: 14px; background: var(--wa-bg); border-radius: 14px; display: flex; flex-direction: column; gap: 12px }
+.vc-call-receipt { align-self: center; font-size: .62rem; color: #69615e }
+.vc-confirmation { padding: 14px 16px; border: 1px solid var(--border); border-radius: 14px; background: #fff }
+.vc-confirmation h4 { margin-bottom: 12px; color: var(--body-head); font: 800 .93rem/1.4 'Outfit',sans-serif }
+.vc-confirmation p { color: var(--body-head); font-size: .76rem; line-height: 1.6; margin: 3px 0 }
+.vc-confirmation strong { font-weight: 700 }
+.vc-post-chat .vc-confirmation { align-self: flex-start; width: min(94%, 380px); border-radius: 2px 12px 12px; border: 0; box-shadow: 0 1px 2px rgba(16,13,13,.08) }
+.vc-post-reply { align-self: flex-end; padding: 9px 13px; background: var(--wa-user); color: var(--body-head); border-radius: 12px 2px 12px 12px; font-size: .76rem; animation: vcEnter .3s ease both }
+.vc-outcome-kicker { color: var(--red); font-size: .63rem; font-weight: 800; letter-spacing: .1em; margin-bottom: 8px }
+.vc-footer { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; padding: 10px 16px 12px }
+.vc-footer span { color: var(--body-muted); font-size: .65rem }
+.vc-replay { margin-left: auto; border: 1px solid var(--border); border-radius: 9px; padding: 7px 12px; background: #fff; color: var(--red); font-size: .69rem; font-weight: 800; cursor: pointer }
+.vc-replay:hover { background: var(--red-pale); border-color: var(--red-light) }
+@keyframes vcRing { 0% { transform: scale(.93); opacity: .9 } 85%, 100% { transform: scale(1.25); opacity: 0 } }
+@keyframes vcConnected { 0%, 100% { opacity: 1 } 50% { opacity: .45 } }
+@keyframes vcEnter { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes vcButtonFloat { 0%, 100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(0,-3px,0) scale(1.025) } }
+@media (max-width: 760px) {
+  .vc-pickerbar,
+  .vc-pickerbar:not([data-has-variant="true"]) { grid-template-columns: 1fr; padding: 8px 10px; gap: 7px }
+  .vc-picker { grid-template-columns: 92px minmax(0,1fr) }
+}
+@media (max-width: 600px) {
+  .ecommerce-v2-page .modal[data-mode="voice"] { width: 100%; max-width: 100%; height: 96dvh; max-height: 96dvh }
+  .ecommerce-v2-page .card-demo-actions { flex-direction: column }
+  .ecommerce-v2-page .card-demo-actions .view-flow-btn { flex: none; width: 100% }
+  .vc-picker { grid-template-columns: 58px minmax(0,1fr) }
+  .vc-select-button, .vc-static-value { height: 32px; font-size: .66rem }
+  .vc-channels { padding: 8px 10px; flex-wrap: wrap }
+  .vc-channel { flex: 1; padding: 7px 8px }
+  .vc-meta { display: none }
+  .vc-stage { padding: 10px 10px 4px }
+  .vc-live { display: flex; flex-direction: column; gap: 10px; min-height: min-content }
+  .vc-call { flex: 0 0 auto; min-height: 0; padding: 13px 14px 14px }
+  .vc-call::before { height: 48px }
+  .vc-status { align-self: center; padding: 4px 8px }
+  .vc-identity { display: grid; grid-template-columns: 58px minmax(0,1fr); align-items: center; text-align: left; gap: 2px 15px; padding: 18px 0 14px; margin: 0 }
+  .vc-avatar { width: 50px; height: 50px; font-size: 25px }
+  .vc-identity .vc-avatar { grid-column: 1; grid-row: 1 / 5; margin: 0 0 0 3px }
+  .vc-avatar::before { inset: -5px } .vc-avatar::after { inset: -10px }
+  .vc-call h3 { grid-column: 2; font-size: 1.05rem }
+  .vc-role, .vc-call-caption, .vc-timer { grid-column: 2 }
+  .vc-call-caption { margin-top: 4px }
+  .vc-timer { margin-top: 5px; font-size: 1.1rem }
+  .vc-button-icon { width: 42px; height: 42px }
+  .vc-incoming-actions, .vc-active-actions { width: 100%; min-width: 0; padding: 10px 12px }
+  .vc-incoming-actions { gap: 42px }
+  .vc-active-actions { gap: 22px }
+  .vc-transcript { flex: 1 0 215px; min-height: 215px; max-height: 330px }
+  .vc-turns { max-height: 275px }
+  .vc-footer { padding: 9px 10px }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ecommerce-v2-page .voice-experience *, .ecommerce-v2-page .voice-experience *::before, .ecommerce-v2-page .voice-experience *::after {
+    animation: none !important; transition: none !important; scroll-behavior: auto !important;
+  }
+}

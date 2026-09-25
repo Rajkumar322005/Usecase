@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Lora:ital@1&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../shared/website-chat.css"/>
+  <link rel="stylesheet" href="edtech-voice-demo.css"/>
   <style>
     :root {
       --red: #ae1536;
@@ -812,6 +813,7 @@
       <h2>Course Discovery &amp; Admissions</h2>
       <p>Help prospective students explore the right programme, check indicative eligibility, understand fees and scholarships, and connect with an admissions counsellor.</p>
       <span class="fb-cta">▶ Watch the Full Journey</span>
+      <span class="fb-cta voice-flow-btn" data-open-voice data-voice-scenario="course-discovery" data-voice-flow="0">☎ Voice Demo</span>
     </div>
   </button>
 
@@ -831,7 +833,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Explore</span><span class="step-chip">Qualify</span><span class="step-chip">Courses</span><span class="step-chip">Eligibility</span><span class="step-chip">Lead</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="course-discovery" data-voice-flow="0">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -849,7 +854,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Identify</span><span class="step-chip">Status</span><span class="step-chip">Documents</span><span class="step-chip">Support</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="snap-registration" data-voice-flow="1">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -867,7 +875,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Updates</span><span class="step-chip">Discover</span><span class="step-chip">Register</span><span class="step-chip">Reminder</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="admission-assistance" data-voice-flow="2">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -885,7 +896,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Need</span><span class="step-chip">Mode</span><span class="step-chip">Campus</span><span class="step-chip">Slot</span><span class="step-chip">Booked</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="counsellor-connect" data-voice-flow="3">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -903,7 +917,10 @@
       </ul>
       <div class="card-bottom">
         <div class="flow-steps"><span class="step-chip">Resume</span><span class="step-chip">Concern</span><span class="step-chip">Resolve</span><span class="step-chip">Counsellor</span></div>
-        <span class="view-flow-btn">▶ View Journey</span>
+        <div class="card-demo-actions">
+          <span class="view-flow-btn">▶ View Journey</span>
+          <span class="view-flow-btn voice-flow-btn" data-open-voice data-voice-scenario="specialisation-discovery" data-voice-flow="4">☎ Voice Demo</span>
+        </div>
       </div>
     </button>
 
@@ -941,6 +958,7 @@
       <div class="mode-switch" role="tablist" aria-label="Demo mode">
         <button class="mode-btn active" id="textModeBtn" type="button" role="tab" aria-selected="true" data-mode="text">Text Agent</button>
         <button class="mode-btn" id="structuredModeBtn" type="button" role="tab" aria-selected="false" data-mode="structured" title="Try it yourself with guided options">Guided Demo</button>
+        <button class="mode-btn" id="voiceModeBtn" type="button" role="tab" aria-selected="false" data-mode="voice">Voice Agent</button>
       </div>
       <label class="lang-select-wrap" aria-label="Conversation language"><span aria-hidden="true">🌐</span>
         <select class="lang-select" id="langSelect">
@@ -955,10 +973,13 @@
       <input id="chatInput" type="text" placeholder="Text Agent demo is running…" aria-label="Chat input is not required for this demo" readonly />
       <button class="rst-btn" id="restartBtn" type="button" title="Restart" aria-label="Restart journey">↺</button>
     </div>
+    <div class="voice-experience" id="voiceDemoMount"></div>
   </div>
 </div>
 
+<script src="../../assets/voice-demos/edtech/voice-demos.js"></script>
 <script src="edtech-v3-demo.js"></script>
+<script src="edtech-voice-demo.js"></script>
 <script src="../shared/website-chat.js"></script>
 </body>
 </html>

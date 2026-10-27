@@ -263,28 +263,6 @@
     .domain-card.active:hover .dc-btn {
       background: var(--red); color: #fff
     }
-    /* ── MARQUEE BRANDS ── */
-    .brands { background: var(--warm-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border) }
-    .marquee-lbl {
-      text-align: center; font-size: .72rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--body-muted); margin-bottom: 22px
-    }
-    .logo-row {
-      overflow: hidden; white-space: nowrap; position: relative; width: 100%;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent)
-    }
-    .logo-track { display: flex; width: max-content; animation: marquee 32s linear infinite }
-    .logo-track:hover { animation-play-state: paused }
-    .logo-set { display: flex; align-items: center; gap: 52px; padding-right: 52px }
-    @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
-    .logo-text-fallback {
-      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem;
-      color: var(--body-head); opacity: .82; transition: opacity .25s
-    }
-    .logo-text-fallback:hover { opacity: 1; color: var(--red) }
-
     /* ── CTA BANNER ── */
     .cta-banner {
       background: var(--red);
@@ -358,8 +336,8 @@
 <nav>
   <a href="index.html"><img class="nav-logo-img" src="Logo's/engati-logo.svg" alt="Engati Logo"></a>
   <div class="nav-links">
-    <a class="nav-link" href="index.html">Partner Program</a>
-    <a class="nav-cta" href="index.html#partner-form">Become a Partner →</a>
+    <a class="nav-link" href="https://partners.engati.ai/whatsapp-partners/#partner-form">Partner Program</a>
+    <a class="nav-cta" href="https://partners.engati.ai/whatsapp-partners/#partner-form">Become a Partner →</a>
   </div>
 </nav>
 
@@ -528,44 +506,11 @@
   </div>
 </section>
 
-<!-- MARQUEE BRANDS -->
-<section class="brands">
-  <div class="max-w">
-    <div class="marquee-lbl">Trusted by Global Leaders Across Industries</div>
-    <div class="logo-row">
-      <div class="logo-track">
-        <div class="logo-set">
-          <span class="logo-text-fallback">L'Oréal</span>
-          <span class="logo-text-fallback">Saudi Telecom (stc)</span>
-          <span class="logo-text-fallback">Grant Thornton</span>
-          <span class="logo-text-fallback">HDFC Bank</span>
-          <span class="logo-text-fallback">Shangri-La Hotels</span>
-          <span class="logo-text-fallback">upGrad</span>
-          <span class="logo-text-fallback">Jaquar</span>
-          <span class="logo-text-fallback">Dominos</span>
-          <span class="logo-text-fallback">KPMG</span>
-        </div>
-        <div class="logo-set">
-          <span class="logo-text-fallback">L'Oréal</span>
-          <span class="logo-text-fallback">Saudi Telecom (stc)</span>
-          <span class="logo-text-fallback">Grant Thornton</span>
-          <span class="logo-text-fallback">HDFC Bank</span>
-          <span class="logo-text-fallback">Shangri-La Hotels</span>
-          <span class="logo-text-fallback">upGrad</span>
-          <span class="logo-text-fallback">Jaquar</span>
-          <span class="logo-text-fallback">Dominos</span>
-          <span class="logo-text-fallback">KPMG</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <div class="cta-banner">
   <h2>Ready to Resell Engati in Your Market?</h2>
   <p>Join the Engati Reseller Partner Program and offer white-label Conversational AI solutions to your enterprise clients.</p>
-  <a class="btn-white" href="index.html#partner-form">Become a Partner Today →</a>
+  <a class="btn-white" href="https://partners.engati.ai/whatsapp-partners/#partner-form">Become a Partner Today →</a>
 </div>
 
 <footer>

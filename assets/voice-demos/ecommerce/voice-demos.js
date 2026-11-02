@@ -13,7 +13,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/indiamart-product-discovery-enquiry.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/indiamart-product-discovery-enquiry.mp3',
             duration: 61.128,
             direction: 'inbound',
             prospect: 'Customer',
@@ -65,7 +65,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/indiamart-product-recommendation-callback.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/indiamart-product-recommendation-callback.mp3',
             duration: 68.904,
             direction: 'inbound',
             prospect: 'Customer',
@@ -118,7 +118,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/indiamart-product-availability-alternative.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/indiamart-product-availability-alternative.mp3',
             duration: 141.912,
             direction: 'inbound',
             prospect: 'Customer',
@@ -188,7 +188,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/indiamart-order-placement.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/indiamart-order-placement.mp3',
             duration: 76.032,
             direction: 'inbound',
             prospect: 'Customer',
@@ -243,7 +243,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/pc-chandra-cart-recovery.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/pc-chandra-cart-recovery.mp3',
             duration: 60.192,
             direction: 'outbound',
             prospect: 'Swaroop',
@@ -296,7 +296,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/pc-chandra-jewellers-purchase-followup.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/pc-chandra-jewellers-purchase-followup.mp3',
             duration: 71.172,
             direction: 'outbound',
             prospect: 'Customer',
@@ -348,7 +348,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/pc-chandra-cost-concern.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/pc-chandra-cost-concern.mp3',
             duration: 78.624,
             direction: 'outbound',
             prospect: 'Customer',
@@ -401,7 +401,7 @@ window.ECOMMERCE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/ecommerce/pc-chandra-busy-callback.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/ecommerce/pc-chandra-busy-callback.mp3',
             duration: 45.756,
             direction: 'outbound',
             prospect: 'Customer',

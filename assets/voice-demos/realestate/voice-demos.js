@@ -13,7 +13,7 @@ window.REALESTATE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/realestate/property-station-mansi-july-16.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/realestate/property-station-mansi-july-16.mp3',
             duration: 92.844,
             direction: 'outbound',
             prospect: 'prospect',
@@ -71,7 +71,7 @@ window.REALESTATE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/realestate/property-station-given-sample.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/realestate/property-station-given-sample.mp3',
             duration: 230.508,
             direction: 'outbound',
             prospect: 'prospect',
@@ -141,7 +141,7 @@ window.REALESTATE_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/realestate/property-station-updated-recording.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/realestate/property-station-updated-recording.mp3',
             duration: 178.236,
             direction: 'outbound',
             prospect: 'prospect',

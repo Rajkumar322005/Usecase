@@ -338,9 +338,9 @@
   };
 
   const DOCTOR_PORTRAITS = {
-    ananya: '../../assets/healthcare/doctor-ananya-menon.jpg',
-    'vikram-rao': '../../assets/healthcare/doctor-vikram-rao.jpg',
-    'arjun-shah': '../../assets/healthcare/doctor-arjun.jpg'
+    ananya: 'https://br.branding-element.com/engati/Partners/assets/healthcare/doctor-ananya-menon.jpg',
+    'vikram-rao': 'https://br.branding-element.com/engati/Partners/assets/healthcare/doctor-vikram-rao.jpg',
+    'arjun-shah': 'https://br.branding-element.com/engati/Partners/assets/healthcare/doctor-arjun.jpg'
   };
 
   const LAB_PACKAGES = [
@@ -725,7 +725,7 @@
   function locationCards(action, locations) {
     renderCarousel((locations || LOCATIONS).map(function (item) {
       return {
-        id:item.id, image:'../../assets/healthcare/careplus-locations.jpg', sprite:item.sprite, alt:item.name + ' exterior',
+        id:item.id, image:'https://br.branding-element.com/engati/Partners/assets/healthcare/careplus-locations.jpg', sprite:item.sprite, alt:item.name + ' exterior',
         tag:item.distance || '', title:item.name, subtitle:item.address, primaryAction:action,
         primaryLabel: typeLabel(action), secondary:[
           { label:tx('directions'), action:'directions' },
@@ -744,7 +744,7 @@
     renderCarousel(list.map(function (doctor) {
       const portrait = DOCTOR_PORTRAITS[doctor.id];
       return {
-        id:doctor.id, image:portrait || '../../assets/healthcare/careplus-doctors.jpg', sprite:portrait ? null : doctor.sprite, alt:doctor.name + ' profile',
+        id:doctor.id, image:portrait || 'https://br.branding-element.com/engati/Partners/assets/healthcare/careplus-doctors.jpg', sprite:portrait ? null : doctor.sprite, alt:doctor.name + ' profile',
         tag:tx(specialtyKey), title:doctor.name, subtitle:interpolate('yearsExperience', { n:parseInt(doctor.experience, 10) }),
         meta:doctor.languages + ' · ' + localizedNext(doctor.next), price:doctor.fee,
         primaryAction:action, primaryLabel:tx('selectDoctor'), secondary:[]

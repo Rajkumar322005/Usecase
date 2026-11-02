@@ -13,7 +13,7 @@
           direction: 'outbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-request-en.mp3', duration: 81.76,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-request-en.mp3', duration: 81.76,
               patient: 'Sachin', purpose: 'Appointment request',
               transcript: [
                 { start: 1.30, end: 10.50, speaker: 'AI Voice Agent', text: 'Hi Sachin, this is Diya from Centre for Sight. I noticed you were trying to book an appointment. Let me quickly help you with the booking. May I know the reason for your appointment?' },
@@ -36,7 +36,7 @@
               completionCopy: 'Your appointment preferences were captured for a team callback.'
             },
             hi: {
-              label: 'हिंदी', audio: '../../assets/voice-demos/healthcare/appointment-request-hi.mp3', duration: 65.92,
+              label: 'हिंदी', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-request-hi.mp3', duration: 65.92,
               patient: 'Sachin', purpose: 'Appointment request',
               transcript: [
                 { start: 1.68, end: 10.40, speaker: 'AI Voice Agent', text: 'नमस्ते सचिन, मैं सेंटर फॉर साइट से दिया हूँ। मैंने देखा कि आप एक अपॉइंटमेंट बुक करने की कोशिश कर रहे थे। मैं आपको बुकिंग में जल्दी से मदद करती हूँ। आपको अपॉइंटमेंट किसलिए चाहिए?' },
@@ -59,7 +59,7 @@
           direction: 'inbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-booking-nu-urology-en.mp3', duration: 62.32,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-booking-nu-urology-en.mp3', duration: 62.32,
               patient: 'Rajesh', purpose: 'Urology appointment request',
               transcript: [
                 { start: 1.20, end: 8.46, speaker: 'AI Voice Agent', text: 'Hello, welcome to NU Hospitals. I am here to assist you with scheduling an appointment. May I please have your name?' },
@@ -83,7 +83,7 @@
           direction: 'inbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-booking-dr-agarwal-doctor-known-en.mp4', duration: 113.39,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-booking-dr-agarwal-doctor-known-en.mp4', duration: 113.39,
               patient: 'Thiruvannamalai Sekar', purpose: 'Doctor-known appointment booking',
               transcript: [
                 { start: 5.94, end: 14.16, speaker: 'AI Voice Agent', text: "Hello, I am your virtual assistant from Dr. Agarwal's Eye Hospital. Do you want to book an appointment or know about our services?" },
@@ -114,7 +114,7 @@
           direction: 'inbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-booking-hcg-doctor-known-en.mp4', duration: 89.81,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-booking-hcg-doctor-known-en.mp4', duration: 89.81,
               patient: 'Patient', purpose: 'Doctor-known appointment booking',
               transcript: [
                 { start: 5.77, end: 15.17, speaker: 'AI Voice Agent', text: 'Hi there. I am Kerbadi, your virtual assistant from HCG Hospitals. Are you looking to book an appointment, or would you like some information about our services?' },
@@ -145,7 +145,7 @@
         direction: 'outbound', defaultLanguage: 'en',
         languages: {
           en: {
-            label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-confirmation-rainbow-en.mp3', duration: 56.34,
+            label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-confirmation-rainbow-en.mp3', duration: 56.34,
             patient: 'Chandrima Mandal', purpose: 'Appointment confirmation',
             transcript: [
               { start: 1.62, end: 6.80, speaker: 'AI Voice Agent', text: 'Hello, I am calling from Rainbow Hospitals regarding an upcoming appointment. May I please speak with Chandrima Mandal?' },
@@ -167,7 +167,7 @@
             completionCopy: 'The patient confirmed attendance for the physical appointment.'
           },
           hi: {
-            label: 'हिंदी', audio: '../../assets/voice-demos/healthcare/appointment-confirmation-rainbow-hi.mp3', duration: 58.57,
+            label: 'हिंदी', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-confirmation-rainbow-hi.mp3', duration: 58.57,
             patient: 'Chandrima Mandal', purpose: 'Appointment confirmation',
             transcript: [
               { start: 0.00, end: 6.74, speaker: 'AI Voice Agent', text: 'Hello, I am calling from Rainbow Hospitals regarding an upcoming appointment. May I please speak with Chandrima Mandal?' },
@@ -183,7 +183,7 @@
             completionCopy: 'The patient confirmed attendance for the physical appointment.'
           },
           kn: {
-            label: 'ಕನ್ನಡ', audio: '../../assets/voice-demos/healthcare/appointment-confirmation-rainbow-kn.mp3', duration: 67.18,
+            label: 'ಕನ್ನಡ', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-confirmation-rainbow-kn.mp3', duration: 67.18,
             patient: 'Chandrima Mandal', purpose: 'Appointment confirmation',
             transcript: [
               { start: 0.00, end: 5.08, speaker: 'AI Voice Agent', text: 'Hello, I am calling from Rainbow Hospitals regarding an upcoming appointment. May I please speak with Chandrima Mandal?' },
@@ -211,7 +211,7 @@
           direction: 'outbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-reschedule-en.mp3', duration: 74.70,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-reschedule-en.mp3', duration: 74.70,
               patient: 'Jasmine', purpose: 'Missed-appointment reschedule',
               transcript: [
                 { start: 0.00, end: 6.70, speaker: 'AI Voice Agent', text: 'Hello, Jasmine. I am Asha from Aster Hospitals. Is this a good time to speak for a minute regarding your missed appointment?' },
@@ -234,7 +234,7 @@
               completionCopy: 'Your reschedule request was captured for team confirmation.'
             },
             kn: {
-              label: 'ಕನ್ನಡ', audio: '../../assets/voice-demos/healthcare/appointment-reschedule-aster-kn.mp3', duration: 78.52,
+              label: 'ಕನ್ನಡ', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-reschedule-aster-kn.mp3', duration: 78.52,
               patient: 'Jasmine', purpose: 'Missed-appointment reschedule',
               transcript: [
                 { start: 0.00, end: 7.48, speaker: 'AI Voice Agent', text: 'Hello, I am Asha from Aster Hospitals. Is this a good time to speak regarding your missed appointment?' },
@@ -261,7 +261,7 @@
           direction: 'outbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/appointment-reschedule-rainbow-en.mp3', duration: 79.02,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/appointment-reschedule-rainbow-en.mp3', duration: 79.02,
               patient: 'Chandrima Mandal', purpose: 'Reminder and reschedule request',
               transcript: [
                 { start: 0.21, end: 5.93, speaker: 'AI Voice Agent', text: 'Hello, I am calling from Rainbow Hospitals regarding an upcoming appointment. May I please speak with Chandrima Mandal?' },
@@ -296,7 +296,7 @@
         direction: 'inbound', defaultLanguage: 'en',
         languages: {
           en: {
-            label: 'English', audio: '../../assets/voice-demos/healthcare/patient-callback-nu-en.mp3', duration: 36.76,
+            label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/patient-callback-nu-en.mp3', duration: 36.76,
             patient: 'Patient', purpose: 'Representative callback',
             transcript: [
               { start: 1.46, end: 7.12, speaker: 'AI Voice Agent', text: "Welcome to NU Hospitals. I'm here to assist you with appointment booking. May I have your name, please?" },
@@ -321,7 +321,7 @@
           direction: 'outbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/medicine-reorder-hcg-saved-address-en.mp3', duration: 76.25,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/medicine-reorder-hcg-saved-address-en.mp3', duration: 76.25,
               patient: 'Rajesh Gupta', purpose: 'Medicine reorder',
               transcript: [
                 { start: 1.36, end: 5.40, speaker: 'AI Voice Agent', text: "Hello, I'm calling from HCG Pharmacy. Is this a good time to talk?" },
@@ -347,7 +347,7 @@
           direction: 'outbound', defaultLanguage: 'en',
           languages: {
             en: {
-              label: 'English', audio: '../../assets/voice-demos/healthcare/medicine-reorder-hcg-different-address-en.mp3', duration: 78.26,
+              label: 'English', audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/healthcare/medicine-reorder-hcg-different-address-en.mp3', duration: 78.26,
               patient: 'Rajesh Gupta', purpose: 'Medicine reorder address change',
               transcript: [
                 { start: 0.78, end: 4.94, speaker: 'AI Voice Agent', text: "Hello, I'm calling from HCG Pharmacy. Is this a good time to talk?" },

@@ -13,7 +13,7 @@ window.HOSPITALITY_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/hospitality/hyatt-hotel-booking.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/hospitality/hyatt-hotel-booking.mp3',
             duration: 151.524,
             direction: 'inbound',
             prospect: 'Guest',

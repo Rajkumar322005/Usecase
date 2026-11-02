@@ -13,7 +13,7 @@ window.BFSI_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/bfsi/royal-sundaram-car-insurance-booking.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/bfsi/royal-sundaram-car-insurance-booking.mp3',
             duration: 99.0,
             direction: 'outbound',
             prospect: 'Customer',
@@ -71,7 +71,7 @@ window.BFSI_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/bfsi/royal-sundaram-policy-renewal-english.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/bfsi/royal-sundaram-policy-renewal-english.mp3',
             duration: 178.992,
             direction: 'outbound',
             prospect: 'Policyholder',
@@ -135,7 +135,7 @@ window.BFSI_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/bfsi/royal-sundaram-claim-information.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/bfsi/royal-sundaram-claim-information.mp3',
             duration: 47.016,
             direction: 'outbound',
             prospect: 'Policyholder',
@@ -183,7 +183,7 @@ window.BFSI_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/bfsi/tyger-capital-address-verified.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/bfsi/tyger-capital-address-verified.mp3',
             duration: 73.8,
             direction: 'outbound',
             prospect: 'Loan applicant',
@@ -239,7 +239,7 @@ window.BFSI_VOICE_DEMOS = [
         languages: {
           en: {
             label: 'English',
-            audio: '../../assets/voice-demos/bfsi/onefinance-advisory-english.mp3',
+            audio: 'https://br.branding-element.com/engati/Partners/assets/voice-demos/bfsi/onefinance-advisory-english.mp3',
             duration: 112.176,
             direction: 'outbound',
             prospect: 'Customer',

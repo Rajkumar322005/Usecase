@@ -1,4 +1,4 @@
-window.REALESTATE_VOICE_DEMOS = [
+export const realEstateVoiceDemos = [
   {
     id: 'site-visit-scheduling',
     title: 'Site Visit Scheduling',

@@ -1,7 +1,9 @@
+import { bfsiVoiceDemos } from '../../src/usecaseHub/voiceDemos/bfsiVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.BFSI_VOICE_DEMOS) ? window.BFSI_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(bfsiVoiceDemos) ? bfsiVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

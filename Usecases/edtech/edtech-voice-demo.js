@@ -1,7 +1,9 @@
+import { edtechVoiceDemos } from '../../src/usecaseHub/voiceDemos/edtechVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.EDTECH_VOICE_DEMOS) ? window.EDTECH_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(edtechVoiceDemos) ? edtechVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

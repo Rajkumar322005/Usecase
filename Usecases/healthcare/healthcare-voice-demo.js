@@ -1,7 +1,9 @@
+import { healthcareVoiceDemos } from '../../src/usecaseHub/voiceDemos/healthcareVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.HEALTHCARE_VOICE_DEMOS) ? window.HEALTHCARE_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(healthcareVoiceDemos) ? healthcareVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

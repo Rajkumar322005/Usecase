@@ -1,4 +1,4 @@
-window.BFSI_VOICE_DEMOS = [
+export const bfsiVoiceDemos = [
   {
     id: 'motor-insurance-booking',
     title: 'Motor Insurance Quote',

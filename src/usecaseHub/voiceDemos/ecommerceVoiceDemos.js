@@ -1,4 +1,4 @@
-window.ECOMMERCE_VOICE_DEMOS = [
+export const ecommerceVoiceDemos = [
   {
     id: 'product-discovery',
     title: 'Product Discovery & Enquiry',

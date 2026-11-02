@@ -1,7 +1,9 @@
+import { realEstateVoiceDemos } from '../../src/usecaseHub/voiceDemos/realEstateVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.REALESTATE_VOICE_DEMOS) ? window.REALESTATE_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(realEstateVoiceDemos) ? realEstateVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

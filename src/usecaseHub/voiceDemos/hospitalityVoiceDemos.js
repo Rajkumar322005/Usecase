@@ -1,4 +1,4 @@
-window.HOSPITALITY_VOICE_DEMOS = [
+export const hospitalityVoiceDemos = [
   {
     id: 'hotel-booking',
     title: 'Hotel Booking',

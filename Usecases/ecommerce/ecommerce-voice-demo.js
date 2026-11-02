@@ -1,7 +1,9 @@
+import { ecommerceVoiceDemos } from '../../src/usecaseHub/voiceDemos/ecommerceVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.ECOMMERCE_VOICE_DEMOS) ? window.ECOMMERCE_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(ecommerceVoiceDemos) ? ecommerceVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

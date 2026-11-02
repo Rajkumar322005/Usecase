@@ -1,7 +1,9 @@
+import { hospitalityVoiceDemos } from '../../src/usecaseHub/voiceDemos/hospitalityVoiceDemos.js';
+
 (function () {
   'use strict';
 
-  const voiceDemos = Array.isArray(window.HOSPITALITY_VOICE_DEMOS) ? window.HOSPITALITY_VOICE_DEMOS : [];
+  const voiceDemos = Array.isArray(hospitalityVoiceDemos) ? hospitalityVoiceDemos : [];
   const root = document.getElementById('modalRoot');
   const overlay = document.getElementById('modalOverlay');
   const mount = document.getElementById('voiceDemoMount');

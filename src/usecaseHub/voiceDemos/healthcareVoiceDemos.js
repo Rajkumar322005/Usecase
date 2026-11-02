@@ -1,7 +1,4 @@
-(function () {
-  'use strict';
-
-  window.HEALTHCARE_VOICE_DEMOS = [
+  export const healthcareVoiceDemos = [
     {
       id: 'appointment-request',
       title: 'Appointment Booking',
@@ -371,4 +368,3 @@
       ]
     }
   ];
-})();

@@ -1,9 +1,6 @@
-(function () {
-  'use strict';
-
   const base = 'https://br.branding-element.com/engati/Partners/assets/voice-demos/edtech/';
 
-  window.EDTECH_VOICE_DEMOS = [
+  export const edtechVoiceDemos = [
     {
       id: 'course-discovery',
       title: 'Course Discovery & Enquiry',
@@ -339,4 +336,3 @@
       ]
     }
   ];
-})();
